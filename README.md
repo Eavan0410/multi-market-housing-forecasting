@@ -1,6 +1,6 @@
-# Multi-Market Housing Forecasting
+# Multi-Market Housing Price Forecasting with LLM Policy Signals
 
-Cross-market housing price forecasting with transfer learning, multi-horizon Transformers, and an optional LLM policy-signal pipeline.
+A deep learning research project combining cross-market Transformer transfer learning with structured LLM inference for housing-policy signals.
 
 **Status:** Initial project setup. Models, backtesting, and policy extraction are under development; no forecasting or inference-performance results are claimed yet.
 
@@ -12,14 +12,31 @@ Cross-market housing price forecasting with transfer learning, multi-horizon Tra
 
 The initial transfer experiment uses HPI and interest rates. The broader dataset targets at least three markets including Taiwan, quarterly observations, and approximately 6–8 comparable features selected using economic reasoning and data availability.
 
-## Planned technical highlights
+## Technical highlights
 
-- **Multi-horizon forecasting:** A compact Transformer predicts 1–4 quarters ahead in one forward pass. Experiments compare Taiwan-only training, joint multi-market training, and source-market pretraining followed by Taiwan fine-tuning.
-- **Comparable data contracts:** Shared feature definitions, country-specific mapping files, publication-lag metadata, and standardized prediction CSVs connect data preparation, modeling, and evaluation.
-- **Time-aware evaluation:** Expanding-window backtests, synchronized calendar cutoffs across markets, training-window-only preprocessing, and explicit label-overlap checks.
-- **Statistical comparisons:** Historical-mean, AR, Ridge, and GRU baselines; RMSE, MAE, direction accuracy, feature-group ablations, and bootstrap confidence intervals for paired model differences.
-- **Optional policy extraction:** Schema-constrained LLM outputs, rule-based validation, source evidence spans, and human-audited extraction quality. A vLLM batch pipeline and prefix-caching experiments are planned if the core forecast milestones are met.
-- **Reproducible performance measurement:** Record model versions, hardware, batch settings, token lengths, throughput, latency, memory use, and extraction quality when benchmarking the policy pipeline.
+The following components describe the planned implementation. Deep learning and forecasting evaluation are the core deliverables; the LLM inference pipeline is an optional extension.
+
+### Deep Learning and Transfer Learning
+
+- **Multi-horizon time-series Transformer:** Encode multivariate quarterly histories and directly predict 1–4 quarters ahead in one forward pass.
+- **Cross-market pretraining and fine-tuning:** Learn from source markets, then adapt to Taiwan. Compare against Taiwan-only training and joint multi-market training under identical information cutoffs.
+- **Market-aware representations:** Evaluate country embeddings to capture market-specific responses while retaining a shared feature space.
+- **Controlled model comparisons:** Benchmark against historical mean, AR, Ridge, and GRU; use feature-group ablations and paired uncertainty estimates to assess gains.
+
+### LLM Inference and Structured Extraction
+
+- **vLLM batch inference:** Process Chinese-language policy announcements into structured records for quarterly policy and credit-condition signals.
+- **JSON Schema constrained decoding:** Constrain output structure and validate field types, required fields, and permitted values. Schema validity and factual extraction accuracy will be evaluated separately.
+- **Prefix caching:** Reuse shared instruction and schema prefixes where supported; measure cache-enabled versus cache-disabled performance with matched workloads.
+- **Rule + LLM validation:** Check extracted fields against deterministic rules and evidence spans in the source document, with human-audited samples for quality measurement.
+- **Inference benchmarking:** Report documents/second, output tokens/second, end-to-end latency distributions, peak GPU memory, and extraction quality. Record hardware, model and engine versions, prompt/output lengths, batch settings, and cache conditions.
+
+### Evaluation and Research Infrastructure
+
+- **Shared data and prediction contracts:** Country-specific mapping files, common feature definitions, publication-lag metadata, and standardized prediction CSVs.
+- **Leakage-aware backtesting:** Expanding windows, synchronized calendar cutoffs across markets, training-window-only preprocessing, and checks for training-label overlap.
+- **Statistical evaluation:** RMSE, MAE, direction accuracy, and paired bootstrap confidence intervals that account for time dependence.
+- **Policy-signal ablation:** Compare the same forecasting model with and without policy signals to isolate their incremental contribution.
 
 ## Architecture
 

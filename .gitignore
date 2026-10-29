@@ -223,6 +223,12 @@ __marimo__/
 .DS_Store
 data/raw/*
 !data/raw/.gitkeep
+# Keep only the supplied Taiwan CPI/HPI inputs visible for version control.
+!data/raw/taiwan/
+data/raw/taiwan/*
+!data/raw/taiwan/CPI_monthly.csv
+!data/raw/taiwan/HPI_quarterly.csv
+!data/raw/taiwan/full_HPI_quarterly(city+taiwan).csv
 data/processed/*
 !data/processed/.gitkeep
 checkpoints/

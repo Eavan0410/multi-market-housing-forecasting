@@ -315,7 +315,7 @@ def read_taiwan_hpi(raw_dir):
     if not table["Period"].eq(table["Year"] + "/" + table["Season"]).all():
         raise ValueError("Taiwan HPI date columns disagree.")
     raw = taiwan_observations(table["Period"].str.replace("/", "", regex=False), table["台灣"], "Q")
-    other = read_year_grid(raw_dir / "taiwan" / "HPI_quarterly.csv", ["Q1", "Q2", "Q3", "Q4"], "Q")
+    other = read_year_grid(raw_dir / "taiwan" / "taiwan_hpi_national_quarterly_raw.csv", ["Q1", "Q2", "Q3", "Q4"], "Q")
     # Check duplicate conflicts first, then compare exact numeric observations.
     # The wide file's blank 2025Q4 must not become an extra observation.
     values = []
@@ -544,14 +544,14 @@ def taiwan_metadata(variable, group):
             "variable_definition": (
                 "Sinyi housing price index, Taiwan aggregate (台灣), not a city index or "
                 "an average of cities. All valid observations cross-checked against "
-                "HPI_quarterly.csv; the duplicate file is not counted twice. Publisher "
+                "taiwan_hpi_national_quarterly_raw.csv; the duplicate file is not counted twice. Publisher "
                 "identifies a hedonic index of residential transactions, excluding presales. "
                 "Inflation and seasonal adjustment are not documented in the CSVs; "
                 "equivalence to OECD real, seasonally adjusted HPI is not established. "
                 "No added history before 2001Q1 and no filled 2025Q4 value." + common
             ),
             "source": (
-                f"{source}; data/raw/taiwan/HPI_quarterly.csv (cross-check); "
+                f"{source}; data/raw/taiwan/taiwan_hpi_national_quarterly_raw.csv (cross-check); "
                 "Sinyi Realty / NCCU Sinyi Real Estate Research and Development Center; "
                 f"publisher methodology and history: {TAIWAN_HPI_SOURCE}; "
                 f"matching 2025Q3 Taiwan and city values: {TAIWAN_HPI_EXAMPLE}"

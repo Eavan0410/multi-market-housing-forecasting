@@ -25,12 +25,18 @@ refit_every = 4                        # one fold (model refit) per 4 test origi
 lookback = 8                           # quarters per input window (one token per quarter)
 ffill_limit = 2                        # forward-fill at most 2 quarters, never further
 drop_nan_windows = true                # drop samples whose window still has gaps
-# Input features (one token per quarter). hpi_qoq = the series' own real HPI log growth,
-# always included. B's variables (cpi_yoy, gdp_growth, household_credit_gdp,
-# interest_rate, unemployment_rate) are added here once Taiwan has a mapped
-# equivalent; otherwise Taiwan samples would be dropped. B is mapping Taiwan's
-# interest_rate and gdp_growth. real_income_growth is dropped (team decision).
-use = ["hpi_qoq"]
+# Input features (one token per quarter). A feature can be used only once Taiwan has it;
+# otherwise every Taiwan sample would be dropped. Available now:
+#   hpi_qoq                  the series' own real HPI log growth (always included)
+#   interest_rate            long-term (10-year) government bond yield, % p.a.
+#   gdp_growth               real GDP growth, q/q, seasonally adjusted, %
+#   household_credit_gdp_d4  4-quarter change of household credit / GDP (pp);
+#                            Taiwan: bank consumer loans / 4-quarter nominal GDP
+# Not yet: cpi_yoy (Japan ends 2021Q2), unemployment_rate (Taiwan not uploaded).
+# real_income_growth is dropped (team decision).
+# Series without these variables (the extra AnaHPI countries) drop out when they are used;
+# run with --features hpi_qoq for the HPI-only setting.
+use = ["hpi_qoq", "interest_rate", "gdp_growth", "household_credit_gdp_d4"]
 
 [hpi_basis]
 # "real" = already inflation-adjusted, "nominal" = deflated by CPI in our pipeline.
@@ -43,9 +49,9 @@ Taiwan = "nominal"                     # TODO(B): confirm Taiwan HPI basis
 hpi = { default = 100, Taiwan = 60 }
 cpi = { default = 30 }
 cpi_yoy = { default = 30 }
-gdp_growth = { default = 60 }
-household_credit_gdp = { default = 120 }
-interest_rate = { default = 5 }
+gdp_growth = { default = 60, Taiwan = 60 }
+household_credit_gdp = { default = 120, Taiwan = 60 }   # Taiwan: limited by the nominal GDP release
+interest_rate = { default = 5, Taiwan = 5 }
 unemployment_rate = { default = 45 }
 
 [run]

@@ -1,20 +1,7 @@
-"""Expanding-window splits and leakage checks (回测切分).
+"""Expanding-window folds with a shared calendar cutoff and a locked test period.
 
-The five fair-test rules, and where each one is enforced:
-
-1. Expanding window: each fold trains on all origins up to a cutoff and tests
-   on later origins                                  -> make_splits / train_mask
-2. 4-quarter gap: last training origin <= first test origin - gap_quarters,
-   so no training label overlaps the test period     -> make_splits / check_no_leakage
-3. Same calendar cutoff for every country: folds are defined on calendar
-   quarters and applied to all series, and a training label is used only if
-   it was published by the fold's cutoff date        -> train_mask
-4. Window-only fitting: scalers / models are fitted inside the fold
-                                                     -> runner + scaling.py
-5. Same splits and metrics for all models            -> runner + evaluation
-
-Periods (origins):  [ dev: train only ][ validation ][ buffer ][ test (locked) ]
-"""
+Training origins respect the configured gap; labels must be public by the
+fold cutoff. Scaling and model fitting are handled inside each fold by runner."""
 
 from __future__ import annotations
 

@@ -1,16 +1,6 @@
-"""Label generation (标签生成).
+"""Cumulative real HPI log growth: y(t, h) = log(HPI[t+h] / HPI[t]).
 
-Name / UNI: Eavan Chen / yc4941
-
-    y(t, h) = log( HPI_{t+h} / HPI_t ),   h = 1..4   (cumulative log growth, real HPI)
-
-t = origin_quarter, t + h = target_quarter.
-
-Origin and target are matched by CALENDAR QUARTER, not by row position. The
-Spring 2026 code shifted rows on a table whose quarters were out of order,
-so its labels were misaligned; a calendar join cannot make that error, and a
-missing quarter simply produces no label instead of a wrong one.
-"""
+Join by calendar quarter so missing observations cannot shift the targets."""
 
 from __future__ import annotations
 

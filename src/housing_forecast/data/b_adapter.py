@@ -1,16 +1,7 @@
-"""Adapter: B's per-country processed files -> the shared panel contract.
+"""Combine country data into the quarterly panel.
 
-B's files (data/processed/<ISO>_processed.csv) are stacked:
-    country, feature, REF_AREA, FREQ, TIME_PERIOD, SOURCE_PERIOD, OBS_VALUE, ...
-with FREQ "Q" (SOURCE_PERIOD "1970-Q1" or a quarter-start date "1977-10-01")
-or "M" (SOURCE_PERIOD "1956-01").
-
-Rules applied here (row-wise, no fitting, so safe outside the backtest window):
-  - native quarterly rows are used as they are;
-  - monthly rows -> quarterly mean, only for quarters with all 3 months;
-  - if a quarter has both, the native quarterly value wins;
-  - no filling, no interpolation, missing stays missing.
-"""
+Use native quarterly observations first, then means of complete monthly
+quarters. Preserve Taiwan macro history before HPI begins."""
 
 from __future__ import annotations
 
@@ -19,6 +10,7 @@ from pathlib import Path
 import pandas as pd
 
 from housing_forecast.data.raw_dev import load_anahpi, load_taiwan_cpi_monthly, load_taiwan_hpi
+from housing_forecast.data.taiwan_raw import load_taiwan_raw
 
 B_FEATURES = [
     "hpi", "cpi_yoy", "gdp_growth", "household_credit_gdp",
@@ -63,25 +55,63 @@ def load_b_processed(processed_dir: str | Path) -> pd.DataFrame:
     return panel[["series_id", "country", "geography_level", "quarter"] + B_FEATURES]
 
 
-def build_panel(b_processed_dir: str | Path, spring_raw_dir: str | Path,
-                add_anahpi_countries: bool = True) -> tuple[pd.DataFrame, pd.DataFrame]:
+def attach_national_macro(hpi_rows: pd.DataFrame, macro: pd.DataFrame) -> pd.DataFrame:
+    """Give every series of a country (national + cities) the country's macro features.
+
+    Uses an OUTER join on quarter, so macro history from before the HPI starts is
+    kept. Changes such as the 4-quarter change of credit / GDP are computed later
+    on the full history; a left join on the HPI quarters would cut off the
+    earlier quarters they need (Taiwan HPI starts 2001Q1, so 2001's
+    4-quarter change needs 2000's ratio).
+    """
+    cols = [c for c in B_FEATURES if c != "hpi" and c in macro.columns]
+    out = []
+    for sid, g in hpi_rows.groupby("series_id"):
+        country, level = g["country"].iloc[0], g["geography_level"].iloc[0]
+        m = macro.loc[macro["country"] == country, ["quarter"] + cols]
+        merged = g.drop(columns=[c for c in cols if c in g.columns]).merge(m, on="quarter", how="outer")
+        merged[["series_id", "country", "geography_level"]] = [sid, country, level]
+        out.append(merged)
+    return pd.concat(out, ignore_index=True).sort_values(["series_id", "quarter"]).reset_index(drop=True)
+
+
+TAIWAN_HPI_FILE = "taiwan_hpi_quarterly_raw.csv"     # Spring 2026 Raw full_HPI_quarterly(city+taiwan).csv
+TAIWAN_CPI_FILE = "taiwan_cpi_monthly_raw.csv"       # Spring 2026 Raw CPI_monthly.csv
+
+
+def build_panel(b_processed_dir: str | Path, anahpi_path: str | Path | None = "data/raw/global/anahpi_quarterly_raw.csv",
+                add_anahpi_countries: bool = True,
+                taiwan_dir: str | Path = "data/raw/taiwan") -> tuple[pd.DataFrame, pd.DataFrame]:
     """Combined panel for the backtest.
 
-    - B's countries: all their features (B's data takes priority)
-    - other AnaHPI countries: real HPI only (larger HPI-only pretraining pool)
-    - Taiwan national + 7 cities: nominal HPI from Spring 2026 Raw (until B delivers Taiwan)
+    All inputs are in the repository:
+    - B's 4 countries: all their features (data/processed/)
+    - Taiwan national + 7 cities: nominal HPI and CPI index (copies of the Spring
+      2026 Raw tables) and B's macro files, all in `taiwan_dir`. Macro series are
+      national, so the 7 cities share them.
+    - other AnaHPI countries: real HPI only (larger HPI-only pretraining pool),
+      from `anahpi_path` (copy of Spring 2026 Raw AnaHPI_quarter_data.csv).
+      Skipped with a message if the file is missing.
     Returns (panel, taiwan_cpi_monthly).
     """
-    spring = Path(spring_raw_dir)
+    taiwan_dir = Path(taiwan_dir)
     b = load_b_processed(b_processed_dir)
     parts = [b]
     if add_anahpi_countries:
-        ana = load_anahpi(spring / "Global/Raw/AnaHPI_quarter_data.csv")
-        ana["country"] = ana["country"].replace(COUNTRY_ALIASES)
-        ana["series_id"] = ana["country"]
-        parts.append(ana[~ana["country"].isin(set(b["country"]))])
-    parts.append(load_taiwan_hpi(spring / "Taiwan/Raw/full_HPI_quarterly(city+taiwan).csv"))
+        ana_path = Path(anahpi_path) if anahpi_path else None
+        if ana_path is not None and ana_path.exists():
+            ana = load_anahpi(ana_path)
+            ana["country"] = ana["country"].replace(COUNTRY_ALIASES)
+            ana["series_id"] = ana["country"]
+            parts.append(ana[~ana["country"].isin(set(b["country"]))])
+        else:
+            print(f"note: {ana_path} not found; extra AnaHPI countries skipped (HPI-only pool is smaller)")
+
+    taiwan = load_taiwan_hpi(taiwan_dir / TAIWAN_HPI_FILE)
+    taiwan = attach_national_macro(taiwan, load_taiwan_raw(taiwan_dir))
+    parts.append(taiwan)
+
     panel = pd.concat(parts, ignore_index=True)
     panel = panel.sort_values(["series_id", "quarter"]).reset_index(drop=True)
-    cpi = load_taiwan_cpi_monthly(spring / "Taiwan/Raw/CPI_monthly.csv")
+    cpi = load_taiwan_cpi_monthly(taiwan_dir / TAIWAN_CPI_FILE)
     return panel, cpi

@@ -16,7 +16,6 @@ from housing_forecast.data.contract import PRED_COLUMNS, validate_predictions
 from housing_forecast.models.base import Forecaster, set_global_seed
 
 
-# ---- training pools (which series a model may learn from) -----------------------------
 # The pretraining pool is overseas only: no Taiwan national or city series.
 
 def pool_target_only(target_series: str) -> Callable[[pd.DataFrame], np.ndarray]:
@@ -35,7 +34,6 @@ def pool_all() -> Callable[[pd.DataFrame], np.ndarray]:
     return lambda meta: np.ones(len(meta), dtype=bool)
 
 
-# ---- runner ---------------------------------------------------------------------------
 
 def run_backtest(
     samples: SampleSet,

@@ -51,4 +51,4 @@ Every variable carries an observation quarter and an availability date (observat
 
 ## Also to freeze before 11/19
 
-The structure of the three transformer variants, the tuning budget, and the feature list (`[features].use`).
+The structure of the three transformer variants, the tuning budget, and the feature list (`[features].use`). Current draft list: `hpi_qoq`, `interest_rate`, `gdp_growth`, `household_credit_gdp_d4` (definitions in `docs/backtest_framework.md`).

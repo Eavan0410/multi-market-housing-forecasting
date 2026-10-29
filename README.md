@@ -1,6 +1,6 @@
 # Multi-Market Housing Price Forecasting
 
-Can housing data from other countries help forecast Taiwan's house prices? This project compares a Taiwan-only Transformer with joint multi-market training and overseas pretraining followed by fine-tuning on Taiwan.
+This project compares a Taiwan-only Transformer with joint multi-market training and overseas pretraining followed by fine-tuning on Taiwan.
 
 The data pipeline, backtest and evaluator are working, with no-change and direct AR baselines available. The Transformer comparisons are still to come. Extracting policy signals with an LLM is an optional extension after the forecasting experiments.
 

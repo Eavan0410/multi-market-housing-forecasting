@@ -55,10 +55,10 @@ ORIGINAL_COUNTRIES = {
 COUNTRIES = {**ORIGINAL_COUNTRIES, "TWN": "Taiwan"}
 TAIWAN_VARIABLES = {"hpi", "cpi_yoy", "gdp_growth", "interest_rate", "household_credit_gdp"}
 TAIWAN_FILES = {
-    "hpi": "full_HPI_quarterly(city+taiwan).csv",
-    "cpi_yoy": "CPI_monthly.csv",
+    "hpi": "taiwan_hpi_quarterly_raw.csv",
+    "cpi_yoy": "taiwan_cpi_monthly_raw.csv",
     "gdp_growth": "taiwan_gdp_growth_qoq_raw.csv",
-    "interest_rate": "taiwan_interest rate_raw.csv",
+    "interest_rate": "taiwan_interest_rate_raw.csv",
     "household_credit_gdp": "taiwan_household_credit_raw.csv",
 }
 VARIABLES = [

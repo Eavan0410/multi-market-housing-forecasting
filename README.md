@@ -1,106 +1,100 @@
-# Multi-Market Housing Price Forecasting with LLM Policy Signals
+# Multi-Market Housing Price Forecasting
 
-A deep learning research project combining cross-market Transformer transfer learning with structured LLM inference for housing-policy signals.
+This project compares a Taiwan-only Transformer with joint multi-market training and overseas pretraining followed by fine-tuning on Taiwan.
 
-**Status:** Initial project setup. Models, backtesting, and policy extraction are under development; no forecasting or inference-performance results are claimed yet.
+The data pipeline, backtest and evaluator are working, with no-change and direct AR baselines available. The Transformer comparisons are still to come. Extracting policy signals with an LLM is an optional extension after the forecasting experiments.
 
-## Research questions
+## Data and target
 
-- Does pretraining on other housing markets improve forecasts for Taiwan compared with training on Taiwan alone?
-- How does transfer learning compare with joint multi-market training and simple forecasting baselines?
-- Do policy signals extracted from public announcements add predictive value beyond economic fundamentals?
-
-The initial transfer experiment uses HPI and interest rates. The broader dataset targets at least three markets including Taiwan, quarterly observations, and approximately 6–8 comparable features selected using economic reasoning and data availability.
-
-## Technical highlights
-
-The following components describe the planned implementation. Deep learning and forecasting evaluation are the core deliverables; the LLM inference pipeline is an optional extension.
-
-### Deep Learning and Transfer Learning
-
-- **Multi-horizon time-series Transformer:** Encode multivariate quarterly histories and directly predict 1–4 quarters ahead in one forward pass.
-- **Cross-market pretraining and fine-tuning:** Learn from source markets, then adapt to Taiwan. Compare against Taiwan-only training and joint multi-market training under identical information cutoffs.
-- **Market-aware representations:** Evaluate country embeddings to capture market-specific responses while retaining a shared feature space.
-- **Controlled model comparisons:** Benchmark against historical mean, AR, Ridge, and GRU; use feature-group ablations and paired uncertainty estimates to assess gains.
-
-### LLM Inference and Structured Extraction
-
-- **vLLM batch inference:** Process Chinese-language policy announcements into structured records for quarterly policy and credit-condition signals.
-- **JSON Schema constrained decoding:** Constrain output structure and validate field types, required fields, and permitted values. Schema validity and factual extraction accuracy will be evaluated separately.
-- **Prefix caching:** Reuse shared instruction and schema prefixes where supported; measure cache-enabled versus cache-disabled performance with matched workloads.
-- **Rule + LLM validation:** Check extracted fields against deterministic rules and evidence spans in the source document, with human-audited samples for quality measurement.
-- **Inference benchmarking:** Report documents/second, output tokens/second, end-to-end latency distributions, peak GPU memory, and extraction quality. Record hardware, model and engine versions, prompt/output lengths, batch settings, and cache conditions.
-
-### Evaluation and Research Infrastructure
-
-- **Shared data and prediction contracts:** Country-specific mapping files, common feature definitions, publication-lag metadata, and standardized prediction CSVs.
-- **Leakage-aware backtesting:** Expanding windows, synchronized calendar cutoffs across markets, training-window-only preprocessing, and checks for training-label overlap.
-- **Statistical evaluation:** RMSE, MAE, direction accuracy, and paired bootstrap confidence intervals that account for time dependence.
-- **Policy-signal ablation:** Compare the same forecasting model with and without policy signals to isolate their incremental contribution.
-
-## Architecture
+The main dataset covers Australia, Japan, South Korea, the United States and Taiwan at quarterly frequency. The target is Taiwan's national real house price index. Each forecast predicts cumulative log growth over the next 1–4 quarters:
 
 ```text
-Economic series -> Country mappings -> Quarterly feature panel
-                                                |
-                                      Expanding-window splits
-                                                |
-                         Baselines / Taiwan Transformer /
-                         Joint Transformer / Pretrain + fine-tune
-                                                |
-                                      Prediction CSVs
-                                                |
-                              Shared evaluator -> Tables and plots
-
-Public policy announcements -> Structured extraction -> Evidence checks
-                                      |
-                              Quarterly policy signals
-                                      |
-                            Optional forecast ablations
+y(t, h) = log(HPI_real[t + h] / HPI_real[t])
 ```
 
-## Repository layout
+The current feature set is:
 
-The directories below are placeholders for the planned implementation.
+- Real HPI quarterly log growth
+- Long-term government bond yield, averaged over a complete quarter
+- Seasonally adjusted real GDP quarterly growth
+- Four-quarter change in household credit / GDP
+
+Taiwan's credit measure uses bank consumer loans divided by the sum of the latest four quarters of nominal GDP. It is a substitute for the overseas household-credit series; taking changes does not remove that difference in coverage. Taiwan HPI is currently treated as nominal and deflated with CPI, pending confirmation of its basis.
+
+An HPI-only setting can also use the additional countries in the OECD AnaHPI file. Those countries drop out of the current four-feature setting because they lack the other inputs. City-level Taiwan HPI is retained for separate analysis.
+
+## Run locally
+
+Use Python 3.11 and run these commands from the repository root:
+
+```bash
+conda create -n hpf python=3.11 -y
+conda activate hpf
+pip install -e ".[dev]"
+pytest -q
+
+python scripts/build_panel.py
+python scripts/run_backtest.py --models no_change ar --experiment fundamentals
+python scripts/evaluate.py results/fundamentals/validation/preds_*.csv --reference no_change
+```
+
+To try the HPI-only setting:
+
+```bash
+python scripts/run_backtest.py --features hpi_qoq --experiment hpi_only
+python scripts/evaluate.py results/hpi_only/validation/preds_*.csv --reference no_change
+```
+
+To fit the AR baseline on overseas and Taiwan data together:
+
+```bash
+python scripts/run_backtest.py --models ar --pool overseas_plus_target --experiment fundamentals
+```
+
+This adds `preds_ar__overseas_plus_target.csv` to the same experiment folder. It uses the AR adapter's per-series fitting and pooled fallback; it is not the planned joint Transformer.
+
+Each prediction CSV has a `.meta.json` file recording its features, training pool, cutoffs and input-data fingerprints. The evaluator rejects incompatible manifests and checks that models and seeds cover the same forecast rows. Keep the metadata beside the CSVs. Files without metadata produce a warning because their settings cannot be verified.
+
+## Backtest
+
+Validation origins run from 2012Q1 to 2017Q4. Origins in 2018 form a buffer, and the test period starts in 2019Q1. The test period stays locked until the final configuration freeze; use validation for model and feature choices.
+
+Training uses an expanding window, with one refit every four forecast origins. The last training origin is four quarters before the first evaluation origin. All countries share the same calendar cutoff, unpublished training labels are masked, and scaling is fitted within each training fold.
+
+The evaluator reports RMSE, MAE and direction accuracy by horizon. Metrics are calculated for each seed and then averaged. Confidence intervals use paired circular blocks of four origin quarters, keeping all horizons and seeds together in each draw. The bootstrap holds the fitted seeds fixed; across-seed standard deviations describe training variability separately.
+
+Publication lags are still placeholders until the availability matrix is confirmed. The data are revised series rather than real-time vintages, so the backtest does not reconstruct exactly what was known historically.
+
+## Files
 
 ```text
-configs/                   Experiment and model configurations
-data/
-  raw/                     Local source data (not tracked)
-  processed/               Local feature panels (not tracked)
-  mappings/                Country-specific mapping definitions
-docs/                      Data contracts and methodology notes
+configs/experiment.toml    Features, horizons, periods, lags and seeds
+data/raw/                  Overseas and Taiwan source tables
+data/processed/           Four-country processed tables
+data/interim/             Generated panels, ignored by Git
 src/housing_forecast/
-  data/                    Loading, harmonization, availability handling
-  backtesting/             Time splits and leakage checks
-  models/                  Baseline and Transformer adapters
-  evaluation/              Metrics and paired bootstrap comparisons
-  policy/                  Optional LLM extraction and aggregation
-scripts/                   Experiment and benchmark entry points
-tests/                     Contract and leakage-prevention tests
-results/                   Small, reviewable evaluation summaries
+  data/                    Readers and quarterly transformations
+  backtesting/             Windows, folds, scaling, runner and run metadata
+  models/                  No-change and AR baselines
+  evaluation/              Metrics and block bootstrap
+  policy/                  Placeholder for policy extraction
+scripts/                   Build, backtest and evaluation commands
+tests/                     Data, leakage, alignment and evaluation checks
+results/                   Outputs grouped by experiment and phase
 ```
 
-## Evaluation protocol
+Source tables in `data/raw/` and `data/processed/` are tracked. Generated panels go to `data/interim/`; checkpoints and large training artifacts are ignored. The Taiwan HPI/CPI and global AnaHPI tables were copied from the Spring 2026 dataset, so the build no longer needs a sibling data folder.
 
-All models will share forecast origins, target definitions, horizons, and scoring rules. Each market uses the same calendar cutoff. Preprocessing and model selection use only the training portion of each fold; source-market pretraining must obey the same information cutoff.
+See the [experiment contract](docs/experiment_contract.md) for the forecast definitions, [framework notes](docs/backtest_framework.md) for adding models, and [design notes](docs/design_notes.md) for the data interfaces and merge rules. Runtime settings live in [experiment.toml](configs/experiment.toml).
 
-The project plan specifies a four-quarter separation between training and testing. The implementation will define this using forecast-origin and label dates and verify that no training label crosses the permitted boundary. Economic observations and policy announcements must also respect their availability dates.
+## Next steps
 
-Bootstrap comparisons will resample paired forecast errors while accounting for serial dependence and overlapping forecast horizons. Policy-signal contribution will be measured by comparing the same forecasting model with and without those signals, separately from comparisons against GRU.
+| Date | Deliverable |
+|---|---|
+| October 29 | Forecast definitions, CSV interfaces, backtest and bootstrap evaluator |
+| November 12 | Baselines and an initial HPI-and-rates transfer experiment |
+| November 19 | Prediction CSVs for the three Transformer variants |
+| November 26 | Model comparisons, confidence intervals and feature ablations |
+| December 10 | Final report and reproducibility materials |
 
-## Roadmap
-
-- **October 29:** Freeze forecast definitions and shared CSV contracts; implement backtesting and evaluation with bootstrap.
-- **November 12:** Standardized multi-market data, baseline results, and an initial HPI-and-rates transfer experiment.
-- **November 19:** Deliver final prediction CSVs for the three Transformer variants.
-- **November 26:** Complete model comparisons, confidence intervals, feature-group ablations, and the transfer-learning conclusion.
-- **December 10:** Complete the report, reproducibility documentation, and handoff materials.
-
-The Chinese project plan is the execution reference. Policy extraction, sensitivity analysis, and other extensions remain optional and must not delay core forecasting deliverables.
-
-## Data and reproducibility
-
-Raw datasets, model checkpoints, credentials, and large generated artifacts are excluded from version control. Future dataset documentation will record source URLs, access dates, units, transformations, coverage, publication lags, and redistribution restrictions.
-
-Runnable setup instructions and experiment commands will be added alongside their implementations. Published results will link to configurations and evaluation artifacts.
+The Chinese project plan remains the execution reference. Policy extraction is optional and comes after the core forecasting work.

@@ -1,0 +1,66 @@
+# Experiment contract (实验约定) — DRAFT, to be frozen by the team on 10/29.
+# Every number here is read by the code; change it here, never inside scripts.
+# Items marked TODO(B) need confirmation from the data owner.
+
+[target]
+series_id = "Taiwan_national"          # primary target series (台湾全国)
+country = "Taiwan"
+eval_series = ["Taiwan_national"]      # series scored in the main table; cities are reported separately
+value_col = "hpi_real"                 # labels always use the REAL HPI level
+target_type = "cum_log_growth_real"    # y(t,h) = log(HPI_{t+h} / HPI_t)
+horizons = [1, 2, 3, 4]
+main_horizon = 4                       # TODO(team): confirm the headline horizon
+
+[periods]
+# Calendar quarters of the forecast ORIGIN t. The same dates apply to every country.
+# Origins before validation_start are only ever used for training ("dev" warm-up).
+validation_start = "2012Q1"
+validation_end = "2017Q4"
+test_start = "2019Q1"                  # untouched until the 11/19 config freeze
+test_end = "auto"                      # "auto" = last origin that has at least one label
+gap_quarters = 4                       # train origins <= first test origin - gap
+refit_every = 4                        # one fold (model refit) per 4 test origins
+
+[features]
+lookback = 8                           # quarters per input window (one token per quarter)
+ffill_limit = 2                        # forward-fill at most 2 quarters, never further
+drop_nan_windows = true                # drop samples whose window still has gaps
+# Input features (one token per quarter). A feature can be used only once Taiwan has it;
+# otherwise every Taiwan sample would be dropped. Available now:
+#   hpi_qoq                  the series' own real HPI log growth (always included)
+#   interest_rate            long-term (10-year) government bond yield, % p.a.
+#   gdp_growth               real GDP growth, q/q, seasonally adjusted, %
+#   household_credit_gdp_d4  4-quarter change of household credit / GDP (pp);
+#                            Taiwan: bank consumer loans / 4-quarter nominal GDP
+# Not yet: cpi_yoy (Japan ends 2021Q2), unemployment_rate (Taiwan not uploaded).
+# real_income_growth is dropped (team decision).
+# Series without these variables (the extra AnaHPI countries) drop out when they are used;
+# run with --features hpi_qoq for the HPI-only setting.
+use = ["hpi_qoq", "interest_rate", "gdp_growth", "household_credit_gdp_d4"]
+
+[hpi_basis]
+# "real" = already inflation-adjusted, "nominal" = deflated by CPI in our pipeline.
+default = "real"                       # OECD AnaHPI = real house price index
+Taiwan = "nominal"                     # TODO(B): confirm Taiwan HPI basis
+
+[release_lag_days]
+# Days after the end of the observed quarter when a value becomes public.
+# Placeholders until B's availability matrix is done.  TODO(B)
+hpi = { default = 100, Taiwan = 60 }
+cpi = { default = 30 }
+cpi_yoy = { default = 30 }
+gdp_growth = { default = 60, Taiwan = 60 }
+household_credit_gdp = { default = 120, Taiwan = 60 }   # Taiwan: limited by the nominal GDP release
+interest_rate = { default = 5, Taiwan = 5 }
+unemployment_rate = { default = 45 }
+
+[run]
+# Explicit single-seed exceptions; other model names require every configured seed.
+deterministic_models = ["no_change", "ar"]
+seeds = [0, 1, 2, 3, 4]                # fixed seed list; deterministic models use only the first
+
+[bootstrap]
+n_boot = 2000
+block_length = 4                       # >= max horizon, because 1–4 step labels overlap
+ci = 0.95
+seed = 20261029

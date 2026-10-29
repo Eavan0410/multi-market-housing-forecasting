@@ -28,7 +28,7 @@ data/raw/global/ (AnaHPI, HPI only) ─┘                              data/int
 |---|---|
 | `data/contract.py` | panel and prediction CSV schemas, validators, row-alignment check |
 | `data/b_adapter.py` | B's per-country processed files → panel; adds other AnaHPI countries and Taiwan from Spring Raw |
-| `data/raw_dev.py` | readers for Spring 2026 Raw (AnaHPI, Taiwan HPI, Taiwan CPI) |
+| `data/readers.py` | readers for the raw tables copied from Spring 2026 (AnaHPI, Taiwan HPI, Taiwan CPI) |
 | `data/taiwan_raw.py` | B's Taiwan raw files → quarterly interest_rate, gdp_growth, household_credit_gdp |
 | `data/transforms.py` | backward-looking row-wise transforms (deflation, log growth, monthly → quarterly, credit / GDP, 4-quarter change) |
 | `backtesting/labels.py` | cumulative log-growth labels, matched by calendar quarter |

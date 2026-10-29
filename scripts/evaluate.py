@@ -9,7 +9,10 @@ files) or the evaluation stops. Files without a manifest (e.g. a CSV from
 another script) are scored with a warning, and their seeds are checked against
 [run].deterministic_models.
 
-Writes metrics.csv and bootstrap_vs_<reference>.csv next to the first input file.
+Writes next to the first input file:
+    metrics.csv                  point metrics per model and horizon (mean and sd over seeds)
+    metric_ci.csv                block-bootstrap CI of each model's RMSE and MAE
+    bootstrap_vs_<reference>.csv paired CI of each model's difference from the reference
 """
 
 from __future__ import annotations
@@ -22,7 +25,7 @@ import pandas as pd
 from housing_forecast.backtesting.manifest import check_comparable, read_manifest
 from housing_forecast.config import load_config
 from housing_forecast.data.contract import check_alignment, validate_predictions
-from housing_forecast.evaluation.bootstrap import paired_bootstrap
+from housing_forecast.evaluation.bootstrap import metric_ci, paired_bootstrap
 from housing_forecast.evaluation.metrics import metrics_table
 
 
@@ -56,6 +59,12 @@ def main() -> None:
     table = metrics_table(preds)
     table.to_csv(out / "metrics.csv", index=False)
     print(table.round(4).to_string(index=False))
+
+    cis = pd.concat([metric_ci(preds, m, cfg, metric=k)
+                     for m in preds["model"].unique() for k in ("rmse", "mae")], ignore_index=True)
+    cis.to_csv(out / "metric_ci.csv", index=False)
+    print(f"\nBlock bootstrap {cfg['bootstrap']['ci']:.0%} CI per model:")
+    print(cis.round(4).to_string(index=False))
 
     others = [m for m in preds["model"].unique() if m != args.reference]
     boots = [paired_bootstrap(preds, m, args.reference, cfg, metric=k)

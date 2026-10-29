@@ -12,7 +12,6 @@ PRED_COLUMNS = [
     "model", "series_id", "origin_quarter", "as_of_date", "target_quarter",
     "horizon", "y_true", "y_pred", "target_type", "seed", "split_id",
 ]
-PRED_KEY = ["model", "series_id", "origin_quarter", "horizon", "seed", "split_id"]
 
 
 class ContractError(ValueError):

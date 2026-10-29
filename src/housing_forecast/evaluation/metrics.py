@@ -7,9 +7,6 @@ import pandas as pd
 
 from housing_forecast.data.contract import check_alignment
 
-KEY = ["series_id", "origin_quarter", "target_quarter", "horizon"]
-
-
 def rmse(e: np.ndarray) -> float:
     return float(np.sqrt(np.mean(np.square(e))))
 
@@ -35,12 +32,6 @@ def score(df: pd.DataFrame) -> pd.Series:
         "mae": mae(e),
         "dir_acc": direction_accuracy(df["y_true"].to_numpy(), df["y_pred"].to_numpy()),
     })
-
-
-def seed_average(preds: pd.DataFrame) -> pd.DataFrame:
-    """One prediction per (model, series, origin, horizon): mean over seeds."""
-    return (preds.groupby(["model"] + KEY, as_index=False)
-                 .agg(y_true=("y_true", "first"), y_pred=("y_pred", "mean")))
 
 
 def metrics_table(preds: pd.DataFrame) -> pd.DataFrame:

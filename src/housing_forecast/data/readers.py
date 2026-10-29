@@ -1,13 +1,10 @@
-"""INTERIM loader: build the minimal dataset straight from the Spring 2026 Raw files.
+"""Readers for raw tables stored as copies of the Spring 2026 files.
 
-This exists only so the backtest framework can run before B's minimal dataset
-arrives. It writes the SAME format B will deliver, so B's file is a drop-in
-replacement:
+load_anahpi             OECD AnaHPI (real house price index) -> long panel rows
+load_taiwan_hpi         Taiwan national + 7 city HPI table -> long panel rows
+load_taiwan_cpi_monthly Taiwan CPI table (Year x month) -> country, month, cpi
 
-    panel: series_id, country, geography_level, quarter, hpi      (raw levels)
-    cpi  : country, month, cpi                                     (raw monthly)
-
-It reads Raw only (never Processed) and does no filling, scaling or growth rates.
+Raw levels only: no filling, scaling or growth rates.
 """
 
 from __future__ import annotations
@@ -76,14 +73,3 @@ def load_taiwan_cpi_monthly(path: str | Path) -> pd.DataFrame:
     long["country"] = "Taiwan"
     long = long.dropna(subset=["cpi"])
     return long[["country", "month", "cpi"]].sort_values("month").reset_index(drop=True)
-
-
-def build_dev_minimal(raw_dir: str | Path) -> tuple[pd.DataFrame, pd.DataFrame]:
-    raw_dir = Path(raw_dir)
-    panel = pd.concat([
-        load_anahpi(raw_dir / "Global/Raw/AnaHPI_quarter_data.csv"),
-        load_taiwan_hpi(raw_dir / "Taiwan/Raw/full_HPI_quarterly(city+taiwan).csv"),
-    ], ignore_index=True)
-    panel = panel.sort_values(["series_id", "quarter"]).reset_index(drop=True)
-    cpi = load_taiwan_cpi_monthly(raw_dir / "Taiwan/Raw/CPI_monthly.csv")
-    return panel, cpi

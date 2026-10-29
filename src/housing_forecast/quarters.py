@@ -19,17 +19,7 @@ def to_period(quarters) -> pd.PeriodIndex:
     return pd.PeriodIndex(quarters, freq="Q")
 
 
-def to_str(periods) -> pd.Series:
-    """Quarterly periods -> '2010Q1' strings."""
-    return pd.Series(periods).astype(str)
-
-
 def quarter_end(periods) -> pd.DatetimeIndex:
     """Last calendar day of each quarter (e.g. 2010Q1 -> 2010-03-31)."""
     idx = pd.PeriodIndex(periods, freq="Q") if not isinstance(periods, pd.PeriodIndex) else periods
     return idx.end_time.normalize()
-
-
-def release_date(periods, lag_days: int) -> pd.DatetimeIndex:
-    """Date a value observed for `periods` becomes public: quarter end + lag."""
-    return quarter_end(periods) + pd.Timedelta(days=int(lag_days))

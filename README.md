@@ -2,7 +2,7 @@
 
 A deep learning research project combining cross-market Transformer transfer learning with structured LLM inference for housing-policy signals.
 
-**Status:** Initial project setup. Models, backtesting, and policy extraction are under development; no forecasting or inference-performance results are claimed yet.
+**Status:** Backtest framework, evaluation (with block bootstrap) and shared CSV contracts are in place, with "no change" and AR benchmarks running on the validation period. Transformer models and policy extraction are under development; no final results are claimed yet.
 
 ## Research questions
 
@@ -61,7 +61,7 @@ Public policy announcements -> Structured extraction -> Evidence checks
 
 ## Repository layout
 
-The directories below are placeholders for the planned implementation.
+`policy/` is still a placeholder; the other packages are implemented.
 
 ```text
 configs/                   Experiment and model configurations
@@ -99,8 +99,26 @@ Bootstrap comparisons will resample paired forecast errors while accounting for 
 
 The Chinese project plan is the execution reference. Policy extraction, sensitivity analysis, and other extensions remain optional and must not delay core forecasting deliverables.
 
+## Setup and usage
+
+```bash
+conda create -n hpf python=3.11 -y && conda activate hpf
+pip install -e ".[dev]"
+pytest -v
+
+# 1. Build the panel (B's processed files + Spring 2026 Raw for Taiwan and other AnaHPI countries)
+python scripts/build_panel.py --b-dir data/processed --spring-raw "../26spring data"
+# 2. Backtest on the validation period (the test period is locked)
+python scripts/run_backtest.py --models no_change ar --pool target_only
+# 3. Metrics + paired block-bootstrap CIs against "no change"
+python scripts/evaluate.py results/validation/preds_*.csv --reference no_change
+```
+
+- Experiment contract (draft for the freeze): [`docs/experiment_contract.md`](docs/experiment_contract.md), values in [`configs/experiment.toml`](configs/experiment.toml)
+- Framework design and how to add a model: [`docs/backtest_framework.md`](docs/backtest_framework.md)
+
 ## Data and reproducibility
 
 Raw datasets, model checkpoints, credentials, and large generated artifacts are excluded from version control. Future dataset documentation will record source URLs, access dates, units, transformations, coverage, publication lags, and redistribution restrictions.
 
-Runnable setup instructions and experiment commands will be added alongside their implementations. Published results will link to configurations and evaluation artifacts.
+Published results will link to configurations and evaluation artifacts.

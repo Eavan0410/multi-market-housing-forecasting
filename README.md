@@ -2,7 +2,7 @@
 
 This project compares a Taiwan-only Transformer with joint multi-market training and overseas pretraining followed by fine-tuning on Taiwan.
 
-The data pipeline, backtest and evaluator are working, with no-change and direct AR baselines available. The Transformer comparisons are still to come. Extracting policy signals with an LLM is an optional extension after the forecasting experiments.
+The data pipeline, backtest and evaluator are working, with no-change, direct AR, transfer AR and pooled AR baselines available. The Transformer comparisons are still to come. Extracting policy signals with an LLM is an optional extension after the forecasting experiments.
 
 ## Data and target
 
@@ -45,13 +45,17 @@ python scripts/run_backtest.py --features hpi_qoq --experiment hpi_only
 python scripts/evaluate.py results/hpi_only/validation/preds_*.csv --reference no_change
 ```
 
-To fit the AR baseline on overseas and Taiwan data together:
+There are two ways to use the overseas data with an AR model:
 
 ```bash
-python scripts/run_backtest.py --models ar --pool overseas_plus_target --experiment fundamentals
+# Transfer AR: trained on the four overseas markets only, then used to forecast Taiwan
+python scripts/run_backtest.py --models ar --pool overseas --experiment fundamentals
+
+# Pooled AR: one AR fitted on the overseas markets and Taiwan together
+python scripts/run_backtest.py --models ar_pooled --pool overseas_plus_target --experiment fundamentals
 ```
 
-This adds `preds_ar__overseas_plus_target.csv` to the same experiment folder. It uses the AR adapter's per-series fitting and pooled fallback; it is not the planned joint Transformer.
+These add `preds_ar__overseas.csv` and `preds_ar_pooled__overseas_plus_target.csv` to the same experiment folder. Use `ar_pooled` for the pooled run: plain `ar` fits each series separately, so `--models ar --pool overseas_plus_target` gives the same Taiwan forecasts as the Taiwan-only AR. Neither is the planned joint Transformer.
 
 Each prediction CSV has a `.meta.json` file recording its features, training pool, cutoffs and input-data fingerprints. The evaluator rejects incompatible manifests and checks that models and seeds cover the same forecast rows. Keep the metadata beside the CSVs. Files without metadata produce a warning because their settings cannot be verified.
 

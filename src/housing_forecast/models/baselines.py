@@ -78,7 +78,21 @@ class ARDirect(Forecaster):
         return out
 
 
+class ARPooled(ARDirect):
+    """AR fitted on all training series together (no per-series models).
+
+    With --pool overseas_plus_target this is one AR shared by the overseas
+    markets and Taiwan, so the overseas data actually affects Taiwan's forecast.
+    """
+
+    name = "ar_pooled"
+
+    def __init__(self, p: int = 4, feature: str = "hpi_qoq", min_rows: int = 12):
+        super().__init__(p=p, feature=feature, per_series=False, min_rows=min_rows)
+
+
 REGISTRY = {
     "no_change": NoChange,
     "ar": ARDirect,
+    "ar_pooled": ARPooled,
 }

@@ -234,3 +234,6 @@ wandb/
 *.safetensors
 .env.*
 !.env.example
+
+# Editor settings
+.vscode/

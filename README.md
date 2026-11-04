@@ -57,6 +57,21 @@ python scripts/run_backtest.py --models ar_pooled --pool overseas_plus_target --
 
 These add `preds_ar__overseas.csv` and `preds_ar_pooled__overseas_plus_target.csv` to the same experiment folder. Use `ar_pooled` for the pooled run: plain `ar` fits each series separately, so `--models ar --pool overseas_plus_target` gives the same Taiwan forecasts as the Taiwan-only AR. Neither is the planned joint Transformer.
 
+## Transformer runs
+
+The Transformer models need PyTorch (`pip install torch`). They use the same backtest, features and output format as the baselines:
+
+```bash
+# Taiwan-only
+python scripts/run_backtest.py --models transformer --pool target_only --experiment fundamentals
+# Joint training on overseas markets and Taiwan
+python scripts/run_backtest.py --models transformer --pool overseas_plus_target --experiment fundamentals
+# Pretrain on overseas markets, then fine-tune on Taiwan
+python scripts/run_backtest.py --models transformer_ft --pool overseas_plus_target --experiment fundamentals
+```
+
+Each run trains five seeds. The model picks its number of epochs on the last two years of each training fold and is then retrained on the whole fold. Compare the joint and fine-tuned runs with `ar_pooled__overseas_plus_target`, which uses the same training pool.
+
 Each prediction CSV has a `.meta.json` file recording its features, training pool, cutoffs and input-data fingerprints. The evaluator rejects incompatible manifests and checks that models and seeds cover the same forecast rows. Keep the metadata beside the CSVs. Files without metadata produce a warning because their settings cannot be verified.
 
 ## Backtest

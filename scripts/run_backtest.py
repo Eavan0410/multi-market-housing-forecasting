@@ -27,7 +27,7 @@ from housing_forecast.backtesting.splits import last_label_origin, make_splits
 from housing_forecast.config import load_config
 from housing_forecast.data.contract import check_alignment, validate_panel
 from housing_forecast.data.transforms import prepare_panel
-from housing_forecast.models.baselines import REGISTRY
+from housing_forecast.models.registry import REGISTRY
 
 
 def load_samples(cfg: dict, panel_path: str, cpi_path: str):

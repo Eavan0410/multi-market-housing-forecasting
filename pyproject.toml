@@ -15,6 +15,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]
+dl = ["torch>=2.1"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

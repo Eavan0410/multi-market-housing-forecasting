@@ -7,7 +7,9 @@ import pytest
 torch = pytest.importorskip("torch")
 
 from housing_forecast.backtesting.infoset import SampleSet  # noqa: E402
-from housing_forecast.models.transformer import TransformerFineTune, TransformerForecaster  # noqa: E402
+from housing_forecast.models.transformer import (  # noqa: E402
+    TransformerFineTune, TransformerForecaster, TransformerFTHead, TransformerFTLowLR, TransformerFTShort,
+)
 
 FAST = dict(d_model=16, n_layers=1, max_epochs=15, patience=5, default_epochs=5)
 
@@ -30,7 +32,8 @@ def toy_samples(n_per_series: int = 60, lookback: int = 8, n_features: int = 2, 
                      feature_names=[f"f{i}" for i in range(n_features)], horizons=(1, 2, 3, 4))
 
 
-@pytest.mark.parametrize("cls", [TransformerForecaster, TransformerFineTune])
+@pytest.mark.parametrize("cls", [TransformerForecaster, TransformerFineTune,
+                                 TransformerFTHead, TransformerFTShort, TransformerFTLowLR])
 def test_shape_and_same_seed_same_result(cls):
     s = toy_samples()
     preds = []
@@ -54,3 +57,16 @@ def test_finetune_needs_overseas_rows():
     taiwan = s.subset((s.meta["country"] == "Taiwan").to_numpy())
     with pytest.raises(ValueError):
         TransformerFineTune(**FAST).fit(taiwan, seed=0)
+
+
+def test_head_variant_only_trains_the_head():
+    m = TransformerFTHead(**FAST)
+    m.fit(toy_samples(), seed=0)
+    trainable = {n for n, p in m.net.named_parameters() if p.requires_grad}
+    assert trainable and all(n.startswith(("norm.", "head.")) for n in trainable)
+
+
+def test_variant_settings():
+    assert TransformerFTShort().ft_max_epochs == 20
+    assert TransformerFTLowLR().ft_lr_scale == 0.01
+    assert TransformerFTHead().ft_trainable == "head"

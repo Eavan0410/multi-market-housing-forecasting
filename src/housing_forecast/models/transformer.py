@@ -8,6 +8,11 @@ what the model sees, so one class covers two experiments:
     --models transformer_ft  --pool overseas_plus_target  pretrain on overseas, fine-tune on Taiwan
     --models transformer     --pool overseas              zero-shot transfer (optional)
 
+Fine-tuning variants (same pool as transformer_ft, one setting changed each):
+    transformer_ft_head    freeze embedding + encoder, fine-tune only the output head
+    transformer_ft_short   at most 20 fine-tuning epochs instead of 100
+    transformer_ft_lowlr   fine-tuning learning rate 1/100 of pretraining instead of 1/10
+
 Inputs are the runner's windows X (samples, lookback, features), one token per
 quarter, already standardized inside the training fold. The model predicts all
 horizons at once from the last token.
@@ -109,7 +114,8 @@ class TransformerForecaster(Forecaster):
     def _train(self, net: nn.Module, data, epochs: int, lr: float, gen: torch.Generator,
                val=None) -> int:
         """Train for up to `epochs`. With `val`, stop early and return the best epoch count."""
-        opt = torch.optim.AdamW(net.parameters(), lr=lr, weight_decay=self.weight_decay)
+        params = [p for p in net.parameters() if p.requires_grad]
+        opt = torch.optim.AdamW(params, lr=lr, weight_decay=self.weight_decay)
         X, y, m = data
         best, best_ep, bad = float("inf"), epochs, 0
         for ep in range(1, epochs + 1):
@@ -120,7 +126,7 @@ class TransformerForecaster(Forecaster):
                 loss = masked_mse(net(X[idx]), y[idx], m[idx])
                 opt.zero_grad()
                 loss.backward()
-                nn.utils.clip_grad_norm_(net.parameters(), 1.0)
+                nn.utils.clip_grad_norm_(params, 1.0)
                 opt.step()
             if val is not None:
                 net.eval()
@@ -172,9 +178,22 @@ class TransformerFineTune(TransformerForecaster):
     name = "transformer_ft"
 
     def __init__(self, ft_lr_scale: float = 0.1, ft_max_epochs: int = 100,
-                 home_country: str = "Taiwan", **kw):
+                 ft_trainable: str = "all", home_country: str = "Taiwan", **kw):
         super().__init__(**kw)
+        if ft_trainable not in ("all", "head"):
+            raise ValueError("ft_trainable must be 'all' or 'head'")
         self.ft_lr_scale, self.ft_max_epochs, self.home_country = ft_lr_scale, ft_max_epochs, home_country
+        self.ft_trainable = ft_trainable
+
+    def _start_finetune(self, pre: TransformerNet) -> TransformerNet:
+        """Fresh copy of the pretrained net; with 'head', only the final norm + head can change."""
+        net = copy.deepcopy(pre)
+        if self.ft_trainable == "head":
+            for p in net.parameters():
+                p.requires_grad_(False)
+            for p in list(net.norm.parameters()) + list(net.head.parameters()):
+                p.requires_grad_(True)
+        return net
 
     def fit(self, train: SampleSet, seed: int) -> None:
         train = self._labeled(train)
@@ -187,5 +206,27 @@ class TransformerFineTune(TransformerForecaster):
         if len(tgt) == 0:           # --pool overseas: no fine-tuning possible
             self.net = pre
             return
-        self.net = self._fit_stage(lambda: copy.deepcopy(pre), tgt, self.lr * self.ft_lr_scale,
+        self.net = self._fit_stage(lambda: self._start_finetune(pre), tgt, self.lr * self.ft_lr_scale,
                                    self.ft_max_epochs, seed)
+
+
+class TransformerFTHead(TransformerFineTune):
+    name = "transformer_ft_head"
+
+    def __init__(self, **kw):
+        super().__init__(ft_trainable="head", **kw)
+
+
+class TransformerFTShort(TransformerFineTune):
+    name = "transformer_ft_short"
+
+    def __init__(self, **kw):
+        kw.setdefault("ft_max_epochs", 20)
+        super().__init__(**kw)
+
+
+class TransformerFTLowLR(TransformerFineTune):
+    name = "transformer_ft_lowlr"
+
+    def __init__(self, **kw):
+        super().__init__(ft_lr_scale=0.01, **kw)

@@ -3,12 +3,17 @@
 Example (validation period only; the test period is locked):
     python scripts/run_backtest.py --models no_change ar --pool target_only
     python scripts/run_backtest.py --features hpi_qoq --experiment hpi_only
+    python scripts/run_backtest.py --features hpi_qoq --experiment hpi_only \
+        --models transformer --pool overseas_plus_target \
+        --countries Australia Japan "South Korea" "United States"
 
 Outputs, one folder per experiment so different settings never overwrite each other:
     results/<experiment>/<phase>/preds_<label>.csv        shared prediction format
     results/<experiment>/<phase>/preds_<label>.meta.json  settings that produced it
 <experiment> defaults to the feature list (e.g. "hpi_qoq+interest_rate+..."), and
-<label> is the model name, plus "__<pool>" when the pool is not target_only.
+<label> is the model name, plus "__<pool>" when the pool is not target_only, plus
+"__<n>countries" when --countries limits the overseas markets. The suffix lets runs
+with different country sets sit in the same experiment folder and be scored together.
 """
 
 from __future__ import annotations
@@ -52,6 +57,9 @@ def main() -> None:
     ap.add_argument("--experiment", default=None,
                     help="results sub-folder; default: the feature list joined by '+'")
     ap.add_argument("--out-dir", default="results")
+    ap.add_argument("--countries", nargs="+", default=None,
+                    help="keep only these overseas countries (the target country is always kept), "
+                         'e.g. --countries Australia Japan "South Korea" "United States"')
     args = ap.parse_args()
 
     cfg = load_config(args.config)
@@ -59,6 +67,17 @@ def main() -> None:
         cfg["features"]["use"] = args.features
     target = cfg["target"]["series_id"]
     samples = load_samples(cfg, args.panel, args.cpi)
+    countries = None
+    if args.countries:
+        home = cfg["target"]["country"]
+        available = set(samples.meta["country"])
+        unknown = sorted(set(args.countries) - available)
+        if unknown:
+            raise SystemExit(f"unknown countries {unknown}; available with these features: "
+                             f"{sorted(available - {home})}")
+        countries = sorted(set(args.countries) - {home})
+        samples = samples.subset(samples.meta["country"].isin(countries + [home]).to_numpy())
+        print(f"countries limited to: {countries} (+ {home})")
     splits = make_splits(cfg, args.phase, last_label_origin(samples, target), allow_test=args.unlock_test)
     pool = {
         "target_only": pool_target_only(target),
@@ -76,6 +95,8 @@ def main() -> None:
     all_preds, expected = [], {}
     for name in args.models:
         label = name if args.pool == "target_only" else f"{name}__{args.pool}"
+        if countries is not None:
+            label += f"__{len(countries)}countries"
         stochastic = REGISTRY[name].stochastic
         seeds = cfg["run"]["seeds"] if stochastic else cfg["run"]["seeds"][:1]
         preds = run_backtest(samples, splits, REGISTRY[name], cfg, pool, model_name=label)
@@ -84,7 +105,7 @@ def main() -> None:
         write_manifest(path, make_manifest(
             cfg, experiment=experiment, phase=args.phase, model=label, base_model=name,
             pool=args.pool, stochastic=stochastic, seeds=seeds,
-            panel_path=args.panel, cpi_path=args.cpi))
+            panel_path=args.panel, cpi_path=args.cpi, countries=countries))
         all_preds.append(preds)
         expected[label] = seeds
         print(f"  {label}: {len(preds)} rows -> {path}")

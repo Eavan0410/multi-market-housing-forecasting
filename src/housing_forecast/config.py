@@ -33,8 +33,10 @@ def check_config(cfg: dict) -> None:
             f"validation_end + {max_h} quarters ({v1 + max_h}) passes test_start ({t0}); "
             "validation labels would use test-period prices"
         )
-    if p["gap_quarters"] < max_h:
-        raise ValueError("gap_quarters must be >= the largest horizon")
+    # A shorter gap keeps more short-horizon samples; unavailable longer-horizon labels
+    # are masked separately and checked for overlap in splits.py.
+    if p["gap_quarters"] < max_h and not p.get("allow_short_gap", False):
+        raise ValueError("gap_quarters must be >= the largest horizon (or set periods.allow_short_gap = true)")
     if cfg["bootstrap"]["block_length"] < 1:
         raise ValueError("block_length must be >= 1")
 

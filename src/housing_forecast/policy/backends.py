@@ -95,8 +95,6 @@ class HTTPBackend(Backend):
                           usage.get("prompt_tokens", 0), usage.get("completion_tokens", 0))
 
     def generate(self, batch):
-        # Sequential requests are fine for hundreds of documents; the server batches internally
-        # when several clients send at once. Swap in a thread pool if this becomes the bottleneck.
         return [self._one(m) for m in batch]
 
 

@@ -1,8 +1,10 @@
 # Design notes
 
+These notes cover the Taiwan h=1–4 experiments. The [README](../README.md#multi-market-results) has the newer multi-market h=1–20 results.
+
 Notes on the backtest and data formats, for writing the report and working on the code together.
 
-## 1. Backtest rules
+## Backtest rules
 
 | Rule (project plan) | Where | How |
 |---|---|---|
@@ -22,7 +24,7 @@ The test period is locked in code (`PeriodLockedError`) until the configuration 
 
 Tests for each rule: `tests/test_backtest_rules.py`.
 
-## 2. Shared data formats
+## Shared data formats
 
 ### Panel (data → backtest)
 
@@ -58,7 +60,7 @@ One row per model, series, origin, horizon and seed.
 
 Checked by `validate_predictions` and `check_alignment`: no empty or non-finite values, `target_quarter = origin_quarter + horizon`, `as_of_date` after the origin quarter, no forecast repeated across folds, and the same rows and definitions for every model and seed. Models from other scripts (e.g. the GRU) must write exactly these columns.
 
-## 3. B's processed files and how they are merged
+## Processed files and merge rules
 
 `data/processed/<ISO>_processed.csv`, stacked:
 

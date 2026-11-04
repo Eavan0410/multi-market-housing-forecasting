@@ -1,5 +1,7 @@
 # Experiment settings (draft)
 
+These notes cover the Taiwan h=1–4 experiments. The [README](../README.md#multi-market-results) has the newer multi-market h=1–20 results.
+
 Shared settings are in [`configs/experiment.toml`](../configs/experiment.toml). This page explains the main choices. Items marked **TODO** still need team confirmation.
 
 ## Target
@@ -17,7 +19,7 @@ Shared settings are in [`configs/experiment.toml`](../configs/experiment.toml). 
 | `as_of_date` | the day the forecast is made = end of quarter t + Taiwan HPI release lag |
 | `target_quarter` | t + h |
 
-Every variable carries an observation quarter and an availability date (observation quarter end + release lag). At `as_of_date` a model sees only values whose availability date has passed. Release lags are placeholders in the config until B's availability matrix is done (**TODO B**). We use the latest revised data, not real-time vintages, which limits how closely the backtest represents forecasts made at the time.
+Every variable carries an observation quarter and an availability date (observation quarter end + release lag). At `as_of_date` a model sees only values whose availability date has passed. Release lags are placeholders in the config until its timing evidence is confirmed (**TODO B**). We use the latest revised data, not real-time vintages, which limits how closely the backtest represents forecasts made at the time.
 
 ## Periods (origin quarters, same calendar dates for every country)
 

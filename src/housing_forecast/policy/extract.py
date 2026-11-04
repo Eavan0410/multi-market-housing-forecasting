@@ -110,7 +110,7 @@ def run_extraction(docs: list[Announcement], backend: Backend, out_dir: str | Pa
             chunk = todo[i:i + batch_size]
             gens = backend.generate([build_messages(d, max_chars) for d in chunk])
             results = [_to_extraction(d, backend.model, g) for d, g in zip(chunk, gens)]
-            if retry_failed:                                  # one retry for unparseable outputs
+            if retry_failed:
                 bad = [j for j, r in enumerate(results) if not r.parse_ok]
                 if bad:
                     regen = backend.generate([build_messages(chunk[j], max_chars) for j in bad])

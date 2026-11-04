@@ -32,8 +32,6 @@ def test_log_growth_uses_calendar_not_rows():
     assert np.isclose(out.loc["2020Q3", "g"], np.log(2))
 
 
-# ---- Taiwan raw files and derived features ---------------------------------------------
-
 def test_parse_period_quarter_and_month():
     from housing_forecast.data.taiwan_raw import parse_period
     out = parse_period(pd.Series(["1982Q2", "Jul88"]))

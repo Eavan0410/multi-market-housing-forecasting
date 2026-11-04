@@ -15,9 +15,6 @@ from housing_forecast.backtesting.splits import (
 from housing_forecast.data.contract import PRED_COLUMNS, validate_predictions
 from housing_forecast.models.base import Forecaster, set_global_seed
 
-
-# The pretraining pool is overseas only: no Taiwan national or city series.
-
 def pool_target_only(target_series: str) -> Callable[[pd.DataFrame], np.ndarray]:
     return lambda meta: (meta["series_id"] == target_series).to_numpy()
 
@@ -28,6 +25,11 @@ def pool_overseas(home_country: str = "Taiwan") -> Callable[[pd.DataFrame], np.n
 
 def pool_overseas_plus_target(target_series: str, home_country: str = "Taiwan"):
     return lambda meta: ((meta["country"] != home_country) | (meta["series_id"] == target_series)).to_numpy()
+
+
+def pool_national() -> Callable[[pd.DataFrame], np.ndarray]:
+    """Every national series, Taiwan included; city series left out (multi-market runs)."""
+    return lambda meta: (meta["geography_level"] == "national").to_numpy()
 
 
 def pool_all() -> Callable[[pd.DataFrame], np.ndarray]:
@@ -72,7 +74,7 @@ def run_backtest(
                 raise ValueError(f"predict() returned {y_pred.shape}, expected {test.y.shape}")
             name = model_name or model.name
             for j, h in enumerate(test.horizons):
-                ok = ~np.isnan(test.y[:, j])                     # only score labels that exist
+                ok = ~np.isnan(test.y[:, j])
                 origins = pd.PeriodIndex(test.meta["origin"][ok], freq="Q")
                 rows.append(pd.DataFrame({
                     "model": name,

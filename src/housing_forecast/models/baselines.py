@@ -28,8 +28,9 @@ class ARDirect(Forecaster):
     where g is the series' own quarterly real HPI log growth (feature `hpi_qoq`).
 
     per_series=True fits one model per series using only that series' training
-    rows (the Taiwan-only AR); if a test series has too few rows, it falls back
-    to the model pooled over all training rows.
+    rows (the Taiwan-only AR). Where a series has too few rows for a horizon, that
+    horizon falls back to the model pooled over all training rows; the other
+    horizons keep the series' own fit.
     """
 
     name = "ar"
@@ -44,13 +45,13 @@ class ARDirect(Forecaster):
         return np.column_stack([np.ones(len(s)), lags])
 
     def _ols(self, Z: np.ndarray, y: np.ndarray) -> np.ndarray | None:
+        """Coefficients per horizon; a column stays NaN when that horizon has too few rows."""
         B = np.full((Z.shape[1], y.shape[1]), np.nan)
         for k in range(y.shape[1]):
             ok = ~np.isnan(y[:, k])
-            if ok.sum() < max(self.min_rows, Z.shape[1] + 1):
-                return None
-            B[:, k] = np.linalg.lstsq(Z[ok], y[ok, k], rcond=None)[0]
-        return B
+            if ok.sum() >= max(self.min_rows, Z.shape[1] + 1):
+                B[:, k] = np.linalg.lstsq(Z[ok], y[ok, k], rcond=None)[0]
+        return None if np.isnan(B).all() else B
 
     def fit(self, train: SampleSet, seed: int) -> None:
         if self.p > train.X.shape[1]:
@@ -67,13 +68,16 @@ class ARDirect(Forecaster):
 
     def predict(self, test: SampleSet) -> np.ndarray:
         Z = self._design(test)
-        out = np.empty((len(test), len(test.horizons)))
+        pooled = self.coefs_["__pooled__"]
+        n_h = len(test.horizons)
+        pooled = np.full((Z.shape[1], n_h), np.nan) if pooled is None else pooled
+        out = np.empty((len(test), n_h))
         for i, sid in enumerate(test.meta["series_id"]):
-            B = self.coefs_.get(sid) if self.per_series else None
-            if B is None:
-                B = self.coefs_["__pooled__"]
-            if B is None:
-                raise RuntimeError("AR could not be fitted: not enough training rows")
+            own = self.coefs_.get(sid) if self.per_series else None
+            B = pooled if own is None else np.where(np.isnan(own), pooled, own)   # per-horizon fallback
+            if np.isnan(B).any():
+                bad = [h for h, col in zip(test.horizons, np.isnan(B).any(axis=0)) if col]
+                raise RuntimeError(f"AR could not be fitted for horizons {bad}: not enough training rows")
             out[i] = Z[i] @ B
         return out
 

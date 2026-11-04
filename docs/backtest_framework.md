@@ -1,5 +1,7 @@
 # Backtest framework
 
+These notes cover the Taiwan h=1–4 experiments. The [README](../README.md#multi-market-results) has the newer multi-market h=1–20 results.
+
 ## Pipeline
 
 ```text
@@ -64,7 +66,7 @@ Register it in `models/registry.py` and run `scripts/run_backtest.py --models my
 
 ## Known limitations
 
-- Release lags are placeholders until B's availability matrix is done.
+- The availability matrix is saved, but release lags still need confirmation.
 - `real_income_growth` is dropped from the feature set (starts 2007Q2; missing for Korea and Taiwan).
 - Inputs: `hpi_qoq`, `interest_rate`, `gdp_growth`, `household_credit_gdp_d4`. `cpi_yoy` waits for Japan's CPI after 2021Q2; `unemployment_rate` waits for Taiwan's file. Adding a variable that Taiwan lacks would drop all Taiwan samples.
 - With these inputs only series that have all four variables remain (B's 4 countries and Taiwan); the extra AnaHPI countries drop out. Use `--features hpi_qoq` for the larger HPI-only pool.

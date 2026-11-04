@@ -26,7 +26,7 @@ import pandas as pd
 from housing_forecast.backtesting.infoset import build_samples, features_from_config
 from housing_forecast.backtesting.manifest import make_manifest, write_manifest
 from housing_forecast.backtesting.runner import (
-    pool_all, pool_overseas, pool_overseas_plus_target, pool_target_only, run_backtest,
+    pool_all, pool_national, pool_overseas, pool_overseas_plus_target, pool_target_only, run_backtest,
 )
 from housing_forecast.backtesting.splits import last_label_origin, make_splits
 from housing_forecast.config import load_config
@@ -51,7 +51,7 @@ def main() -> None:
     ap.add_argument("--features", nargs="+", default=None,
                     help="override [features].use, e.g. --features hpi_qoq interest_rate")
     ap.add_argument("--models", nargs="+", default=["no_change", "ar"], choices=sorted(REGISTRY))
-    ap.add_argument("--pool", default="target_only", choices=["target_only", "overseas", "overseas_plus_target", "all"])
+    ap.add_argument("--pool", default="target_only", choices=["target_only", "overseas", "overseas_plus_target", "national", "all"])
     ap.add_argument("--phase", default="validation", choices=["validation", "test"])
     ap.add_argument("--unlock-test", action="store_true", help="only for the final frozen run")
     ap.add_argument("--experiment", default=None,
@@ -83,6 +83,7 @@ def main() -> None:
         "target_only": pool_target_only(target),
         "overseas": pool_overseas(cfg["target"]["country"]),
         "overseas_plus_target": pool_overseas_plus_target(target, cfg["target"]["country"]),
+        "national": pool_national(),
         "all": pool_all(),
     }[args.pool]
 

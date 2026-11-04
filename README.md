@@ -1,52 +1,73 @@
 # Multi-Market Housing Price Forecasting
 
-This is a course project on forecasting Taiwan housing prices. We compare a Transformer trained on Taiwan data with two ways of using overseas data: joint training, and pretraining followed by fine-tuning on Taiwan.
+This is a course project on housing price forecasting. We are testing whether one Transformer can predict several markets, how it compares with AR models, and how far ahead it can make useful forecasts.
 
-Validation runs are complete for the three main Transformer settings, the AR baselines, fine-tuning variants, and HPI-only country-pool comparisons. Results and current conclusions are below. Final settings and held-out testing are still pending. An optional LLM policy module is implemented locally, but has no saved real-data results yet.
+We started with Taiwan and then added a multi-market experiment with forecasts from 1 to 20 quarters ahead. The model is a small Transformer trained on our data. The main results so far are below.
 
-## Data and target
+## Progress
 
-The main dataset covers Australia, Japan, South Korea, the United States and Taiwan at quarterly frequency. The target is Taiwan's national real house price index. Each forecast predicts cumulative log growth over the next 1–4 quarters:
+Updated November 3, 2026. “Validation done” means predictions and evaluation tables are saved; final testing is still pending.
+
+| Experiment or task | Status |
+|---|---|
+| Multi-market HPI-only Transformer, h=1–20 | Validation done, five seeds |
+| Multi-market no-change, per-market AR and pooled AR | Validation done |
+| Errors by market, horizon and history length | Tables saved |
+| Separate Transformer for each market | Not run yet |
+| Confidence intervals for multi-market model differences | Not done yet |
+| Taiwan-only, joint and pretrain + fine-tune Transformers, h=1–4 | Validation done, five seeds each |
+| Head-only, shorter and lower-learning-rate fine-tuning | Validation done |
+| Overseas-only Transformer and joint model with market embeddings | Validation done |
+| Taiwan HPI-only, wider pool and four-country comparison | Validation done for joint Transformer and pooled AR |
+| Taiwan HPI-only, Taiwan-only Transformer and pretrain + fine-tune | Not run yet |
+| Data availability matrix | Draft saved; timing assumptions still need checking |
+| LLM policy index | Code available; real-data run pending |
+| Final settings, test runs and report | Still to do |
+
+## Multi-market results
+
+These validation runs use forecast dates in 2000Q1–2009Q4. Each input window contains eight quarters of real HPI log growth. The target is cumulative growth over the next h quarters:
 
 ```text
 y(t, h) = log(HPI_real[t + h] / HPI_real[t])
 ```
 
-The current feature set is:
+Predictions cover 41 national markets. We report the 38 with at least eight forecast dates each; their sample sizes range from 8 to 40. The same market/date pairs are used at every horizon. City indices are left out.
 
-- Real HPI quarterly log growth
-- Long-term government bond yield, averaged over a complete quarter
-- Seasonally adjusted real GDP quarterly growth
-- Four-quarter change in household credit / GDP
+The Transformer uses five seeds. We calculate each seed's errors first, then average them. AR and no-change use one seed. Per-market AR uses pooled coefficients when a market has too few training labels.
 
-Taiwan's credit measure uses bank consumer loans divided by the sum of the latest four quarters of nominal GDP. It is a substitute for the overseas household-credit series; taking changes does not remove that difference in coverage. Taiwan HPI is currently treated as nominal and deflated with CPI, pending confirmation of its basis.
+The table shows the median error ratio across markets. For example, 0.95 means the median ratio is 5% below the comparison model. Each ratio is calculated within the same market and horizon before taking the median. Lower is better.
 
-An HPI-only setting can also use the additional countries in the OECD AnaHPI file. Those countries drop out of the current four-feature setting because they lack the other inputs. City-level Taiwan HPI is retained for separate analysis.
+| Horizon (quarters) | Transformer / no-change | Transformer / per-market AR | Transformer / pooled AR | Markets beating pooled AR |
+|---|---:|---:|---:|---:|
+| 1 | 0.782 | 1.009 | 1.015 | 11/38 |
+| 4 | 0.837 | 0.965 | 0.996 | 20/38 |
+| 6 | 0.867 | 0.924 | 0.983 | 22/38 |
+| 12 | 0.862 | 0.875 | 0.951 | 24/38 |
+| 16 | 0.878 | 0.860 | 0.936 | 24/38 |
+| 20 | 0.894 | 0.866 | 0.948 | 25/38 |
 
-## Progress and validation results
+The short-term results are close to pooled AR. At h=20, Transformer has lower RMSE in 25 of 38 markets, and the median ratio is about 5.2% below pooled AR. Its advantage over per-market AR is larger. This suggests the shared Transformer may be more useful further ahead, although pooling data also helps the simpler AR model.
 
-Updated November 3, 2026. Here, **validation complete** means prediction CSVs, run metadata and evaluation tables are saved locally. It does not mean the model settings are final or that the held-out test has been run.
+It does not win everywhere. At h=20, its RMSE is about 1.21 times pooled AR in Taiwan, 1.47 times in Germany and 1.60 times in Mexico. These runs use each market's earlier history, so they do not test forecasting a completely unseen market.
 
-| Experiment / task | Status | What is available |
-|---|---|---|
-| No-change, Taiwan AR, overseas AR and pooled AR | Validation complete | Four-feature baseline comparisons |
-| Taiwan-only Transformer | Validation complete | Five seeds, four features |
-| Joint Transformer | Validation complete | Four overseas markets plus Taiwan, five seeds, four features |
-| Overseas pretraining + Taiwan fine-tuning | Validation complete | Default fine-tuning run, five seeds, four features |
-| Fine-tuning variants | Validation complete | Head-only, shorter training and lower learning rate, five seeds each |
-| Zero-shot Transformer | Validation complete | Trained on overseas markets only, evaluated on Taiwan |
-| Joint Transformer with market embeddings | Validation complete | Five seeds, four features |
-| HPI-only, wider AnaHPI pool | Validation complete | Joint Transformer and pooled AR, plus Taiwan AR and no-change baselines |
-| HPI-only, four-country control | Validation complete | Joint Transformer and pooled AR; four overseas markets plus Taiwan |
-| HPI-only Taiwan-only Transformer and pretrain + fine-tune | Not run | No saved predictions in this setting yet |
-| Data availability matrix | Draft available | CSV and Excel saved; release lags and Taiwan HPI basis still need confirmation |
-| LLM policy index | Code available; real-data experiment pending | No announcement dataset or model results saved yet |
-| Final settings and held-out test | Pending | No test results saved; test period remains locked by default |
-| Final report | Pending | Validation tables are available for the report |
+![Multi-market validation results](results/long_hpi/validation/market_comparison.png)
 
-### Four-feature experiments
+Left: median RMSE relative to no-change. Right: median Transformer/AR RMSE ratio. Values below 1 favour Transformer in the right panel. The shaded ranges are 3–6 and 16–20 quarters, motivated by buying/selling and construction decisions.
 
-These runs use HPI growth, bond yields, GDP growth and the change in credit / GDP. The overseas pool is Australia, Japan, South Korea and the United States. Every run is evaluated on Taiwan's national index at the same 24 validation origins, 2012Q1–2017Q4. Transformers use five seeds; AR and no-change use one. Errors below are in cumulative log-growth units, with lower values better. Transformer metrics are averaged over seeds, rather than computed from averaged predictions.
+These are early results. We have not calculated confidence intervals for the multi-market differences. Long-horizon targets overlap, and some markets have few forecast dates. A lower relative error also does not mean the absolute error is small enough for a real decision. The next checks are uncertainty, results in other periods, and a comparison with separate Transformers.
+
+The proposed test starts in 2015, which overlaps Taiwan periods we have already examined. We still need to review that split before calling it an independent final test.
+
+Results: [errors by market](results/long_hpi/validation/metrics_by_market.csv), [relative errors](results/long_hpi/validation/relative_by_market.csv), [horizon summary](results/long_hpi/validation/summary_by_horizon.csv), and [history groups](results/long_hpi/validation/summary_by_history.csv). History-group differences are descriptive; they do not show that history length caused the gains.
+
+## Earlier Taiwan experiments
+
+These runs evaluate Taiwan's national real HPI at 24 forecast dates in 2012Q1–2017Q4, with horizons 1–4. They use a different period from the multi-market study, so their scores should be read separately.
+
+### Four features
+
+Inputs are real HPI log growth, long-term bond yields, real GDP quarterly growth and the four-quarter change in household credit / GDP. The overseas markets are Australia, Japan, South Korea and the United States. Errors are in cumulative log-growth units. Lower is better.
 
 | Model / training data | RMSE h=1 | h=2 | h=3 | h=4 | MAE h=4 |
 |---|---:|---:|---:|---:|---:|
@@ -63,15 +84,15 @@ These runs use HPI growth, bond yields, GDP growth and the change in credit / GD
 | Transformer: zero-shot | 0.02147 | 0.03750 | 0.05006 | 0.06057 | 0.04412 |
 | Joint + market embeddings | 0.02086 | 0.03657 | 0.04959 | 0.06072 | 0.04869 |
 
-Joint training has lower RMSE than Taiwan-only training and default pretrain + fine-tune at every horizon. The three lighter fine-tuning variants improve on default fine-tuning, but still have higher RMSE than joint training at every horizon. Market embeddings give a slightly lower h=1 RMSE than the plain joint model, but do not improve h=2–4.
+Joint training has lower RMSE than Taiwan-only training and default fine-tuning at every horizon. The three fine-tuning variants improve on default fine-tuning, but still trail joint training. Market embeddings help slightly at h=1 and do not improve h=2–4.
 
-Pooled AR remains a strong baseline: its RMSE is lower than the plain joint Transformer at h=2–4. At h=4 the joint model's RMSE is 0.05846, compared with 0.05140 for pooled AR. Their paired RMSE difference is +0.00707, with a 95% block-bootstrap interval of [-0.00451, 0.01942]. This does not establish a clear difference at h=4. So far, using overseas data looks useful relative to the Taiwan-only Transformer, but we have not shown that a Transformer beats pooled AR.
+Pooled AR has lower RMSE than the joint Transformer at h=2–4. At h=4, the Transformer-minus-pooled-AR RMSE difference is +0.00707, with a 95% block-bootstrap interval of [-0.00451, 0.01942]. The interval includes zero, so this comparison is inconclusive.
 
-Full results: [metrics](results/fundamentals/validation/metrics.csv), [metric confidence intervals](results/fundamentals/validation/metric_ci.csv), and [paired comparisons with pooled AR](results/fundamentals/validation/bootstrap_vs_ar_pooled__overseas_plus_target.csv).
+Results: [metrics](results/fundamentals/validation/metrics.csv), [confidence intervals](results/fundamentals/validation/metric_ci.csv), and [comparisons with pooled AR](results/fundamentals/validation/bootstrap_vs_ar_pooled__overseas_plus_target.csv).
 
-### HPI-only and the four-country control
+### HPI-only and four-country comparison
 
-These runs use only `hpi_qoq`. The wider pool includes eligible overseas countries from AnaHPI. The four-country control limits overseas training data to Australia, Japan, South Korea and the United States; Taiwan is included in both joint pools. Both settings use the same 24 Taiwan validation origins as above.
+Using HPI growth alone lets us include more AnaHPI countries. The four-country comparison uses the same four overseas markets as above, plus Taiwan, to help separate the effects of features and country coverage.
 
 | Model / training data | RMSE h=1 | h=2 | h=3 | h=4 | MAE h=4 |
 |---|---:|---:|---:|---:|---:|
@@ -82,131 +103,87 @@ These runs use only `hpi_qoq`. The wider pool includes eligible overseas countri
 | Pooled AR: four countries + Taiwan | 0.02138 | 0.03551 | 0.04410 | 0.05179 | 0.03996 |
 | Joint Transformer: four countries + Taiwan | 0.02080 | 0.03604 | 0.04833 | 0.05611 | 0.04285 |
 
-At h=4 the wider-pool Transformer is close to pooled AR: RMSE 0.05230 versus 0.05136, and MAE 0.03926 versus 0.03929. The paired RMSE difference is +0.00094, with a 95% interval of [-0.00264, 0.00525]. The result does not show an improvement over pooled AR. In the wider pool, pooled AR also has lower RMSE at h=1–3.
+At h=4, the wider-pool Transformer is close to pooled AR: RMSE 0.05230 versus 0.05136. Their RMSE difference is +0.00094, with a 95% interval of [-0.00264, 0.00525]. This does not show an improvement over pooled AR.
 
-The four-country control helps separate changing the inputs from changing the country pool. With the same four overseas markets, the HPI-only joint model has lower RMSE than the four-feature joint model at h=1 and h=4, and nearly the same RMSE at h=2 and h=3. Within HPI-only runs, the wider pool lowers Transformer RMSE at h=3–4 but raises it at h=1–2 compared with the four-country control. More countries therefore do not help at every horizon. These are descriptive comparisons; the saved bootstrap tables do not directly test the feature change or the two Transformer country pools against each other.
+With the same four overseas markets, the HPI-only joint model has lower RMSE than the four-feature model at h=1 and h=4, and nearly the same RMSE at h=2–3. Within HPI-only runs, the wider pool helps the Transformer at h=3–4 but hurts at h=1–2. More countries do not help at every horizon. These feature and country-pool differences have not been tested directly with paired confidence intervals.
 
-Full results: [metrics](results/hpi_only/validation/metrics.csv), [metric confidence intervals](results/hpi_only/validation/metric_ci.csv), and [paired comparisons with wider-pool AR](results/hpi_only/validation/bootstrap_vs_ar_pooled__overseas_plus_target.csv).
+Results: [metrics](results/hpi_only/validation/metrics.csv), [confidence intervals](results/hpi_only/validation/metric_ci.csv), and [comparisons with wider-pool AR](results/hpi_only/validation/bootstrap_vs_ar_pooled__overseas_plus_target.csv).
 
-These conclusions are preliminary: there are only 24 validation origins, release lags remain provisional, and the held-out test has not been evaluated. Next we need to confirm the data assumptions, settle the final settings and then run the locked test.
+## Data and backtest notes
+
+Raw and processed source tables are in `data/raw/` and `data/processed/`. Taiwan HPI/CPI and global AnaHPI were copied from the Spring 2026 dataset. Generated panels go in `data/interim/` and can be rebuilt locally.
+
+Taiwan HPI is currently treated as nominal and deflated with CPI; its price basis still needs confirmation. Taiwan credit / GDP uses bank consumer loans divided by the latest four quarters of nominal GDP. Its coverage is narrower than the overseas household-credit measure. Publication lags are provisional; the draft evidence is in [availability_matrix.csv](results/availability_matrix.csv). The data contain later revisions, rather than the versions originally released.
+
+Both studies use an expanding training window and refit every four forecast dates. All countries share a calendar cutoff. Unpublished training labels are hidden, and input scaling is fitted on the training fold. The long-horizon setup keeps a four-quarter gap and masks unavailable longer-horizon labels separately.
+
+The Taiwan pilot uses 2012–2017 validation origins, a 2018 buffer and a test starting in 2019. Its confidence intervals use four-quarter circular bootstrap blocks. The multi-market setup uses 2000–2009 validation origins and a proposed test from 2015. Test runs stay locked by default.
+
+Keep each prediction CSV beside its `.meta.json` file. The metadata record features, dates, seeds and data fingerprints so the evaluator can check that runs are comparable.
 
 ## Run locally
 
-Use Python 3.11 and run these commands from the repository root:
+Use Python 3.11, from the repository root:
 
 ```bash
 conda create -n hpf python=3.11 -y
 conda activate hpf
-pip install -e ".[dev]"
+pip install -e ".[dev,dl]"
 pytest -q
-
 python scripts/build_panel.py
+```
+
+Multi-market validation:
+
+```bash
+C=configs/experiment_long.toml
+python scripts/run_backtest.py --config $C --models no_change ar ar_pooled --pool national --experiment long_hpi
+python scripts/run_backtest.py --config $C --models transformer --pool national --experiment long_hpi
+python scripts/evaluate_markets.py results/long_hpi/validation/preds_*.csv --config $C --reference no_change__national
+```
+
+This writes market-level tables, summaries and a relative-RMSE plot when Matplotlib is installed. The two-panel comparison above also includes direct Transformer/AR ratios calculated from `relative_by_market.csv`.
+
+Taiwan baselines and the three main Transformer settings:
+
+```bash
 python scripts/run_backtest.py --models no_change ar --experiment fundamentals
+python scripts/run_backtest.py --models ar --pool overseas --experiment fundamentals
+python scripts/run_backtest.py --models ar_pooled --pool overseas_plus_target --experiment fundamentals
+python scripts/run_backtest.py --models transformer --pool target_only --experiment fundamentals
+python scripts/run_backtest.py --models transformer --pool overseas_plus_target --experiment fundamentals
+python scripts/run_backtest.py --models transformer_ft --pool overseas_plus_target --experiment fundamentals
 python scripts/evaluate.py results/fundamentals/validation/preds_*.csv --reference no_change
 ```
 
-To try the HPI-only setting:
+Use `ar_pooled` for a shared AR fit. Plain `ar` fits each market separately where enough labels are available. Transformer training selects the epoch count on a time split inside each fold, then retrains on that fold's full training set.
+
+HPI-only country comparison:
 
 ```bash
-python scripts/run_backtest.py --features hpi_qoq --experiment hpi_only
-python scripts/evaluate.py results/hpi_only/validation/preds_*.csv --reference no_change
-```
-
-There are two ways to use the overseas data with an AR model:
-
-```bash
-# Transfer AR: trained on the four overseas markets only, then used to forecast Taiwan
-python scripts/run_backtest.py --models ar --pool overseas --experiment fundamentals
-
-# Pooled AR: one AR fitted on the overseas markets and Taiwan together
-python scripts/run_backtest.py --models ar_pooled --pool overseas_plus_target --experiment fundamentals
-```
-
-These add `preds_ar__overseas.csv` and `preds_ar_pooled__overseas_plus_target.csv` to the same experiment folder. Use `ar_pooled` for the pooled run: plain `ar` fits each series separately, so `--models ar --pool overseas_plus_target` gives the same Taiwan forecasts as the Taiwan-only AR. These AR runs provide baselines for the joint Transformer.
-
-## Transformer runs
-
-The Transformer models need PyTorch (`pip install torch`). They use the same backtest, features and output format as the baselines:
-
-```bash
-# Taiwan-only
-python scripts/run_backtest.py --models transformer --pool target_only --experiment fundamentals
-# Joint training on overseas markets and Taiwan
-python scripts/run_backtest.py --models transformer --pool overseas_plus_target --experiment fundamentals
-# Pretrain on overseas markets, then fine-tune on Taiwan
-python scripts/run_backtest.py --models transformer_ft --pool overseas_plus_target --experiment fundamentals
-```
-
-Each run trains five seeds. The model picks its number of epochs on the last two years of each training fold and is then retrained on the whole fold. Compare the joint and fine-tuned runs with `ar_pooled__overseas_plus_target`, which uses the same training pool.
-
-To reproduce the HPI-only country-pool comparison:
-
-```bash
-# Wider pool
+python scripts/run_backtest.py --models no_change ar --features hpi_qoq --experiment hpi_only
 python scripts/run_backtest.py --models transformer ar_pooled --pool overseas_plus_target --features hpi_qoq --experiment hpi_only
-# Same four overseas markets as the four-feature runs
 python scripts/run_backtest.py --models transformer ar_pooled --pool overseas_plus_target --features hpi_qoq --experiment hpi_only --countries Australia Japan "South Korea" "United States"
 python scripts/evaluate.py results/hpi_only/validation/preds_*.csv --reference ar_pooled__overseas_plus_target
 ```
 
-## LLM policy index (optional extension)
+## Optional policy index
 
-This extension uses a local open-source model to turn Taiwan policy announcements into a quarterly tightening/easing index. The planned evaluation compares extracted events with a manually collected policy timeline. The code and timeline template are available; collecting the announcements and running the real model are still pending. Settings are in `configs/policy.toml`; input formats are described in `data/raw/policy/README.md`.
+The policy module is an extra experiment using a local LLM to extract tightening/easing signals from Taiwan announcements. The code and manual-timeline template are available, but announcements still need collecting and there are no saved real-model results. Forecasting experiments come first.
+
+Settings are in [policy.toml](configs/policy.toml), with input formats in [the policy data notes](data/raw/policy/README.md). Announcements are grouped by publication quarter; availability at each forecast date still needs checking before the index can be used as an input.
 
 ```bash
-# dry run of the whole pipeline with keyword rules instead of a model
 python scripts/policy_pipeline.py --backend mock extract
-# on a GPU machine with vLLM installed (pip install vllm)
+# Requires vLLM and a GPU, after collecting the input data
 python scripts/policy_pipeline.py --backend vllm extract --limit 20
 python scripts/policy_pipeline.py --backend vllm index
 python scripts/policy_pipeline.py --backend vllm eval
 python scripts/policy_pipeline.py --backend vllm spotcheck-export
 ```
 
-Announcements are grouped by publication quarter. Before using the index for forecasting, we still need to check its availability at each forecast date. This extension is exploratory and kept separate from the core experiments.
+## Code and notes
 
-Each prediction CSV has a `.meta.json` file recording its features, training pool, cutoffs and input-data fingerprints. The evaluator rejects incompatible manifests and checks that models and seeds cover the same forecast rows. Keep the metadata beside the CSVs. Files without metadata produce a warning because their settings cannot be verified.
+`src/housing_forecast/` contains data readers, backtesting, models, evaluation and policy extraction. Commands are in `scripts/`, checks in `tests/`, and outputs in `results/<experiment>/<phase>/`.
 
-## Backtest
-
-Validation origins run from 2012Q1 to 2017Q4. Origins in 2018 form a buffer, and the test period starts in 2019Q1. The test period stays locked until the final configuration freeze; use validation for model and feature choices.
-
-Training uses an expanding window, with one refit every four forecast origins. The last training origin is four quarters before the first evaluation origin. All countries share the same calendar cutoff, unpublished training labels are masked, and scaling is fitted within each training fold.
-
-The evaluator reports RMSE, MAE and direction accuracy by horizon. Metrics are calculated for each seed and then averaged. Confidence intervals use paired circular blocks of four origin quarters, keeping all horizons and seeds together in each draw. The bootstrap holds the fitted seeds fixed; across-seed standard deviations describe training variability separately.
-
-A draft availability matrix is saved in `results/availability_matrix.csv` and `.xlsx`. Publication lags are still placeholders until its timing assumptions are confirmed. The data are revised series rather than real-time vintages, so the backtest does not reconstruct exactly what was known historically.
-
-## Files
-
-```text
-configs/experiment.toml    Features, horizons, periods, lags and seeds
-data/raw/                  Overseas and Taiwan source tables
-data/processed/           Four-country processed tables
-data/interim/             Generated panels, ignored by Git
-src/housing_forecast/
-  data/                    Readers and quarterly transformations
-  backtesting/             Windows, folds, scaling, runner and run metadata
-  models/                  No-change, AR and Transformer models
-  evaluation/              Metrics and block bootstrap
-  policy/                  Policy extraction and quarterly index
-scripts/                   Build, backtest and evaluation commands
-tests/                     Data, leakage, alignment and evaluation checks
-results/                   Outputs grouped by experiment and phase
-```
-
-Source tables in `data/raw/` and `data/processed/` are tracked. Generated panels go to `data/interim/`; checkpoints and large training artifacts are ignored. The Taiwan HPI/CPI and global AnaHPI tables were copied from the Spring 2026 dataset, so the build no longer needs a sibling data folder.
-
-See the [experiment contract](docs/experiment_contract.md) for the forecast definitions, [framework notes](docs/backtest_framework.md) for adding models, and [design notes](docs/design_notes.md) for the data interfaces and merge rules. Runtime settings live in [experiment.toml](configs/experiment.toml).
-
-## Course schedule
-
-| Date | Planned work | Current status |
-|---|---|---|
-| October 29 | Forecast definitions and backtest | Framework implemented; data assumptions still provisional |
-| November 12 | Baselines and initial transfer experiment | Validation runs complete |
-| November 19 | Three main Transformer settings | Validation runs complete; final settings pending |
-| November 26 | Errors, confidence intervals and feature choices | Initial comparisons complete, including HPI-only and country controls; final choices pending |
-| December 10 | Report and rerun instructions | Run commands available; final report pending |
-
-These are the course milestones; some initial runs are already available. Policy extraction is optional, and the forecasting experiments come first.
+See [experiment settings](docs/experiment_contract.md), [backtest notes](docs/backtest_framework.md) and [data formats](docs/design_notes.md) for more detail. The original course milestones are November 12 for baselines, November 19 for Transformer comparisons, November 26 for analysis and December 10 for the report. Initial validation runs are done; final checks and the report are still in progress.

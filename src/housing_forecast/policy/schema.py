@@ -129,7 +129,7 @@ def load_announcements(path: str | Path) -> list[Announcement]:
     df = df[ANNOUNCEMENT_COLUMNS].fillna("").astype(str)
     if df["doc_id"].duplicated().any():
         raise ValueError(f"duplicate doc_id in {path}: {df.loc[df['doc_id'].duplicated(), 'doc_id'].tolist()[:5]}")
-    pd.to_datetime(df["published_date"], format="%Y-%m-%d")      # raises on bad dates
+    pd.to_datetime(df["published_date"], format="%Y-%m-%d")
     return [Announcement(**r) for r in df.to_dict("records")]
 
 

@@ -26,7 +26,8 @@ horizons at once from the last token.
 
 Early stopping uses a time-ordered split inside the training fold: the last
 `val_quarters` origins are the inner validation set, and the inner training set
-ends `gap_quarters` earlier so its labels do not overlap the validation labels.
+ends `gap_quarters` (or the largest horizon, if longer) earlier so its labels do not
+overlap the validation labels.
 After the best epoch count is found, the model is retrained from the same start
 on all training rows for that many epochs.
 """
@@ -98,7 +99,7 @@ class TransformerForecaster(Forecaster):
         self.use_market, self.market_dropout = use_market, market_dropout
         self.market_index_: dict[str, int] = {}
         self.net: TransformerNet | None = None
-        self.epochs_used_: list[int] = []        # best epoch count of each stage, for checking
+        self.epochs_used_: list[int] = []
 
     def _set_target_scale(self, train: SampleSet) -> None:
         # y is small (a few % per year); scale it so the loss is well conditioned.
@@ -125,7 +126,8 @@ class TransformerForecaster(Forecaster):
         o = origin_ordinal(s)
         last = o.max()
         val = o > last - self.val_quarters
-        tr = o <= last - self.val_quarters - self.gap_quarters
+        gap = max(self.gap_quarters, max(s.horizons))   # inner labels must not reach the inner validation
+        tr = o <= last - self.val_quarters - gap
         if val.sum() < self.min_rows or tr.sum() < self.min_rows:
             return None
         return s.subset(tr), s.subset(val)

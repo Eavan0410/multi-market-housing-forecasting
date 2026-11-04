@@ -8,6 +8,10 @@ from housing_forecast.models.baselines import REGISTRY as _BASELINES
 
 REGISTRY = dict(_BASELINES)
 
+from housing_forecast.models.arima import ARIMAPerMarket  # noqa: E402  (statsmodels imported only inside B's code)
+
+REGISTRY["arima"] = ARIMAPerMarket
+
 try:
     from housing_forecast.models.transformer import (
         TransformerFineTune, TransformerForecaster, TransformerFTHead, TransformerFTLowLR, TransformerFTShort,

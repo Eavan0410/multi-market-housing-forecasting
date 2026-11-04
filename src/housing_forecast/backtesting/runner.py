@@ -45,11 +45,15 @@ def run_backtest(
     train_pool: Callable[[pd.DataFrame], np.ndarray],
     model_name: str | None = None,
 ) -> pd.DataFrame:
-    """Run one model over all folds and return predictions in the shared CSV format."""
+    """Run one model over all folds and return predictions in the shared CSV format.
+
+    A model that has a diagnostics() method (e.g. ARIMA fit / fallback status per market)
+    gets it collected per fold and seed into preds.attrs["diagnostics"].
+    """
     eval_series = cfg["target"]["eval_series"]
     seeds = cfg["run"]["seeds"]
     gap = cfg["periods"]["gap_quarters"]
-    rows = []
+    rows, diag_rows = [], []
 
     for split in splits:
         train = samples.subset(train_mask(samples, split) & train_pool(samples.meta))
@@ -73,6 +77,9 @@ def run_backtest(
             if y_pred.shape != test.y.shape:
                 raise ValueError(f"predict() returned {y_pred.shape}, expected {test.y.shape}")
             name = model_name or model.name
+            diag = model.diagnostics() if callable(getattr(model, "diagnostics", None)) else None
+            if diag is not None and len(diag):
+                diag_rows.append(diag.assign(model=name, split_id=split.split_id, seed=seed))
             for j, h in enumerate(test.horizons):
                 ok = ~np.isnan(test.y[:, j])
                 origins = pd.PeriodIndex(test.meta["origin"][ok], freq="Q")
@@ -92,4 +99,5 @@ def run_backtest(
 
     preds = pd.concat(rows, ignore_index=True)[PRED_COLUMNS] if rows else pd.DataFrame(columns=PRED_COLUMNS)
     validate_predictions(preds)
+    preds.attrs["diagnostics"] = pd.concat(diag_rows, ignore_index=True) if diag_rows else None
     return preds

@@ -16,6 +16,7 @@ dependencies = [
 [project.optional-dependencies]
 dev = ["pytest>=8"]
 dl = ["torch>=2.1"]
+stats = ["statsmodels>=0.14"]   # ARIMA baseline
 llm = ["vllm"]            # GPU machine only; not needed for the mock backend
 
 [tool.setuptools.packages.find]

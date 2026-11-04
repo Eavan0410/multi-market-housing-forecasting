@@ -54,7 +54,7 @@ unemployment_rate = { default = 45 }
 
 [run]
 # Explicit single-seed exceptions; other model names require every configured seed.
-deterministic_models = ["no_change", "ar", "ar_pooled"]
+deterministic_models = ["no_change", "ar", "ar_pooled", "arima"]
 seeds = [0, 1, 2, 3, 4]                # fixed seed list; deterministic models use only the first
 
 [bootstrap]

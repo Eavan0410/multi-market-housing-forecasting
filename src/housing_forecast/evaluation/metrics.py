@@ -1,4 +1,4 @@
-"""Point metrics: RMSE, MAE, direction accuracy (方向准确率)."""
+"""RMSE, MAE and direction accuracy."""
 
 from __future__ import annotations
 

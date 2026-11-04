@@ -1,12 +1,12 @@
-# Experiment contract (实验约定) — DRAFT, to be frozen by the team on 10/29.
-# Every number here is read by the code; change it here, never inside scripts.
+# Draft experiment settings.
+# Change shared settings here rather than in individual scripts.
 # Items marked TODO(B) need confirmation from the data owner.
 
 [target]
-series_id = "Taiwan_national"          # primary target series (台湾全国)
+series_id = "Taiwan_national"
 country = "Taiwan"
 eval_series = ["Taiwan_national"]      # series scored in the main table; cities are reported separately
-value_col = "hpi_real"                 # labels always use the REAL HPI level
+value_col = "hpi_real"                 # Labels use real HPI
 target_type = "cum_log_growth_real"    # y(t,h) = log(HPI_{t+h} / HPI_t)
 horizons = [1, 2, 3, 4]
 main_horizon = 4                       # TODO(team): confirm the headline horizon
@@ -25,17 +25,8 @@ refit_every = 4                        # one fold (model refit) per 4 test origi
 lookback = 8                           # quarters per input window (one token per quarter)
 ffill_limit = 2                        # forward-fill at most 2 quarters, never further
 drop_nan_windows = true                # drop samples whose window still has gaps
-# Input features (one token per quarter). A feature can be used only once Taiwan has it;
-# otherwise every Taiwan sample would be dropped. Available now:
-#   hpi_qoq                  the series' own real HPI log growth (always included)
-#   interest_rate            long-term (10-year) government bond yield, % p.a.
-#   gdp_growth               real GDP growth, q/q, seasonally adjusted, %
-#   household_credit_gdp_d4  4-quarter change of household credit / GDP (pp);
-#                            Taiwan: bank consumer loans / 4-quarter nominal GDP
-# Not yet: cpi_yoy (Japan ends 2021Q2), unemployment_rate (Taiwan not uploaded).
-# real_income_growth is dropped (team decision).
-# Series without these variables (the extra AnaHPI countries) drop out when they are used;
-# run with --features hpi_qoq for the HPI-only setting.
+# Feature definitions and data gaps are in docs/backtest_framework.md.
+# Series missing these inputs are dropped; use --features hpi_qoq for the wider pool.
 use = ["hpi_qoq", "interest_rate", "gdp_growth", "household_credit_gdp_d4"]
 
 [hpi_basis]

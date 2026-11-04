@@ -16,7 +16,6 @@ B_FEATURES = [
     "hpi", "cpi_yoy", "gdp_growth", "household_credit_gdp",
     "interest_rate", "unemployment_rate",
 ]
-# real_income_growth is dropped by team decision (starts 2007Q2, missing for Korea and Taiwan).
 # One spelling per country across all sources.
 COUNTRY_ALIASES = {"Korea": "South Korea"}
 

@@ -1,4 +1,4 @@
-"""Benchmarks required by deliverable #2: "no change" and AR.
+"""No-change and autoregressive baselines.
 
 B adds historical mean / Ridge by following the same Forecaster interface.
 """
@@ -12,7 +12,7 @@ from housing_forecast.models.base import Forecaster
 
 
 class NoChange(Forecaster):
-    """下季度不变: HPI stays at HPI_t, so cumulative log growth = 0 for every horizon."""
+    """Keep HPI at its current level: zero log growth at every horizon."""
 
     name = "no_change"
 

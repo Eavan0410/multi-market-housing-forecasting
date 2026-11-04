@@ -17,7 +17,7 @@ data/raw/global/ (AnaHPI, HPI only) ─┘                              data/int
                          run_backtest       (pool, label masking, leakage check,
                                              window-only scaling, seeds)
                                                               │
-                         results/<phase>/preds_<model>.csv   (shared format)
+                         results/<experiment>/<phase>/preds_<model>.csv   (shared format)
                                                               │
                          scripts/evaluate.py (metrics.csv, bootstrap_vs_<ref>.csv)
 ```
@@ -37,7 +37,7 @@ data/raw/global/ (AnaHPI, HPI only) ─┘                              data/int
 | `backtesting/scaling.py` | standardizer fitted on the training window |
 | `backtesting/runner.py` | runs any `Forecaster` over all folds and seeds |
 | `models/base.py` | `Forecaster` interface, seeding |
-| `models/baselines.py` | `NoChange`, `ARDirect` |
+| `models/baselines.py` | `NoChange`, `ARDirect`, `ARPooled` |
 | `evaluation/metrics.py` | RMSE, MAE, direction accuracy, per-seed table |
 | `evaluation/bootstrap.py` | paired circular block bootstrap |
 
@@ -60,7 +60,7 @@ class MyModel(Forecaster):
         return y_pred      # (len(test), 4)
 ```
 
-Register it in `models/baselines.REGISTRY` (or a new registry) and run `scripts/run_backtest.py --models my_model --pool ...`. A pretrain → fine-tune model gets the `overseas_plus_target` pool and splits it inside `fit` with `train.meta["country"] != "Taiwan"`.
+Register it in `models/registry.py` and run `scripts/run_backtest.py --models my_model --pool ...`. A pretrain → fine-tune model gets the `overseas_plus_target` pool and splits it inside `fit` with `train.meta["country"] != "Taiwan"`.
 
 ## Known limitations
 
@@ -92,11 +92,13 @@ The manifest records the features, window, periods, release lags, HPI basis and 
 | `interest_rate` | long-term (10-year) government bond yield, quarterly mean, % p.a. | B, monthly |
 | `gdp_growth` | real GDP growth, q/q, seasonally adjusted, % | B, quarterly |
 | `household_credit_gdp_d4` | 4-quarter change of household credit / GDP, percentage points | B: bank consumer loans (end of quarter) / last 4 quarters of nominal GDP × 100 (substitute for BIS household credit) |
-
-`household_credit_gdp_d4` uses the change rather than the level so that a constant gap between Taiwan's bank-only consumer loans and BIS household credit (all lenders) drops out. The change does not remove differences in how the two series move, so Taiwan's series stays a substitute variable and is reported as such. Macro history before a country's HPI starts is kept, so 4-quarter changes are available from the first HPI quarter.
 | `cpi_yoy` | CPI % change over 4 quarters | computed from the CPI index |
 
-## Evaluation acceptance checks
+Data gaps: `cpi_yoy` is not in the default feature list because Japan's series ends in 2021Q2, and `unemployment_rate` is not used because Taiwan's series has not been uploaded yet.
+
+`household_credit_gdp_d4` uses the change rather than the level so that a constant gap between Taiwan's bank-only consumer loans and BIS household credit (all lenders) drops out. The change does not remove differences in how the two series move, so Taiwan's series stays a substitute variable and is reported as such. Macro history before a country's HPI starts is kept, so 4-quarter changes are available from the first HPI quarter.
+
+## Evaluation checks
 
 Point metrics and bootstrap both average per-seed metrics, rather than scoring
 seed-averaged predictions. The same sampled origin blocks are used for every

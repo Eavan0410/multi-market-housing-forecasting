@@ -67,7 +67,7 @@ class TransformerNet(nn.Module):
     def forward(self, x: torch.Tensor, market: torch.Tensor | None = None) -> torch.Tensor:
         h = self.embed(x) + self.pos[:, -x.shape[1]:]
         if self.market is not None and market is not None:
-            h = h + self.market(market)[:, None, :]          # same market vector on every quarter
+            h = h + self.market(market)[:, None, :]
         h = self.encoder(h)
         return self.head(self.norm(h[:, -1]))
 
@@ -100,7 +100,6 @@ class TransformerForecaster(Forecaster):
         self.net: TransformerNet | None = None
         self.epochs_used_: list[int] = []        # best epoch count of each stage, for checking
 
-    # ---- data -------------------------------------------------------------
     def _set_target_scale(self, train: SampleSet) -> None:
         # y is small (a few % per year); scale it so the loss is well conditioned.
         self.y_mean_ = np.nanmean(train.y, axis=0)
@@ -135,7 +134,6 @@ class TransformerForecaster(Forecaster):
         return TransformerNet(n_features=s.X.shape[2], n_horizons=s.y.shape[1],
                               lookback=s.X.shape[1], n_markets=len(self.market_index_), **self.arch)
 
-    # ---- training ---------------------------------------------------------
     def _train(self, net: nn.Module, data, epochs: int, lr: float, gen: torch.Generator,
                val=None) -> int:
         """Train for up to `epochs`. With `val`, stop early and return the best epoch count."""
@@ -187,7 +185,7 @@ class TransformerForecaster(Forecaster):
 
     @staticmethod
     def _labeled(train: SampleSet) -> SampleSet:
-        return train.subset(~np.isnan(train.y).all(axis=1))   # rows whose labels are all hidden teach nothing
+        return train.subset(~np.isnan(train.y).all(axis=1))
 
     def fit(self, train: SampleSet, seed: int) -> None:
         train = self._labeled(train)

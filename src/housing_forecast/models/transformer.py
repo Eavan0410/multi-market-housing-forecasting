@@ -13,6 +13,13 @@ Fine-tuning variants (same pool as transformer_ft, one setting changed each):
     transformer_ft_short   at most 20 fine-tuning epochs instead of 100
     transformer_ft_lowlr   fine-tuning learning rate 1/100 of pretraining instead of 1/10
 
+Market embedding:
+    transformer_market     joint model plus a learned vector per market (series_id),
+                           added to every token, so the model knows which market a
+                           window comes from. During training each sample's market is
+                           replaced by an "unknown" slot with probability 0.1, so the
+                           model also learns a shared fallback for markets it has not seen.
+
 Inputs are the runner's windows X (samples, lookback, features), one token per
 quarter, already standardized inside the training fold. The model predicts all
 horizons at once from the last token.
@@ -42,7 +49,8 @@ class TransformerNet(nn.Module):
     """Linear embedding + learned positions -> Transformer encoder -> last token -> horizons."""
 
     def __init__(self, n_features: int, n_horizons: int, lookback: int, d_model: int = 32,
-                 n_heads: int = 4, n_layers: int = 2, d_ff: int = 64, dropout: float = 0.1):
+                 n_heads: int = 4, n_layers: int = 2, d_ff: int = 64, dropout: float = 0.1,
+                 n_markets: int = 0):
         super().__init__()
         self.embed = nn.Linear(n_features, d_model)
         self.pos = nn.Parameter(torch.randn(1, lookback, d_model) * 0.02)
@@ -51,9 +59,15 @@ class TransformerNet(nn.Module):
         self.encoder = nn.TransformerEncoder(layer, n_layers, enable_nested_tensor=False)
         self.norm = nn.LayerNorm(d_model)
         self.head = nn.Linear(d_model, n_horizons)
+        # Index 0 = unknown market. Created last so models without it keep the same initialization.
+        self.market = nn.Embedding(n_markets + 1, d_model) if n_markets > 0 else None
+        if self.market is not None:
+            nn.init.normal_(self.market.weight, std=0.02)
 
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
+    def forward(self, x: torch.Tensor, market: torch.Tensor | None = None) -> torch.Tensor:
         h = self.embed(x) + self.pos[:, -x.shape[1]:]
+        if self.market is not None and market is not None:
+            h = h + self.market(market)[:, None, :]          # same market vector on every quarter
         h = self.encoder(h)
         return self.head(self.norm(h[:, -1]))
 
@@ -76,11 +90,13 @@ class TransformerForecaster(Forecaster):
                  dropout: float = 0.1, lr: float = 1e-3, weight_decay: float = 1e-4,
                  batch_size: int = 64, max_epochs: int = 200, patience: int = 20,
                  default_epochs: int = 50, val_quarters: int = 8, gap_quarters: int = 4,
-                 min_rows: int = 8):
+                 min_rows: int = 8, use_market: bool = False, market_dropout: float = 0.1):
         self.arch = dict(d_model=d_model, n_heads=n_heads, n_layers=n_layers, d_ff=d_ff, dropout=dropout)
         self.lr, self.weight_decay, self.batch_size = lr, weight_decay, batch_size
         self.max_epochs, self.patience, self.default_epochs = max_epochs, patience, default_epochs
         self.val_quarters, self.gap_quarters, self.min_rows = val_quarters, gap_quarters, min_rows
+        self.use_market, self.market_dropout = use_market, market_dropout
+        self.market_index_: dict[str, int] = {}
         self.net: TransformerNet | None = None
         self.epochs_used_: list[int] = []        # best epoch count of each stage, for checking
 
@@ -91,11 +107,20 @@ class TransformerForecaster(Forecaster):
         std = np.nanstd(train.y, axis=0)
         self.y_std_ = np.where(std < 1e-8, 1.0, std)
 
+    def _set_markets(self, train: SampleSet) -> None:
+        names = sorted(train.meta["series_id"].unique()) if self.use_market else []
+        self.market_index_ = {name: i + 1 for i, name in enumerate(names)}   # 0 = unknown
+
+    def _market_ids(self, s: SampleSet) -> torch.Tensor:
+        ids = [self.market_index_.get(name, 0) for name in s.meta["series_id"]]
+        return torch.tensor(ids, dtype=torch.long)
+
     def _tensors(self, s: SampleSet):
         y = (s.y - self.y_mean_) / self.y_std_
         return (torch.tensor(np.nan_to_num(s.X), dtype=torch.float32),
                 torch.tensor(np.nan_to_num(y), dtype=torch.float32),
-                torch.tensor(~np.isnan(y), dtype=torch.float32))
+                torch.tensor(~np.isnan(y), dtype=torch.float32),
+                self._market_ids(s))
 
     def _inner_split(self, s: SampleSet):
         o = origin_ordinal(s)
@@ -108,7 +133,7 @@ class TransformerForecaster(Forecaster):
 
     def _new_net(self, s: SampleSet) -> TransformerNet:
         return TransformerNet(n_features=s.X.shape[2], n_horizons=s.y.shape[1],
-                              lookback=s.X.shape[1], **self.arch)
+                              lookback=s.X.shape[1], n_markets=len(self.market_index_), **self.arch)
 
     # ---- training ---------------------------------------------------------
     def _train(self, net: nn.Module, data, epochs: int, lr: float, gen: torch.Generator,
@@ -116,14 +141,18 @@ class TransformerForecaster(Forecaster):
         """Train for up to `epochs`. With `val`, stop early and return the best epoch count."""
         params = [p for p in net.parameters() if p.requires_grad]
         opt = torch.optim.AdamW(params, lr=lr, weight_decay=self.weight_decay)
-        X, y, m = data
+        X, y, m, mk = data
         best, best_ep, bad = float("inf"), epochs, 0
         for ep in range(1, epochs + 1):
             net.train()
             perm = torch.randperm(len(X), generator=gen)
             for i in range(0, len(X), self.batch_size):
                 idx = perm[i:i + self.batch_size]
-                loss = masked_mse(net(X[idx]), y[idx], m[idx])
+                mk_b = mk[idx]
+                if self.market_index_ and self.market_dropout > 0:
+                    drop = torch.rand(len(idx), generator=gen) < self.market_dropout
+                    mk_b = mk_b.masked_fill(drop, 0)
+                loss = masked_mse(net(X[idx], mk_b), y[idx], m[idx])
                 opt.zero_grad()
                 loss.backward()
                 nn.utils.clip_grad_norm_(params, 1.0)
@@ -131,7 +160,7 @@ class TransformerForecaster(Forecaster):
             if val is not None:
                 net.eval()
                 with torch.no_grad():
-                    v = masked_mse(net(val[0]), val[1], val[2]).item()
+                    v = masked_mse(net(val[0], val[3]), val[1], val[2]).item()
                 if v < best - 1e-6:
                     best, best_ep, bad = v, ep, 0
                 else:
@@ -163,12 +192,14 @@ class TransformerForecaster(Forecaster):
     def fit(self, train: SampleSet, seed: int) -> None:
         train = self._labeled(train)
         self._set_target_scale(train)
+        self._set_markets(train)
         self.net = self._fit_stage(lambda: self._new_net(train), train, self.lr, self.max_epochs, seed)
 
     def predict(self, test: SampleSet) -> np.ndarray:
         self.net.eval()
         with torch.no_grad():
-            out = self.net(torch.tensor(np.nan_to_num(test.X), dtype=torch.float32)).numpy()
+            out = self.net(torch.tensor(np.nan_to_num(test.X), dtype=torch.float32),
+                           self._market_ids(test)).numpy()
         return out * self.y_std_ + self.y_mean_
 
 
@@ -198,6 +229,7 @@ class TransformerFineTune(TransformerForecaster):
     def fit(self, train: SampleSet, seed: int) -> None:
         train = self._labeled(train)
         self._set_target_scale(train)
+        self._set_markets(train)
         home = (train.meta["country"] == self.home_country).to_numpy()
         src, tgt = train.subset(~home), train.subset(home)
         if len(src) == 0:
@@ -230,3 +262,10 @@ class TransformerFTLowLR(TransformerFineTune):
 
     def __init__(self, **kw):
         super().__init__(ft_lr_scale=0.01, **kw)
+
+
+class TransformerMarket(TransformerForecaster):
+    name = "transformer_market"
+
+    def __init__(self, **kw):
+        super().__init__(use_market=True, **kw)

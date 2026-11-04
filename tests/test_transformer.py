@@ -9,6 +9,7 @@ torch = pytest.importorskip("torch")
 from housing_forecast.backtesting.infoset import SampleSet  # noqa: E402
 from housing_forecast.models.transformer import (  # noqa: E402
     TransformerFineTune, TransformerForecaster, TransformerFTHead, TransformerFTLowLR, TransformerFTShort,
+    TransformerMarket,
 )
 
 FAST = dict(d_model=16, n_layers=1, max_epochs=15, patience=5, default_epochs=5)
@@ -33,7 +34,8 @@ def toy_samples(n_per_series: int = 60, lookback: int = 8, n_features: int = 2, 
 
 
 @pytest.mark.parametrize("cls", [TransformerForecaster, TransformerFineTune,
-                                 TransformerFTHead, TransformerFTShort, TransformerFTLowLR])
+                                 TransformerFTHead, TransformerFTShort, TransformerFTLowLR,
+                                 TransformerMarket])
 def test_shape_and_same_seed_same_result(cls):
     s = toy_samples()
     preds = []
@@ -70,3 +72,19 @@ def test_variant_settings():
     assert TransformerFTShort().ft_max_epochs == 20
     assert TransformerFTLowLR().ft_lr_scale == 0.01
     assert TransformerFTHead().ft_trainable == "head"
+
+
+def test_market_embedding_and_unknown_market():
+    s = toy_samples()
+    m = TransformerMarket(**FAST)
+    m.fit(s, seed=0)
+    assert m.net.market is not None and m.net.market.num_embeddings == 4    # 3 markets + unknown
+    assert set(m.market_index_.values()) == {1, 2, 3}
+    unseen = s.replace(meta=s.meta.assign(series_id="Mars"))                 # falls back to slot 0
+    assert np.isfinite(m.predict(unseen)).all()
+
+
+def test_plain_transformer_has_no_market_embedding():
+    m = TransformerForecaster(**FAST)
+    m.fit(toy_samples(), seed=0)
+    assert m.net.market is None

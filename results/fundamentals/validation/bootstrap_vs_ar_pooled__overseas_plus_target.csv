@@ -99,3 +99,13 @@ transformer_ft_short__overseas_plus_target,ar_pooled__overseas_plus_target,mae,1
 transformer_ft_short__overseas_plus_target,ar_pooled__overseas_plus_target,mae,2,24,24,0.002555487993644818,-0.0022201426179478574,0.007166794518801658,0.1305
 transformer_ft_short__overseas_plus_target,ar_pooled__overseas_plus_target,mae,3,24,24,0.0075773137434288484,0.0017901716554356,0.013193545481334251,0.004
 transformer_ft_short__overseas_plus_target,ar_pooled__overseas_plus_target,mae,4,24,24,0.009988773658669695,0.0019949112386225473,0.01787267148068143,0.0065
+transformer_market__overseas_plus_target,ar_pooled__overseas_plus_target,rmse,all,24,96,0.005291340680264371,-0.005175464830560668,0.01614813084204263,0.182
+transformer_market__overseas_plus_target,ar_pooled__overseas_plus_target,rmse,1,24,24,-0.00034021097136733083,-0.0028443786296452416,0.0027223717458623345,0.603
+transformer_market__overseas_plus_target,ar_pooled__overseas_plus_target,rmse,2,24,24,0.0018088482668350558,-0.005764074352929909,0.009922513237431678,0.3335
+transformer_market__overseas_plus_target,ar_pooled__overseas_plus_target,rmse,3,24,24,0.006548642570207028,-0.005182027194746478,0.01920127458053703,0.151
+transformer_market__overseas_plus_target,ar_pooled__overseas_plus_target,rmse,4,24,24,0.009321889371571003,-0.007171231829296848,0.025483593097745075,0.1455
+transformer_market__overseas_plus_target,ar_pooled__overseas_plus_target,mae,all,24,96,0.0041453747938368785,-0.00402425299796263,0.01255638303550338,0.1655
+transformer_market__overseas_plus_target,ar_pooled__overseas_plus_target,mae,1,24,24,-0.000406681137930312,-0.002849188907921843,0.002208396224605127,0.6445
+transformer_market__overseas_plus_target,ar_pooled__overseas_plus_target,mae,2,24,24,0.0013018494251080329,-0.004392793295298551,0.007383676330951217,0.344
+transformer_market__overseas_plus_target,ar_pooled__overseas_plus_target,mae,3,24,24,0.006517913073038999,-0.004742612496849959,0.0179897764125693,0.123
+transformer_market__overseas_plus_target,ar_pooled__overseas_plus_target,mae,4,24,24,0.009168417815130787,-0.005473856409448493,0.023382063418468716,0.1065

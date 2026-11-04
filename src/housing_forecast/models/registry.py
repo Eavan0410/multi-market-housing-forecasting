@@ -11,6 +11,7 @@ REGISTRY = dict(_BASELINES)
 try:
     from housing_forecast.models.transformer import (
         TransformerFineTune, TransformerForecaster, TransformerFTHead, TransformerFTLowLR, TransformerFTShort,
+        TransformerMarket,
     )
 except ImportError:          # torch not installed
     pass
@@ -21,4 +22,5 @@ else:
         "transformer_ft_head": TransformerFTHead,
         "transformer_ft_short": TransformerFTShort,
         "transformer_ft_lowlr": TransformerFTLowLR,
+        "transformer_market": TransformerMarket,
     })

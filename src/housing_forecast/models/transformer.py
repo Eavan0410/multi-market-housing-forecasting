@@ -20,6 +20,8 @@ Market embedding:
                            replaced by an "unknown" slot with probability 0.1, so the
                            model also learns a shared fallback for markets it has not seen.
 
+    transformer_per_market fits and scales each market separately.
+
 Inputs are the runner's windows X (samples, lookback, features), one token per
 quarter, already standardized inside the training fold. The model predicts all
 horizons at once from the last token.
@@ -43,6 +45,7 @@ import torch
 from torch import nn
 
 from housing_forecast.backtesting.infoset import SampleSet
+from housing_forecast.backtesting.scaling import WindowStandardizer
 from housing_forecast.models.base import Forecaster
 
 
@@ -103,9 +106,12 @@ class TransformerForecaster(Forecaster):
 
     def _set_target_scale(self, train: SampleSet) -> None:
         # y is small (a few % per year); scale it so the loss is well conditioned.
-        self.y_mean_ = np.nanmean(train.y, axis=0)
-        std = np.nanstd(train.y, axis=0)
-        self.y_std_ = np.where(std < 1e-8, 1.0, std)
+        has_labels = ~np.isnan(train.y).all(axis=0)
+        self.y_mean_ = np.full(train.y.shape[1], np.nan)
+        self.y_std_ = np.full(train.y.shape[1], np.nan)
+        self.y_mean_[has_labels] = np.nanmean(train.y[:, has_labels], axis=0)
+        std = np.nanstd(train.y[:, has_labels], axis=0)
+        self.y_std_[has_labels] = np.where(std < 1e-8, 1.0, std)
 
     def _set_markets(self, train: SampleSet) -> None:
         names = sorted(train.meta["series_id"].unique()) if self.use_market else []
@@ -269,3 +275,76 @@ class TransformerMarket(TransformerForecaster):
 
     def __init__(self, **kw):
         super().__init__(use_market=True, **kw)
+
+
+class TransformerPerMarket(Forecaster):
+    """Fit one Transformer per market. Use no-change where training labels are unavailable."""
+
+    name = "transformer_per_market"
+    stochastic = True
+    needs_scaling = False
+
+    DIAG_COLUMNS = ["series_id", "n_train_rows", "fit_status", "reason", "epochs", "epochs_from",
+                    "n_forecasts", "n_fallback_forecasts", "fallback_horizons"]
+
+    def __init__(self, min_market_rows: int = 24, **kw):
+        self.min_market_rows, self.kw = min_market_rows, kw
+        self.models_: dict[str, TransformerForecaster] = {}
+        self.scalers_: dict[str, WindowStandardizer] = {}
+        self.diag_: dict[str, dict] = {}
+
+    def _diag(self, sid: str, n: int, status: str, reason: str = "") -> dict:
+        d = {"n_train_rows": n, "fit_status": status, "reason": reason, "epochs": np.nan,
+             "epochs_from": "", "n_forecasts": 0, "n_fallback_forecasts": 0, "fallback_horizons": ""}
+        self.diag_[sid] = d
+        return d
+
+    def fit(self, train: SampleSet, seed: int) -> None:
+        train = TransformerForecaster._labeled(train)
+        self.models_, self.scalers_, self.diag_ = {}, {}, {}
+        sids = train.meta["series_id"].to_numpy()
+        for sid in sorted(set(sids)):
+            own = train.subset(sids == sid)
+            if len(own) < self.min_market_rows:
+                self._diag(sid, len(own), "too_short",
+                           f"{len(own)} < {self.min_market_rows} labelled training rows; no-change forecast")
+                continue
+            scaler = WindowStandardizer().fit(own.X)
+            own = own.replace(X=scaler.transform(own.X))
+            model = TransformerForecaster(**self.kw)
+            inner = model._inner_split(own)
+            model.fit(own, seed)
+            d = self._diag(sid, len(own), "fitted")
+            d["epochs"] = model.epochs_used_[-1]
+            d["epochs_from"] = "early_stopping" if inner is not None else "default_epochs"
+            self.models_[sid], self.scalers_[sid] = model, scaler
+
+    def diagnostics(self) -> pd.DataFrame:
+        """Report fit status and the number of origins with any fallback."""
+        return pd.DataFrame([{"series_id": sid, **d} for sid, d in self.diag_.items()],
+                            columns=self.DIAG_COLUMNS)
+
+    def predict(self, test: SampleSet) -> np.ndarray:
+        out = np.zeros((len(test), len(test.horizons)))
+        sids = test.meta["series_id"].to_numpy()
+        for sid in sorted(set(sids)):
+            rows = sids == sid
+            n_rows = int(rows.sum())
+            if sid not in self.diag_:
+                self._diag(sid, 0, "no_training_history",
+                           "market has no labelled training rows in this fold; no-change forecast")
+            d = self.diag_[sid]
+            d["n_forecasts"] += n_rows
+            if sid not in self.models_:
+                d["n_fallback_forecasts"] += n_rows
+                continue
+            part = test.subset(rows)
+            model = self.models_[sid]
+            pred = model.predict(part.replace(X=self.scalers_[sid].transform(part.X)))
+            missing = np.isnan(model.y_mean_)
+            if missing.any():
+                pred[:, missing] = 0.0
+                d["fallback_horizons"] = ",".join(str(h) for h, m in zip(test.horizons, missing) if m)
+                d["n_fallback_forecasts"] += int((~np.isnan(part.y[:, missing])).any(axis=1).sum())
+            out[rows] = pred
+        return out

@@ -15,6 +15,7 @@ import numpy as np
 import pandas as pd
 
 from housing_forecast.data.contract import check_alignment
+from housing_forecast.evaluation.bootstrap import circular_block_indices
 
 
 def metrics_by_market(preds: pd.DataFrame) -> pd.DataFrame:
@@ -91,3 +92,96 @@ def summary_by_history(rel: pd.DataFrame, groups: pd.DataFrame,
         bands[(r["horizon"] >= lo) & (r["horizon"] <= hi)] = f"h{lo}-{hi}"
     r = r.assign(horizon_band=bands).dropna(subset=["horizon_band"])
     return _summary(r, ["model", "history", "horizon_band"])
+
+
+def _squared_errors(preds: pd.DataFrame, model: str) -> pd.DataFrame:
+    rows = preds[preds["model"] == model]
+    keys = ["series_id", "origin_quarter", "horizon"]
+    return (rows.assign(se=(rows["y_pred"] - rows["y_true"]) ** 2)
+            .pivot(index=keys, columns="seed", values="se").sort_index())
+
+
+def _sum_by_origin(errors: pd.DataFrame, markets: pd.Index, calendar: pd.PeriodIndex):
+    market = markets.get_indexer(errors.index.get_level_values("series_id"))
+    origin = calendar.get_indexer(pd.PeriodIndex(errors.index.get_level_values("origin_quarter"), freq="Q"))
+    totals = np.zeros((len(markets), len(calendar), errors.shape[1]))
+    np.add.at(totals, (market, origin), errors.to_numpy())
+    return totals, market, origin
+
+
+def _ratios(sse_a, sse_b, counts, weights):
+    n = (weights @ counts.T)[:, :, None]
+    with np.errstate(divide="ignore", invalid="ignore"):
+        rmse_a = np.sqrt(np.einsum("do,mos->dms", weights, sse_a) / n).mean(axis=2)
+        rmse_b = np.sqrt(np.einsum("do,mos->dms", weights, sse_b) / n).mean(axis=2)
+        ratios = rmse_a / rmse_b
+    return np.where(np.isfinite(ratios), ratios, np.nan)
+
+
+def paired_ratio_bootstrap(preds: pd.DataFrame, model_a: str, model_b: str, cfg: dict,
+                           min_origins: int = 8, block_length: int | None = None,
+                           horizon_bands=((3, 6), (16, 20))) -> pd.DataFrame:
+    """Bootstrap the median market RMSE ratio, with RMSE averaged over seeds.
+
+    Resample the same blocks of calendar quarters for both models and all markets.
+    Within a band, pool the squared errors across its horizons before taking RMSE.
+    The interval describes variation over forecast dates for these markets and seeds.
+    """
+    compared = preds[preds["model"].isin([model_a, model_b])]
+    if not {model_a, model_b} <= set(compared["model"]):
+        raise ValueError(f"both {model_a!r} and {model_b!r} must be among the predictions")
+    check_alignment(compared)
+    settings = cfg["bootstrap"]
+    block = settings["block_length"] if block_length is None else block_length
+    if block < 1 or min_origins < 1 or settings["n_boot"] < 1:
+        raise ValueError("block_length, min_origins and n_boot must be positive")
+
+    a = _squared_errors(compared, model_a)
+    b = _squared_errors(compared, model_b)
+    horizons = a.index.get_level_values("horizon")
+    quarters = pd.PeriodIndex(a.index.get_level_values("origin_quarter"), freq="Q")
+    calendar = pd.period_range(quarters.min(), quarters.max(), freq="Q")
+    if block >= len(calendar):
+        raise ValueError("block_length must be shorter than the forecast calendar")
+    groups = [(str(h), (h, h)) for h in sorted(horizons.unique())]
+    groups += [(f"h{lo}-{hi}", (lo, hi)) for lo, hi in horizon_bands]
+    rng = np.random.default_rng(settings["seed"])
+    draws = circular_block_indices(len(calendar), block, settings["n_boot"], rng)
+    weights = np.stack([np.bincount(draw, minlength=len(calendar)) for draw in draws])
+    tail = (1 - settings["ci"]) / 2
+
+    results = []
+    for label, (lo, hi) in groups:
+        in_band = (horizons >= lo) & (horizons <= hi)
+        keys = a.index[in_band].to_frame(index=False)
+        coverage = keys.groupby("series_id")["origin_quarter"].nunique()
+        markets = coverage.index[coverage >= min_origins]
+        if markets.empty:
+            continue
+        keep = in_band & a.index.get_level_values("series_id").isin(markets)
+        sse_a, market, origin = _sum_by_origin(a.loc[keep], markets, calendar)
+        sse_b, _, _ = _sum_by_origin(b.loc[keep], markets, calendar)
+        counts = np.zeros((len(markets), len(calendar)))
+        np.add.at(counts, (market, origin), 1)
+
+        point = _ratios(sse_a, sse_b, counts, np.ones((1, len(calendar))))[0]
+        valid_markets = np.isfinite(point)
+        if not valid_markets.any():
+            continue
+        boot_ratios = _ratios(sse_a[valid_markets], sse_b[valid_markets], counts[valid_markets], weights)
+        valid_draws = np.isfinite(boot_ratios).any(axis=1)
+        boot = np.nanmedian(boot_ratios[valid_draws], axis=1)
+        low, high = np.quantile(boot, [tail, 1 - tail]) if boot.size else (np.nan, np.nan)
+        results.append({
+            "model_a": model_a, "model_b": model_b, "horizon": label,
+            "n_markets": int(valid_markets.sum()),
+            "n_origins": int(np.count_nonzero(counts[valid_markets].sum(axis=0))),
+            "median_ratio": float(np.median(point[valid_markets])), "ci_low": float(low), "ci_high": float(high),
+            "share_draws_below_1": float((boot < 1).mean()) if boot.size else np.nan,
+            "share_markets_a_better": float((point[valid_markets] < 1).mean()),
+            "block_length": block, "n_boot": int(settings["n_boot"]), "n_valid_draws": int(boot.size),
+        })
+    return pd.DataFrame(results, columns=[
+        "model_a", "model_b", "horizon", "n_markets", "n_origins", "median_ratio", "ci_low", "ci_high",
+        "share_draws_below_1", "share_markets_a_better", "block_length", "n_boot", "n_valid_draws",
+    ])

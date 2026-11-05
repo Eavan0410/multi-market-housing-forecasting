@@ -1,8 +1,10 @@
 # Design notes
 
-Background for the methods section and for whoever takes over the code. The code itself keeps short docstrings; the reasons live here.
+These notes cover the Taiwan h=1–4 experiments. The [README](../README.md#multi-market-results) has the newer multi-market h=1–20 results.
 
-## 1. Fair-test rules and where the code enforces them
+Notes on the backtest and data formats, for writing the report and working on the code together.
+
+## Backtest rules
 
 | Rule (project plan) | Where | How |
 |---|---|---|
@@ -22,7 +24,7 @@ The test period is locked in code (`PeriodLockedError`) until the configuration 
 
 Tests for each rule: `tests/test_backtest_rules.py`.
 
-## 2. Hand-off tables
+## Shared data formats
 
 ### Panel (data → backtest)
 
@@ -58,7 +60,7 @@ One row per model, series, origin, horizon and seed.
 
 Checked by `validate_predictions` and `check_alignment`: no empty or non-finite values, `target_quarter = origin_quarter + horizon`, `as_of_date` after the origin quarter, no forecast repeated across folds, and the same rows and definitions for every model and seed. Models from other scripts (e.g. the GRU) must write exactly these columns.
 
-## 3. B's processed files and how they are merged
+## Processed files and merge rules
 
 `data/processed/<ISO>_processed.csv`, stacked:
 
@@ -77,4 +79,4 @@ Merge rules (`data/b_adapter.py`):
 4. Nothing is filled or interpolated.
 5. Country names are unified (`Korea` → `South Korea`).
 
-Taiwan files in `data/raw/taiwan/` (`data/taiwan_raw.py`) are found by their `feature` value, not by file name. Monthly rates use the quarterly mean; the consumer loan balance (a stock) uses the value of the quarter's last month. Credit / GDP = end-of-quarter balance ÷ sum of the last four quarters of nominal GDP × 100, matching the BIS definition. Taiwan's macro series are national, so the seven cities share them, and history before the HPI starts is kept so that 4-quarter changes exist from the first HPI quarter.
+Taiwan files in `data/raw/taiwan/` (`data/taiwan_raw.py`) are found by their `feature` value, not by file name. Monthly rates use the quarterly mean; the consumer loan balance (a stock) uses the value of the quarter's last month. Credit / GDP = end-of-quarter balance ÷ sum of the last four quarters of nominal GDP × 100, using the same ratio formula as BIS. The bank consumer-loan series has narrower coverage than BIS household credit. Taiwan's macro series are national, so the seven cities share them, and history before the HPI starts is kept so that 4-quarter changes exist from the first HPI quarter.

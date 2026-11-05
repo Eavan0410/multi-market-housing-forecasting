@@ -33,13 +33,15 @@ def manifest_path(preds_path: str | Path) -> Path:
 
 
 def make_manifest(cfg: dict, *, experiment: str, phase: str, model: str, base_model: str,
-                  pool: str, stochastic: bool, seeds: list, panel_path: str, cpi_path: str) -> dict:
+                  pool: str, stochastic: bool, seeds: list, panel_path: str, cpi_path: str,
+                  countries: list | None = None) -> dict:
     return {
         "experiment": experiment,
         "phase": phase,
         "model": model,
         "base_model": base_model,
         "pool": pool,
+        "countries": "all" if countries is None else list(countries),   # overseas markets allowed in
         "stochastic": stochastic,
         "seeds": list(seeds),
         "features": list(cfg["features"]["use"]),

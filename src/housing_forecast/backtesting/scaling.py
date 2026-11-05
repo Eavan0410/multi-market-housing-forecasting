@@ -1,4 +1,4 @@
-"""Standardization fitted on the training window only (窗口内标准化)."""
+"""Standardization fitted on the training window only."""
 
 from __future__ import annotations
 

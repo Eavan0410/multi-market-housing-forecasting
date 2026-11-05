@@ -15,9 +15,6 @@ from housing_forecast.backtesting.splits import (
 from housing_forecast.data.contract import PRED_COLUMNS, validate_predictions
 from housing_forecast.models.base import Forecaster, set_global_seed
 
-
-# The pretraining pool is overseas only: no Taiwan national or city series.
-
 def pool_target_only(target_series: str) -> Callable[[pd.DataFrame], np.ndarray]:
     return lambda meta: (meta["series_id"] == target_series).to_numpy()
 
@@ -28,6 +25,11 @@ def pool_overseas(home_country: str = "Taiwan") -> Callable[[pd.DataFrame], np.n
 
 def pool_overseas_plus_target(target_series: str, home_country: str = "Taiwan"):
     return lambda meta: ((meta["country"] != home_country) | (meta["series_id"] == target_series)).to_numpy()
+
+
+def pool_national() -> Callable[[pd.DataFrame], np.ndarray]:
+    """Every national series, Taiwan included; city series left out (multi-market runs)."""
+    return lambda meta: (meta["geography_level"] == "national").to_numpy()
 
 
 def pool_all() -> Callable[[pd.DataFrame], np.ndarray]:
@@ -43,11 +45,15 @@ def run_backtest(
     train_pool: Callable[[pd.DataFrame], np.ndarray],
     model_name: str | None = None,
 ) -> pd.DataFrame:
-    """Run one model over all folds and return predictions in the shared CSV format."""
+    """Run one model over all folds and return predictions in the shared CSV format.
+
+    A model that has a diagnostics() method (e.g. ARIMA fit / fallback status per market)
+    gets it collected per fold and seed into preds.attrs["diagnostics"].
+    """
     eval_series = cfg["target"]["eval_series"]
     seeds = cfg["run"]["seeds"]
     gap = cfg["periods"]["gap_quarters"]
-    rows = []
+    rows, diag_rows = [], []
 
     for split in splits:
         train = samples.subset(train_mask(samples, split) & train_pool(samples.meta))
@@ -71,8 +77,11 @@ def run_backtest(
             if y_pred.shape != test.y.shape:
                 raise ValueError(f"predict() returned {y_pred.shape}, expected {test.y.shape}")
             name = model_name or model.name
+            diag = model.diagnostics() if callable(getattr(model, "diagnostics", None)) else None
+            if diag is not None and len(diag):
+                diag_rows.append(diag.assign(model=name, split_id=split.split_id, seed=seed))
             for j, h in enumerate(test.horizons):
-                ok = ~np.isnan(test.y[:, j])                     # only score labels that exist
+                ok = ~np.isnan(test.y[:, j])
                 origins = pd.PeriodIndex(test.meta["origin"][ok], freq="Q")
                 rows.append(pd.DataFrame({
                     "model": name,
@@ -90,4 +99,5 @@ def run_backtest(
 
     preds = pd.concat(rows, ignore_index=True)[PRED_COLUMNS] if rows else pd.DataFrame(columns=PRED_COLUMNS)
     validate_predictions(preds)
+    preds.attrs["diagnostics"] = pd.concat(diag_rows, ignore_index=True) if diag_rows else None
     return preds

@@ -88,9 +88,16 @@ def mask_unpublished_labels(train: SampleSet, split: Split) -> SampleSet:
     return train.replace(y=y).subset(keep)
 
 
+ALL_NATIONAL = "all_national"
+
+
 def eval_mask(samples: SampleSet, split: Split, eval_series) -> np.ndarray:
+    """eval_series is a list of series ids, or "all_national" to score every national series."""
     in_block = samples.meta["origin"].isin(split.test_origins).to_numpy()
-    in_series = samples.meta["series_id"].isin(eval_series).to_numpy()
+    if eval_series == ALL_NATIONAL or list(np.atleast_1d(eval_series)) == [ALL_NATIONAL]:
+        in_series = (samples.meta["geography_level"] == "national").to_numpy()
+    else:
+        in_series = samples.meta["series_id"].isin(eval_series).to_numpy()
     return in_block & in_series
 
 

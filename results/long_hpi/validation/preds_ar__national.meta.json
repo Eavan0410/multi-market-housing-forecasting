@@ -1,0 +1,93 @@
+{
+  "base_model": "ar",
+  "countries": "all",
+  "cpi_file": "data/interim/taiwan_cpi_monthly.csv",
+  "cpi_sha256": "397ff669e743a98834e952c9b44231a7c980ff8bf3bb366eeb04afa071ded98a",
+  "created_utc": "2026-11-04T02:51:52+00:00",
+  "drop_nan_windows": true,
+  "experiment": "long_hpi",
+  "features": [
+    "hpi_qoq"
+  ],
+  "ffill_limit": 2,
+  "hpi_basis": {
+    "Taiwan": "nominal",
+    "default": "real"
+  },
+  "lookback": 8,
+  "model": "ar__national",
+  "panel_file": "data/interim/panel_quarterly.csv",
+  "panel_sha256": "e12af81130b1334c86e41d36620e1743d105aeb2e60405a2396c2567eac68c92",
+  "periods": {
+    "allow_short_gap": true,
+    "gap_quarters": 4,
+    "refit_every": 4,
+    "test_end": "auto",
+    "test_start": "2015Q1",
+    "validation_end": "2009Q4",
+    "validation_start": "2000Q1"
+  },
+  "phase": "validation",
+  "pool": "national",
+  "release_lag_days": {
+    "cpi": {
+      "default": 30
+    },
+    "cpi_yoy": {
+      "default": 30
+    },
+    "gdp_growth": {
+      "Taiwan": 60,
+      "default": 60
+    },
+    "household_credit_gdp": {
+      "Taiwan": 60,
+      "default": 120
+    },
+    "hpi": {
+      "Taiwan": 60,
+      "default": 100
+    },
+    "interest_rate": {
+      "Taiwan": 5,
+      "default": 5
+    },
+    "unemployment_rate": {
+      "default": 45
+    }
+  },
+  "seeds": [
+    0
+  ],
+  "stochastic": false,
+  "target": {
+    "country": "Taiwan",
+    "eval_series": "all_national",
+    "horizons": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "main_horizon": 4,
+    "series_id": "Taiwan_national",
+    "target_type": "cum_log_growth_real",
+    "value_col": "hpi_real"
+  }
+}

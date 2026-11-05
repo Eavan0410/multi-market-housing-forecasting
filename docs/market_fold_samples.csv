@@ -1,0 +1,481 @@
+split_id,train_origin_end,series_id,n_train_samples
+val_2000Q1,1999Q1,Australia,109
+val_2000Q1,1999Q1,Austria,0
+val_2000Q1,1999Q1,Belgium,109
+val_2000Q1,1999Q1,Brazil,0
+val_2000Q1,1999Q1,Bulgaria,0
+val_2000Q1,1999Q1,Canada,109
+val_2000Q1,1999Q1,Chile,0
+val_2000Q1,1999Q1,China,0
+val_2000Q1,1999Q1,Colombia,37
+val_2000Q1,1999Q1,Croatia,0
+val_2000Q1,1999Q1,Czechia,0
+val_2000Q1,1999Q1,Denmark,109
+val_2000Q1,1999Q1,Estonia,0
+val_2000Q1,1999Q1,Finland,109
+val_2000Q1,1999Q1,France,109
+val_2000Q1,1999Q1,Germany,109
+val_2000Q1,1999Q1,Greece,1
+val_2000Q1,1999Q1,Hungary,0
+val_2000Q1,1999Q1,Iceland,0
+val_2000Q1,1999Q1,India,0
+val_2000Q1,1999Q1,Indonesia,0
+val_2000Q1,1999Q1,Ireland,109
+val_2000Q1,1999Q1,Israel,13
+val_2000Q1,1999Q1,Italy,109
+val_2000Q1,1999Q1,Japan,149
+val_2000Q1,1999Q1,Latvia,0
+val_2000Q1,1999Q1,Lithuania,0
+val_2000Q1,1999Q1,Luxembourg,0
+val_2000Q1,1999Q1,Mexico,0
+val_2000Q1,1999Q1,Netherlands,109
+val_2000Q1,1999Q1,New Zealand,109
+val_2000Q1,1999Q1,Norway,109
+val_2000Q1,1999Q1,Poland,0
+val_2000Q1,1999Q1,Portugal,37
+val_2000Q1,1999Q1,Romania,0
+val_2000Q1,1999Q1,Russia,0
+val_2000Q1,1999Q1,Saudi Arabia,0
+val_2000Q1,1999Q1,Slovak Republic,0
+val_2000Q1,1999Q1,Slovenia,0
+val_2000Q1,1999Q1,South Africa,125
+val_2000Q1,1999Q1,South Korea,45
+val_2000Q1,1999Q1,Spain,105
+val_2000Q1,1999Q1,Sweden,109
+val_2000Q1,1999Q1,Switzerland,109
+val_2000Q1,1999Q1,Taiwan_national,0
+val_2000Q1,1999Q1,Türkiye,0
+val_2000Q1,1999Q1,United Kingdom,116
+val_2000Q1,1999Q1,United States,109
+val_2001Q1,2000Q1,Australia,113
+val_2001Q1,2000Q1,Austria,0
+val_2001Q1,2000Q1,Belgium,113
+val_2001Q1,2000Q1,Brazil,0
+val_2001Q1,2000Q1,Bulgaria,0
+val_2001Q1,2000Q1,Canada,113
+val_2001Q1,2000Q1,Chile,0
+val_2001Q1,2000Q1,China,0
+val_2001Q1,2000Q1,Colombia,41
+val_2001Q1,2000Q1,Croatia,0
+val_2001Q1,2000Q1,Czechia,0
+val_2001Q1,2000Q1,Denmark,113
+val_2001Q1,2000Q1,Estonia,0
+val_2001Q1,2000Q1,Finland,113
+val_2001Q1,2000Q1,France,113
+val_2001Q1,2000Q1,Germany,113
+val_2001Q1,2000Q1,Greece,5
+val_2001Q1,2000Q1,Hungary,0
+val_2001Q1,2000Q1,Iceland,0
+val_2001Q1,2000Q1,India,0
+val_2001Q1,2000Q1,Indonesia,0
+val_2001Q1,2000Q1,Ireland,113
+val_2001Q1,2000Q1,Israel,17
+val_2001Q1,2000Q1,Italy,113
+val_2001Q1,2000Q1,Japan,153
+val_2001Q1,2000Q1,Latvia,0
+val_2001Q1,2000Q1,Lithuania,0
+val_2001Q1,2000Q1,Luxembourg,0
+val_2001Q1,2000Q1,Mexico,0
+val_2001Q1,2000Q1,Netherlands,113
+val_2001Q1,2000Q1,New Zealand,113
+val_2001Q1,2000Q1,Norway,113
+val_2001Q1,2000Q1,Poland,0
+val_2001Q1,2000Q1,Portugal,41
+val_2001Q1,2000Q1,Romania,0
+val_2001Q1,2000Q1,Russia,0
+val_2001Q1,2000Q1,Saudi Arabia,0
+val_2001Q1,2000Q1,Slovak Republic,0
+val_2001Q1,2000Q1,Slovenia,0
+val_2001Q1,2000Q1,South Africa,129
+val_2001Q1,2000Q1,South Korea,49
+val_2001Q1,2000Q1,Spain,109
+val_2001Q1,2000Q1,Sweden,113
+val_2001Q1,2000Q1,Switzerland,113
+val_2001Q1,2000Q1,Taiwan_national,0
+val_2001Q1,2000Q1,Türkiye,0
+val_2001Q1,2000Q1,United Kingdom,120
+val_2001Q1,2000Q1,United States,113
+val_2002Q1,2001Q1,Australia,117
+val_2002Q1,2001Q1,Austria,0
+val_2002Q1,2001Q1,Belgium,117
+val_2002Q1,2001Q1,Brazil,0
+val_2002Q1,2001Q1,Bulgaria,0
+val_2002Q1,2001Q1,Canada,117
+val_2002Q1,2001Q1,Chile,0
+val_2002Q1,2001Q1,China,0
+val_2002Q1,2001Q1,Colombia,45
+val_2002Q1,2001Q1,Croatia,0
+val_2002Q1,2001Q1,Czechia,0
+val_2002Q1,2001Q1,Denmark,117
+val_2002Q1,2001Q1,Estonia,0
+val_2002Q1,2001Q1,Finland,117
+val_2002Q1,2001Q1,France,117
+val_2002Q1,2001Q1,Germany,117
+val_2002Q1,2001Q1,Greece,9
+val_2002Q1,2001Q1,Hungary,0
+val_2002Q1,2001Q1,Iceland,0
+val_2002Q1,2001Q1,India,0
+val_2002Q1,2001Q1,Indonesia,0
+val_2002Q1,2001Q1,Ireland,117
+val_2002Q1,2001Q1,Israel,21
+val_2002Q1,2001Q1,Italy,117
+val_2002Q1,2001Q1,Japan,157
+val_2002Q1,2001Q1,Latvia,0
+val_2002Q1,2001Q1,Lithuania,0
+val_2002Q1,2001Q1,Luxembourg,0
+val_2002Q1,2001Q1,Mexico,0
+val_2002Q1,2001Q1,Netherlands,117
+val_2002Q1,2001Q1,New Zealand,117
+val_2002Q1,2001Q1,Norway,117
+val_2002Q1,2001Q1,Poland,0
+val_2002Q1,2001Q1,Portugal,45
+val_2002Q1,2001Q1,Romania,0
+val_2002Q1,2001Q1,Russia,0
+val_2002Q1,2001Q1,Saudi Arabia,0
+val_2002Q1,2001Q1,Slovak Republic,0
+val_2002Q1,2001Q1,Slovenia,0
+val_2002Q1,2001Q1,South Africa,133
+val_2002Q1,2001Q1,South Korea,53
+val_2002Q1,2001Q1,Spain,113
+val_2002Q1,2001Q1,Sweden,117
+val_2002Q1,2001Q1,Switzerland,117
+val_2002Q1,2001Q1,Taiwan_national,0
+val_2002Q1,2001Q1,Türkiye,0
+val_2002Q1,2001Q1,United Kingdom,124
+val_2002Q1,2001Q1,United States,117
+val_2003Q1,2002Q1,Australia,121
+val_2003Q1,2002Q1,Austria,1
+val_2003Q1,2002Q1,Belgium,121
+val_2003Q1,2002Q1,Brazil,0
+val_2003Q1,2002Q1,Bulgaria,0
+val_2003Q1,2002Q1,Canada,121
+val_2003Q1,2002Q1,Chile,0
+val_2003Q1,2002Q1,China,0
+val_2003Q1,2002Q1,Colombia,49
+val_2003Q1,2002Q1,Croatia,0
+val_2003Q1,2002Q1,Czechia,0
+val_2003Q1,2002Q1,Denmark,121
+val_2003Q1,2002Q1,Estonia,0
+val_2003Q1,2002Q1,Finland,121
+val_2003Q1,2002Q1,France,121
+val_2003Q1,2002Q1,Germany,121
+val_2003Q1,2002Q1,Greece,13
+val_2003Q1,2002Q1,Hungary,0
+val_2003Q1,2002Q1,Iceland,0
+val_2003Q1,2002Q1,India,0
+val_2003Q1,2002Q1,Indonesia,0
+val_2003Q1,2002Q1,Ireland,121
+val_2003Q1,2002Q1,Israel,25
+val_2003Q1,2002Q1,Italy,121
+val_2003Q1,2002Q1,Japan,161
+val_2003Q1,2002Q1,Latvia,0
+val_2003Q1,2002Q1,Lithuania,0
+val_2003Q1,2002Q1,Luxembourg,0
+val_2003Q1,2002Q1,Mexico,0
+val_2003Q1,2002Q1,Netherlands,121
+val_2003Q1,2002Q1,New Zealand,121
+val_2003Q1,2002Q1,Norway,121
+val_2003Q1,2002Q1,Poland,0
+val_2003Q1,2002Q1,Portugal,49
+val_2003Q1,2002Q1,Romania,0
+val_2003Q1,2002Q1,Russia,0
+val_2003Q1,2002Q1,Saudi Arabia,0
+val_2003Q1,2002Q1,Slovak Republic,0
+val_2003Q1,2002Q1,Slovenia,0
+val_2003Q1,2002Q1,South Africa,137
+val_2003Q1,2002Q1,South Korea,57
+val_2003Q1,2002Q1,Spain,117
+val_2003Q1,2002Q1,Sweden,121
+val_2003Q1,2002Q1,Switzerland,121
+val_2003Q1,2002Q1,Taiwan_national,0
+val_2003Q1,2002Q1,Türkiye,0
+val_2003Q1,2002Q1,United Kingdom,128
+val_2003Q1,2002Q1,United States,121
+val_2004Q1,2003Q1,Australia,125
+val_2004Q1,2003Q1,Austria,5
+val_2004Q1,2003Q1,Belgium,125
+val_2004Q1,2003Q1,Brazil,0
+val_2004Q1,2003Q1,Bulgaria,0
+val_2004Q1,2003Q1,Canada,125
+val_2004Q1,2003Q1,Chile,0
+val_2004Q1,2003Q1,China,0
+val_2004Q1,2003Q1,Colombia,53
+val_2004Q1,2003Q1,Croatia,0
+val_2004Q1,2003Q1,Czechia,0
+val_2004Q1,2003Q1,Denmark,125
+val_2004Q1,2003Q1,Estonia,0
+val_2004Q1,2003Q1,Finland,125
+val_2004Q1,2003Q1,France,125
+val_2004Q1,2003Q1,Germany,125
+val_2004Q1,2003Q1,Greece,17
+val_2004Q1,2003Q1,Hungary,0
+val_2004Q1,2003Q1,Iceland,4
+val_2004Q1,2003Q1,India,0
+val_2004Q1,2003Q1,Indonesia,0
+val_2004Q1,2003Q1,Ireland,125
+val_2004Q1,2003Q1,Israel,29
+val_2004Q1,2003Q1,Italy,125
+val_2004Q1,2003Q1,Japan,165
+val_2004Q1,2003Q1,Latvia,0
+val_2004Q1,2003Q1,Lithuania,0
+val_2004Q1,2003Q1,Luxembourg,0
+val_2004Q1,2003Q1,Mexico,0
+val_2004Q1,2003Q1,Netherlands,125
+val_2004Q1,2003Q1,New Zealand,125
+val_2004Q1,2003Q1,Norway,125
+val_2004Q1,2003Q1,Poland,0
+val_2004Q1,2003Q1,Portugal,53
+val_2004Q1,2003Q1,Romania,0
+val_2004Q1,2003Q1,Russia,1
+val_2004Q1,2003Q1,Saudi Arabia,0
+val_2004Q1,2003Q1,Slovak Republic,0
+val_2004Q1,2003Q1,Slovenia,0
+val_2004Q1,2003Q1,South Africa,141
+val_2004Q1,2003Q1,South Korea,61
+val_2004Q1,2003Q1,Spain,121
+val_2004Q1,2003Q1,Sweden,125
+val_2004Q1,2003Q1,Switzerland,125
+val_2004Q1,2003Q1,Taiwan_national,1
+val_2004Q1,2003Q1,Türkiye,0
+val_2004Q1,2003Q1,United Kingdom,132
+val_2004Q1,2003Q1,United States,125
+val_2005Q1,2004Q1,Australia,129
+val_2005Q1,2004Q1,Austria,9
+val_2005Q1,2004Q1,Belgium,129
+val_2005Q1,2004Q1,Brazil,0
+val_2005Q1,2004Q1,Bulgaria,0
+val_2005Q1,2004Q1,Canada,129
+val_2005Q1,2004Q1,Chile,1
+val_2005Q1,2004Q1,China,0
+val_2005Q1,2004Q1,Colombia,57
+val_2005Q1,2004Q1,Croatia,0
+val_2005Q1,2004Q1,Czechia,0
+val_2005Q1,2004Q1,Denmark,129
+val_2005Q1,2004Q1,Estonia,0
+val_2005Q1,2004Q1,Finland,129
+val_2005Q1,2004Q1,France,129
+val_2005Q1,2004Q1,Germany,129
+val_2005Q1,2004Q1,Greece,21
+val_2005Q1,2004Q1,Hungary,0
+val_2005Q1,2004Q1,Iceland,8
+val_2005Q1,2004Q1,India,0
+val_2005Q1,2004Q1,Indonesia,1
+val_2005Q1,2004Q1,Ireland,129
+val_2005Q1,2004Q1,Israel,33
+val_2005Q1,2004Q1,Italy,129
+val_2005Q1,2004Q1,Japan,169
+val_2005Q1,2004Q1,Latvia,0
+val_2005Q1,2004Q1,Lithuania,0
+val_2005Q1,2004Q1,Luxembourg,0
+val_2005Q1,2004Q1,Mexico,0
+val_2005Q1,2004Q1,Netherlands,129
+val_2005Q1,2004Q1,New Zealand,129
+val_2005Q1,2004Q1,Norway,129
+val_2005Q1,2004Q1,Poland,0
+val_2005Q1,2004Q1,Portugal,57
+val_2005Q1,2004Q1,Romania,0
+val_2005Q1,2004Q1,Russia,5
+val_2005Q1,2004Q1,Saudi Arabia,0
+val_2005Q1,2004Q1,Slovak Republic,0
+val_2005Q1,2004Q1,Slovenia,0
+val_2005Q1,2004Q1,South Africa,145
+val_2005Q1,2004Q1,South Korea,65
+val_2005Q1,2004Q1,Spain,125
+val_2005Q1,2004Q1,Sweden,129
+val_2005Q1,2004Q1,Switzerland,129
+val_2005Q1,2004Q1,Taiwan_national,5
+val_2005Q1,2004Q1,Türkiye,0
+val_2005Q1,2004Q1,United Kingdom,136
+val_2005Q1,2004Q1,United States,129
+val_2006Q1,2005Q1,Australia,133
+val_2006Q1,2005Q1,Austria,13
+val_2006Q1,2005Q1,Belgium,133
+val_2006Q1,2005Q1,Brazil,0
+val_2006Q1,2005Q1,Bulgaria,0
+val_2006Q1,2005Q1,Canada,133
+val_2006Q1,2005Q1,Chile,5
+val_2006Q1,2005Q1,China,0
+val_2006Q1,2005Q1,Colombia,61
+val_2006Q1,2005Q1,Croatia,0
+val_2006Q1,2005Q1,Czechia,0
+val_2006Q1,2005Q1,Denmark,133
+val_2006Q1,2005Q1,Estonia,0
+val_2006Q1,2005Q1,Finland,133
+val_2006Q1,2005Q1,France,133
+val_2006Q1,2005Q1,Germany,133
+val_2006Q1,2005Q1,Greece,25
+val_2006Q1,2005Q1,Hungary,0
+val_2006Q1,2005Q1,Iceland,12
+val_2006Q1,2005Q1,India,0
+val_2006Q1,2005Q1,Indonesia,5
+val_2006Q1,2005Q1,Ireland,133
+val_2006Q1,2005Q1,Israel,37
+val_2006Q1,2005Q1,Italy,133
+val_2006Q1,2005Q1,Japan,173
+val_2006Q1,2005Q1,Latvia,0
+val_2006Q1,2005Q1,Lithuania,0
+val_2006Q1,2005Q1,Luxembourg,0
+val_2006Q1,2005Q1,Mexico,0
+val_2006Q1,2005Q1,Netherlands,133
+val_2006Q1,2005Q1,New Zealand,133
+val_2006Q1,2005Q1,Norway,133
+val_2006Q1,2005Q1,Poland,0
+val_2006Q1,2005Q1,Portugal,61
+val_2006Q1,2005Q1,Romania,0
+val_2006Q1,2005Q1,Russia,9
+val_2006Q1,2005Q1,Saudi Arabia,0
+val_2006Q1,2005Q1,Slovak Republic,0
+val_2006Q1,2005Q1,Slovenia,0
+val_2006Q1,2005Q1,South Africa,149
+val_2006Q1,2005Q1,South Korea,69
+val_2006Q1,2005Q1,Spain,129
+val_2006Q1,2005Q1,Sweden,133
+val_2006Q1,2005Q1,Switzerland,133
+val_2006Q1,2005Q1,Taiwan_national,9
+val_2006Q1,2005Q1,Türkiye,0
+val_2006Q1,2005Q1,United Kingdom,140
+val_2006Q1,2005Q1,United States,133
+val_2007Q1,2006Q1,Australia,137
+val_2007Q1,2006Q1,Austria,17
+val_2007Q1,2006Q1,Belgium,137
+val_2007Q1,2006Q1,Brazil,0
+val_2007Q1,2006Q1,Bulgaria,0
+val_2007Q1,2006Q1,Canada,137
+val_2007Q1,2006Q1,Chile,9
+val_2007Q1,2006Q1,China,0
+val_2007Q1,2006Q1,Colombia,65
+val_2007Q1,2006Q1,Croatia,0
+val_2007Q1,2006Q1,Czechia,0
+val_2007Q1,2006Q1,Denmark,137
+val_2007Q1,2006Q1,Estonia,0
+val_2007Q1,2006Q1,Finland,137
+val_2007Q1,2006Q1,France,137
+val_2007Q1,2006Q1,Germany,137
+val_2007Q1,2006Q1,Greece,29
+val_2007Q1,2006Q1,Hungary,0
+val_2007Q1,2006Q1,Iceland,16
+val_2007Q1,2006Q1,India,0
+val_2007Q1,2006Q1,Indonesia,9
+val_2007Q1,2006Q1,Ireland,137
+val_2007Q1,2006Q1,Israel,41
+val_2007Q1,2006Q1,Italy,137
+val_2007Q1,2006Q1,Japan,177
+val_2007Q1,2006Q1,Latvia,0
+val_2007Q1,2006Q1,Lithuania,0
+val_2007Q1,2006Q1,Luxembourg,0
+val_2007Q1,2006Q1,Mexico,0
+val_2007Q1,2006Q1,Netherlands,137
+val_2007Q1,2006Q1,New Zealand,137
+val_2007Q1,2006Q1,Norway,137
+val_2007Q1,2006Q1,Poland,0
+val_2007Q1,2006Q1,Portugal,65
+val_2007Q1,2006Q1,Romania,0
+val_2007Q1,2006Q1,Russia,13
+val_2007Q1,2006Q1,Saudi Arabia,0
+val_2007Q1,2006Q1,Slovak Republic,0
+val_2007Q1,2006Q1,Slovenia,0
+val_2007Q1,2006Q1,South Africa,153
+val_2007Q1,2006Q1,South Korea,73
+val_2007Q1,2006Q1,Spain,133
+val_2007Q1,2006Q1,Sweden,137
+val_2007Q1,2006Q1,Switzerland,137
+val_2007Q1,2006Q1,Taiwan_national,13
+val_2007Q1,2006Q1,Türkiye,0
+val_2007Q1,2006Q1,United Kingdom,144
+val_2007Q1,2006Q1,United States,137
+val_2008Q1,2007Q1,Australia,141
+val_2008Q1,2007Q1,Austria,21
+val_2008Q1,2007Q1,Belgium,141
+val_2008Q1,2007Q1,Brazil,0
+val_2008Q1,2007Q1,Bulgaria,1
+val_2008Q1,2007Q1,Canada,141
+val_2008Q1,2007Q1,Chile,13
+val_2008Q1,2007Q1,China,0
+val_2008Q1,2007Q1,Colombia,69
+val_2008Q1,2007Q1,Croatia,1
+val_2008Q1,2007Q1,Czechia,0
+val_2008Q1,2007Q1,Denmark,141
+val_2008Q1,2007Q1,Estonia,1
+val_2008Q1,2007Q1,Finland,141
+val_2008Q1,2007Q1,France,141
+val_2008Q1,2007Q1,Germany,141
+val_2008Q1,2007Q1,Greece,33
+val_2008Q1,2007Q1,Hungary,0
+val_2008Q1,2007Q1,Iceland,20
+val_2008Q1,2007Q1,India,0
+val_2008Q1,2007Q1,Indonesia,13
+val_2008Q1,2007Q1,Ireland,141
+val_2008Q1,2007Q1,Israel,45
+val_2008Q1,2007Q1,Italy,141
+val_2008Q1,2007Q1,Japan,181
+val_2008Q1,2007Q1,Latvia,0
+val_2008Q1,2007Q1,Lithuania,0
+val_2008Q1,2007Q1,Luxembourg,0
+val_2008Q1,2007Q1,Mexico,1
+val_2008Q1,2007Q1,Netherlands,141
+val_2008Q1,2007Q1,New Zealand,141
+val_2008Q1,2007Q1,Norway,141
+val_2008Q1,2007Q1,Poland,1
+val_2008Q1,2007Q1,Portugal,69
+val_2008Q1,2007Q1,Romania,0
+val_2008Q1,2007Q1,Russia,17
+val_2008Q1,2007Q1,Saudi Arabia,0
+val_2008Q1,2007Q1,Slovak Republic,1
+val_2008Q1,2007Q1,Slovenia,0
+val_2008Q1,2007Q1,South Africa,157
+val_2008Q1,2007Q1,South Korea,77
+val_2008Q1,2007Q1,Spain,137
+val_2008Q1,2007Q1,Sweden,141
+val_2008Q1,2007Q1,Switzerland,141
+val_2008Q1,2007Q1,Taiwan_national,17
+val_2008Q1,2007Q1,Türkiye,0
+val_2008Q1,2007Q1,United Kingdom,148
+val_2008Q1,2007Q1,United States,141
+val_2009Q1,2008Q1,Australia,145
+val_2009Q1,2008Q1,Austria,25
+val_2009Q1,2008Q1,Belgium,145
+val_2009Q1,2008Q1,Brazil,0
+val_2009Q1,2008Q1,Bulgaria,5
+val_2009Q1,2008Q1,Canada,145
+val_2009Q1,2008Q1,Chile,17
+val_2009Q1,2008Q1,China,0
+val_2009Q1,2008Q1,Colombia,73
+val_2009Q1,2008Q1,Croatia,5
+val_2009Q1,2008Q1,Czechia,0
+val_2009Q1,2008Q1,Denmark,145
+val_2009Q1,2008Q1,Estonia,5
+val_2009Q1,2008Q1,Finland,145
+val_2009Q1,2008Q1,France,145
+val_2009Q1,2008Q1,Germany,145
+val_2009Q1,2008Q1,Greece,37
+val_2009Q1,2008Q1,Hungary,0
+val_2009Q1,2008Q1,Iceland,24
+val_2009Q1,2008Q1,India,0
+val_2009Q1,2008Q1,Indonesia,17
+val_2009Q1,2008Q1,Ireland,145
+val_2009Q1,2008Q1,Israel,49
+val_2009Q1,2008Q1,Italy,145
+val_2009Q1,2008Q1,Japan,185
+val_2009Q1,2008Q1,Latvia,1
+val_2009Q1,2008Q1,Lithuania,1
+val_2009Q1,2008Q1,Luxembourg,0
+val_2009Q1,2008Q1,Mexico,5
+val_2009Q1,2008Q1,Netherlands,145
+val_2009Q1,2008Q1,New Zealand,145
+val_2009Q1,2008Q1,Norway,145
+val_2009Q1,2008Q1,Poland,5
+val_2009Q1,2008Q1,Portugal,73
+val_2009Q1,2008Q1,Romania,0
+val_2009Q1,2008Q1,Russia,21
+val_2009Q1,2008Q1,Saudi Arabia,0
+val_2009Q1,2008Q1,Slovak Republic,5
+val_2009Q1,2008Q1,Slovenia,0
+val_2009Q1,2008Q1,South Africa,161
+val_2009Q1,2008Q1,South Korea,81
+val_2009Q1,2008Q1,Spain,141
+val_2009Q1,2008Q1,Sweden,145
+val_2009Q1,2008Q1,Switzerland,145
+val_2009Q1,2008Q1,Taiwan_national,21
+val_2009Q1,2008Q1,Türkiye,0
+val_2009Q1,2008Q1,United Kingdom,152
+val_2009Q1,2008Q1,United States,145

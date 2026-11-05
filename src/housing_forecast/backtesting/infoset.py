@@ -22,7 +22,7 @@ class FeatureSpec:
     source: str      # variable whose release lag applies, e.g. "hpi", "cpi"
 
 
-DEFAULT_FEATURES = (FeatureSpec("hpi_qoq", "hpi"),)   # Taiwan's own past prices are always in
+DEFAULT_FEATURES = (FeatureSpec("hpi_qoq", "hpi"),)
 
 
 def features_from_config(cfg: dict) -> tuple[FeatureSpec, ...]:
@@ -104,7 +104,7 @@ def build_samples(panel: pd.DataFrame, cfg: dict, features=DEFAULT_FEATURES) -> 
             k = delay_quarters(lag_days(cfg, f.source, country), hpi_lag)
             s = g[f.name].ffill(limit=ffill_limit) if ffill_limit else g[f.name]
             cols.append(s.shift(k).to_numpy())               # index is calendar-complete, so shift = k quarters
-        F = np.column_stack(cols).astype(float)              # (T, n_features)
+        F = np.column_stack(cols).astype(float)
 
         # Origins must have a published HPI_t (the label base).
         has_hpi = g[value_col].notna().to_numpy()

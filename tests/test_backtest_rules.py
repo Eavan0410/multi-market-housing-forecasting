@@ -27,8 +27,6 @@ def _splits(cfg, samples):
     return make_splits(cfg, "validation", last_label_origin(samples, cfg["target"]["series_id"]))
 
 
-# Rule 1 + 2: expanding window with a 4-quarter gap ------------------------------------
-
 def test_expanding_window_and_gap(cfg, samples):
     splits = _splits(cfg, samples)
     ends = [s.train_origin_end for s in splits]
@@ -49,8 +47,6 @@ def test_leakage_check_catches_overlap(cfg, samples):
     with pytest.raises(AssertionError):
         check_no_leakage(leaky, test, s, cfg["periods"]["gap_quarters"])
 
-
-# Rule 3: one calendar cutoff for every country -----------------------------------------
 
 def test_same_calendar_cutoff_for_all_countries(cfg, samples):
     s = _splits(cfg, samples)[0]
@@ -92,8 +88,6 @@ def test_validation_labels_stay_before_test(cfg):
         check_config(cfg)
 
 
-# Rule 4: fitting only inside the training window ---------------------------------------
-
 def test_scaler_uses_training_window_only():
     X_train = np.ones((10, 8, 1))
     X_test = np.full((5, 8, 1), 100.0)
@@ -101,8 +95,6 @@ def test_scaler_uses_training_window_only():
     assert np.allclose(sc.mean_, 1.0)                # test values never touched the fit
     assert np.isfinite(sc.transform(X_test)).all()
 
-
-# Rule 5: same folds / same rows / shared format for every model --------------------------
 
 def test_models_row_aligned_and_valid(cfg, samples):
     splits = _splits(cfg, samples)

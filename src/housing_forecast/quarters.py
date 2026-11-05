@@ -1,4 +1,4 @@
-"""Quarter helpers (季度工具).
+"""Quarter and date helpers.
 
 All tables in this project write quarters as strings like "2010Q1".
 Inside the code we turn them into pandas Period objects, because a Period

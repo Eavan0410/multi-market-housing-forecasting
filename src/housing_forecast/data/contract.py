@@ -47,8 +47,8 @@ def validate_predictions(df: pd.DataFrame) -> None:
         raise ContractError("prediction fields must not be empty")
     if df[["model", "series_id", "origin_quarter", "horizon", "seed"]].duplicated().any():
         raise ContractError("duplicate prediction keys (model, series_id, origin_quarter, horizon, seed)")
-    if not df["horizon"].between(1, 4).all():
-        raise ContractError("horizon must be in 1..4")
+    if not (df["horizon"] >= 1).all():
+        raise ContractError("horizon must be a positive number of quarters")
     origin = pd.PeriodIndex(df["origin_quarter"], freq="Q")
     target = pd.PeriodIndex(df["target_quarter"], freq="Q")
     if not ((target - origin).map(lambda x: x.n) == df["horizon"].to_numpy()).all():

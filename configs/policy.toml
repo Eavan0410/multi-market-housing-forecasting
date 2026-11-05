@@ -1,0 +1,33 @@
+# LLM policy index (nice to have). Local open-source models only, no external API.
+
+[model]
+# 7B instruct model, 4-bit AWQ: about 5–6 GB of weights, fits a 12 GB RTX 3060.
+# On the project GPU (80 GB) a larger model can be compared, e.g. Qwen/Qwen2.5-32B-Instruct-AWQ.
+name = "Qwen/Qwen2.5-7B-Instruct-AWQ"
+backend = "vllm"                       # vllm | http | mock
+quantization = "awq"                   # "" for unquantized weights
+max_tokens = 256
+max_model_len = 4096
+gpu_memory_utilization = 0.85
+http_base_url = "http://localhost:8000/v1"   # only for backend = "http" (`vllm serve` on the GPU machine)
+
+[extraction]
+batch_size = 32
+max_chars = 3000                       # longer announcements are cut; keep prompt + text under max_model_len
+
+[index]
+start = "2000Q1"
+end = "2025Q4"
+half_life = 4                          # quarters, for policy_stance
+min_confidence = 0.0
+require_evidence = false               # true = drop documents whose evidence is not found in the text
+
+[eval]
+window_days = 14                       # event matching window against the manual timeline
+spotcheck_n = 50
+
+[paths]
+announcements = "data/raw/policy/announcements.jsonl"
+timeline = "data/raw/policy/manual_timeline.csv"
+out_dir = "results/policy"
+index_out = "data/interim/taiwan_policy_index.csv"

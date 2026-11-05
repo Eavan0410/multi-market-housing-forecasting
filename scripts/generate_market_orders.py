@@ -12,10 +12,6 @@ MARKET_LIST_PATH = (
     / "market_list.csv"
 )
 
-if not MARKET_LIST_PATH.is_file():
-    raise FileNotFoundError(
-        f"Cannot find market list: {MARKET_LIST_PATH}"
-    )
 
 market = pd.read_csv(MARKET_LIST_PATH)
 

@@ -1,4 +1,4 @@
-
+# Market selection
 Source table: [market_list.csv](market_list.csv) — one row per national market with its HPI
 start/end, history group, region, large quarterly jumps in real HPI (|log change| > 0.10), the
 number of 2000Q1–2009Q4 validation origins and how many folds it actually trains in. Rebuild it with `python scripts/build_market_list.py`.

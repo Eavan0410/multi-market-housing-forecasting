@@ -27,7 +27,6 @@ Three data-only orders are fixed in advance: region rotation, long-history first
 <details>
 <summary>Python code to reproduce the three training-pool orders
 
-Run the following code in the same directory as `market_list.csv` (tested with NumPy 2.3.5 and pandas 2.2.3). It prints the additions for the 10, 20 and all stages.
 
 ```python
 from collections import Counter

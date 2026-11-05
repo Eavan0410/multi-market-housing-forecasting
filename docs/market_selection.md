@@ -25,7 +25,7 @@ Three data-only orders are fixed in advance: region rotation, long-history first
 **Selection basis:** The 41-market universe is defined by `validation_origins_2000_2009 > 0`. Evaluation and LOMO targets were previously chosen using HPI history, region and common data-availability requirements (at least 20 validation origins, 5 usable folds and no missing internal quarters); Taiwan is the predetermined transfer target. No model errors were used in the revised rules. Because prior H=20 results were already viewed, this revised design should be frozen for future tests, not described as an originally blind selection.
 
 <details>
-<summary>Python code to reproduce the three training-pool orders (no CSV output)</summary>
+<summary>Python code to reproduce the three training-pool orders
 
 Run the following code in the same directory as `market_list.csv` (tested with NumPy 2.3.5 and pandas 2.2.3). It prints the additions for the 10, 20 and all stages.
 

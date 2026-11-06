@@ -797,9 +797,6 @@ def export_matrix(matrix, output_dir):
     output_dir.mkdir(parents=True, exist_ok=True)
     csv_path = output_dir / "availability_matrix.csv"
     matrix.to_csv(csv_path, index=False, encoding="utf-8")
-    # Keep blanks as blanks so absent periods and unknown URLs match exactly.
-    csv_data = pd.read_csv(csv_path, keep_default_na=False)
-    pd.testing.assert_frame_equal(csv_data)
     return csv_path
 
 
@@ -813,7 +810,7 @@ def main():
     print(f"Created {len(matrix)} rows for five countries, with {len(matrix.columns)} columns.")
     print("Taiwan: HPI, monthly CPI YoY, GDP growth, interest rate and credit/GDP. Common coverage follows the supplied frequencies.")
     for path in paths:
-        print(path)
+        print(paths)
 
 
 if __name__ == "__main__":

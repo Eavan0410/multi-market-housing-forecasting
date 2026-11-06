@@ -1,28 +1,27 @@
 # Multi-Market Housing Price Forecasting
 
-This course project asks whether one shared model can forecast house prices across many countries. We use a small Transformer to explore the foundation model idea, starting with three questions:
+We started with a question about Taiwan. Could one model also forecast house prices in many other markets? We use a small Transformer to explore that idea.
 
 1. Can one model work well across different housing markets?
-2. How does it compare with fitting a separate model for each market?
-3. Does training on more markets help, including for markets left out of training, and how far ahead can it forecast?
+2. How does it compare with traditional methods and with training a separate Transformer for each market?
+3. How does that comparison change as we forecast further ahead?
 
-We look at forecasts up to 20 quarters ahead. The 3–6 and 16–20 quarter ranges are of particular interest for buying/selling and construction decisions, though we still need to check how accurate the forecasts are at those horizons.
-
-The project started with Taiwan, but the main experiments now cover multiple countries. The [early Taiwan results](docs/taiwan_pilot.md) are kept as background. We are still testing whether this approach offers the benefits of a foundation model.
+We test forecasts from 1 to 20 quarters ahead. We pay particular attention to 3–6 quarters for buying or selling and 16–20 quarters for construction. Two experiments still to come will test whether adding markets helps and how the model does in a market it never trained on. [Early Taiwan results](docs/taiwan_pilot.md)
 
 ## Progress
 
-Updated November 5, 2026. Completed validation runs have saved predictions and result tables. Final testing is still to come.
+Updated November 5, 2026. The results below come from validation. The final test is still ahead.
 
 | Question | Experiment or task | Status |
 |---|---|---|
-| Broad use | Shared Transformer on all national markets, 1–20 quarters, five seeds | Validation done (38 markets reported) |
+| Market coverage | One shared Transformer, 1–20 quarters ahead | Validation done. 41 markets forecast, 38 reported. |
 | One-task-one-model | Per-market AR with pooled fallback; no-change; pooled AR as a shared linear reference | Validation done; includes pooled fallback |
 | One-task-one-model | One ARIMA per market | Template ready; fitting and forecasting code still to write |
-| One-task-one-model | One Transformer per market (from scratch), and shared pretraining + per-market fine-tuning | Not run yet |
-| Accuracy | Paired confidence intervals for the shared Transformer vs per-market AR, pooled AR and no-change | Done on validation |
-| More data | Training pools of 5, 10, 20 and all markets, on a fixed set of evaluation markets | Markets still to choose; not run yet |
-| Transfer | Leave-one-market-out: forecast a market never seen in training | Targets still to choose; not run yet |
+| One-task-one-model | One Transformer per market (from scratch) | Validation done (10 folds, 5 seeds) |
+| Transfer | Shared pretraining + per-market fine-tuning | Not run yet |
+| Accuracy | Paired confidence intervals for the shared Transformer vs per-market Transformer, per-market AR, pooled AR and no-change | Done on validation. [Per-market Transformer comparison](results/long_hpi/validation/ratio_ci_transformer__national_vs_transformer_per_market__national.csv) |
+| More training markets (#9) | Train on 5, 10, 20 and all eligible markets. Score the same five markets each time. | Market lists and pool orders ready. Still to run. |
+| Unseen markets (#10) | Leave one market out of training, then forecast it | Four markets selected. Still to run. |
 | Set-up | Common forecast date based on the slowest configured HPI release | Done. Multi-market validation rerun |
 | Background | Taiwan pilot (2012–2017, 1–4 quarters) | Done; see [docs/taiwan_pilot.md](docs/taiwan_pilot.md) |
 | Optional | Taiwan LLM policy index | Code ready; not yet run on real announcements |
@@ -39,11 +38,11 @@ The model uses the last eight quarters of each market's real HPI growth. Validat
 
 These multi-market runs score only 2000–2009 forecast dates. Forecasts reach 20 quarters ahead, so their labels use prices up to 2014. The proposed multi-market test starts in 2015 and has not been run, but it overlaps dates examined in the earlier Taiwan pilot; it is not a fully untouched period for the project.
 
-Predictions cover 41 national markets; we report the 38 with at least eight forecast dates. The training pool grows from 24 markets in the first refit to 38 in the last as more data become available. We still need to test transfer by holding out entire markets.
+We have predictions for 41 national markets. The results tables use the 38 with at least eight forecast dates. As more data become available, the number of markets contributing training data grows from 24 at the first refit to 38 at the last.
 
-We calculate RMSE for each seed and average over five seeds for the Transformer. To compare models, we take the RMSE ratio in each market and report the median across markets. A ratio below 1 favors the model in the numerator. The last two columns show absolute RMSE in cumulative log-growth units.
+We measure forecast error with RMSE and average it over five seeds for each Transformer. To compare two models, we divide their RMSEs in each market and take the median across markets. If the ratio is below 1, the first model has lower error. The last two columns show RMSE itself, in cumulative log-growth units.
 
-Per-market AR fits a separate model where there are enough training labels. It uses pooled AR as a fallback for markets or horizons with too few labels.
+Per-market AR uses pooled AR when it has too few labels to fit a separate model. The per-market Transformer uses the same architecture as the shared model and fits and scales each market separately. It falls back to no-change when it has too little training history. About 23% of its scored forecasts in the 38 reported markets used this fallback. [Fit and fallback counts](results/long_hpi/validation/diag_transformer_per_market__national.csv)
 
 | Quarters ahead | Transformer / per-market AR | Markets beating per-market AR | Transformer / no-change | Per-market AR / no-change | Transformer / pooled AR | Median RMSE (Transformer) | Median RMSE (per-market AR) |
 |---|---:|---:|---:|---:|---:|---:|---:|
@@ -56,29 +55,33 @@ Per-market AR fits a separate model where there are enough training labels. It u
 | 16 | 0.854 | 28/38 | 0.874 | 1.069 | 0.954 | 0.191 | 0.263 |
 | 20 | 0.863 | 27/38 | 0.894 | 1.093 | 0.958 | 0.235 | 0.304 |
 
-The table below gives the median RMSE ratio and 95% confidence interval for each forecast range. Within a range, we combine the errors across horizons before calculating each market's RMSE. For each of the 2,000 bootstrap draws, we resample the same blocks of 20 forecast quarters for both models and all markets.
+The next table compares the shared Transformer with each baseline over two ranges. We combine the errors within each range before calculating RMSE. The brackets show 95% confidence intervals from 2,000 bootstrap draws. Each draw uses the same 20-quarter blocks for both models and all markets.
 
 | Baseline | 3–6 quarters | 16–20 quarters |
 |---|---:|---:|
+| Per-market Transformer | 0.895 [0.796, 0.930] | 0.804 [0.791, 0.858] |
 | Per-market AR | 0.943 [0.883, 0.977] | 0.869 [0.795, 0.949] |
 | Pooled AR | 0.978 [0.918, 1.058] | 0.953 [0.917, 1.005] |
 | No-change | 0.849 [0.649, 0.979] | 0.889 [0.831, 1.027] |
 
+- **Per-market Transformer.** The shared model has about 10% lower RMSE over 3–6 quarters and 20% lower RMSE over 16–20 quarters, based on the median ratios. The 95% interval stays below 1 at every horizon from 1 to 20. This comparison includes the no-change forecasts where a separate model could not be fitted.
 - **Per-market AR.** The two models are about even one quarter ahead. From 5 through 20 quarters, the Transformer's ratio stays below 1 across the full confidence interval at each horizon. Over 16–20 quarters, its median ratio is 0.869, or about 13% lower RMSE.
 - **Pooled AR.** The Transformer has about 5% lower RMSE over 16–20 quarters. The interval just crosses 1 (0.917 to 1.005), so the two models could be about even.
 - **No-change.** The Transformer has lower RMSE over 3–6 quarters, with the full interval below 1. Its ratio is still below 1 over 16–20 quarters, but the interval crosses 1. Per-market AR falls behind no-change from 10 quarters onward and reaches a ratio of 1.093 at 20 quarters.
 
+The shared model also had lower error when both forecasts came from a trained Transformer. We kept dates where the per-market model fitted successfully in all five seeds. Only 24 markets had at least eight such dates, and all had long or medium HPI histories. The median ratio was **0.816 [0.796, 0.899]** for 3–6 quarters and **0.788 [0.771, 0.836]** for 16–20. The same 24 markets gave the same median ratios with the fallback forecasts included. [Comparison by sample](results/long_hpi/validation/fitted_only_ratio_ci.csv) · [Coverage by HPI history](results/long_hpi/validation/fitted_only_counts.csv)
+
 ![Median RMSE relative to no-change by forecast horizon](results/long_hpi/validation/rel_rmse_by_horizon.png)
 
-The shaded ranges show 3–6 and 16–20 quarters. Absolute errors grow with the horizon, so we still need to check whether the long forecasts are accurate enough to use. These results come from one validation period, which includes the 2008 crisis. The experiments on training pool size and held-out markets are still to come.
+This plot shows the shared Transformer and AR baselines relative to no-change. The shaded ranges show 3–6 and 16–20 quarters. Forecasts get less accurate further out. We still need to check whether the errors at 16–20 quarters are small enough for practical use. So far we have looked at one validation period, which includes the 2008 crisis.
 
-See the [market errors](results/long_hpi/validation/metrics_by_market.csv), [relative errors](results/long_hpi/validation/relative_by_market.csv), [horizon summary](results/long_hpi/validation/summary_by_horizon.csv) and [history groups](results/long_hpi/validation/summary_by_history.csv). The full confidence intervals are in the comparison files for [per-market AR](results/long_hpi/validation/ratio_ci_transformer__national_vs_ar__national.csv), [pooled AR](results/long_hpi/validation/ratio_ci_transformer__national_vs_ar_pooled__national.csv), [no-change](results/long_hpi/validation/ratio_ci_transformer__national_vs_no_change__national.csv).
+See the [market errors](results/long_hpi/validation/metrics_by_market.csv), [relative errors](results/long_hpi/validation/relative_by_market.csv), [horizon summary](results/long_hpi/validation/summary_by_horizon.csv) and [history groups](results/long_hpi/validation/summary_by_history.csv). The full confidence intervals are in the comparison files for [per-market Transformer](results/long_hpi/validation/ratio_ci_transformer__national_vs_transformer_per_market__national.csv), [per-market AR](results/long_hpi/validation/ratio_ci_transformer__national_vs_ar__national.csv), [pooled AR](results/long_hpi/validation/ratio_ci_transformer__national_vs_ar_pooled__national.csv), [no-change](results/long_hpi/validation/ratio_ci_transformer__national_vs_no_change__national.csv).
 
 ## Next steps
 
-1. Run ARIMA and a separate Transformer for each market, and report where they use a fallback. Compare shared pretraining with fine-tuning as a separate run.
-2. Train on 5, 10, 20 and all markets, keeping the evaluation markets fixed. Record how many markets actually contribute training samples in each run.
-3. Choose 3–5 markets in advance and leave each one out of training to test transfer.
+1. Run ARIMA for each market and report where it uses a fallback. Run shared pretraining with per-market fine-tuning as a separate comparison.
+2. For #9, start with one order for adding markets. Train on 5, 10, 20 and all eligible markets, and score the same five markets each time. Count how many markets actually contribute training data. [Market selection](docs/market_selection.md)
+3. For #10, start with one of the four selected markets. Leave it out of training and forecast it using the history available on each forecast date. [Held-out markets](docs/market_selection.md#3-leave-one-market-out-targets-35)
 
 ## Data and backtest notes
 
@@ -109,14 +112,21 @@ Multi-market validation:
 ```bash
 C=configs/experiment_long.toml
 python scripts/run_backtest.py --config $C --models no_change ar ar_pooled --pool national --experiment long_hpi
-python scripts/run_backtest.py --config $C --models transformer --pool national --experiment long_hpi
+python scripts/run_backtest.py --config $C --models transformer transformer_per_market --pool national --experiment long_hpi
 python scripts/evaluate_markets.py results/long_hpi/validation/preds_*.csv --config $C --reference no_change__national \
+    --compare transformer__national transformer_per_market__national \
     --compare transformer__national ar__national \
     --compare transformer__national ar_pooled__national \
     --compare transformer__national no_change__national
 ```
 
-This writes the error tables, confidence intervals and a plot if Matplotlib is installed. Other multi-market tools:
+This writes the error tables, confidence intervals and a plot if Matplotlib is installed. The command below repeats the check using the per-market fit diagnostics.
+
+```bash
+python scripts/fitted_only_check.py
+```
+
+Other multi-market tools:
 
 ```bash
 python scripts/build_market_list.py   # docs/market_list.csv and per-fold training samples

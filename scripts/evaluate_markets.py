@@ -1,26 +1,4 @@
-"""Score multi-market runs: per-market errors, error-by-horizon curve, history-length split.
-
-Example (after run_backtest.py --config configs/experiment_long.toml ...):
-    python scripts/evaluate_markets.py results/long_hpi/validation/preds_*.csv \\
-        --config configs/experiment_long.toml --reference no_change__national
-
-Writes next to the first input file:
-    metrics_by_market.csv     RMSE / MAE / direction accuracy per model, market and horizon
-    relative_by_market.csv    the same divided by the reference model's errors in that market
-    summary_by_horizon.csv    per model and horizon: median and geometric-mean relative RMSE
-                              across markets, share of markets beating the reference
-    summary_by_history.csv    the same split by how long each market's HPI history is
-    rel_rmse_by_horizon.png   median relative RMSE against horizon (if matplotlib is installed)
-    ratio_ci_<A>_vs_<B>.csv   with --compare A B: median across markets of RMSE(A)/RMSE(B) per
-                              horizon and for h3-6 / h16-20, with a block-bootstrap CI
-
-Shared model vs one model per market, with confidence intervals:
-    python scripts/evaluate_markets.py results/long_hpi/validation/preds_*.csv \\
-        --reference no_change__national \\
-        --compare transformer__national transformer_per_market__national \\
-        --compare transformer__national ar__national
-(model names are as in the prediction files, i.e. with the pool suffix)
-"""
+"""Score multi-market forecasts and optionally bootstrap paired RMSE ratios."""
 
 from __future__ import annotations
 

@@ -1,0 +1,1536 @@
+series_id,n_train_rows,fit_status,reason,epochs,epochs_from,n_forecasts,n_fallback_forecasts,fallback_horizons,model,split_id,seed
+Australia,109,fitted,,33.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,0
+Belgium,109,fitted,,42.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,0
+Canada,109,fitted,,15.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,0
+Colombia,37,fitted,,13.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,0
+Denmark,109,fitted,,13.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,0
+Finland,109,fitted,,23.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,0
+France,109,fitted,,10.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,0
+Germany,109,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,0
+Greece,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2000Q1,0
+Ireland,109,fitted,,39.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,0
+Israel,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2000Q1,0
+Italy,109,fitted,,10.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,0
+Japan,149,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,0
+Netherlands,109,fitted,,15.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,0
+New Zealand,109,fitted,,40.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,0
+Norway,109,fitted,,17.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,0
+Portugal,37,fitted,,36.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,0
+South Africa,125,fitted,,48.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,0
+South Korea,45,fitted,,25.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,0
+Spain,105,fitted,,9.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,0
+Sweden,109,fitted,,31.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,0
+Switzerland,109,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,0
+United Kingdom,116,fitted,,29.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,0
+United States,109,fitted,,45.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,0
+Australia,109,fitted,,48.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,1
+Belgium,109,fitted,,70.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,1
+Canada,109,fitted,,35.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,1
+Colombia,37,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,1
+Denmark,109,fitted,,3.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,1
+Finland,109,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,1
+France,109,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,1
+Germany,109,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,1
+Greece,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2000Q1,1
+Ireland,109,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,1
+Israel,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2000Q1,1
+Italy,109,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,1
+Japan,149,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,1
+Netherlands,109,fitted,,13.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,1
+New Zealand,109,fitted,,9.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,1
+Norway,109,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,1
+Portugal,37,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,1
+South Africa,125,fitted,,44.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,1
+South Korea,45,fitted,,14.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,1
+Spain,105,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,1
+Sweden,109,fitted,,21.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,1
+Switzerland,109,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,1
+United Kingdom,116,fitted,,35.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,1
+United States,109,fitted,,28.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,1
+Australia,109,fitted,,46.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,2
+Belgium,109,fitted,,36.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,2
+Canada,109,fitted,,9.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,2
+Colombia,37,fitted,,18.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,2
+Denmark,109,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,2
+Finland,109,fitted,,23.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,2
+France,109,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,2
+Germany,109,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,2
+Greece,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2000Q1,2
+Ireland,109,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,2
+Israel,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2000Q1,2
+Italy,109,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,2
+Japan,149,fitted,,15.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,2
+Netherlands,109,fitted,,33.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,2
+New Zealand,109,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,2
+Norway,109,fitted,,26.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,2
+Portugal,37,fitted,,34.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,2
+South Africa,125,fitted,,63.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,2
+South Korea,45,fitted,,16.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,2
+Spain,105,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,2
+Sweden,109,fitted,,38.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,2
+Switzerland,109,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,2
+United Kingdom,116,fitted,,49.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,2
+United States,109,fitted,,63.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,2
+Australia,109,fitted,,37.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,3
+Belgium,109,fitted,,52.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,3
+Canada,109,fitted,,17.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,3
+Colombia,37,fitted,,30.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,3
+Denmark,109,fitted,,18.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,3
+Finland,109,fitted,,19.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,3
+France,109,fitted,,9.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,3
+Germany,109,fitted,,10.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,3
+Greece,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2000Q1,3
+Ireland,109,fitted,,26.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,3
+Israel,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2000Q1,3
+Italy,109,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,3
+Japan,149,fitted,,15.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,3
+Netherlands,109,fitted,,15.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,3
+New Zealand,109,fitted,,21.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,3
+Norway,109,fitted,,17.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,3
+Portugal,37,fitted,,34.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,3
+South Africa,125,fitted,,41.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,3
+South Korea,45,fitted,,18.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,3
+Spain,105,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,3
+Sweden,109,fitted,,37.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,3
+Switzerland,109,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,3
+United Kingdom,116,fitted,,26.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,3
+United States,109,fitted,,41.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,3
+Australia,109,fitted,,52.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,4
+Belgium,109,fitted,,70.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,4
+Canada,109,fitted,,25.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,4
+Colombia,37,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,4
+Denmark,109,fitted,,21.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,4
+Finland,109,fitted,,13.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,4
+France,109,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,4
+Germany,109,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,4
+Greece,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2000Q1,4
+Ireland,109,fitted,,10.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,4
+Israel,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2000Q1,4
+Italy,109,fitted,,26.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,4
+Japan,149,fitted,,16.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,4
+Netherlands,109,fitted,,42.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,4
+New Zealand,109,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,4
+Norway,109,fitted,,31.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,4
+Portugal,37,fitted,,41.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,4
+South Africa,125,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,4
+South Korea,45,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,4
+Spain,105,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,4
+Sweden,109,fitted,,42.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,4
+Switzerland,109,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,4
+United Kingdom,116,fitted,,23.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,4
+United States,109,fitted,,43.0,early_stopping,4,0,,transformer_per_market__national,val_2000Q1,4
+Australia,113,fitted,,30.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,0
+Belgium,113,fitted,,57.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,0
+Canada,113,fitted,,17.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,0
+Colombia,41,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,0
+Denmark,113,fitted,,13.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,0
+Finland,113,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,0
+France,113,fitted,,54.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,0
+Germany,113,fitted,,9.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,0
+Greece,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2001Q1,0
+Ireland,113,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,0
+Israel,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2001Q1,0
+Italy,113,fitted,,9.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,0
+Japan,153,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,0
+Netherlands,113,fitted,,16.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,0
+New Zealand,113,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,0
+Norway,113,fitted,,21.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,0
+Portugal,41,fitted,,35.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,0
+South Africa,129,fitted,,19.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,0
+South Korea,49,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,0
+Spain,109,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,0
+Sweden,113,fitted,,20.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,0
+Switzerland,113,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,0
+United Kingdom,120,fitted,,31.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,0
+United States,113,fitted,,56.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,0
+Australia,113,fitted,,60.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,1
+Belgium,113,fitted,,36.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,1
+Canada,113,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,1
+Colombia,41,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,1
+Denmark,113,fitted,,9.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,1
+Finland,113,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,1
+France,113,fitted,,35.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,1
+Germany,113,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,1
+Greece,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2001Q1,1
+Ireland,113,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,1
+Israel,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2001Q1,1
+Italy,113,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,1
+Japan,153,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,1
+Netherlands,113,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,1
+New Zealand,113,fitted,,2.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,1
+Norway,113,fitted,,15.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,1
+Portugal,41,fitted,,31.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,1
+South Africa,129,fitted,,13.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,1
+South Korea,49,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,1
+Spain,109,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,1
+Sweden,113,fitted,,14.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,1
+Switzerland,113,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,1
+United Kingdom,120,fitted,,27.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,1
+United States,113,fitted,,29.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,1
+Australia,113,fitted,,79.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,2
+Belgium,113,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,2
+Canada,113,fitted,,13.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,2
+Colombia,41,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,2
+Denmark,113,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,2
+Finland,113,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,2
+France,113,fitted,,38.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,2
+Germany,113,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,2
+Greece,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2001Q1,2
+Ireland,113,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,2
+Israel,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2001Q1,2
+Italy,113,fitted,,15.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,2
+Japan,153,fitted,,13.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,2
+Netherlands,113,fitted,,28.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,2
+New Zealand,113,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,2
+Norway,113,fitted,,24.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,2
+Portugal,41,fitted,,53.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,2
+South Africa,129,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,2
+South Korea,49,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,2
+Spain,109,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,2
+Sweden,113,fitted,,28.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,2
+Switzerland,113,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,2
+United Kingdom,120,fitted,,27.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,2
+United States,113,fitted,,56.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,2
+Australia,113,fitted,,44.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,3
+Belgium,113,fitted,,28.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,3
+Canada,113,fitted,,9.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,3
+Colombia,41,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,3
+Denmark,113,fitted,,24.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,3
+Finland,113,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,3
+France,113,fitted,,36.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,3
+Germany,113,fitted,,10.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,3
+Greece,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2001Q1,3
+Ireland,113,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,3
+Israel,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2001Q1,3
+Italy,113,fitted,,15.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,3
+Japan,153,fitted,,15.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,3
+Netherlands,113,fitted,,17.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,3
+New Zealand,113,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,3
+Norway,113,fitted,,17.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,3
+Portugal,41,fitted,,66.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,3
+South Africa,129,fitted,,26.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,3
+South Korea,49,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,3
+Spain,109,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,3
+Sweden,113,fitted,,15.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,3
+Switzerland,113,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,3
+United Kingdom,120,fitted,,21.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,3
+United States,113,fitted,,41.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,3
+Australia,113,fitted,,59.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,4
+Belgium,113,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,4
+Canada,113,fitted,,18.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,4
+Colombia,41,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,4
+Denmark,113,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,4
+Finland,113,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,4
+France,113,fitted,,46.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,4
+Germany,113,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,4
+Greece,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2001Q1,4
+Ireland,113,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,4
+Israel,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2001Q1,4
+Italy,113,fitted,,10.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,4
+Japan,153,fitted,,15.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,4
+Netherlands,113,fitted,,41.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,4
+New Zealand,113,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,4
+Norway,113,fitted,,48.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,4
+Portugal,41,fitted,,49.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,4
+South Africa,129,fitted,,35.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,4
+South Korea,49,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,4
+Spain,109,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,4
+Sweden,113,fitted,,24.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,4
+Switzerland,113,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,4
+United Kingdom,120,fitted,,30.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,4
+United States,113,fitted,,60.0,early_stopping,4,0,,transformer_per_market__national,val_2001Q1,4
+Australia,117,fitted,,10.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,0
+Belgium,117,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,0
+Canada,117,fitted,,16.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,0
+Colombia,45,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,0
+Denmark,117,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,0
+Finland,117,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,0
+France,117,fitted,,35.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,0
+Germany,117,fitted,,14.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,0
+Greece,9,too_short,9 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2002Q1,0
+Ireland,117,fitted,,38.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,0
+Israel,21,too_short,21 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2002Q1,0
+Italy,117,fitted,,15.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,0
+Japan,157,fitted,,37.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,0
+Netherlands,117,fitted,,19.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,0
+New Zealand,117,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,0
+Norway,117,fitted,,18.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,0
+Portugal,45,fitted,,46.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,0
+South Africa,133,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,0
+South Korea,53,fitted,,3.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,0
+Spain,113,fitted,,9.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,0
+Sweden,117,fitted,,20.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,0
+Switzerland,117,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,0
+United Kingdom,124,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,0
+United States,117,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,0
+Austria,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2002Q1,0
+Iceland,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,3,3,,transformer_per_market__national,val_2002Q1,0
+Australia,117,fitted,,3.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,1
+Belgium,117,fitted,,3.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,1
+Canada,117,fitted,,10.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,1
+Colombia,45,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,1
+Denmark,117,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,1
+Finland,117,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,1
+France,117,fitted,,53.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,1
+Germany,117,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,1
+Greece,9,too_short,9 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2002Q1,1
+Ireland,117,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,1
+Israel,21,too_short,21 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2002Q1,1
+Italy,117,fitted,,10.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,1
+Japan,157,fitted,,18.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,1
+Netherlands,117,fitted,,13.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,1
+New Zealand,117,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,1
+Norway,117,fitted,,33.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,1
+Portugal,45,fitted,,38.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,1
+South Africa,133,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,1
+South Korea,53,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,1
+Spain,113,fitted,,9.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,1
+Sweden,117,fitted,,17.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,1
+Switzerland,117,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,1
+United Kingdom,124,fitted,,9.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,1
+United States,117,fitted,,66.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,1
+Austria,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2002Q1,1
+Iceland,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,3,3,,transformer_per_market__national,val_2002Q1,1
+Australia,117,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,2
+Belgium,117,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,2
+Canada,117,fitted,,14.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,2
+Colombia,45,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,2
+Denmark,117,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,2
+Finland,117,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,2
+France,117,fitted,,54.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,2
+Germany,117,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,2
+Greece,9,too_short,9 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2002Q1,2
+Ireland,117,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,2
+Israel,21,too_short,21 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2002Q1,2
+Italy,117,fitted,,16.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,2
+Japan,157,fitted,,17.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,2
+Netherlands,117,fitted,,26.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,2
+New Zealand,117,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,2
+Norway,117,fitted,,28.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,2
+Portugal,45,fitted,,49.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,2
+South Africa,133,fitted,,3.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,2
+South Korea,53,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,2
+Spain,113,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,2
+Sweden,117,fitted,,32.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,2
+Switzerland,117,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,2
+United Kingdom,124,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,2
+United States,117,fitted,,50.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,2
+Austria,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2002Q1,2
+Iceland,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,3,3,,transformer_per_market__national,val_2002Q1,2
+Australia,117,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,3
+Belgium,117,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,3
+Canada,117,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,3
+Colombia,45,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,3
+Denmark,117,fitted,,9.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,3
+Finland,117,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,3
+France,117,fitted,,60.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,3
+Germany,117,fitted,,10.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,3
+Greece,9,too_short,9 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2002Q1,3
+Ireland,117,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,3
+Israel,21,too_short,21 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2002Q1,3
+Italy,117,fitted,,14.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,3
+Japan,157,fitted,,38.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,3
+Netherlands,117,fitted,,16.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,3
+New Zealand,117,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,3
+Norway,117,fitted,,27.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,3
+Portugal,45,fitted,,34.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,3
+South Africa,133,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,3
+South Korea,53,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,3
+Spain,113,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,3
+Sweden,117,fitted,,20.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,3
+Switzerland,117,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,3
+United Kingdom,124,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,3
+United States,117,fitted,,44.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,3
+Austria,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2002Q1,3
+Iceland,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,3,3,,transformer_per_market__national,val_2002Q1,3
+Australia,117,fitted,,45.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,4
+Belgium,117,fitted,,3.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,4
+Canada,117,fitted,,27.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,4
+Colombia,45,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,4
+Denmark,117,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,4
+Finland,117,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,4
+France,117,fitted,,53.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,4
+Germany,117,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,4
+Greece,9,too_short,9 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2002Q1,4
+Ireland,117,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,4
+Israel,21,too_short,21 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2002Q1,4
+Italy,117,fitted,,21.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,4
+Japan,157,fitted,,17.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,4
+Netherlands,117,fitted,,39.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,4
+New Zealand,117,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,4
+Norway,117,fitted,,27.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,4
+Portugal,45,fitted,,38.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,4
+South Africa,133,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,4
+South Korea,53,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,4
+Spain,113,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,4
+Sweden,117,fitted,,26.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,4
+Switzerland,117,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,4
+United Kingdom,124,fitted,,10.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,4
+United States,117,fitted,,25.0,early_stopping,4,0,,transformer_per_market__national,val_2002Q1,4
+Austria,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2002Q1,4
+Iceland,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,3,3,,transformer_per_market__national,val_2002Q1,4
+Australia,121,fitted,,21.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,0
+Austria,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2003Q1,0
+Belgium,121,fitted,,49.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,0
+Canada,121,fitted,,19.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,0
+Colombia,49,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,0
+Denmark,121,fitted,,16.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,0
+Finland,121,fitted,,27.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,0
+France,121,fitted,,10.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,0
+Germany,121,fitted,,16.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,0
+Greece,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2003Q1,0
+Ireland,121,fitted,,53.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,0
+Israel,25,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2003Q1,0
+Italy,121,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,0
+Japan,161,fitted,,37.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,0
+Netherlands,121,fitted,,40.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,0
+New Zealand,121,fitted,,10.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,0
+Norway,121,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,0
+Portugal,49,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,0
+South Africa,137,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,0
+South Korea,57,fitted,,19.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,0
+Spain,117,fitted,,9.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,0
+Sweden,121,fitted,,10.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,0
+Switzerland,121,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,0
+United Kingdom,128,fitted,,10.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,0
+United States,121,fitted,,20.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,0
+Iceland,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2003Q1,0
+Russia,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2003Q1,0
+Taiwan_national,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2003Q1,0
+Australia,121,fitted,,3.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,1
+Austria,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2003Q1,1
+Belgium,121,fitted,,13.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,1
+Canada,121,fitted,,24.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,1
+Colombia,49,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,1
+Denmark,121,fitted,,15.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,1
+Finland,121,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,1
+France,121,fitted,,9.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,1
+Germany,121,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,1
+Greece,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2003Q1,1
+Ireland,121,fitted,,3.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,1
+Israel,25,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2003Q1,1
+Italy,121,fitted,,13.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,1
+Japan,161,fitted,,36.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,1
+Netherlands,121,fitted,,19.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,1
+New Zealand,121,fitted,,92.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,1
+Norway,121,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,1
+Portugal,49,fitted,,22.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,1
+South Africa,137,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,1
+South Korea,57,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,1
+Spain,117,fitted,,38.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,1
+Sweden,121,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,1
+Switzerland,121,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,1
+United Kingdom,128,fitted,,3.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,1
+United States,121,fitted,,60.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,1
+Iceland,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2003Q1,1
+Russia,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2003Q1,1
+Taiwan_national,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2003Q1,1
+Australia,121,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,2
+Austria,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2003Q1,2
+Belgium,121,fitted,,55.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,2
+Canada,121,fitted,,28.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,2
+Colombia,49,fitted,,3.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,2
+Denmark,121,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,2
+Finland,121,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,2
+France,121,fitted,,13.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,2
+Germany,121,fitted,,18.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,2
+Greece,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2003Q1,2
+Ireland,121,fitted,,2.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,2
+Israel,25,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2003Q1,2
+Italy,121,fitted,,16.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,2
+Japan,161,fitted,,29.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,2
+Netherlands,121,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,2
+New Zealand,121,fitted,,96.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,2
+Norway,121,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,2
+Portugal,49,fitted,,16.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,2
+South Africa,137,fitted,,2.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,2
+South Korea,57,fitted,,23.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,2
+Spain,117,fitted,,39.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,2
+Sweden,121,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,2
+Switzerland,121,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,2
+United Kingdom,128,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,2
+United States,121,fitted,,23.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,2
+Iceland,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2003Q1,2
+Russia,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2003Q1,2
+Taiwan_national,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2003Q1,2
+Australia,121,fitted,,31.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,3
+Austria,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2003Q1,3
+Belgium,121,fitted,,17.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,3
+Canada,121,fitted,,26.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,3
+Colombia,49,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,3
+Denmark,121,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,3
+Finland,121,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,3
+France,121,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,3
+Germany,121,fitted,,25.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,3
+Greece,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2003Q1,3
+Ireland,121,fitted,,80.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,3
+Israel,25,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2003Q1,3
+Italy,121,fitted,,16.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,3
+Japan,161,fitted,,20.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,3
+Netherlands,121,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,3
+New Zealand,121,fitted,,130.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,3
+Norway,121,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,3
+Portugal,49,fitted,,21.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,3
+South Africa,137,fitted,,16.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,3
+South Korea,57,fitted,,20.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,3
+Spain,117,fitted,,32.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,3
+Sweden,121,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,3
+Switzerland,121,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,3
+United Kingdom,128,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,3
+United States,121,fitted,,50.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,3
+Iceland,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2003Q1,3
+Russia,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2003Q1,3
+Taiwan_national,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2003Q1,3
+Australia,121,fitted,,39.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,4
+Austria,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2003Q1,4
+Belgium,121,fitted,,18.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,4
+Canada,121,fitted,,33.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,4
+Colombia,49,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,4
+Denmark,121,fitted,,16.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,4
+Finland,121,fitted,,20.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,4
+France,121,fitted,,22.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,4
+Germany,121,fitted,,19.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,4
+Greece,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2003Q1,4
+Ireland,121,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,4
+Israel,25,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2003Q1,4
+Italy,121,fitted,,21.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,4
+Japan,161,fitted,,35.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,4
+Netherlands,121,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,4
+New Zealand,121,fitted,,83.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,4
+Norway,121,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,4
+Portugal,49,fitted,,21.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,4
+South Africa,137,fitted,,10.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,4
+South Korea,57,fitted,,22.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,4
+Spain,117,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,4
+Sweden,121,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,4
+Switzerland,121,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,4
+United Kingdom,128,fitted,,9.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,4
+United States,121,fitted,,23.0,early_stopping,4,0,,transformer_per_market__national,val_2003Q1,4
+Iceland,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2003Q1,4
+Russia,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2003Q1,4
+Taiwan_national,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2003Q1,4
+Australia,125,fitted,,23.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,0
+Austria,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,0
+Belgium,125,fitted,,36.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,0
+Canada,125,fitted,,48.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,0
+Colombia,53,fitted,,23.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,0
+Denmark,125,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,0
+Finland,125,fitted,,34.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,0
+France,125,fitted,,29.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,0
+Germany,125,fitted,,16.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,0
+Greece,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,0
+Iceland,4,too_short,4 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,0
+Ireland,125,fitted,,31.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,0
+Israel,29,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2004Q1,0
+Italy,125,fitted,,19.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,0
+Japan,165,fitted,,27.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,0
+Netherlands,125,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,0
+New Zealand,125,fitted,,63.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,0
+Norway,125,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,0
+Portugal,53,fitted,,10.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,0
+Russia,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,0
+South Africa,141,fitted,,36.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,0
+South Korea,61,fitted,,80.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,0
+Spain,121,fitted,,20.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,0
+Sweden,125,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,0
+Switzerland,125,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,0
+Taiwan_national,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,0
+United Kingdom,132,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,0
+United States,125,fitted,,17.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,0
+Chile,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,0
+Indonesia,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,0
+Australia,125,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,1
+Austria,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,1
+Belgium,125,fitted,,40.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,1
+Canada,125,fitted,,62.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,1
+Colombia,53,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,1
+Denmark,125,fitted,,3.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,1
+Finland,125,fitted,,35.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,1
+France,125,fitted,,24.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,1
+Germany,125,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,1
+Greece,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,1
+Iceland,4,too_short,4 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,1
+Ireland,125,fitted,,3.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,1
+Israel,29,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2004Q1,1
+Italy,125,fitted,,15.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,1
+Japan,165,fitted,,29.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,1
+Netherlands,125,fitted,,27.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,1
+New Zealand,125,fitted,,68.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,1
+Norway,125,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,1
+Portugal,53,fitted,,16.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,1
+Russia,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,1
+South Africa,141,fitted,,21.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,1
+South Korea,61,fitted,,67.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,1
+Spain,121,fitted,,18.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,1
+Sweden,125,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,1
+Switzerland,125,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,1
+Taiwan_national,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,1
+United Kingdom,132,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,1
+United States,125,fitted,,54.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,1
+Chile,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,1
+Indonesia,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,1
+Australia,125,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,2
+Austria,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,2
+Belgium,125,fitted,,59.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,2
+Canada,125,fitted,,39.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,2
+Colombia,53,fitted,,2.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,2
+Denmark,125,fitted,,2.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,2
+Finland,125,fitted,,24.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,2
+France,125,fitted,,22.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,2
+Germany,125,fitted,,18.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,2
+Greece,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,2
+Iceland,4,too_short,4 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,2
+Ireland,125,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,2
+Israel,29,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2004Q1,2
+Italy,125,fitted,,20.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,2
+Japan,165,fitted,,29.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,2
+Netherlands,125,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,2
+New Zealand,125,fitted,,67.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,2
+Norway,125,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,2
+Portugal,53,fitted,,18.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,2
+Russia,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,2
+South Africa,141,fitted,,48.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,2
+South Korea,61,fitted,,87.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,2
+Spain,121,fitted,,49.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,2
+Sweden,125,fitted,,3.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,2
+Switzerland,125,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,2
+Taiwan_national,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,2
+United Kingdom,132,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,2
+United States,125,fitted,,51.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,2
+Chile,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,2
+Indonesia,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,2
+Australia,125,fitted,,13.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,3
+Austria,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,3
+Belgium,125,fitted,,38.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,3
+Canada,125,fitted,,53.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,3
+Colombia,53,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,3
+Denmark,125,fitted,,10.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,3
+Finland,125,fitted,,29.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,3
+France,125,fitted,,33.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,3
+Germany,125,fitted,,24.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,3
+Greece,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,3
+Iceland,4,too_short,4 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,3
+Ireland,125,fitted,,70.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,3
+Israel,29,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2004Q1,3
+Italy,125,fitted,,19.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,3
+Japan,165,fitted,,15.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,3
+Netherlands,125,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,3
+New Zealand,125,fitted,,109.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,3
+Norway,125,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,3
+Portugal,53,fitted,,28.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,3
+Russia,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,3
+South Africa,141,fitted,,28.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,3
+South Korea,61,fitted,,72.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,3
+Spain,121,fitted,,44.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,3
+Sweden,125,fitted,,16.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,3
+Switzerland,125,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,3
+Taiwan_national,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,3
+United Kingdom,132,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,3
+United States,125,fitted,,55.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,3
+Chile,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,3
+Indonesia,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,3
+Australia,125,fitted,,19.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,4
+Austria,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,4
+Belgium,125,fitted,,59.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,4
+Canada,125,fitted,,39.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,4
+Colombia,53,fitted,,2.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,4
+Denmark,125,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,4
+Finland,125,fitted,,33.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,4
+France,125,fitted,,18.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,4
+Germany,125,fitted,,25.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,4
+Greece,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,4
+Iceland,4,too_short,4 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,4
+Ireland,125,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,4
+Israel,29,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2004Q1,4
+Italy,125,fitted,,28.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,4
+Japan,165,fitted,,21.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,4
+Netherlands,125,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,4
+New Zealand,125,fitted,,80.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,4
+Norway,125,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,4
+Portugal,53,fitted,,20.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,4
+Russia,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,4
+South Africa,141,fitted,,62.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,4
+South Korea,61,fitted,,79.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,4
+Spain,121,fitted,,16.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,4
+Sweden,125,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,4
+Switzerland,125,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,4
+Taiwan_national,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,4
+United Kingdom,132,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,4
+United States,125,fitted,,43.0,early_stopping,4,0,,transformer_per_market__national,val_2004Q1,4
+Chile,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,4
+Indonesia,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2004Q1,4
+Australia,129,fitted,,20.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,0
+Austria,9,too_short,9 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,0
+Belgium,129,fitted,,40.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,0
+Canada,129,fitted,,42.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,0
+Chile,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,0
+Colombia,57,fitted,,19.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,0
+Denmark,129,fitted,,20.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,0
+Finland,129,fitted,,22.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,0
+France,129,fitted,,28.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,0
+Germany,129,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,0
+Greece,21,too_short,21 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,0
+Iceland,8,too_short,8 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,0
+Indonesia,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,0
+Ireland,129,fitted,,88.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,0
+Israel,33,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2005Q1,0
+Italy,129,fitted,,23.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,0
+Japan,169,fitted,,27.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,0
+Netherlands,129,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,0
+New Zealand,129,fitted,,130.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,0
+Norway,129,fitted,,9.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,0
+Portugal,57,fitted,,28.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,0
+Russia,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,0
+South Africa,145,fitted,,29.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,0
+South Korea,65,fitted,,45.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,0
+Spain,125,fitted,,18.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,0
+Sweden,129,fitted,,19.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,0
+Switzerland,129,fitted,,21.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,0
+Taiwan_national,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,0
+United Kingdom,136,fitted,,15.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,0
+United States,129,fitted,,19.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,0
+Australia,129,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,1
+Austria,9,too_short,9 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,1
+Belgium,129,fitted,,150.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,1
+Canada,129,fitted,,44.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,1
+Chile,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,1
+Colombia,57,fitted,,14.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,1
+Denmark,129,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,1
+Finland,129,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,1
+France,129,fitted,,22.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,1
+Germany,129,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,1
+Greece,21,too_short,21 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,1
+Iceland,8,too_short,8 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,1
+Indonesia,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,1
+Ireland,129,fitted,,2.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,1
+Israel,33,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2005Q1,1
+Italy,129,fitted,,15.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,1
+Japan,169,fitted,,22.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,1
+Netherlands,129,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,1
+New Zealand,129,fitted,,19.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,1
+Norway,129,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,1
+Portugal,57,fitted,,15.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,1
+Russia,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,1
+South Africa,145,fitted,,22.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,1
+South Korea,65,fitted,,48.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,1
+Spain,125,fitted,,19.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,1
+Sweden,129,fitted,,16.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,1
+Switzerland,129,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,1
+Taiwan_national,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,1
+United Kingdom,136,fitted,,10.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,1
+United States,129,fitted,,22.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,1
+Australia,129,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,2
+Austria,9,too_short,9 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,2
+Belgium,129,fitted,,87.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,2
+Canada,129,fitted,,67.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,2
+Chile,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,2
+Colombia,57,fitted,,24.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,2
+Denmark,129,fitted,,19.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,2
+Finland,129,fitted,,21.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,2
+France,129,fitted,,24.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,2
+Germany,129,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,2
+Greece,21,too_short,21 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,2
+Iceland,8,too_short,8 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,2
+Indonesia,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,2
+Ireland,129,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,2
+Israel,33,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2005Q1,2
+Italy,129,fitted,,20.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,2
+Japan,169,fitted,,25.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,2
+Netherlands,129,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,2
+New Zealand,129,fitted,,149.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,2
+Norway,129,fitted,,3.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,2
+Portugal,57,fitted,,32.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,2
+Russia,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,2
+South Africa,145,fitted,,78.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,2
+South Korea,65,fitted,,60.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,2
+Spain,125,fitted,,16.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,2
+Sweden,129,fitted,,36.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,2
+Switzerland,129,fitted,,20.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,2
+Taiwan_national,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,2
+United Kingdom,136,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,2
+United States,129,fitted,,47.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,2
+Australia,129,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,3
+Austria,9,too_short,9 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,3
+Belgium,129,fitted,,93.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,3
+Canada,129,fitted,,42.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,3
+Chile,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,3
+Colombia,57,fitted,,17.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,3
+Denmark,129,fitted,,15.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,3
+Finland,129,fitted,,14.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,3
+France,129,fitted,,96.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,3
+Germany,129,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,3
+Greece,21,too_short,21 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,3
+Iceland,8,too_short,8 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,3
+Indonesia,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,3
+Ireland,129,fitted,,90.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,3
+Israel,33,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2005Q1,3
+Italy,129,fitted,,22.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,3
+Japan,169,fitted,,22.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,3
+Netherlands,129,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,3
+New Zealand,129,fitted,,80.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,3
+Norway,129,fitted,,10.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,3
+Portugal,57,fitted,,46.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,3
+Russia,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,3
+South Africa,145,fitted,,42.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,3
+South Korea,65,fitted,,37.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,3
+Spain,125,fitted,,13.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,3
+Sweden,129,fitted,,15.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,3
+Switzerland,129,fitted,,14.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,3
+Taiwan_national,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,3
+United Kingdom,136,fitted,,13.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,3
+United States,129,fitted,,33.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,3
+Australia,129,fitted,,9.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,4
+Austria,9,too_short,9 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,4
+Belgium,129,fitted,,79.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,4
+Canada,129,fitted,,56.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,4
+Chile,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,4
+Colombia,57,fitted,,20.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,4
+Denmark,129,fitted,,14.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,4
+Finland,129,fitted,,23.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,4
+France,129,fitted,,26.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,4
+Germany,129,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,4
+Greece,21,too_short,21 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,4
+Iceland,8,too_short,8 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,4
+Indonesia,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,4
+Ireland,129,fitted,,2.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,4
+Israel,33,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2005Q1,4
+Italy,129,fitted,,29.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,4
+Japan,169,fitted,,25.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,4
+Netherlands,129,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,4
+New Zealand,129,fitted,,41.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,4
+Norway,129,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,4
+Portugal,57,fitted,,29.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,4
+Russia,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,4
+South Africa,145,fitted,,74.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,4
+South Korea,65,fitted,,43.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,4
+Spain,125,fitted,,18.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,4
+Sweden,129,fitted,,18.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,4
+Switzerland,129,fitted,,21.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,4
+Taiwan_national,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2005Q1,4
+United Kingdom,136,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,4
+United States,129,fitted,,23.0,early_stopping,4,0,,transformer_per_market__national,val_2005Q1,4
+Australia,133,fitted,,17.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,0
+Austria,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2006Q1,0
+Belgium,133,fitted,,23.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,0
+Canada,133,fitted,,46.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,0
+Chile,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2006Q1,0
+Colombia,61,fitted,,71.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,0
+Denmark,133,fitted,,90.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,0
+Finland,133,fitted,,22.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,0
+France,133,fitted,,54.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,0
+Germany,133,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,0
+Greece,25,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2006Q1,0
+Iceland,12,too_short,12 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2006Q1,0
+Indonesia,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2006Q1,0
+Ireland,133,fitted,,47.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,0
+Israel,37,fitted,,13.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,0
+Italy,133,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,0
+Japan,173,fitted,,30.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,0
+Netherlands,133,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,0
+New Zealand,133,fitted,,18.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,0
+Norway,133,fitted,,18.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,0
+Portugal,61,fitted,,21.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,0
+Russia,9,too_short,9 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2006Q1,0
+South Africa,149,fitted,,33.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,0
+South Korea,69,fitted,,16.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,0
+Spain,129,fitted,,19.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,0
+Sweden,133,fitted,,16.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,0
+Switzerland,133,fitted,,23.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,0
+Taiwan_national,9,too_short,9 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2006Q1,0
+United Kingdom,140,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,0
+United States,133,fitted,,17.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,0
+Australia,133,fitted,,10.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,1
+Austria,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2006Q1,1
+Belgium,133,fitted,,54.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,1
+Canada,133,fitted,,47.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,1
+Chile,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2006Q1,1
+Colombia,61,fitted,,40.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,1
+Denmark,133,fitted,,14.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,1
+Finland,133,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,1
+France,133,fitted,,27.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,1
+Germany,133,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,1
+Greece,25,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2006Q1,1
+Iceland,12,too_short,12 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2006Q1,1
+Indonesia,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2006Q1,1
+Ireland,133,fitted,,27.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,1
+Israel,37,fitted,,13.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,1
+Italy,133,fitted,,13.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,1
+Japan,173,fitted,,24.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,1
+Netherlands,133,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,1
+New Zealand,133,fitted,,13.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,1
+Norway,133,fitted,,14.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,1
+Portugal,61,fitted,,13.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,1
+Russia,9,too_short,9 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2006Q1,1
+South Africa,149,fitted,,19.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,1
+South Korea,69,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,1
+Spain,129,fitted,,18.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,1
+Sweden,133,fitted,,15.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,1
+Switzerland,133,fitted,,19.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,1
+Taiwan_national,9,too_short,9 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2006Q1,1
+United Kingdom,140,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,1
+United States,133,fitted,,26.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,1
+Australia,133,fitted,,18.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,2
+Austria,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2006Q1,2
+Belgium,133,fitted,,58.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,2
+Canada,133,fitted,,75.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,2
+Chile,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2006Q1,2
+Colombia,61,fitted,,45.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,2
+Denmark,133,fitted,,20.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,2
+Finland,133,fitted,,23.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,2
+France,133,fitted,,26.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,2
+Germany,133,fitted,,3.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,2
+Greece,25,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2006Q1,2
+Iceland,12,too_short,12 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2006Q1,2
+Indonesia,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2006Q1,2
+Ireland,133,fitted,,40.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,2
+Israel,37,fitted,,18.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,2
+Italy,133,fitted,,17.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,2
+Japan,173,fitted,,30.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,2
+Netherlands,133,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,2
+New Zealand,133,fitted,,17.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,2
+Norway,133,fitted,,20.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,2
+Portugal,61,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,2
+Russia,9,too_short,9 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2006Q1,2
+South Africa,149,fitted,,82.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,2
+South Korea,69,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,2
+Spain,129,fitted,,17.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,2
+Sweden,133,fitted,,21.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,2
+Switzerland,133,fitted,,21.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,2
+Taiwan_national,9,too_short,9 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2006Q1,2
+United Kingdom,140,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,2
+United States,133,fitted,,17.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,2
+Australia,133,fitted,,14.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,3
+Austria,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2006Q1,3
+Belgium,133,fitted,,38.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,3
+Canada,133,fitted,,48.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,3
+Chile,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2006Q1,3
+Colombia,61,fitted,,62.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,3
+Denmark,133,fitted,,16.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,3
+Finland,133,fitted,,19.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,3
+France,133,fitted,,58.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,3
+Germany,133,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,3
+Greece,25,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2006Q1,3
+Iceland,12,too_short,12 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2006Q1,3
+Indonesia,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2006Q1,3
+Ireland,133,fitted,,30.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,3
+Israel,37,fitted,,13.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,3
+Italy,133,fitted,,14.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,3
+Japan,173,fitted,,23.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,3
+Netherlands,133,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,3
+New Zealand,133,fitted,,17.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,3
+Norway,133,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,3
+Portugal,61,fitted,,82.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,3
+Russia,9,too_short,9 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2006Q1,3
+South Africa,149,fitted,,76.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,3
+South Korea,69,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,3
+Spain,129,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,3
+Sweden,133,fitted,,20.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,3
+Switzerland,133,fitted,,17.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,3
+Taiwan_national,9,too_short,9 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2006Q1,3
+United Kingdom,140,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,3
+United States,133,fitted,,38.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,3
+Australia,133,fitted,,16.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,4
+Austria,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2006Q1,4
+Belgium,133,fitted,,79.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,4
+Canada,133,fitted,,60.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,4
+Chile,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2006Q1,4
+Colombia,61,fitted,,23.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,4
+Denmark,133,fitted,,23.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,4
+Finland,133,fitted,,33.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,4
+France,133,fitted,,26.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,4
+Germany,133,fitted,,2.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,4
+Greece,25,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2006Q1,4
+Iceland,12,too_short,12 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2006Q1,4
+Indonesia,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2006Q1,4
+Ireland,133,fitted,,45.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,4
+Israel,37,fitted,,19.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,4
+Italy,133,fitted,,23.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,4
+Japan,173,fitted,,32.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,4
+Netherlands,133,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,4
+New Zealand,133,fitted,,15.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,4
+Norway,133,fitted,,22.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,4
+Portugal,61,fitted,,16.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,4
+Russia,9,too_short,9 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2006Q1,4
+South Africa,149,fitted,,120.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,4
+South Korea,69,fitted,,15.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,4
+Spain,129,fitted,,22.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,4
+Sweden,133,fitted,,21.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,4
+Switzerland,133,fitted,,20.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,4
+Taiwan_national,9,too_short,9 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2006Q1,4
+United Kingdom,140,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,4
+United States,133,fitted,,23.0,early_stopping,4,0,,transformer_per_market__national,val_2006Q1,4
+Australia,137,fitted,,17.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,0
+Austria,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,0
+Belgium,137,fitted,,25.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,0
+Canada,137,fitted,,56.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,0
+Chile,9,too_short,9 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,0
+Colombia,65,fitted,,35.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,0
+Denmark,137,fitted,,20.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,0
+Finland,137,fitted,,28.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,0
+France,137,fitted,,31.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,0
+Germany,137,fitted,,3.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,0
+Greece,29,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2007Q1,0
+Iceland,16,too_short,16 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,0
+Indonesia,9,too_short,9 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,0
+Ireland,137,fitted,,32.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,0
+Israel,41,fitted,,13.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,0
+Italy,137,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,0
+Japan,177,fitted,,40.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,0
+Netherlands,137,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,0
+New Zealand,137,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,0
+Norway,137,fitted,,25.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,0
+Portugal,65,fitted,,16.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,0
+Russia,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,0
+South Africa,153,fitted,,30.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,0
+South Korea,73,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,0
+Spain,133,fitted,,10.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,0
+Sweden,137,fitted,,13.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,0
+Switzerland,137,fitted,,26.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,0
+Taiwan_national,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,0
+United Kingdom,144,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,0
+United States,137,fitted,,20.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,0
+Bulgaria,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,0
+Croatia,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,0
+Estonia,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,0
+Mexico,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,0
+Poland,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,0
+Slovak Republic,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,0
+Australia,137,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,1
+Austria,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,1
+Belgium,137,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,1
+Canada,137,fitted,,71.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,1
+Chile,9,too_short,9 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,1
+Colombia,65,fitted,,20.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,1
+Denmark,137,fitted,,18.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,1
+Finland,137,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,1
+France,137,fitted,,17.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,1
+Germany,137,fitted,,2.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,1
+Greece,29,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2007Q1,1
+Iceland,16,too_short,16 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,1
+Indonesia,9,too_short,9 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,1
+Ireland,137,fitted,,28.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,1
+Israel,41,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,1
+Italy,137,fitted,,10.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,1
+Japan,177,fitted,,34.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,1
+Netherlands,137,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,1
+New Zealand,137,fitted,,10.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,1
+Norway,137,fitted,,19.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,1
+Portugal,65,fitted,,13.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,1
+Russia,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,1
+South Africa,153,fitted,,26.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,1
+South Korea,73,fitted,,9.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,1
+Spain,133,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,1
+Sweden,137,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,1
+Switzerland,137,fitted,,41.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,1
+Taiwan_national,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,1
+United Kingdom,144,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,1
+United States,137,fitted,,27.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,1
+Bulgaria,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,1
+Croatia,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,1
+Estonia,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,1
+Mexico,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,1
+Poland,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,1
+Slovak Republic,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,1
+Australia,137,fitted,,14.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,2
+Austria,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,2
+Belgium,137,fitted,,43.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,2
+Canada,137,fitted,,81.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,2
+Chile,9,too_short,9 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,2
+Colombia,65,fitted,,31.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,2
+Denmark,137,fitted,,21.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,2
+Finland,137,fitted,,22.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,2
+France,137,fitted,,27.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,2
+Germany,137,fitted,,3.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,2
+Greece,29,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2007Q1,2
+Iceland,16,too_short,16 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,2
+Indonesia,9,too_short,9 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,2
+Ireland,137,fitted,,30.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,2
+Israel,41,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,2
+Italy,137,fitted,,13.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,2
+Japan,177,fitted,,34.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,2
+Netherlands,137,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,2
+New Zealand,137,fitted,,14.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,2
+Norway,137,fitted,,105.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,2
+Portugal,65,fitted,,14.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,2
+Russia,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,2
+South Africa,153,fitted,,33.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,2
+South Korea,73,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,2
+Spain,133,fitted,,15.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,2
+Sweden,137,fitted,,20.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,2
+Switzerland,137,fitted,,57.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,2
+Taiwan_national,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,2
+United Kingdom,144,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,2
+United States,137,fitted,,22.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,2
+Bulgaria,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,2
+Croatia,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,2
+Estonia,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,2
+Mexico,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,2
+Poland,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,2
+Slovak Republic,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,2
+Australia,137,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,3
+Austria,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,3
+Belgium,137,fitted,,46.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,3
+Canada,137,fitted,,67.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,3
+Chile,9,too_short,9 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,3
+Colombia,65,fitted,,30.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,3
+Denmark,137,fitted,,25.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,3
+Finland,137,fitted,,19.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,3
+France,137,fitted,,101.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,3
+Germany,137,fitted,,2.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,3
+Greece,29,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2007Q1,3
+Iceland,16,too_short,16 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,3
+Indonesia,9,too_short,9 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,3
+Ireland,137,fitted,,21.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,3
+Israel,41,fitted,,9.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,3
+Italy,137,fitted,,9.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,3
+Japan,177,fitted,,13.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,3
+Netherlands,137,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,3
+New Zealand,137,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,3
+Norway,137,fitted,,106.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,3
+Portugal,65,fitted,,25.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,3
+Russia,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,3
+South Africa,153,fitted,,83.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,3
+South Korea,73,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,3
+Spain,133,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,3
+Sweden,137,fitted,,14.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,3
+Switzerland,137,fitted,,21.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,3
+Taiwan_national,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,3
+United Kingdom,144,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,3
+United States,137,fitted,,21.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,3
+Bulgaria,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,3
+Croatia,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,3
+Estonia,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,3
+Mexico,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,3
+Poland,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,3
+Slovak Republic,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,3
+Australia,137,fitted,,10.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,4
+Austria,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,4
+Belgium,137,fitted,,84.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,4
+Canada,137,fitted,,74.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,4
+Chile,9,too_short,9 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,4
+Colombia,65,fitted,,38.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,4
+Denmark,137,fitted,,22.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,4
+Finland,137,fitted,,102.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,4
+France,137,fitted,,35.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,4
+Germany,137,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,4
+Greece,29,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2007Q1,4
+Iceland,16,too_short,16 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,4
+Indonesia,9,too_short,9 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,4
+Ireland,137,fitted,,46.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,4
+Israel,41,fitted,,13.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,4
+Italy,137,fitted,,17.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,4
+Japan,177,fitted,,34.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,4
+Netherlands,137,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,4
+New Zealand,137,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,4
+Norway,137,fitted,,34.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,4
+Portugal,65,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,4
+Russia,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,4
+South Africa,153,fitted,,70.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,4
+South Korea,73,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,4
+Spain,133,fitted,,16.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,4
+Sweden,137,fitted,,16.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,4
+Switzerland,137,fitted,,41.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,4
+Taiwan_national,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,4
+United Kingdom,144,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,4
+United States,137,fitted,,20.0,early_stopping,4,0,,transformer_per_market__national,val_2007Q1,4
+Bulgaria,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,4
+Croatia,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,4
+Estonia,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,4
+Mexico,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,4
+Poland,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,4
+Slovak Republic,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2007Q1,4
+Australia,141,fitted,,92.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,0
+Austria,21,too_short,21 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,0
+Belgium,141,fitted,,21.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,0
+Bulgaria,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,0
+Canada,141,fitted,,82.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,0
+Chile,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,0
+Colombia,69,fitted,,33.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,0
+Croatia,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,0
+Denmark,141,fitted,,24.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,0
+Estonia,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,0
+Finland,141,fitted,,90.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,0
+France,141,fitted,,32.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,0
+Germany,141,fitted,,3.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,0
+Greece,33,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2008Q1,0
+Iceland,20,too_short,20 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,0
+Indonesia,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,0
+Ireland,141,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,0
+Israel,45,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,0
+Italy,141,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,0
+Japan,181,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,0
+Mexico,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,0
+Netherlands,141,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,0
+New Zealand,141,fitted,,10.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,0
+Norway,141,fitted,,25.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,0
+Poland,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,0
+Portugal,69,fitted,,18.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,0
+Russia,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,0
+Slovak Republic,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,0
+South Africa,157,fitted,,31.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,0
+South Korea,77,fitted,,39.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,0
+Spain,137,fitted,,10.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,0
+Sweden,141,fitted,,14.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,0
+Switzerland,141,fitted,,43.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,0
+Taiwan_national,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,0
+United Kingdom,148,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,0
+United States,141,fitted,,82.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,0
+Latvia,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,0
+Lithuania,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,0
+Australia,141,fitted,,58.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,1
+Austria,21,too_short,21 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,1
+Belgium,141,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,1
+Bulgaria,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,1
+Canada,141,fitted,,88.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,1
+Chile,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,1
+Colombia,69,fitted,,23.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,1
+Croatia,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,1
+Denmark,141,fitted,,18.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,1
+Estonia,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,1
+Finland,141,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,1
+France,141,fitted,,20.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,1
+Germany,141,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,1
+Greece,33,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2008Q1,1
+Iceland,20,too_short,20 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,1
+Indonesia,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,1
+Ireland,141,fitted,,10.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,1
+Israel,45,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,1
+Italy,141,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,1
+Japan,181,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,1
+Mexico,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,1
+Netherlands,141,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,1
+New Zealand,141,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,1
+Norway,141,fitted,,14.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,1
+Poland,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,1
+Portugal,69,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,1
+Russia,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,1
+Slovak Republic,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,1
+South Africa,157,fitted,,44.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,1
+South Korea,77,fitted,,38.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,1
+Spain,137,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,1
+Sweden,141,fitted,,13.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,1
+Switzerland,141,fitted,,26.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,1
+Taiwan_national,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,1
+United Kingdom,148,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,1
+United States,141,fitted,,95.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,1
+Latvia,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,1
+Lithuania,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,1
+Australia,141,fitted,,41.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,2
+Austria,21,too_short,21 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,2
+Belgium,141,fitted,,46.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,2
+Bulgaria,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,2
+Canada,141,fitted,,116.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,2
+Chile,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,2
+Colombia,69,fitted,,26.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,2
+Croatia,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,2
+Denmark,141,fitted,,27.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,2
+Estonia,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,2
+Finland,141,fitted,,10.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,2
+France,141,fitted,,25.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,2
+Germany,141,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,2
+Greece,33,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2008Q1,2
+Iceland,20,too_short,20 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,2
+Indonesia,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,2
+Ireland,141,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,2
+Israel,45,fitted,,9.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,2
+Italy,141,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,2
+Japan,181,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,2
+Mexico,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,2
+Netherlands,141,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,2
+New Zealand,141,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,2
+Norway,141,fitted,,73.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,2
+Poland,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,2
+Portugal,69,fitted,,24.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,2
+Russia,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,2
+Slovak Republic,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,2
+South Africa,157,fitted,,2.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,2
+South Korea,77,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,2
+Spain,137,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,2
+Sweden,141,fitted,,24.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,2
+Switzerland,141,fitted,,30.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,2
+Taiwan_national,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,2
+United Kingdom,148,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,2
+United States,141,fitted,,96.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,2
+Latvia,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,2
+Lithuania,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,2
+Australia,141,fitted,,76.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,3
+Austria,21,too_short,21 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,3
+Belgium,141,fitted,,39.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,3
+Bulgaria,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,3
+Canada,141,fitted,,78.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,3
+Chile,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,3
+Colombia,69,fitted,,26.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,3
+Croatia,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,3
+Denmark,141,fitted,,23.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,3
+Estonia,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,3
+Finland,141,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,3
+France,141,fitted,,30.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,3
+Germany,141,fitted,,3.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,3
+Greece,33,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2008Q1,3
+Iceland,20,too_short,20 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,3
+Indonesia,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,3
+Ireland,141,fitted,,9.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,3
+Israel,45,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,3
+Italy,141,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,3
+Japan,181,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,3
+Mexico,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,3
+Netherlands,141,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,3
+New Zealand,141,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,3
+Norway,141,fitted,,45.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,3
+Poland,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,3
+Portugal,69,fitted,,24.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,3
+Russia,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,3
+Slovak Republic,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,3
+South Africa,157,fitted,,28.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,3
+South Korea,77,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,3
+Spain,137,fitted,,9.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,3
+Sweden,141,fitted,,15.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,3
+Switzerland,141,fitted,,22.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,3
+Taiwan_national,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,3
+United Kingdom,148,fitted,,10.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,3
+United States,141,fitted,,91.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,3
+Latvia,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,3
+Lithuania,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,3
+Australia,141,fitted,,51.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,4
+Austria,21,too_short,21 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,4
+Belgium,141,fitted,,84.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,4
+Bulgaria,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,4
+Canada,141,fitted,,85.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,4
+Chile,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,4
+Colombia,69,fitted,,40.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,4
+Croatia,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,4
+Denmark,141,fitted,,27.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,4
+Estonia,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,4
+Finland,141,fitted,,10.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,4
+France,141,fitted,,35.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,4
+Germany,141,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,4
+Greece,33,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2008Q1,4
+Iceland,20,too_short,20 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,4
+Indonesia,13,too_short,13 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,4
+Ireland,141,fitted,,13.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,4
+Israel,45,fitted,,14.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,4
+Italy,141,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,4
+Japan,181,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,4
+Mexico,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,4
+Netherlands,141,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,4
+New Zealand,141,fitted,,11.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,4
+Norway,141,fitted,,64.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,4
+Poland,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,4
+Portugal,69,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,4
+Russia,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,4
+Slovak Republic,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,4
+South Africa,157,fitted,,30.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,4
+South Korea,77,fitted,,48.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,4
+Spain,137,fitted,,14.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,4
+Sweden,141,fitted,,18.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,4
+Switzerland,141,fitted,,32.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,4
+Taiwan_national,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,4
+United Kingdom,148,fitted,,9.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,4
+United States,141,fitted,,108.0,early_stopping,4,0,,transformer_per_market__national,val_2008Q1,4
+Latvia,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,4
+Lithuania,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2008Q1,4
+Australia,145,fitted,,39.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,0
+Austria,25,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2009Q1,0
+Belgium,145,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,0
+Bulgaria,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,0
+Canada,145,fitted,,15.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,0
+Chile,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,0
+Colombia,73,fitted,,37.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,0
+Croatia,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,0
+Denmark,145,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,0
+Estonia,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,0
+Finland,145,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,0
+France,145,fitted,,26.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,0
+Germany,145,fitted,,3.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,0
+Greece,37,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,0
+Iceland,24,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2009Q1,0
+Indonesia,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,0
+Ireland,145,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,0
+Israel,49,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,0
+Italy,145,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,0
+Japan,185,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,0
+Latvia,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,0
+Lithuania,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,0
+Mexico,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,0
+Netherlands,145,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,0
+New Zealand,145,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,0
+Norway,145,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,0
+Poland,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,0
+Portugal,73,fitted,,28.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,0
+Russia,21,too_short,21 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,0
+Slovak Republic,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,0
+South Africa,161,fitted,,17.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,0
+South Korea,81,fitted,,44.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,0
+Spain,141,fitted,,34.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,0
+Sweden,145,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,0
+Switzerland,145,fitted,,29.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,0
+Taiwan_national,21,too_short,21 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,0
+United Kingdom,152,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,0
+United States,145,fitted,,110.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,0
+Hungary,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,0
+Luxembourg,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,0
+Slovenia,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,0
+Australia,145,fitted,,31.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,1
+Austria,25,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2009Q1,1
+Belgium,145,fitted,,33.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,1
+Bulgaria,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,1
+Canada,145,fitted,,18.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,1
+Chile,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,1
+Colombia,73,fitted,,27.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,1
+Croatia,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,1
+Denmark,145,fitted,,27.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,1
+Estonia,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,1
+Finland,145,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,1
+France,145,fitted,,24.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,1
+Germany,145,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,1
+Greece,37,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,1
+Iceland,24,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2009Q1,1
+Indonesia,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,1
+Ireland,145,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,1
+Israel,49,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,1
+Italy,145,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,1
+Japan,185,fitted,,2.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,1
+Latvia,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,1
+Lithuania,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,1
+Mexico,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,1
+Netherlands,145,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,1
+New Zealand,145,fitted,,35.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,1
+Norway,145,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,1
+Poland,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,1
+Portugal,73,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,1
+Russia,21,too_short,21 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,1
+Slovak Republic,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,1
+South Africa,161,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,1
+South Korea,81,fitted,,31.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,1
+Spain,141,fitted,,29.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,1
+Sweden,145,fitted,,36.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,1
+Switzerland,145,fitted,,26.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,1
+Taiwan_national,21,too_short,21 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,1
+United Kingdom,152,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,1
+United States,145,fitted,,24.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,1
+Hungary,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,1
+Luxembourg,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,1
+Slovenia,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,1
+Australia,145,fitted,,33.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,2
+Austria,25,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2009Q1,2
+Belgium,145,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,2
+Bulgaria,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,2
+Canada,145,fitted,,39.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,2
+Chile,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,2
+Colombia,73,fitted,,29.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,2
+Croatia,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,2
+Denmark,145,fitted,,79.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,2
+Estonia,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,2
+Finland,145,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,2
+France,145,fitted,,25.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,2
+Germany,145,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,2
+Greece,37,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,2
+Iceland,24,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2009Q1,2
+Indonesia,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,2
+Ireland,145,fitted,,8.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,2
+Israel,49,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,2
+Italy,145,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,2
+Japan,185,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,2
+Latvia,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,2
+Lithuania,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,2
+Mexico,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,2
+Netherlands,145,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,2
+New Zealand,145,fitted,,74.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,2
+Norway,145,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,2
+Poland,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,2
+Portugal,73,fitted,,26.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,2
+Russia,21,too_short,21 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,2
+Slovak Republic,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,2
+South Africa,161,fitted,,20.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,2
+South Korea,81,fitted,,40.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,2
+Spain,141,fitted,,27.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,2
+Sweden,145,fitted,,12.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,2
+Switzerland,145,fitted,,28.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,2
+Taiwan_national,21,too_short,21 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,2
+United Kingdom,152,fitted,,7.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,2
+United States,145,fitted,,116.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,2
+Hungary,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,2
+Luxembourg,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,2
+Slovenia,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,2
+Australia,145,fitted,,34.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,3
+Austria,25,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2009Q1,3
+Belgium,145,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,3
+Bulgaria,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,3
+Canada,145,fitted,,42.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,3
+Chile,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,3
+Colombia,73,fitted,,30.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,3
+Croatia,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,3
+Denmark,145,fitted,,46.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,3
+Estonia,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,3
+Finland,145,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,3
+France,145,fitted,,21.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,3
+Germany,145,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,3
+Greece,37,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,3
+Iceland,24,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2009Q1,3
+Indonesia,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,3
+Ireland,145,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,3
+Israel,49,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,3
+Italy,145,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,3
+Japan,185,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,3
+Latvia,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,3
+Lithuania,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,3
+Mexico,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,3
+Netherlands,145,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,3
+New Zealand,145,fitted,,60.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,3
+Norway,145,fitted,,22.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,3
+Poland,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,3
+Portugal,73,fitted,,71.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,3
+Russia,21,too_short,21 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,3
+Slovak Republic,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,3
+South Africa,161,fitted,,16.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,3
+South Korea,81,fitted,,36.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,3
+Spain,141,fitted,,19.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,3
+Sweden,145,fitted,,19.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,3
+Switzerland,145,fitted,,19.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,3
+Taiwan_national,21,too_short,21 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,3
+United Kingdom,152,fitted,,6.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,3
+United States,145,fitted,,24.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,3
+Hungary,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,3
+Luxembourg,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,3
+Slovenia,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,3
+Australia,145,fitted,,32.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,4
+Austria,25,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2009Q1,4
+Belgium,145,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,4
+Bulgaria,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,4
+Canada,145,fitted,,27.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,4
+Chile,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,4
+Colombia,73,fitted,,41.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,4
+Croatia,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,4
+Denmark,145,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,4
+Estonia,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,4
+Finland,145,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,4
+France,145,fitted,,34.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,4
+Germany,145,fitted,,2.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,4
+Greece,37,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,4
+Iceland,24,fitted,,50.0,default_epochs,4,0,,transformer_per_market__national,val_2009Q1,4
+Indonesia,17,too_short,17 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,4
+Ireland,145,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,4
+Israel,49,fitted,,1.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,4
+Italy,145,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,4
+Japan,185,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,4
+Latvia,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,4
+Lithuania,1,too_short,1 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,4
+Mexico,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,4
+Netherlands,145,fitted,,5.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,4
+New Zealand,145,fitted,,66.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,4
+Norway,145,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,4
+Poland,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,4
+Portugal,73,fitted,,25.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,4
+Russia,21,too_short,21 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,4
+Slovak Republic,5,too_short,5 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,4
+South Africa,161,fitted,,14.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,4
+South Korea,81,fitted,,51.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,4
+Spain,141,fitted,,37.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,4
+Sweden,145,fitted,,21.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,4
+Switzerland,145,fitted,,24.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,4
+Taiwan_national,21,too_short,21 < 24 labelled training rows; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,4
+United Kingdom,152,fitted,,4.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,4
+United States,145,fitted,,105.0,early_stopping,4,0,,transformer_per_market__national,val_2009Q1,4
+Hungary,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,4
+Luxembourg,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,4
+Slovenia,0,no_training_history,market has no labelled training rows in this fold; no-change forecast,,,4,4,,transformer_per_market__national,val_2009Q1,4

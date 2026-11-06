@@ -26,6 +26,8 @@ test_start = "2015Q1"
 test_end = "auto"                      # "auto" = last origin that has at least one label (shorter horizons go later)
 gap_quarters = 4                       # train origins <= first test origin - gap
 allow_short_gap = true                 # gap < 20: overlap is blocked per label by masking (see config.check_config)
+# Date each forecast at quarter end plus the slowest configured HPI release lag.
+forecast_lag_days = "max_hpi_lag"
 refit_every = 4                        # one fold (model refit) per 4 test origins
 
 [features]
@@ -59,6 +61,6 @@ seeds = [0, 1, 2, 3, 4]                # fixed seed list; deterministic models u
 
 [bootstrap]
 n_boot = 2000
-block_length = 20                      # >= max horizon, because 1–20 step labels overlap; CIs will be wide
+block_length = 20                      # Quarterly origins per block. Validation has 40 origins.
 ci = 0.95
 seed = 20261029

@@ -1,19 +1,6 @@
-"""Score multi-market runs: per-market errors, error-by-horizon curve, history-length split.
+"""Score multi-market forecasts, bootstrap paired ratios, or plot saved failure cases.
 
-Example (after run_backtest.py --config configs/experiment_long.toml ...):
-    python scripts/evaluate_markets.py results/long_hpi/validation/preds_*.csv \\
-        --config configs/experiment_long.toml --reference no_change
-
-Writes next to the first input file:
-    metrics_by_market.csv     RMSE / MAE / direction accuracy per model, market and horizon
-    relative_by_market.csv    the same divided by the reference model's errors in that market
-    summary_by_horizon.csv    per model and horizon: median and geometric-mean relative RMSE
-                              across markets, share of markets beating the reference
-    summary_by_history.csv    the same split by how long each market's HPI history is
-    rel_rmse_by_horizon.png   median relative RMSE against horizon (if matplotlib is installed)
-
-Reuse market_comparison.png for the existing aggregate comparisons. To add only
-the missing failure-case figure from saved metrics (no evaluation or training):
+To plot the failure cases from existing saved metrics without rerunning evaluation:
     python scripts/evaluate_markets.py results/long_hpi/validation/metrics_by_market.csv \\
         --plot-failure-cases
 """
@@ -29,7 +16,8 @@ from housing_forecast.backtesting.manifest import check_comparable, read_manifes
 from housing_forecast.config import load_config
 from housing_forecast.data.contract import check_alignment, validate_predictions
 from housing_forecast.evaluation.markets import (
-    history_groups, metrics_by_market, relative_to_reference, summary_by_history, summary_by_horizon,
+    history_groups, metrics_by_market, paired_ratio_bootstrap, relative_to_reference, summary_by_history,
+    summary_by_horizon,
 )
 
 
@@ -98,6 +86,10 @@ def main() -> None:
     ap.add_argument("--panel", default="data/interim/panel_quarterly.csv",
                     help="used only to group markets by HPI history length")
     ap.add_argument("--min-origins", type=int, default=8)
+    ap.add_argument("--compare", nargs=2, action="append", default=[], metavar=("A", "B"),
+                    help="bootstrap CI for median RMSE(A)/RMSE(B) across markets; repeatable")
+    ap.add_argument("--block-length", type=int, default=None,
+                    help="bootstrap block length in origins (default: [bootstrap] block_length)")
     args = ap.parse_args()
 
     if args.plot_failure_cases:
@@ -128,6 +120,8 @@ def main() -> None:
     validate_predictions(preds)
     check_alignment(preds, expected_seeds=expected)
     out = Path(args.preds[0]).parent
+    comparisons = [paired_ratio_bootstrap(preds, a, b, cfg, args.min_origins, args.block_length)
+                   for a, b in args.compare]
 
     by_market = metrics_by_market(preds)
     by_market.to_csv(out / "metrics_by_market.csv", index=False)
@@ -147,6 +141,13 @@ def main() -> None:
                                values="median_rel_rmse").round(3).to_string())
     if plot_curve(summary, args.reference, out / "rel_rmse_by_horizon.png"):
         print(f"\nplot -> {out / 'rel_rmse_by_horizon.png'}")
+
+    for (a, b), ci in zip(args.compare, comparisons):
+        path = out / f"ratio_ci_{a}_vs_{b}.csv"
+        ci.to_csv(path, index=False)
+        print(f"\nMedian RMSE({a}) / RMSE({b}) across markets, {cfg['bootstrap']['ci']:.0%} CI -> {path.name}")
+        print(ci[["horizon", "n_markets", "median_ratio", "ci_low", "ci_high", "share_draws_below_1"]]
+              .round(3).to_string(index=False))
 
 
 if __name__ == "__main__":

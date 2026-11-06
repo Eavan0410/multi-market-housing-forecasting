@@ -11,8 +11,11 @@ import numpy as np
 import pandas as pd
 
 from housing_forecast.backtesting.infoset import SampleSet
-from housing_forecast.config import lag_days
+from housing_forecast.config import forecast_lag_days, lag_days
 from housing_forecast.quarters import quarter_end
+
+
+ALL_NATIONAL = "all_national"
 
 
 class PeriodLockedError(RuntimeError):
@@ -32,11 +35,24 @@ class Split:
         return self.test_origins[0]
 
 
-def last_label_origin(samples: SampleSet, series_id: str) -> pd.Period:
-    m = (samples.meta["series_id"] == series_id).to_numpy() & ~np.isnan(samples.y).all(axis=1)
+def _series_mask(samples: SampleSet, series) -> np.ndarray:
+    series_ids = np.atleast_1d(series).tolist()
+    if series_ids == [ALL_NATIONAL]:
+        return (samples.meta["geography_level"] == "national").to_numpy()
+    return samples.meta["series_id"].isin(series_ids).to_numpy()
+
+
+def last_label_origin(samples: SampleSet, series) -> pd.Period:
+    """Last origin with at least one label, over one series id, a list of ids or "all_national"."""
+    m = _series_mask(samples, series) & ~np.isnan(samples.y).all(axis=1)
     if not m.any():
-        raise ValueError(f"no labelled origins for {series_id}")
+        raise ValueError(f"no labelled origins for {series}")
     return max(samples.meta.loc[m, "origin"])
+
+
+def end_series(cfg: dict):
+    """Use the evaluation markets to end runs with a common forecast date."""
+    return cfg["target"]["series_id"] if forecast_lag_days(cfg) is None else cfg["target"]["eval_series"]
 
 
 def make_splits(cfg: dict, phase: str, last_origin: pd.Period, allow_test: bool = False) -> list[Split]:
@@ -55,7 +71,8 @@ def make_splits(cfg: dict, phase: str, last_origin: pd.Period, allow_test: bool 
         raise ValueError("phase must be 'validation' or 'test'")
     end = min(end, last_origin)
 
-    hpi_lag = lag_days(cfg, "hpi", cfg["target"]["country"])
+    common = forecast_lag_days(cfg)
+    ref_lag = lag_days(cfg, "hpi", cfg["target"]["country"]) if common is None else common
     gap, step = p["gap_quarters"], p["refit_every"]
 
     origins = list(pd.period_range(start, end, freq="Q"))
@@ -63,7 +80,7 @@ def make_splits(cfg: dict, phase: str, last_origin: pd.Period, allow_test: bool 
     for i in range(0, len(origins), step):
         block = tuple(origins[i: i + step])
         first = block[0]
-        cutoff = quarter_end(pd.PeriodIndex([first], freq="Q"))[0] + pd.Timedelta(days=hpi_lag)
+        cutoff = quarter_end(pd.PeriodIndex([first], freq="Q"))[0] + pd.Timedelta(days=ref_lag)
         splits.append(Split(
             split_id=f"{phase[:3]}_{first}",
             phase=phase,
@@ -88,17 +105,10 @@ def mask_unpublished_labels(train: SampleSet, split: Split) -> SampleSet:
     return train.replace(y=y).subset(keep)
 
 
-ALL_NATIONAL = "all_national"
-
-
 def eval_mask(samples: SampleSet, split: Split, eval_series) -> np.ndarray:
     """eval_series is a list of series ids, or "all_national" to score every national series."""
     in_block = samples.meta["origin"].isin(split.test_origins).to_numpy()
-    if eval_series == ALL_NATIONAL or list(np.atleast_1d(eval_series)) == [ALL_NATIONAL]:
-        in_series = (samples.meta["geography_level"] == "national").to_numpy()
-    else:
-        in_series = samples.meta["series_id"].isin(eval_series).to_numpy()
-    return in_block & in_series
+    return in_block & _series_mask(samples, eval_series)
 
 
 def check_no_leakage(train: SampleSet, test: SampleSet, split: Split, gap: int) -> None:

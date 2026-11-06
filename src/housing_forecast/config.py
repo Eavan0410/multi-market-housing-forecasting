@@ -37,8 +37,26 @@ def check_config(cfg: dict) -> None:
     # are masked separately and checked for overlap in splits.py.
     if p["gap_quarters"] < max_h and not p.get("allow_short_gap", False):
         raise ValueError("gap_quarters must be >= the largest horizon (or set periods.allow_short_gap = true)")
+    common = forecast_lag_days(cfg)
+    if common is not None:
+        slowest = max(int(x) for x in cfg["release_lag_days"]["hpi"].values())
+        if common < slowest:
+            raise ValueError(f"forecast_lag_days ({common}) must be >= the slowest HPI release lag ({slowest}), "
+                             "otherwise some markets' HPI for quarter t is not public at the forecast date")
     if cfg["bootstrap"]["block_length"] < 1:
         raise ValueError("block_length must be >= 1")
+
+
+def forecast_lag_days(cfg: dict) -> int | None:
+    """Common forecast lag, or None to use the existing market-specific dates."""
+    v = cfg["periods"].get("forecast_lag_days")
+    if v is None:
+        return None
+    if v == "max_hpi_lag":
+        return max(int(x) for x in cfg["release_lag_days"]["hpi"].values())
+    if type(v) is not int:
+        raise ValueError("periods.forecast_lag_days must be an integer or 'max_hpi_lag'")
+    return v
 
 
 def lag_days(cfg: dict, variable: str, country: str) -> int:

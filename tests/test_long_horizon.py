@@ -118,3 +118,39 @@ def test_per_market_ar_falls_back_per_horizon_only():
     Z = np.column_stack([np.ones(n_short), X[n_long:, -1, 0]])
     assert np.allclose(pred[:, 1], Z @ m.coefs_["__pooled__"][:, 1])   # ... so it uses the pooled fit
     assert np.allclose(pred[:, 0], Z @ m.coefs_["S"][:, 0])
+
+
+def test_common_forecast_date_for_every_market(long_samples):
+    end = pd.PeriodIndex(long_samples.meta["origin"], freq="Q").end_time.normalize()
+    lag = (long_samples.meta["as_of_date"] - end).dt.days
+    assert (lag == 100).all()
+
+
+def test_labels_keep_each_market_publication_date(long_samples):
+    s = long_samples
+    end1 = (pd.PeriodIndex(s.meta["origin"], freq="Q") + 1).end_time.normalize()
+    pub = pd.Series(s.y_avail[:, 0]) - pd.Series(end1)
+    tw = (s.meta["country"] == "Taiwan").to_numpy() & ~np.isnan(s.y[:, 0])
+    jp = (s.meta["country"] == "Japan").to_numpy() & ~np.isnan(s.y[:, 0])
+    assert (pub[tw].dt.days == 60).all() and (pub[jp].dt.days == 100).all()
+
+
+def test_fold_cutoff_does_not_depend_on_target_country(long_cfg):
+    a = make_splits(long_cfg, "validation", pd.Period("2025Q1", "Q"))
+    other = copy.deepcopy(long_cfg)
+    other["target"]["country"] = "Japan"
+    b = make_splits(other, "validation", pd.Period("2025Q1", "Q"))
+    assert [s.cutoff_date for s in a] == [s.cutoff_date for s in b]
+    first = pd.Period(long_cfg["periods"]["validation_start"], "Q")
+    assert a[0].cutoff_date == first.end_time.normalize() + pd.Timedelta(days=100)
+
+
+def test_forecast_lag_must_cover_slowest_hpi_release(long_cfg):
+    long_cfg["periods"]["forecast_lag_days"] = 60
+    with pytest.raises(ValueError):
+        check_config(long_cfg)
+
+
+def test_original_rule_unchanged_without_forecast_lag(cfg):
+    from housing_forecast.config import forecast_lag_days
+    assert forecast_lag_days(cfg) is None

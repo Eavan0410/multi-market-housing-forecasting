@@ -1,8 +1,7 @@
 """Build input windows and labels using only observations available at each origin.
 
-Forecasts are dated at quarter end plus the series HPI release lag. Slower
-features shift back by whole quarters. X has shape (samples, lookback, features);
-y has shape (samples, horizons), with NaN for missing labels."""
+Inputs follow the forecast date. Label availability follows each market's HPI
+release lag, even when all markets share a forecast date."""
 
 from __future__ import annotations
 
@@ -12,7 +11,7 @@ import numpy as np
 import pandas as pd
 
 from housing_forecast.backtesting.labels import make_labels
-from housing_forecast.config import lag_days
+from housing_forecast.config import forecast_lag_days, lag_days
 from housing_forecast.quarters import quarter_end, to_period
 
 
@@ -86,6 +85,7 @@ def build_samples(panel: pd.DataFrame, cfg: dict, features=DEFAULT_FEATURES) -> 
     value_col = cfg["target"]["value_col"]
     names = [f.name for f in features]
 
+    common = forecast_lag_days(cfg)
     labels = make_labels(panel, value_col=value_col, horizons=horizons)
     labels["q"] = to_period(labels["origin_quarter"])
 
@@ -93,17 +93,17 @@ def build_samples(panel: pd.DataFrame, cfg: dict, features=DEFAULT_FEATURES) -> 
     for sid, g in panel.groupby("series_id", sort=True):
         country, level = g["country"].iloc[0], g["geography_level"].iloc[0]
         hpi_lag = lag_days(cfg, "hpi", country)
+        ref_lag = hpi_lag if common is None else common
 
         g = g.assign(q=to_period(g["quarter"])).set_index("q").sort_index()
         full = pd.period_range(g.index.min(), g.index.max(), freq="Q")
         g = g.reindex(full)                                  # calendar-complete: gaps become NaN rows
 
-        # Feature matrix positioned by AVAILABILITY, not by observation quarter.
         cols = []
         for f in features:
-            k = delay_quarters(lag_days(cfg, f.source, country), hpi_lag)
+            k = delay_quarters(lag_days(cfg, f.source, country), ref_lag)
             s = g[f.name].ffill(limit=ffill_limit) if ffill_limit else g[f.name]
-            cols.append(s.shift(k).to_numpy())               # index is calendar-complete, so shift = k quarters
+            cols.append(s.shift(k).to_numpy())
         F = np.column_stack(cols).astype(float)
 
         # Origins must have a published HPI_t (the label base).
@@ -116,10 +116,10 @@ def build_samples(panel: pd.DataFrame, cfg: dict, features=DEFAULT_FEATURES) -> 
             if cfg["features"]["drop_nan_windows"] and np.isnan(window).any():
                 continue
             windows.append(window)
-            metas.append((sid, country, level, full[i], hpi_lag))
+            metas.append((sid, country, level, full[i], ref_lag, hpi_lag))
 
-    meta = pd.DataFrame(metas, columns=["series_id", "country", "geography_level", "origin", "_lag"])
-    meta["as_of_date"] = quarter_end(pd.PeriodIndex(meta["origin"], freq="Q")) + pd.to_timedelta(meta["_lag"], unit="D")
+    meta = pd.DataFrame(metas, columns=["series_id", "country", "geography_level", "origin", "_ref", "_hpi"])
+    meta["as_of_date"] = quarter_end(pd.PeriodIndex(meta["origin"], freq="Q")) + pd.to_timedelta(meta["_ref"], unit="D")
 
     # Attach labels (NaN where missing) and the date each label becomes known.
     wide = labels.pivot_table(index=["series_id", "q"], columns="horizon", values="y_true")
@@ -129,9 +129,9 @@ def build_samples(panel: pd.DataFrame, cfg: dict, features=DEFAULT_FEATURES) -> 
     y_avail = np.empty(y.shape, dtype="datetime64[ns]")
     origin_idx = pd.PeriodIndex(meta["origin"], freq="Q")
     for j, h in enumerate(horizons):
-        dates = quarter_end(origin_idx + h) + pd.to_timedelta(meta["_lag"], unit="D")
+        dates = quarter_end(origin_idx + h) + pd.to_timedelta(meta["_hpi"], unit="D")
         y_avail[:, j] = np.where(np.isnan(y[:, j]), np.datetime64("NaT", "ns"), dates.to_numpy())
 
-    meta = meta.drop(columns="_lag")
+    meta = meta.drop(columns=["_ref", "_hpi"])
     X = np.stack(windows) if windows else np.empty((0, lookback, len(names)))
     return SampleSet(X=X, y=y, y_avail=y_avail, meta=meta, feature_names=names, horizons=horizons)

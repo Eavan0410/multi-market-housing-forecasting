@@ -25,7 +25,7 @@ import pandas as pd
 from housing_forecast.backtesting.infoset import build_samples, features_from_config
 from housing_forecast.backtesting.runner import pool_national
 from housing_forecast.backtesting.splits import (
-    last_label_origin, make_splits, mask_unpublished_labels, train_mask,
+    end_series, last_label_origin, make_splits, mask_unpublished_labels, train_mask,
 )
 from housing_forecast.config import load_config
 from housing_forecast.data.transforms import prepare_panel
@@ -76,7 +76,7 @@ def main() -> None:
 
     # training samples per market and fold, under the config's timing rules
     samples = build_samples(prepared, cfg, features_from_config(cfg))
-    splits = make_splits(cfg, "validation", last_label_origin(samples, cfg["target"]["series_id"]))
+    splits = make_splits(cfg, "validation", last_label_origin(samples, end_series(cfg)))
     fold_rows = []
     for sp in splits:
         tr = mask_unpublished_labels(samples.subset(train_mask(samples, sp) & pool_national()(samples.meta)), sp)

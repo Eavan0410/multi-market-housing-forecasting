@@ -28,7 +28,7 @@ from housing_forecast.backtesting.manifest import make_manifest, write_manifest
 from housing_forecast.backtesting.runner import (
     pool_all, pool_national, pool_overseas, pool_overseas_plus_target, pool_target_only, run_backtest,
 )
-from housing_forecast.backtesting.splits import last_label_origin, make_splits
+from housing_forecast.backtesting.splits import end_series, last_label_origin, make_splits
 from housing_forecast.config import load_config
 from housing_forecast.data.contract import check_alignment, validate_panel
 from housing_forecast.data.transforms import prepare_panel
@@ -78,7 +78,7 @@ def main() -> None:
         countries = sorted(set(args.countries) - {home})
         samples = samples.subset(samples.meta["country"].isin(countries + [home]).to_numpy())
         print(f"countries limited to: {countries} (+ {home})")
-    splits = make_splits(cfg, args.phase, last_label_origin(samples, target), allow_test=args.unlock_test)
+    splits = make_splits(cfg, args.phase, last_label_origin(samples, end_series(cfg)), allow_test=args.unlock_test)
     pool = {
         "target_only": pool_target_only(target),
         "overseas": pool_overseas(cfg["target"]["country"]),

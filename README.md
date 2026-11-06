@@ -10,7 +10,7 @@ The model takes eight quarters of inflation-adjusted house price growth and pred
 
 We produced forecasts for 41 national markets and report the 38 with at least eight forecast dates. To compare models, we average RMSE over five seeds for each Transformer, then take the ratio of errors for each market and report the median across markets. A ratio below 1 favors the first model. Brackets show 95% confidence intervals based on resampling the same 20-quarter blocks for both models and all markets.
 
-The data come from the Spring 2026 dataset, including AnaHPI and Taiwan's HPI and CPI. Publication lags are estimates, and the source data include later revisions. We treat Taiwan's HPI as nominal and adjust it using CPI. Its price basis still needs confirmation. [Data formats](docs/design_notes.md) · [Release lag evidence](results/availability_matrix.csv)
+The data come from the Spring 2026 dataset, including AnaHPI and Taiwan's HPI and CPI. Publication lags are estimates, and the source data include later revisions. We treat Taiwan's HPI as nominal and adjust it using CPI. Its price basis still needs confirmation. Taiwan's Sinyi HPI is also not seasonally adjusted, unlike OECD AnaHPI. We did not adjust it. Quarter-of-year growth differences are not significant (F = 1.24, p ≈ 0.3), and Taiwan's results are about the same at horizons of 4, 8, 12, 16 and 20 quarters, where seasonal effects cancel in the target. [Data formats](docs/design_notes.md) · [Release lag evidence](results/availability_matrix.csv)
 
 ## Multi-market results
 

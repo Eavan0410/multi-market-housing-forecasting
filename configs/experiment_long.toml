@@ -41,7 +41,7 @@ use = ["hpi_qoq"]                      # HPI-only keeps all ~48 markets; macro f
 [hpi_basis]
 # "real" = already inflation-adjusted, "nominal" = deflated by CPI in our pipeline.
 default = "real"                       # OECD AnaHPI = real house price index
-Taiwan = "nominal"                     # TODO(B): confirm Taiwan HPI basis
+Taiwan = "nominal"                     # confirmed: Sinyi index is nominal; see results/availability_matrix.csv
 
 [release_lag_days]
 # Days after the end of the observed quarter when a value becomes public.

@@ -1,61 +1,22 @@
 # Multi-Market Housing Price Forecasting
 
-We started with a question about Taiwan. Could one model also forecast house prices in many other markets? We use a small Transformer to explore that idea.
+Can one model forecast house prices across many countries? We train a shared Transformer on quarterly house price data and compare it with models fitted separately for each market. We also test what happens when we add training markets or ask the model to forecast a market it never trained on.
 
-1. Can one model work well across different housing markets?
-2. How does it compare with traditional methods and with training a separate Transformer for each market?
-3. How does that comparison change as we forecast further ahead?
+The project grew out of a forecasting study on Taiwan. The main experiments cover 1 to 20 quarters ahead, with a closer look at 3–6 quarters for buying or selling and 16–20 quarters for construction. [Early Taiwan experiments](docs/taiwan_pilot.md)
 
-We test forecasts from 1 to 20 quarters ahead. We pay particular attention to 3–6 quarters for buying or selling and 16–20 quarters for construction. We also test what happens when we add training markets or leave a market out. [Early Taiwan results](docs/taiwan_pilot.md)
+## Data and evaluation
 
-## Progress
+The model takes eight quarters of inflation-adjusted house price growth and predicts the total log change in prices over the forecast horizon. The validation forecasts start between 2000Q1 and 2009Q4. We refit every four quarters using the data available at the time. All markets share a forecast date 100 days after quarter-end in this run, while each market's training labels follow its own release lag. Each fold uses training forecast dates at least four quarters before its first validation date. We fit input scaling on training data only.
 
-Updated November 5, 2026. The results below come from validation. The final test is still ahead.
+We produced forecasts for 41 national markets and report the 38 with at least eight forecast dates. To compare models, we average RMSE over five seeds for each Transformer, then take the ratio of errors for each market and report the median across markets. A ratio below 1 favors the first model. Brackets show 95% confidence intervals based on resampling the same 20-quarter blocks for both models and all markets.
 
-| Question | Experiment or task | Status |
-|---|---|---|
-| Market coverage | One shared Transformer, 1–20 quarters ahead | Validation done. 41 markets forecast, 38 reported. |
-| One-task-one-model | Per-market AR with pooled fallback; no-change; pooled AR as a shared linear reference | Validation done; includes pooled fallback |
-| One-task-one-model | One ARIMA per market | Template ready; fitting and forecasting code still to write |
-| One-task-one-model | One Transformer per market (from scratch) | Validation done (10 folds, 5 seeds) |
-| Transfer | Shared pretraining + per-market fine-tuning | Not run yet |
-| Accuracy | Paired confidence intervals for the shared Transformer vs per-market Transformer, per-market AR, pooled AR and no-change | Done on validation. [Per-market Transformer comparison](results/long_hpi/validation/ratio_ci_transformer__national_vs_transformer_per_market__national.csv) |
-| More training markets (#9) | Train on 5, 10, 20 and 41 eligible markets. Score the same five markets each time. | First order complete (region rotation). |
-| Unseen markets (#10) | Leave one market out of training, then forecast it | All four planned markets complete. |
-| Set-up | Common forecast date based on the slowest configured HPI release | Done. Multi-market validation rerun |
-| Background | Taiwan pilot (2012–2017, 1–4 quarters) | Done; see [docs/taiwan_pilot.md](docs/taiwan_pilot.md) |
-| Optional | Taiwan LLM policy index | Code ready; not yet run on real announcements |
+The data come from the Spring 2026 dataset, including AnaHPI and Taiwan's HPI and CPI. Publication lags are estimates, and the source data include later revisions. We treat Taiwan's HPI as nominal and adjust it using CPI. Its price basis still needs confirmation. [Data formats](docs/design_notes.md) · [Release lag evidence](results/availability_matrix.csv)
 
 ## Multi-market results
 
-**Set-up.** The target is cumulative real house price growth over the next h quarters, for h = 1–20:
+### One shared model versus separate models
 
-```text
-y(t, h) = log(HPI_real[t + h] / HPI_real[t])
-```
-
-The model uses the last eight quarters of each market's real HPI growth. Validation covers 2000Q1 to 2009Q4, with a refit every four quarters. All markets use the same forecast date for a given quarter, set to quarter-end plus the slowest configured HPI release lag (100 days in this run). Each market keeps its own release lag for training labels.
-
-These multi-market runs score only 2000–2009 forecast dates. Forecasts reach 20 quarters ahead, so their labels use prices up to 2014. The proposed multi-market test starts in 2015 and has not been run, but it overlaps dates examined in the earlier Taiwan pilot; it is not a fully untouched period for the project.
-
-We have predictions for 41 national markets. The results tables use the 38 with at least eight forecast dates. As more data become available, the number of markets contributing training data grows from 24 at the first refit to 38 at the last.
-
-We measure forecast error with RMSE and average it over five seeds for each Transformer. To compare two models, we divide their RMSEs in each market and take the median across markets. If the ratio is below 1, the first model has lower error. The last two columns show RMSE itself, in cumulative log-growth units.
-
-Per-market AR uses pooled AR when it has too few labels to fit a separate model. The per-market Transformer uses the same architecture as the shared model and fits and scales each market separately. It falls back to no-change when it has too little training history. About 23% of its scored forecasts in the 38 reported markets used this fallback. [Fit and fallback counts](results/long_hpi/validation/diag_transformer_per_market__national.csv)
-
-| Quarters ahead | Transformer / per-market AR | Markets beating per-market AR | Transformer / no-change | Per-market AR / no-change | Transformer / pooled AR | Median RMSE (Transformer) | Median RMSE (per-market AR) |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| 1 | 0.997 | 20/38 | 0.766 | 0.785 | 1.012 | 0.017 | 0.018 |
-| 4 | 0.967 | 25/38 | 0.830 | 0.868 | 0.984 | 0.053 | 0.066 |
-| 5 | 0.947 | 25/38 | 0.851 | 0.891 | 0.976 | 0.065 | 0.083 |
-| 6 | 0.933 | 26/38 | 0.863 | 0.902 | 0.978 | 0.077 | 0.097 |
-| 8 | 0.912 | 29/38 | 0.875 | 0.956 | 0.983 | 0.104 | 0.132 |
-| 12 | 0.861 | 29/38 | 0.855 | 1.032 | 0.957 | 0.152 | 0.200 |
-| 16 | 0.854 | 28/38 | 0.874 | 1.069 | 0.954 | 0.191 | 0.263 |
-| 20 | 0.863 | 27/38 | 0.894 | 1.093 | 0.958 | 0.235 | 0.304 |
-
-The next table compares the shared Transformer with each baseline over two ranges. We combine the errors within each range before calculating RMSE. The brackets show 95% confidence intervals from 2,000 bootstrap draws. Each draw uses the same 20-quarter blocks for both models and all markets.
+The shared Transformer had lower error than the per-market Transformer in both forecast ranges. It was close to per-market AR one quarter ahead and had about 13% lower error over 16–20 quarters. Pooled AR, which fits one linear model across markets, was closer to the shared Transformer. The 95% intervals for that comparison include 1 in both ranges.
 
 | Baseline | 3–6 quarters | 16–20 quarters |
 |---|---:|---:|
@@ -64,22 +25,15 @@ The next table compares the shared Transformer with each baseline over two range
 | Pooled AR | 0.978 [0.918, 1.058] | 0.953 [0.917, 1.005] |
 | No-change | 0.849 [0.649, 0.979] | 0.889 [0.831, 1.027] |
 
-- **Per-market Transformer.** The shared model has about 10% lower RMSE over 3–6 quarters and 20% lower RMSE over 16–20 quarters, based on the median ratios. The 95% interval stays below 1 at every horizon from 1 to 20. This comparison includes the no-change forecasts where a separate model could not be fitted.
-- **Per-market AR.** The two models are about even one quarter ahead. From 5 through 20 quarters, the Transformer's ratio stays below 1 across the full confidence interval at each horizon. Over 16–20 quarters, its median ratio is 0.869, or about 13% lower RMSE.
-- **Pooled AR.** The Transformer has about 5% lower RMSE over 16–20 quarters. The interval just crosses 1 (0.917 to 1.005), so the two models could be about even.
-- **No-change.** The Transformer has lower RMSE over 3–6 quarters, with the full interval below 1. Its ratio is still below 1 over 16–20 quarters, but the interval crosses 1. Per-market AR falls behind no-change from 10 quarters onward and reaches a ratio of 1.093 at 20 quarters.
-
-The shared model also had lower error when both forecasts came from a trained Transformer. We kept dates where the per-market model fitted successfully in all five seeds. Only 24 markets had at least eight such dates, and all had long or medium HPI histories. The median ratio was **0.816 [0.796, 0.899]** for 3–6 quarters and **0.788 [0.771, 0.836]** for 16–20. The same 24 markets gave the same median ratios with the fallback forecasts included. [Comparison by sample](results/long_hpi/validation/fitted_only_ratio_ci.csv) · [Coverage by HPI history](results/long_hpi/validation/fitted_only_counts.csv)
+The per-market Transformer used a no-change forecast when there was too little training history, about 23% of the scored forecasts. We repeated the comparison using only dates when both Transformers were fitted. The shared model still had lower error, with ratios of 0.816 [0.796, 0.899] at 3–6 quarters and 0.788 [0.771, 0.836] at 16–20 quarters. That check covered 24 markets with medium or long histories. Per-market AR uses a pooled fit when it has too few local labels. [Comparison on fitted forecasts](results/long_hpi/validation/fitted_only_ratio_ci.csv) · [Error by market and horizon](results/long_hpi/validation/metrics_by_market.csv)
 
 ![Median RMSE relative to no-change by forecast horizon](results/long_hpi/validation/rel_rmse_by_horizon.png)
 
-This plot shows the shared Transformer and AR baselines relative to no-change. The shaded ranges show 3–6 and 16–20 quarters. Forecasts get less accurate further out. We still need to check whether the errors at 16–20 quarters are small enough for practical use. So far we have looked at one validation period, which includes the 2008 crisis.
+The chart shows the shared Transformer and AR baselines relative to no-change. The shaded ranges mark 3–6 and 16–20 quarters. Absolute error grows with the horizon. For the shared Transformer, median RMSE rose from 0.017 at one quarter to 0.235 at 20 quarters, measured in cumulative log growth.
 
-See the [market errors](results/long_hpi/validation/metrics_by_market.csv), [relative errors](results/long_hpi/validation/relative_by_market.csv), [horizon summary](results/long_hpi/validation/summary_by_horizon.csv) and [history groups](results/long_hpi/validation/summary_by_history.csv). The full confidence intervals are in the comparison files for [per-market Transformer](results/long_hpi/validation/ratio_ci_transformer__national_vs_transformer_per_market__national.csv), [per-market AR](results/long_hpi/validation/ratio_ci_transformer__national_vs_ar__national.csv), [pooled AR](results/long_hpi/validation/ratio_ci_transformer__national_vs_ar_pooled__national.csv), [no-change](results/long_hpi/validation/ratio_ci_transformer__national_vs_no_change__national.csv).
+### Training on more markets
 
-### #9. Does adding markets help?
-
-We trained on 5, 10, 20 and 41 markets in the planned region order. Every run was scored on the same five markets and dates. The table compares RMSE with the five-market run. A ratio below 1 means lower error, and brackets show 95% confidence intervals.
+We started with five markets and added more by rotating through regions. All four runs were scored on the same five markets and dates. The table compares RMSE with the five-market run. A ratio below 1 means lower error, and brackets show 95% confidence intervals.
 
 | Markets on the list | Markets used per fold | 3–6 quarters | 16–20 quarters |
 |---|---:|---:|---:|
@@ -90,9 +44,9 @@ We trained on 5, 10, 20 and 41 markets in the planned region order. Every run wa
 
 The 41-market run cut error by about **9% at 3–6 quarters** and **18% at 16–20 quarters**. The middle runs were mixed. We tried one order, so which markets we added could matter too. [Market selection](docs/market_selection.md) · [Full results](results/market_scale/validation)
 
-### #10. Can the model forecast a market it left out?
+### Forecasting a market left out of training
 
-We left each market out of training and still gave the model its recent HPI history at forecast time. The table compares each held-out model with the shared Transformer trained with that market included. A ratio below 1 favors the held-out model.
+We left out Australia, Chile, Taiwan and Portugal one at a time. At forecast time, the model used only the local HPI history available by that date. The table compares each held-out model with the shared Transformer trained with that market included. A ratio below 1 favors the held-out model.
 
 | Held-out market | Forecast dates | 3–6 quarters | 16–20 quarters | Against AR and no-change |
 |---|---:|---:|---:|---|
@@ -103,24 +57,13 @@ We left each market out of training and still gave the model its recent HPI hist
 
 Leaving a market out usually changed RMSE by only a few percent. Chile had the biggest change, with about 10% lower RMSE at 16–20 quarters. Its 95% interval includes 1 when we use 8-quarter blocks instead of 20 ([0.870, 1.049]), so the improvement is uncertain.
 
-Chile and Taiwan used pooled AR for every 16–20-quarter forecast and for about 71% and 61% of their 3–6-quarter forecasts, respectively. Both Portugal runs used the same single-thread setting. Australia, Chile and Taiwan use the original shared run as their reference. In the first scored fold for Chile and Taiwan, leaving the market out removed zero training rows. The two runs still differed in RMSE by about 6.5% and 3.7% for Chile across the two ranges, and by less than 0.02% for Taiwan.
+Chile and Taiwan used pooled AR for every 16–20-quarter forecast and for about 71% and 61% of their 3–6-quarter forecasts, respectively. For Portugal, both Transformers used the same single-thread setting. The other markets use the original shared run for comparison. In Chile and Taiwan, the first scored fold had identical training data across runs. RMSE still differed by up to about 6.5% for Chile and less than 0.02% for Taiwan across the two ranges.
 
-## Next steps
+## Limits of the evaluation
 
-1. Run ARIMA for each market and report where it uses a fallback. Run shared pretraining with per-market fine-tuning as a separate comparison.
-2. For #9, try the other two market orders and see whether the pattern holds. [Market selection](docs/market_selection.md)
+The results cover one historical validation period, including the 2008 crisis. The proposed test starts in 2015 and overlaps years examined in the Taiwan pilot. The longer forecasts show how the models compare, while their usefulness for real decisions depends on how much error those decisions can tolerate. The four holdout markets give examples of transfer across markets.
 
-## Data and backtest notes
-
-Raw and processed source tables are in `data/raw/` and `data/processed/`. Taiwan HPI/CPI and global AnaHPI were copied from the Spring 2026 dataset. Generated panels go in `data/interim/` and can be rebuilt locally.
-
-Taiwan HPI is currently treated as nominal and deflated with CPI; its price basis still needs confirmation. Taiwan credit / GDP uses bank consumer loans divided by the latest four quarters of nominal GDP. Its coverage is narrower than the overseas household-credit measure. Publication lags are provisional; the draft evidence is in [availability_matrix.csv](results/availability_matrix.csv). The data contain later revisions, rather than the versions originally released.
-
-Both studies use an expanding training window and refit every four forecast dates. The multi-market run uses the first forecast date in each fold as its training cutoff and keeps a four-quarter gap between training and validation origins. Input scaling is fitted on the training fold. The Taiwan pilot uses its original release timing.
-
-The Taiwan pilot uses 2012–2017 validation origins, a 2018 buffer and a test starting in 2019. Its confidence intervals use four-quarter circular bootstrap blocks. The multi-market setup uses 2000–2009 validation origins and a proposed test from 2015. Test runs stay locked by default.
-
-Keep each prediction CSV beside its `.meta.json` file. The metadata record features, dates, seeds and data fingerprints so the evaluator can check that runs are comparable.
+We still need to run per-market ARIMA, try shared pretraining followed by fine-tuning for each market, repeat the training pool comparison with the other two market orders, and run the final test.
 
 ## Run locally
 
@@ -153,19 +96,9 @@ This writes the error tables, confidence intervals and a plot if Matplotlib is i
 python scripts/fitted_only_check.py
 ```
 
-Other multi-market tools:
+See the Taiwan pilot notes for the earlier experiments and their commands. [Taiwan pilot](docs/taiwan_pilot.md)
 
-```bash
-python scripts/build_market_list.py   # docs/market_list.csv and per-fold training samples
-pip install statsmodels               # then fill the TODO(B) parts of src/housing_forecast/models/arima.py
-python scripts/run_backtest.py --config $C --models arima --pool national --experiment long_hpi   # also writes diag_arima__national.csv
-```
-
-The earlier Taiwan runs and their commands are in [the Taiwan pilot notes](docs/taiwan_pilot.md). Plain `ar` uses per-market fits with pooled fallback; `ar_pooled` uses one shared fit. Transformer training selects the epoch count on a time split inside each fold, then retrains on that fold's full training set.
-
-### Market-scale experiment (#9)
-
-Each run uses the same five evaluation markets. The training lists grow from 5 to 10, 20 and 41 markets in the region-rotation order. The coverage table shows how many markets and rows actually enter training in each fold. [Market selection](docs/market_selection.md)
+### Training pool comparison
 
 ```bash
 OMP_NUM_THREADS=1 python scripts/run_market_scale.py
@@ -176,7 +109,7 @@ python scripts/evaluate_markets.py results/market_scale/validation/preds_*.csv \
     --compare transformer__scale_41 transformer__scale_5
 ```
 
-### Leave one market out (#10)
+### Holdout experiments
 
 The holdout run trains on the other national markets and scores only the chosen market. The model uses the chosen market's HPI history at forecast time. The script takes the matching reference forecasts from the long-horizon validation run and checks that all rows line up. For Chile, Taiwan or Portugal, use the matching market ID and results folder. For the Portugal comparison, first rerun the national Transformer, AR and no-change with `OMP_NUM_THREADS=1` in a separate experiment folder. Pass that run's validation directory to `--reference-dir` when running the holdout.
 
@@ -189,23 +122,6 @@ python scripts/evaluate_markets.py results/market_holdout/australia/validation/p
     --compare transformer__holdout transformer__national
 ```
 
-## Optional policy index
+## Related work
 
-As an optional extension, we plan to use a local LLM to identify tightening and easing signals in Taiwan policy announcements. The code and a template for a manually checked timeline are ready. We still need to collect the announcements and run the model. The forecasting experiments take priority.
-
-Settings are in [policy.toml](configs/policy.toml), with input formats in [the policy data notes](data/raw/policy/README.md). Announcements are grouped by publication quarter; availability at each forecast date still needs checking before the index can be used as an input.
-
-```bash
-python scripts/policy_pipeline.py --backend mock extract
-# Requires vLLM and a GPU, after collecting the input data
-python scripts/policy_pipeline.py --backend vllm extract --limit 20
-python scripts/policy_pipeline.py --backend vllm index
-python scripts/policy_pipeline.py --backend vllm eval
-python scripts/policy_pipeline.py --backend vllm spotcheck-export
-```
-
-## Code and notes
-
-`src/housing_forecast/` contains data readers, backtesting, models, evaluation and policy extraction. Commands are in `scripts/`, checks in `tests/`, and outputs in `results/<experiment>/<phase>/`.
-
-See [experiment settings](docs/experiment_contract.md), [backtest notes](docs/backtest_framework.md) and [data formats](docs/design_notes.md) for more detail. The original course milestones are November 12 for baselines, November 19 for Transformer comparisons, November 26 for analysis and December 10 for the report. Initial validation runs are done; final checks and the report are still in progress.
+The repository also includes a prototype for using a local language model to read Taiwan policy announcements. The forecasting results above use house price data. [Policy data and setup](data/raw/policy/README.md) · [Backtest notes](docs/backtest_framework.md) · [Experiment settings](docs/experiment_contract.md)

@@ -6,7 +6,7 @@ We started with a question about Taiwan. Could one model also forecast house pri
 2. How does it compare with traditional methods and with training a separate Transformer for each market?
 3. How does that comparison change as we forecast further ahead?
 
-We test forecasts from 1 to 20 quarters ahead. We pay particular attention to 3–6 quarters for buying or selling and 16–20 quarters for construction. Two experiments still to come will test whether adding markets helps and how the model does in a market it never trained on. [Early Taiwan results](docs/taiwan_pilot.md)
+We test forecasts from 1 to 20 quarters ahead. We pay particular attention to 3–6 quarters for buying or selling and 16–20 quarters for construction. We also test what happens when we add training markets or leave a market out. [Early Taiwan results](docs/taiwan_pilot.md)
 
 ## Progress
 
@@ -20,8 +20,8 @@ Updated November 5, 2026. The results below come from validation. The final test
 | One-task-one-model | One Transformer per market (from scratch) | Validation done (10 folds, 5 seeds) |
 | Transfer | Shared pretraining + per-market fine-tuning | Not run yet |
 | Accuracy | Paired confidence intervals for the shared Transformer vs per-market Transformer, per-market AR, pooled AR and no-change | Done on validation. [Per-market Transformer comparison](results/long_hpi/validation/ratio_ci_transformer__national_vs_transformer_per_market__national.csv) |
-| More training markets (#9) | Train on 5, 10, 20 and all eligible markets. Score the same five markets each time. | Market lists and pool orders ready. Still to run. |
-| Unseen markets (#10) | Leave one market out of training, then forecast it | Four markets selected. Still to run. |
+| More training markets (#9) | Train on 5, 10, 20 and 41 eligible markets. Score the same five markets each time. | First order complete (region rotation). |
+| Unseen markets (#10) | Leave one market out of training, then forecast it | All four planned markets complete. |
 | Set-up | Common forecast date based on the slowest configured HPI release | Done. Multi-market validation rerun |
 | Background | Taiwan pilot (2012–2017, 1–4 quarters) | Done; see [docs/taiwan_pilot.md](docs/taiwan_pilot.md) |
 | Optional | Taiwan LLM policy index | Code ready; not yet run on real announcements |
@@ -77,11 +77,38 @@ This plot shows the shared Transformer and AR baselines relative to no-change. T
 
 See the [market errors](results/long_hpi/validation/metrics_by_market.csv), [relative errors](results/long_hpi/validation/relative_by_market.csv), [horizon summary](results/long_hpi/validation/summary_by_horizon.csv) and [history groups](results/long_hpi/validation/summary_by_history.csv). The full confidence intervals are in the comparison files for [per-market Transformer](results/long_hpi/validation/ratio_ci_transformer__national_vs_transformer_per_market__national.csv), [per-market AR](results/long_hpi/validation/ratio_ci_transformer__national_vs_ar__national.csv), [pooled AR](results/long_hpi/validation/ratio_ci_transformer__national_vs_ar_pooled__national.csv), [no-change](results/long_hpi/validation/ratio_ci_transformer__national_vs_no_change__national.csv).
 
+### #9. Does adding markets help?
+
+We trained on 5, 10, 20 and 41 markets in the planned region order. Every run was scored on the same five markets and dates. The table compares RMSE with the five-market run. A ratio below 1 means lower error, and brackets show 95% confidence intervals.
+
+| Markets on the list | Markets used per fold | 3–6 quarters | 16–20 quarters |
+|---|---:|---:|---:|
+| 5 | 3–5 | Reference | Reference |
+| 10 | 7–10 | 0.922 [0.797, 0.978] | 0.925 [0.798, 1.080] |
+| 20 | 15–20 | 1.002 [0.862, 1.039] | 0.905 [0.679, 1.136] |
+| 41 | 24–38 | 0.912 [0.802, 0.972] | 0.818 [0.651, 0.982] |
+
+The 41-market run cut error by about **9% at 3–6 quarters** and **18% at 16–20 quarters**. The middle runs were mixed. We tried one order, so which markets we added could matter too. [Market selection](docs/market_selection.md) · [Full results](results/market_scale/validation)
+
+### #10. Can the model forecast a market it left out?
+
+We left each market out of training and still gave the model its recent HPI history at forecast time. The table compares each held-out model with the shared Transformer trained with that market included. A ratio below 1 favors the held-out model.
+
+| Held-out market | Forecast dates | 3–6 quarters | 16–20 quarters | Against AR and no-change |
+|---|---:|---:|---:|---|
+| [Australia](results/market_holdout/australia/validation) | 40 | 1.008 [0.988, 1.040] | 1.013 [0.980, 1.051] | All intervals against AR and no-change include 1 in both ranges. |
+| [Chile](results/market_holdout/chile/validation) | 24 | 1.021 [0.986, 1.051] | 0.901 [0.870, 0.951] | Worse than both at 3–6 quarters, better at 16–20. |
+| [Taiwan](results/market_holdout/taiwan_national/validation) | 28 | 1.011 [1.005, 1.024] | 0.990 [0.979, 1.007] | Close to no-change in both ranges. Worse than AR at 16–20 quarters. |
+| [Portugal](results/market_holdout/portugal/validation) | 40 | 0.956 [0.919, 0.978] | 1.009 [0.991, 1.030] | Worse than local AR and no-change in both ranges. |
+
+Leaving a market out usually changed RMSE by only a few percent. Chile had the biggest change, with about 10% lower RMSE at 16–20 quarters. Its 95% interval includes 1 when we use 8-quarter blocks instead of 20 ([0.870, 1.049]), so the improvement is uncertain.
+
+Chile and Taiwan used pooled AR for every 16–20-quarter forecast and for about 71% and 61% of their 3–6-quarter forecasts, respectively. Both Portugal runs used the same single-thread setting. Australia, Chile and Taiwan use the original shared run as their reference. In the first scored fold for Chile and Taiwan, leaving the market out removed zero training rows. The two runs still differed in RMSE by about 6.5% and 3.7% for Chile across the two ranges, and by less than 0.02% for Taiwan.
+
 ## Next steps
 
 1. Run ARIMA for each market and report where it uses a fallback. Run shared pretraining with per-market fine-tuning as a separate comparison.
-2. For #9, start with one order for adding markets. Train on 5, 10, 20 and all eligible markets, and score the same five markets each time. Count how many markets actually contribute training data. [Market selection](docs/market_selection.md)
-3. For #10, start with one of the four selected markets. Leave it out of training and forecast it using the history available on each forecast date. [Held-out markets](docs/market_selection.md#3-leave-one-market-out-targets-35)
+2. For #9, try the other two market orders and see whether the pattern holds. [Market selection](docs/market_selection.md)
 
 ## Data and backtest notes
 
@@ -135,6 +162,32 @@ python scripts/run_backtest.py --config $C --models arima --pool national --expe
 ```
 
 The earlier Taiwan runs and their commands are in [the Taiwan pilot notes](docs/taiwan_pilot.md). Plain `ar` uses per-market fits with pooled fallback; `ar_pooled` uses one shared fit. Transformer training selects the epoch count on a time split inside each fold, then retrains on that fold's full training set.
+
+### Market-scale experiment (#9)
+
+Each run uses the same five evaluation markets. The training lists grow from 5 to 10, 20 and 41 markets in the region-rotation order. The coverage table shows how many markets and rows actually enter training in each fold. [Market selection](docs/market_selection.md)
+
+```bash
+OMP_NUM_THREADS=1 python scripts/run_market_scale.py
+python scripts/evaluate_markets.py results/market_scale/validation/preds_*.csv \
+    --reference transformer__scale_5 \
+    --compare transformer__scale_10 transformer__scale_5 \
+    --compare transformer__scale_20 transformer__scale_5 \
+    --compare transformer__scale_41 transformer__scale_5
+```
+
+### Leave one market out (#10)
+
+The holdout run trains on the other national markets and scores only the chosen market. The model uses the chosen market's HPI history at forecast time. The script takes the matching reference forecasts from the long-horizon validation run and checks that all rows line up. For Chile, Taiwan or Portugal, use the matching market ID and results folder. For the Portugal comparison, first rerun the national Transformer, AR and no-change with `OMP_NUM_THREADS=1` in a separate experiment folder. Pass that run's validation directory to `--reference-dir` when running the holdout.
+
+```bash
+OMP_NUM_THREADS=1 python scripts/run_market_holdout.py --market Australia
+python scripts/evaluate_markets.py results/market_holdout/australia/validation/preds_*.csv \
+    --reference no_change__national \
+    --compare transformer__holdout no_change__national \
+    --compare transformer__holdout ar__national \
+    --compare transformer__holdout transformer__national
+```
 
 ## Optional policy index
 

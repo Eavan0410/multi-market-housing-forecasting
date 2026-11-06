@@ -37,6 +37,11 @@ def pool_all() -> Callable[[pd.DataFrame], np.ndarray]:
 
 
 
+def training_samples(samples: SampleSet, split: Split, train_pool: Callable[[pd.DataFrame], np.ndarray]) -> SampleSet:
+    train = samples.subset(train_mask(samples, split) & train_pool(samples.meta))
+    return mask_unpublished_labels(train, split)
+
+
 def run_backtest(
     samples: SampleSet,
     splits: list[Split],
@@ -56,8 +61,7 @@ def run_backtest(
     rows, diag_rows = [], []
 
     for split in splits:
-        train = samples.subset(train_mask(samples, split) & train_pool(samples.meta))
-        train = mask_unpublished_labels(train, split)
+        train = training_samples(samples, split, train_pool)
         test = samples.subset(eval_mask(samples, split, eval_series))
         if len(test) == 0:
             continue

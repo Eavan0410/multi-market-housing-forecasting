@@ -796,30 +796,11 @@ def export_matrix(matrix, output_dir):
     """Step 6: write identical CSV/Excel data using one simply formatted sheet."""
     output_dir.mkdir(parents=True, exist_ok=True)
     csv_path = output_dir / "availability_matrix.csv"
-    excel_path = output_dir / "availability_matrix.xlsx"
     matrix.to_csv(csv_path, index=False, encoding="utf-8")
-    with pd.ExcelWriter(excel_path, engine="openpyxl") as writer:
-        matrix.to_excel(writer, sheet_name="Availability Matrix", index=False)
-        sheet = writer.sheets["Availability Matrix"]
-        sheet.freeze_panes = "A2"
-        sheet.auto_filter.ref = sheet.dimensions
-        for cell in sheet[1]:
-            cell.font = Font(bold=True, color="FFFFFF")
-            cell.fill = PatternFill("solid", fgColor="244062")
-            cell.alignment = Alignment(vertical="top", wrap_text=True)
-        widths = [20, 25, 13, 16, 16, 19, 18, 19, 28, 24, 32, 18, 17, 42, 75, 80, 80, 80, 28]
-        for column, width in zip(sheet.columns, widths):
-            sheet.column_dimensions[column[0].column_letter].width = width
-        for row in sheet.iter_rows(min_row=2):
-            for cell in row:
-                cell.alignment = Alignment(vertical="top", wrap_text=True)
-            sheet.row_dimensions[row[0].row].height = 85
-        sheet.row_dimensions[1].height = 32
     # Keep blanks as blanks so absent periods and unknown URLs match exactly.
     csv_data = pd.read_csv(csv_path, keep_default_na=False)
-    excel_data = pd.read_excel(excel_path, sheet_name="Availability Matrix", keep_default_na=False)
-    pd.testing.assert_frame_equal(csv_data, excel_data)
-    return csv_path, excel_path
+    pd.testing.assert_frame_equal(csv_data)
+    return csv_path
 
 
 def main():

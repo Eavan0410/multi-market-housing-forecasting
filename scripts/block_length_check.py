@@ -32,7 +32,7 @@ HOLDOUT_MARKETS = ("australia", "chile", "taiwan_national", "portugal")
 def comparisons():
     """(experiment, folder, model A, model B)."""
     shared = "transformer__national"
-    for other in ("transformer_per_market__national", "ar__national", "ar_pooled__national",
+    for other in ("transformer_per_market__national", "ar__national", "arima__national", "ar_pooled__national",
                   "no_change__national"):
         yield "main", MAIN, shared, other
     for order, folder in (("region", SCALE), ("history", SCALE_HISTORY), ("random", SCALE_RANDOM)):

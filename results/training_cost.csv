@@ -1,0 +1,7 @@
+approach,final_models,training_runs,note
+Shared Transformer,50,100,one network per fold and seed; each fit also runs one epoch-selection fit
+Per-market Transformer,1165,2290,26 markets fitted at least once; 370 market-fold-seeds fell back to no-change
+Per-market AR,265,265,"one least-squares fit per market and fold with enough rows, plus one pooled fallback per fold"
+Pooled AR,10,10,one least-squares fit per fold
+Shared + fine-tuning (fixed 10 epochs),1215,1265,"shared networks plus one fine-tuned copy per adapted market, fold and seed"
+Shared + fine-tuning (epochs chosen inside training),659,1859,"inner and full shared fits (each with epoch selection), one up-to-30-epoch selection run per eligible market, then the chosen fine-tuning"

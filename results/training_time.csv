@@ -1,0 +1,7 @@
+approach,split_id,seed,markets_forecast,wall_seconds,machine,processor,system,python,torch,torch_threads,OMP_NUM_THREADS
+Shared Transformer,val_2009Q1,0,41,5.5,arm64,arm,Darwin,3.11.18,2.15.0,1,1
+Per-market Transformer,val_2009Q1,0,41,7.7,arm64,arm,Darwin,3.11.18,2.15.0,1,1
+Per-market AR,val_2009Q1,0,41,0.1,arm64,arm,Darwin,3.11.18,2.15.0,1,1
+Pooled AR,val_2009Q1,0,41,0.0,arm64,arm,Darwin,3.11.18,2.15.0,1,1
+Shared + fine-tuning (fixed 10 epochs),val_2009Q1,0,41,6.4,arm64,arm,Darwin,3.11.18,2.15.0,1,1
+Shared + fine-tuning (epochs chosen inside training),val_2009Q1,0,41,18.3,arm64,arm,Darwin,3.11.18,2.15.0,1,1

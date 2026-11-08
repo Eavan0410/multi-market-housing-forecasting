@@ -42,6 +42,8 @@ The repository contains the data preparation code, a common backtest for all mod
 - **Pooled AR:** its errors are close to the shared Transformer's, and the intervals include 1 in both ranges.
 - **No-change:** at 3–6 quarters the interval includes 1 with 8- or 12-quarter blocks.
 
+**Training cost.** Over the 10 validation folds and five seeds, the shared Transformer trains 50 networks, while one Transformer per market trains 1,165. Shared-model fits include an extra training run to choose the epoch count. Per-market models do this when enough history is available. The per-market count excludes markets that fell back to no-change. On one Apple-silicon CPU thread, the largest fold took 5.5 seconds for the shared model and 7.7 seconds for the per-market models, with one seed. The timing difference was small in this single-fold measurement. The shared approach uses one model across markets, while the per-market approach needs a separate model for each market with enough history. The shared model also covers markets too short to train on their own. Fine-tuning took 6.4 seconds with fixed epochs and 18.3 seconds with epochs chosen inside training. Both AR baselines took under 0.2 seconds. [Model counts](results/training_cost.csv) · [Timing](results/training_time.csv)
+
 ### Shared pretraining and local fine-tuning
 
 We adapted a copy of the shared model to each market's own training history. Each fold starts from one shared model trained on the available markets, including each target market's past data. The holdout experiment below instead excludes the target market from training. Each market's copy keeps the shared scaling and uses a learning rate of 0.0001. Markets with fewer than 24 training rows keep the shared forecast. We tried two settings:
@@ -112,7 +114,7 @@ Leaving a market out usually changed RMSE by a few percent. Each held-out market
 - The results cover one validation period, which includes the 2008 crisis. The proposed test starts in 2015 and overlaps years examined in the earlier Taiwan pilot. [Taiwan pilot](docs/taiwan_pilot.md)
 - Most comparisons have 40 forecast dates, so a draw with 20-quarter blocks uses only two blocks. Claims that depend on the block length are marked above.
 - Taiwan remains a difficult case. Its shared-model errors are close to no-change in the ranges shown here.
-- The broader study still needs per-market ARIMA and the final test. We also need to finish checking release lags and compare model counts and training time consistently.
+- The broader study still needs per-market ARIMA and the final test. We also need to finish checking release lags.
 
 ## Run locally
 
@@ -139,6 +141,7 @@ python scripts/evaluate_markets.py results/long_hpi/validation/preds_*.csv --con
     --compare transformer__national no_change__national
 python scripts/fitted_only_check.py
 python scripts/block_length_check.py
+OMP_NUM_THREADS=1 python scripts/training_cost.py --time   # model counts and one-fold timing
 ```
 
 Shared pretraining and local fine-tuning (the output directory must be new):

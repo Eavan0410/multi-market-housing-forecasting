@@ -96,7 +96,28 @@ def fit_one(history: np.ndarray, max_p: int = 4, max_q: int = 2):
       - return the chosen fitted result (anything forecast_path() can use);
       - raise an exception if no candidate can be fitted (the caller records the fallback).
     """
-    raise NotImplementedError("TODO(B): choose the order by AIC on the training history and fit")
+   
+    from statsmodels.tsa.arima.model import ARIMA
+    best_model = None
+    best_aic = float("inf")
+
+    for p in range(max_p + 1):
+        for q in range(max_q + 1):
+            try:
+                model = ARIMA(history, order=(p, 0, q), trend="c").fit()
+
+                if np.isfinite(model.aic) and model.aic < best_aic:
+                    best_aic = model.aic
+                    best_model = model
+
+            except Exception:
+                continue
+
+    if best_model is None:
+        raise RuntimeError("No ARIMA model could be fitted")
+
+    return best_model
+
 
 
 def forecast_path(fitted, history: np.ndarray, steps: int) -> np.ndarray:
@@ -111,7 +132,10 @@ def forecast_path(fitted, history: np.ndarray, steps: int) -> np.ndarray:
             return np.asarray(res_new.forecast(steps))
       - return an array of length `steps`.
     """
-    raise NotImplementedError("TODO(B): forecast quarterly growth from the end of the history")
+    updated = fitted.apply(history, refit=False)
+    return np.asarray(updated.forecast(steps))
+
+
 
 
 # ---------------------------------------------------------------------------

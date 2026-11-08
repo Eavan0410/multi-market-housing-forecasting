@@ -1,34 +1,80 @@
-"""Run the market-scale validation with one fixed set of evaluation markets."""
+"""Run the market-scale validation with one fixed set of evaluation markets.
+
+Training lists grow from 5 to 10, 20 and 41 markets in one of three pre-set orders
+(see generate_market_orders.py). Every run scores the same five evaluation markets.
+
+    OMP_NUM_THREADS=1 python scripts/run_market_scale.py                  # region rotation
+    OMP_NUM_THREADS=1 python scripts/run_market_scale.py --order history  # long history first
+    OMP_NUM_THREADS=1 python scripts/run_market_scale.py --order random   # seeded random
+
+The 5- and 41-market lists are the same in every order, so for the other orders those
+two runs are copied from the region-rotation folder after checking that the settings and
+training markets match. Only the 10- and 20-market runs are trained again.
+"""
 
 from __future__ import annotations
 
 import argparse
+import shutil
 from pathlib import Path
 
 import pandas as pd
 
 from generate_market_orders import EVALUATION_MARKETS, MARKET_LIST_PATH, market_orders
 from run_backtest import load_samples
-from housing_forecast.backtesting.manifest import make_manifest, read_manifest, write_manifest
+from housing_forecast.backtesting.manifest import make_manifest, manifest_path, read_manifest, write_manifest
 from housing_forecast.backtesting.runner import run_backtest, training_samples
 from housing_forecast.backtesting.splits import end_series, last_label_origin, make_splits
 from housing_forecast.config import load_config
 from housing_forecast.data.contract import check_alignment
 from housing_forecast.models.transformer import TransformerForecaster
 
+ORDERS = {
+    "region": "1 - Region rotation",
+    "history": "2 - Long-history first",
+    "random": "3 - Seeded random",
+}
+BASE_DIR = Path("results/market_scale")
+IGNORED_KEYS = {"created_utc", "market_order"}
+
+
+def default_out_dir(order: str) -> Path:
+    # The region-rotation run was the first one and keeps its original folder.
+    return BASE_DIR / "validation" if order == "region" else BASE_DIR / order / "validation"
+
+
+def same_settings(previous: dict | None, manifest: dict) -> bool:
+    """Same run settings and the same set of training markets (their order does not matter)."""
+    if previous is None:
+        return False
+    keys = (set(previous) | set(manifest)) - IGNORED_KEYS
+    for key in keys:
+        old, new = previous.get(key), manifest.get(key)
+        if key == "train_series":
+            old, new = sorted(old or []), sorted(new or [])
+        if old != new:
+            return False
+    return True
+
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("--order", choices=sorted(ORDERS), default="region")
     parser.add_argument("--config", default="configs/experiment_long.toml")
     parser.add_argument("--panel", default="data/interim/panel_quarterly.csv")
     parser.add_argument("--cpi", default="data/interim/taiwan_cpi_monthly.csv")
     parser.add_argument("--market-list", type=Path, default=MARKET_LIST_PATH)
-    parser.add_argument("--out-dir", type=Path, default=Path("results/market_scale/validation"))
+    parser.add_argument("--out-dir", type=Path, default=None,
+                        help="default: results/market_scale/validation for region, else results/market_scale/<order>/validation")
+    parser.add_argument("--reuse-from", type=Path, default=BASE_DIR / "validation",
+                        help="folder whose runs may be copied when the training markets are the same")
     args = parser.parse_args()
+    out_dir = args.out_dir or default_out_dir(args.order)
 
     cfg = load_config(args.config)
     cfg["target"]["eval_series"] = list(EVALUATION_MARKETS)
-    ranked = [*EVALUATION_MARKETS, *market_orders(pd.read_csv(args.market_list))["1 - Region rotation"]]
+    order = [str(m) for m in market_orders(pd.read_csv(args.market_list))[ORDERS[args.order]]]
+    ranked = [*EVALUATION_MARKETS, *order]
     samples = load_samples(cfg, args.panel, args.cpi)
     available = set(samples.meta.loc[samples.meta["geography_level"].eq("national"), "series_id"])
     missing = set(ranked) - available
@@ -37,7 +83,8 @@ def main() -> None:
     splits = make_splits(cfg, "validation", last_label_origin(samples, end_series(cfg)))
     if not splits:
         parser.error("no validation folds")
-    args.out_dir.mkdir(parents=True, exist_ok=True)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    print(f"Order: {ORDERS[args.order]} -> {out_dir}", flush=True)
 
     frames, expected, coverage = [], {}, []
     seeds = cfg["run"]["seeds"]
@@ -51,6 +98,7 @@ def main() -> None:
             train = training_samples(samples, split, pool)
             active = sorted(train.meta["series_id"].unique())
             coverage.append({
+                "market_order": ORDERS[args.order],
                 "pool_size": size,
                 "split_id": split.split_id,
                 "n_train_markets": len(active),
@@ -59,15 +107,23 @@ def main() -> None:
             })
 
         label = f"transformer__scale_{size}"
-        path = args.out_dir / f"preds_{label}.csv"
+        path = out_dir / f"preds_{label}.csv"
         manifest = make_manifest(
             cfg, experiment="market_scale", phase="validation", model=label, base_model="transformer",
             pool=f"scale_{size}", stochastic=True, seeds=seeds, panel_path=args.panel, cpi_path=args.cpi,
         )
         manifest["train_series"] = markets
+        manifest["market_order"] = ORDERS[args.order]
+
+        source = args.reuse_from / path.name
+        if not path.exists() and source.exists() and source.resolve() != path.resolve():
+            if same_settings(read_manifest(source), manifest):
+                shutil.copyfile(source, path)
+                shutil.copyfile(manifest_path(source), manifest_path(path))
+                print(f"Copied {source} (same settings and training markets)", flush=True)
+
         if path.exists():
-            previous = read_manifest(path)
-            if previous is None or any(previous.get(k) != v for k, v in manifest.items() if k != "created_utc"):
+            if not same_settings(read_manifest(path), manifest):
                 parser.error(f"{path} has different run settings. Use a new output directory.")
             preds = pd.read_csv(path)
             print(f"Reusing {path}", flush=True)
@@ -87,7 +143,7 @@ def main() -> None:
         expected[label] = seeds
 
     check_alignment(pd.concat(frames, ignore_index=True), expected_seeds=expected)
-    pd.DataFrame(coverage).to_csv(args.out_dir / "training_coverage.csv", index=False)
+    pd.DataFrame(coverage).to_csv(out_dir / "training_coverage.csv", index=False)
     print("All pools score the same forecast rows.", flush=True)
 
 

@@ -14,7 +14,7 @@ The repository contains the data preparation code, a common backtest for all mod
 
 ## Findings so far
 
-1. **Market coverage.** One shared Transformer produced forecasts for 41 national markets, with 38 included in the main comparison. Expanding the training pool helped at 3–6 quarters in the market order tested. The four market holdouts gave examples of forecasting without local training data.
+1. **Market coverage.** One shared Transformer produced forecasts for 41 national markets, with 38 included in the main comparison. The full training pool improved 3–6-quarter forecasts, while the intermediate results varied across three orders of adding markets. The four market holdouts gave examples of forecasting without local training data.
 2. **Accuracy against separate models.** The shared model had lower error than separate Transformers and, from 5 quarters ahead, separate AR models across all four block lengths checked. Pooled AR was much closer to the shared Transformer.
 3. **Forecast horizon.** The relative advantage over separate models grew at longer horizons, but absolute errors also grew. Against no-change, only the 1–3-quarter improvement held across all block lengths. Accuracy sufficient for buying, selling or construction decisions still needs to be established.
 
@@ -50,16 +50,22 @@ The shaded ranges mark 3–6 and 16–20 quarters. The shared Transformer's medi
 
 ### Training on more markets
 
-We trained on 5, 10, 20 and 41 markets, adding markets in a region-rotation order, and scored every run on the same five markets and dates.
+We trained on nested pools of 5, 10, 20 and 41 markets in three orders, always scoring the same five markets on the same dates. Ratios below 1 mean lower error than the five-market run. The 5- and 41-market pools are identical across orders, so those forecasts are reused.
 
-| Markets on the training list | 3–6 quarters | 16–20 quarters |
-|---|---:|---:|
-| 5 | Reference | Reference |
-| 10 | 0.922 [0.797, 0.978] | 0.925 [0.798, 1.080] |
-| 20 | 1.002 [0.862, 1.039] | 0.905 [0.679, 1.136] |
-| 41 | 0.912 [0.802, 0.972] | 0.818 [0.651, 0.982] |
+| Order of adding markets | Markets on the list | Markets used per fold | 3–6 quarters | 16–20 quarters |
+|---|---:|---:|---:|---:|
+| Common starting pool | 5 | 3–5 | Reference | Reference |
+| Region rotation | 10 | 7–10 | 0.922 [0.797, 0.978] | 0.925 [0.798, 1.080] |
+| Region rotation | 20 | 15–20 | 1.002 [0.862, 1.039] | 0.905 [0.679, 1.136] |
+| Long history first | 10 | 8–10 | 0.999 [0.761, 1.063] | 0.895 [0.670, 1.073] |
+| Long history first | 20 | 18–20 | 0.913 [0.858, 0.978] | 0.835 [0.619, 1.079] |
+| Fixed random order | 10 | 6–10 | 0.907 [0.801, 0.949] | 0.994 [0.877, 1.045] |
+| Fixed random order | 20 | 11–19 | 0.883 [0.834, 0.951] | 0.836 [0.696, 1.119] |
+| Common full pool | 41 | 24–38 | 0.912 [0.802, 0.972] | 0.818 [0.651, 0.982] |
 
-Depending on the fold, the four lists supplied training data from 3–5, 7–10, 15–20 and 24–38 markets. The 41-market run lowered error by about 9% at 3–6 quarters, and that interval stays below 1 at every block length. The 18% gain at 16–20 quarters is less certain: the interval includes 1 with 8- or 12-quarter blocks, and only three of the five markets improved. The middle runs were mixed, and we have tried only one order of adding markets. [Market selection](docs/market_selection.md) · [Results](results/market_scale/validation)
+The intermediate results depend on which markets are added. At 20 markets, the 3–6-quarter error was about even with the five-market run under region rotation, 9% lower with long histories first and 12% lower with the random order. More markets did not improve every step.
+
+The full pool lowered error by about 9% at 3–6 quarters and 18% at 16–20 quarters. The shorter-range interval stays below 1 at all block lengths checked. The longer-range interval includes 1 with 8- or 12-quarter blocks, and only three of the five markets improved in that range. [Market selection](docs/market_selection.md) · [Region rotation](results/market_scale/validation) · [Long history first](results/market_scale/history/validation) · [Random order](results/market_scale/random/validation)
 
 ### Forecasting a market left out of training
 
@@ -79,7 +85,7 @@ Leaving a market out usually changed RMSE by a few percent. Each held-out market
 - The results cover one validation period, which includes the 2008 crisis. The proposed test starts in 2015 and overlaps years examined in the earlier Taiwan pilot. [Taiwan pilot](docs/taiwan_pilot.md)
 - Most comparisons have 40 forecast dates, so a draw with 20-quarter blocks uses only two blocks. Claims that depend on the block length are marked above.
 - Taiwan remains a difficult case. Its shared-model errors are close to no-change in the ranges shown here.
-- The broader study still needs per-market ARIMA, shared pretraining followed by per-market fine-tuning, the other two market orders, and the final test. We also need to finish checking release lags and compare model counts and training time consistently.
+- The broader study still needs per-market ARIMA, shared pretraining followed by per-market fine-tuning, and the final test. We also need to finish checking release lags and compare model counts and training time consistently.
 
 ## Run locally
 
@@ -111,13 +117,17 @@ python scripts/block_length_check.py
 Training on more markets:
 
 ```bash
-OMP_NUM_THREADS=1 python scripts/run_market_scale.py
+OMP_NUM_THREADS=1 python scripts/run_market_scale.py --order region
+OMP_NUM_THREADS=1 python scripts/run_market_scale.py --order history
+OMP_NUM_THREADS=1 python scripts/run_market_scale.py --order random
 python scripts/evaluate_markets.py results/market_scale/validation/preds_*.csv \
     --reference transformer__scale_5 \
     --compare transformer__scale_10 transformer__scale_5 \
     --compare transformer__scale_20 transformer__scale_5 \
     --compare transformer__scale_41 transformer__scale_5
 ```
+
+Use the same evaluation command with `results/market_scale/history/validation/` or `results/market_scale/random/validation/` to score the other orders.
 
 Leaving a market out (`--market Australia`, `Chile`, `Taiwan_national` or `Portugal`). The Portugal comparison uses a single-thread rerun of the reference models, passed with `--reference-dir`.
 

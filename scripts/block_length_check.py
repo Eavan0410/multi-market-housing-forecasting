@@ -2,7 +2,7 @@
 
 Re-runs the paired ratio bootstrap from the saved prediction files with several block
 lengths (in forecast origins). Point estimates do not change; only the intervals do.
-No retraining. Covers the main shared-model comparisons, the training-pool runs (#9)
+No retraining. Covers the main shared-model comparisons, the training-pool runs (#9, all three market orders)
 and the leave-one-market-out runs (#10), each held-out model against the shared model,
 AR and no-change.
 
@@ -23,6 +23,8 @@ from housing_forecast.evaluation.markets import paired_ratio_bootstrap
 
 MAIN = "results/long_hpi/validation"
 SCALE = "results/market_scale/validation"
+SCALE_HISTORY = "results/market_scale/history/validation"
+SCALE_RANDOM = "results/market_scale/random/validation"
 HOLDOUT = "results/market_holdout"
 HOLDOUT_MARKETS = ("australia", "chile", "taiwan_national", "portugal")
 
@@ -33,8 +35,10 @@ def comparisons():
     for other in ("transformer_per_market__national", "ar__national", "ar_pooled__national",
                   "no_change__national"):
         yield "main", MAIN, shared, other
-    for size in (10, 20, 41):
-        yield "market_scale", SCALE, f"transformer__scale_{size}", "transformer__scale_5"
+    for order, folder in (("region", SCALE), ("history", SCALE_HISTORY), ("random", SCALE_RANDOM)):
+        sizes = (10, 20, 41) if order == "region" else (10, 20)   # 5 and 41 are shared by all orders
+        for size in sizes:
+            yield f"market_scale_{order}", folder, f"transformer__scale_{size}", "transformer__scale_5"
     for market in HOLDOUT_MARKETS:
         for other in (shared, "ar__national", "no_change__national"):
             yield f"holdout_{market}", f"{HOLDOUT}/{market}/validation", "transformer__holdout", other

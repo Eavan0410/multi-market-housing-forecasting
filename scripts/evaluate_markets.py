@@ -28,15 +28,26 @@ def plot_curve(summary: pd.DataFrame, reference: str, path: Path) -> bool:
         import matplotlib.pyplot as plt
     except ImportError:
         return False
-    fig, ax = plt.subplots(figsize=(8, 4.5))
+    labels = {
+        "transformer__national": "Shared Transformer",
+        "transformer_per_market__national": "Per-market Transformer (with fallback)",
+        "ar__national": "Per-market AR (with fallback)",
+        "arima__national": "Per-market ARIMA (with fallback)",
+        "ar_pooled__national": "Pooled AR",
+        "no_change__national": "No-change",
+    }
+    fig, ax = plt.subplots(figsize=(9, 5))
     for model, g in summary[summary["model"] != reference].groupby("model"):
-        ax.plot(g["horizon"], g["median_rel_rmse"], marker="o", ms=3, label=model)
+        g = g.sort_values("horizon")
+        ax.plot(g["horizon"], g["median_rel_rmse"], marker="o", ms=3,
+                label=labels.get(model, model))
     ax.axhline(1.0, color="grey", lw=1, ls="--")
     ax.axvspan(3, 6, color="tab:blue", alpha=0.06)
     ax.axvspan(16, 20, color="tab:orange", alpha=0.06)
-    ax.set_xlabel("horizon (quarters)")
-    ax.set_ylabel(f"median RMSE / {reference} RMSE")
-    ax.set_title("Error relative to the reference, across markets (below 1 = better)")
+    ax.set_xlabel("Forecast horizon (quarters)")
+    ax.set_ylabel(f"Median RMSE ratio to {labels.get(reference, reference).lower()}")
+    ax.set_title("Forecast error across markets (below 1 = better than the reference)")
+    ax.set_xticks([1, 3, 6, 10, 16, 20])
     ax.legend(fontsize=8)
     fig.tight_layout()
     fig.savefig(path, dpi=150)

@@ -1,10 +1,9 @@
 """Build the availability matrix, including five Taiwan indicators.
 
-Install dependencies: python3 -m pip install pandas openpyxl
+Install dependencies: python3 -m pip install pandas
 Run: python3 scripts/build_availability_matrix.py
 
-The only generated files are results/availability_matrix.csv and
-results/availability_matrix.xlsx. Rerunning replaces those two outputs.
+The only generated file is results/availability_matrix.csv. Rerunning replaces it.
 Original observations are never filled, interpolated or statistically scaled.
 Taiwan credit/GDP is explicitly derived from the quarter-end consumer-credit
 balance divided by the sum of four consecutive nominal GDP quarters, times 100.
@@ -42,7 +41,6 @@ from decimal import Decimal
 from pathlib import Path
 
 import pandas as pd
-from openpyxl.styles import Alignment, Font, PatternFill
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -539,22 +537,26 @@ def taiwan_metadata(variable, group):
     common = " Common availability uses five countries and measures period coverage, not definition equivalence."
     if variable == "hpi":
         return {
-            "unit": "Index points (2016Q1=100)", "real_nominal": "Unknown", "seasonal_adj": "Unknown",
+            "unit": "Index points (2016Q1=100)", "real_nominal": "Nominal", "seasonal_adj": "NSA",
             "transformation": "Level",
             "variable_definition": (
                 "Sinyi housing price index, Taiwan aggregate (台灣), not a city index or "
                 "an average of cities. All valid observations cross-checked against "
                 "taiwan_hpi_national_quarterly_raw.csv; the duplicate file is not counted twice. Publisher "
                 "identifies a hedonic index of residential transactions, excluding presales. "
-                "Inflation and seasonal adjustment are not documented in the CSVs; "
-                "equivalence to OECD real, seasonally adjusted HPI is not established. "
+                "Nominal: the index is built from transaction prices with no inflation adjustment, and "
+                "a central bank study uses a separately deflated 'real Sinyi index'; the pipeline deflates "
+                "it with Taiwan CPI. Not seasonally adjusted, unlike OECD AnaHPI; quarter-of-year growth "
+                "differences are not significant (F = 1.24, p = 0.3, 2001-2025), so no adjustment is applied. "
                 "No added history before 2001Q1 and no filled 2025Q4 value." + common
             ),
             "source": (
                 f"{source}; data/raw/taiwan/taiwan_hpi_national_quarterly_raw.csv (cross-check); "
                 "Sinyi Realty / NCCU Sinyi Real Estate Research and Development Center; "
                 f"publisher methodology and history: {TAIWAN_HPI_SOURCE}; "
-                f"matching 2025Q3 Taiwan and city values: {TAIWAN_HPI_EXAMPLE}"
+                f"matching 2025Q3 Taiwan and city values: {TAIWAN_HPI_EXAMPLE}; "
+                "real Sinyi index in CBC Quarterly vol. 37 no. 3: "
+                "https://www.cbc.gov.tw/public/Attachment/5111316213471.pdf"
             ),
         }
     if variable == "cpi_yoy":
@@ -793,7 +795,7 @@ def build_matrix(raw_dir):
 
 
 def export_matrix(matrix, output_dir):
-    """Step 6: write identical CSV/Excel data using one simply formatted sheet."""
+    """Step 6: write the matrix to CSV."""
     output_dir.mkdir(parents=True, exist_ok=True)
     csv_path = output_dir / "availability_matrix.csv"
     matrix.to_csv(csv_path, index=False, encoding="utf-8")
@@ -806,11 +808,10 @@ def main():
     parser.add_argument("--output-dir", type=Path, default=ROOT / "results")
     args = parser.parse_args()
     matrix = build_matrix(args.raw_dir)
-    paths = export_matrix(matrix, args.output_dir)
+    csv_path = export_matrix(matrix, args.output_dir)
     print(f"Created {len(matrix)} rows for five countries, with {len(matrix.columns)} columns.")
     print("Taiwan: HPI, monthly CPI YoY, GDP growth, interest rate and credit/GDP. Common coverage follows the supplied frequencies.")
-    for path in paths:
-        print(paths)
+    print(csv_path)
 
 
 if __name__ == "__main__":

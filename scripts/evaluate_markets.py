@@ -1,4 +1,9 @@
-"""Score multi-market forecasts and optionally bootstrap paired RMSE ratios."""
+"""Score multi-market forecasts, bootstrap paired ratios, or plot saved failure cases.
+
+To plot the failure cases from existing saved metrics without rerunning evaluation:
+    python scripts/evaluate_markets.py results/long_hpi/validation/metrics_by_market.csv \\
+        --plot-failure-cases
+"""
 
 from __future__ import annotations
 
@@ -39,9 +44,43 @@ def plot_curve(summary: pd.DataFrame, reference: str, path: Path) -> bool:
     return True
 
 
+def plot_failure_cases(metrics: pd.DataFrame, markets: list[str], path: Path,
+                       min_origins: int = 8) -> None:
+    """Use saved seed-averaged RMSE, dividing within each market and horizon."""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    fig, axes = plt.subplots(1, len(markets), figsize=(5 * len(markets), 4), squeeze=False)
+    for ax, market in zip(axes[0], markets):
+        rows = metrics[(metrics["series_id"] == market) & (metrics["n_origins"] >= min_origins)]
+        errors = rows.pivot(index="horizon", columns="model", values="rmse").sort_index()
+        for baseline, label in [("ar__national", "AR per market (with fallback)"),
+                                ("ar_pooled__national", "Pooled AR")]:
+            ratio = errors["transformer__national"] / errors[baseline].where(errors[baseline] > 0)
+            ax.plot(ratio.index, ratio, label=label)
+        ax.axhline(1.0, color="grey", lw=1, ls="--")
+        ax.axvspan(3, 6, color="tab:blue", alpha=0.06)
+        ax.axvspan(16, 20, color="tab:orange", alpha=0.06)
+        ax.set_title(market.replace("_national", ""))
+        ax.set_xlabel("Forecast horizon (quarters)")
+        ax.set_xticks([1, 3, 6, 10, 16, 20])
+        ax.grid(alpha=0.15)
+    axes[0, 0].set_ylabel("Transformer / baseline RMSE (>1 = worse)")
+    axes[0, 0].legend(fontsize=8)
+    fig.suptitle("Selected failure cases — saved validation errors, RMSE averaged over seeds")
+    fig.tight_layout()
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("preds", nargs="+")
+    ap.add_argument("preds", nargs="+", help="prediction CSVs, or one metrics CSV with --plot-failure-cases")
+    ap.add_argument("--plot-failure-cases", action="store_true",
+                    help="only plot saved metrics; do not recompute or overwrite result tables")
+    ap.add_argument("--markets", nargs="+", default=["Taiwan_national", "Germany", "Mexico"],
+                    help="markets for --plot-failure-cases")
     ap.add_argument("--config", default="configs/experiment_long.toml")
     ap.add_argument("--reference", default="no_change")
     ap.add_argument("--panel", default="data/interim/panel_quarterly.csv",
@@ -52,6 +91,15 @@ def main() -> None:
     ap.add_argument("--block-length", type=int, default=None,
                     help="bootstrap block length in origins (default: [bootstrap] block_length)")
     args = ap.parse_args()
+
+    if args.plot_failure_cases:
+        if len(args.preds) != 1:
+            ap.error("--plot-failure-cases requires one saved metrics_by_market.csv")
+        source = Path(args.preds[0])
+        path = source.parent / "failure_cases.png"
+        plot_failure_cases(pd.read_csv(source), args.markets, path, args.min_origins)
+        print(f"plot -> {path}")
+        return
 
     cfg = load_config(args.config)
     frames, manifests, expected = [], {}, {}

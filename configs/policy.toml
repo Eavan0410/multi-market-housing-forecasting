@@ -1,19 +1,19 @@
 # LLM policy index (nice to have). Local open-source models only, no external API.
 
 [model]
-# 7B instruct model, 4-bit AWQ: about 5–6 GB of weights, fits a 12 GB RTX 3060.
-# On the project GPU (80 GB) a larger model can be compared, e.g. Qwen/Qwen2.5-32B-Instruct-AWQ.
-name = "Qwen/Qwen2.5-7B-Instruct-AWQ"
+# 14B instruct model, 4-bit AWQ: about 9–10 GB of weights; run on the GCP L4 (24 GB) with a 16k context.
+# 32B AWQ does not fit the L4 at this context length.
+name = "Qwen/Qwen2.5-14B-Instruct-AWQ"
 backend = "vllm"                       # vllm | http | mock
 quantization = "awq"                   # "" for unquantized weights
 max_tokens = 256
-max_model_len = 4096
+max_model_len = 16384
 gpu_memory_utilization = 0.85
 http_base_url = "http://localhost:8000/v1"   # only for backend = "http" (`vllm serve` on the GPU machine)
 
 [extraction]
 batch_size = 32
-max_chars = 3000                       # longer announcements are cut; keep prompt + text under max_model_len
+max_chars = 12000                      # covers the longest announcement in the current sample
 
 [index]
 start = "2000Q1"
@@ -24,7 +24,7 @@ require_evidence = false               # true = drop documents whose evidence is
 
 [eval]
 window_days = 14                       # event matching window against the manual timeline
-spotcheck_n = 50
+spotcheck_n = 30
 
 [paths]
 announcements = "data/raw/policy/announcements.jsonl"

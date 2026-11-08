@@ -1,0 +1,16 @@
+{
+  "model": "/model/ModelScope/Qwen/Qwen2.5-14B-Instruct-GPTQ-Int4",
+  "backend": "vllm",
+  "n_docs": 25,
+  "n_parse_ok": 25,
+  "n_retried": 0,
+  "wall_seconds": 10.364407763000031,
+  "prompt_tokens": 48647,
+  "output_tokens": 2056,
+  "extra": {},
+  "docs_per_second": 2.412101161172727,
+  "output_tokens_per_second": 198.37119949484506,
+  "parse_rate": 1.0,
+  "model_load_seconds": 40.57551606599998,
+  "guided_decoding": true
+}

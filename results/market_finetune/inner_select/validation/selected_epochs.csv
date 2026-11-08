@@ -1,0 +1,23 @@
+series_id,market_fold_seeds,share_zero,median_epochs,mean_epochs
+Portugal,30,0.0,23.0,22.7
+Germany,50,0.0,25.5,24.06
+Spain,50,0.08,16.0,16.68
+Ireland,50,0.12,19.0,17.12
+United Kingdom,50,0.24,12.0,13.44
+Belgium,50,0.26,26.0,16.9
+Australia,50,0.3,10.0,11.72
+Italy,50,0.32,11.0,12.62
+Japan,50,0.34,7.0,13.02
+New Zealand,50,0.38,9.5,13.34
+Switzerland,50,0.42,3.5,8.24
+Finland,50,0.46,1.5,8.06
+Norway,50,0.46,1.5,10.82
+Canada,50,0.48,1.5,10.98
+United States,50,0.54,0.0,8.92
+Denmark,50,0.58,0.0,5.66
+Netherlands,50,0.62,0.0,9.24
+South Korea,40,0.675,0.0,6.85
+South Africa,50,0.68,0.0,7.08
+Colombia,30,0.7,0.0,7.333333333333333
+France,50,0.74,0.0,4.82
+Sweden,50,0.84,0.0,2.56

@@ -37,6 +37,7 @@ on all training rows for that many epochs.
 from __future__ import annotations
 
 import copy
+import time
 from typing import Callable
 
 import numpy as np
@@ -348,3 +349,217 @@ class TransformerPerMarket(Forecaster):
                 d["n_fallback_forecasts"] += int((~np.isnan(part.y[:, missing])).any(axis=1).sum())
             out[rows] = pred
         return out
+
+
+class SharedTransformerFineTune(Forecaster):
+    """Fit a shared model, then adapt independent copies on each market's past rows."""
+
+    name = "transformer_shared_ft"
+    stochastic = True
+    needs_scaling = True
+
+    def __init__(self, ft_epochs: int = 10, ft_lr_scale: float = 0.1, min_market_rows: int = 24,
+                 adapt_markets: list[str] | None = None, **kwargs):
+        if ft_epochs < 1 or ft_lr_scale <= 0 or min_market_rows < 1:
+            raise ValueError("Fine-tuning epochs, learning-rate scale and minimum rows must be positive.")
+        self.ft_epochs, self.ft_lr_scale = ft_epochs, ft_lr_scale
+        self.min_market_rows, self.adapt_markets = min_market_rows, adapt_markets
+        self.kwargs = kwargs
+
+    def fit(self, train: SampleSet, seed: int) -> None:
+        train = TransformerForecaster._labeled(train)
+        self.shared_ = TransformerForecaster(**self.kwargs)
+        started = time.perf_counter()
+        self.shared_.fit(train, seed)
+        self.models_, self.missing_, self.diag_ = {}, {}, {}
+        self.diag_["__shared__"] = {
+            "stage": "shared", "n_train_rows": len(train), "fit_status": "fitted",
+            "epochs": self.shared_.epochs_used_[-1], "fit_seconds": time.perf_counter() - started,
+            "n_forecasts": 0, "n_fallback_forecasts": 0, "fallback_horizons": "",
+        }
+        names = sorted(train.meta["series_id"].unique()) if self.adapt_markets is None else sorted(self.adapt_markets)
+        for sid in names:
+            own = train.subset(train.meta["series_id"].eq(sid).to_numpy())
+            self.diag_[sid] = {
+                "stage": "adaptation", "n_train_rows": len(own), "fit_status": "too_short",
+                "epochs": 0, "fit_seconds": 0.0, "n_forecasts": 0,
+                "n_fallback_forecasts": 0, "fallback_horizons": "",
+            }
+            if len(own) < self.min_market_rows:
+                continue
+            # Keep the pretrained input and output units during local adaptation.
+            local = copy.deepcopy(self.shared_)
+            torch.manual_seed(seed)
+            started = time.perf_counter()
+            local._train(local.net, local._tensors(own), self.ft_epochs,
+                         local.lr * self.ft_lr_scale, torch.Generator().manual_seed(seed))
+            self.models_[sid] = local
+            missing = np.isnan(own.y).all(axis=0)
+            self.missing_[sid] = missing
+            self.diag_[sid].update({
+                "fit_status": "fine_tuned", "epochs": self.ft_epochs,
+                "fit_seconds": time.perf_counter() - started,
+                "fallback_horizons": ",".join(str(h) for h, absent in zip(own.horizons, missing) if absent),
+            })
+
+    def predict_shared(self, test: SampleSet) -> np.ndarray:
+        return self.shared_.predict(test)
+
+    def predict(self, test: SampleSet) -> np.ndarray:
+        shared = self.predict_shared(test)
+        out = shared.copy()
+        self.diag_["__shared__"]["n_forecasts"] += len(test)
+        for sid in sorted(test.meta["series_id"].unique()):
+            rows = test.meta["series_id"].eq(sid).to_numpy()
+            n = int(rows.sum())
+            if sid not in self.diag_:
+                self.diag_[sid] = {
+                    "stage": "adaptation", "n_train_rows": 0, "fit_status": "no_adaptation",
+                    "epochs": 0, "fit_seconds": 0.0, "n_forecasts": 0,
+                    "n_fallback_forecasts": 0, "fallback_horizons": "",
+                }
+            self.diag_[sid]["n_forecasts"] += n
+            if sid not in self.models_:
+                self.diag_[sid]["n_fallback_forecasts"] += n
+                continue
+            local = self.models_[sid].predict(test.subset(rows))
+            missing = self.missing_[sid]
+            local[:, missing] = shared[rows][:, missing]
+            if missing.any():
+                self.diag_[sid]["n_fallback_forecasts"] += n
+            out[rows] = local
+        return out
+
+    def diagnostics(self) -> pd.DataFrame:
+        return pd.DataFrame([{"series_id": sid, **row} for sid, row in self.diag_.items()])
+
+
+class SharedTransformerFineTuneSelect(SharedTransformerFineTune):
+    """Shared pretraining plus local fine-tuning, with each market's epoch count chosen inside training.
+
+    Added after the fixed 10-epoch run had been seen. For every fold and seed:
+
+    1. Split the fold's training rows by forecast date with the same rule as the shared model's
+       early stopping: the last `val_quarters` origins form an inner validation set, and the inner
+       training set ends `max(gap_quarters, largest horizon)` quarters earlier, so none of its labels
+       reach the inner validation period. Inner validation labels were already masked to the fold's
+       cutoff by the runner.
+    2. Refit input scaling on the inner training rows, pretrain a shared model on them, then fine-tune
+       a copy on each market's inner training rows and record that market's inner validation loss
+       after 0, 1, ..., `ft_max_epochs` epochs. Zero epochs means keeping the shared model.
+    3. Pick the epoch count with the lowest loss (ties go to fewer epochs). Markets without enough
+       inner training rows or inner validation windows get zero.
+    4. Pretrain again on all of the fold's training rows and fine-tune each market for its chosen
+       number of epochs. Predict the validation period with that model.
+    """
+
+    name = "transformer_shared_ftsel"
+
+    def __init__(self, ft_max_epochs: int = 30, ft_lr_scale: float = 0.1, min_market_rows: int = 24,
+                 min_val_windows: int = 4, adapt_markets: list[str] | None = None, **kwargs):
+        if ft_max_epochs < 1 or ft_lr_scale <= 0 or min_market_rows < 1 or min_val_windows < 1:
+            raise ValueError("Maximum epochs, learning-rate scale and minimum rows must be positive.")
+        self.ft_max_epochs, self.ft_lr_scale = ft_max_epochs, ft_lr_scale
+        self.min_market_rows, self.min_val_windows = min_market_rows, min_val_windows
+        self.adapt_markets, self.kwargs = adapt_markets, kwargs
+
+    def _loss_curve(self, model: TransformerForecaster, own: SampleSet, val: SampleSet, seed: int) -> list[float]:
+        """Inner validation loss after 0..ft_max_epochs epochs of the same loop `_train` runs."""
+        net = copy.deepcopy(model.net)
+        X, y, m, mk = model._tensors(own)
+        vX, vy, vm, vmk = model._tensors(val)
+
+        def loss() -> float:
+            net.eval()
+            with torch.no_grad():
+                return masked_mse(net(vX, vmk), vy, vm).item()
+
+        params = [p for p in net.parameters() if p.requires_grad]
+        opt = torch.optim.AdamW(params, lr=model.lr * self.ft_lr_scale, weight_decay=model.weight_decay)
+        torch.manual_seed(seed)
+        gen = torch.Generator().manual_seed(seed)
+        curve = [loss()]
+        for _ in range(self.ft_max_epochs):
+            net.train()
+            perm = torch.randperm(len(X), generator=gen)
+            for i in range(0, len(X), model.batch_size):
+                idx = perm[i:i + model.batch_size]
+                batch_loss = masked_mse(net(X[idx], mk[idx]), y[idx], m[idx])
+                opt.zero_grad()
+                batch_loss.backward()
+                nn.utils.clip_grad_norm_(params, 1.0)
+                opt.step()
+            curve.append(loss())
+        return curve
+
+    def _select_epochs(self, train: SampleSet, names: list[str], seed: int) -> dict[str, dict]:
+        probe = TransformerForecaster(**self.kwargs)
+        split = probe._inner_split(train)
+        choice = {sid: {"selected_epochs": 0, "select_reason": "no_inner_split", "inner_train_rows": 0,
+                        "inner_val_windows": 0, "inner_loss_shared": np.nan, "inner_loss_best": np.nan}
+                  for sid in names}
+        if split is None:
+            return choice
+        inner_tr, inner_val = split
+        scaler = WindowStandardizer().fit(inner_tr.X)        # inner training rows only
+        inner_tr = inner_tr.replace(X=scaler.transform(inner_tr.X))
+        inner_val = inner_val.replace(X=scaler.transform(inner_val.X))
+        shared = TransformerForecaster(**self.kwargs)
+        shared.fit(inner_tr, seed)
+        tr_ids, val_ids = inner_tr.meta["series_id"].to_numpy(), inner_val.meta["series_id"].to_numpy()
+        for sid in names:
+            own = inner_tr.subset(tr_ids == sid)
+            val = inner_val.subset(val_ids == sid)
+            usable = ~np.isnan((val.y - shared.y_mean_) / shared.y_std_)
+            val = val.subset(usable.any(axis=1))
+            c = choice[sid]
+            c["inner_train_rows"], c["inner_val_windows"] = len(own), len(val)
+            if len(own) < self.min_market_rows:
+                c["select_reason"] = "inner_train_too_short"
+            elif len(val) < self.min_val_windows:
+                c["select_reason"] = "inner_validation_too_short"
+            else:
+                curve = self._loss_curve(shared, own, val, seed)
+                best = int(np.argmin(curve))                  # first minimum, so ties keep fewer epochs
+                c.update(selected_epochs=best, select_reason="selected",
+                         inner_loss_shared=curve[0], inner_loss_best=curve[best])
+        return choice
+
+    def fit(self, train: SampleSet, seed: int) -> None:
+        train = TransformerForecaster._labeled(train)
+        names = sorted(train.meta["series_id"].unique()) if self.adapt_markets is None else sorted(self.adapt_markets)
+        started = time.perf_counter()
+        choice = self._select_epochs(train, names, seed)
+        select_seconds = time.perf_counter() - started
+        started = time.perf_counter()
+        self.shared_ = TransformerForecaster(**self.kwargs)
+        self.shared_.fit(train, seed)
+        self.models_, self.missing_, self.diag_ = {}, {}, {}
+        self.diag_["__shared__"] = {
+            "stage": "shared", "n_train_rows": len(train), "fit_status": "fitted",
+            "epochs": self.shared_.epochs_used_[-1], "fit_seconds": time.perf_counter() - started,
+            "select_seconds": select_seconds, "n_forecasts": 0, "n_fallback_forecasts": 0, "fallback_horizons": "",
+        }
+        ids = train.meta["series_id"].to_numpy()
+        for sid in names:
+            own = train.subset(ids == sid)
+            epochs = choice[sid]["selected_epochs"]
+            d = {"stage": "adaptation", "n_train_rows": len(own), "fit_status": "kept_shared",
+                 "epochs": 0, "fit_seconds": 0.0, "n_forecasts": 0, "n_fallback_forecasts": 0,
+                 "fallback_horizons": "", **choice[sid]}
+            self.diag_[sid] = d
+            if epochs == 0:
+                continue
+            if len(own) < self.min_market_rows:
+                d["fit_status"] = "too_short"
+                continue
+            local = copy.deepcopy(self.shared_)
+            torch.manual_seed(seed)
+            started = time.perf_counter()
+            local._train(local.net, local._tensors(own), epochs, local.lr * self.ft_lr_scale,
+                         torch.Generator().manual_seed(seed))
+            self.models_[sid] = local
+            missing = np.isnan(own.y).all(axis=0)
+            self.missing_[sid] = missing
+            d.update(fit_status="fine_tuned", epochs=epochs, fit_seconds=time.perf_counter() - started,
+                     fallback_horizons=",".join(str(h) for h, absent in zip(own.horizons, missing) if absent))

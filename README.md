@@ -15,7 +15,7 @@ The repository contains the data preparation code, a common backtest for all mod
 ## Findings so far
 
 1. **Market coverage.** One shared Transformer produced forecasts for 41 national markets, with 38 included in the main comparison. The full training pool improved 3–6-quarter forecasts, while the intermediate results varied across three orders of adding markets. The four market holdouts gave examples of forecasting without local training data.
-2. **Accuracy against separate models.** The shared model had lower error than separate Transformers and, from 5 quarters ahead, separate AR models across all four block lengths checked. Pooled AR was much closer to the shared Transformer.
+2. **Accuracy against separate models.** The shared model had lower error than separate Transformers and, from 5 quarters ahead, separate AR models across all four block lengths checked. Pooled AR was much closer to the shared Transformer. Fine-tuning a copy for each market did not improve on the shared model overall, although Germany and Portugal benefited.
 3. **Forecast horizon.** The relative advantage over separate models grew at longer horizons, but absolute errors also grew. Against no-change, only the 1–3-quarter improvement held across all block lengths. Accuracy sufficient for buying, selling or construction decisions still needs to be established.
 
 ## Data and backtest
@@ -41,6 +41,33 @@ The repository contains the data preparation code, a common backtest for all mod
 - **Per-market AR:** the interval is below 1 from 5 quarters on at every block length.
 - **Pooled AR:** its errors are close to the shared Transformer's, and the intervals include 1 in both ranges.
 - **No-change:** at 3–6 quarters the interval includes 1 with 8- or 12-quarter blocks.
+
+### Shared pretraining and local fine-tuning
+
+We adapted a copy of the shared model to each market's own training history. Each fold starts from one shared model trained on the available markets, including each target market's past data. The holdout experiment below instead excludes the target market from training. Each market's copy keeps the shared scaling and uses a learning rate of 0.0001. Markets with fewer than 24 training rows keep the shared forecast. We tried two settings:
+
+- **Fixed:** every eligible market is fine-tuned for 10 epochs.
+- **Chosen inside training:** added after we had seen the fixed results. Within each fold, the training data are split by date: the shared model is pretrained and rescaled on the earlier part, and each market's epoch count, from 0 (keep the shared model) to 30, is chosen on the later part. The model is then refitted on the full fold with the chosen counts. Markets without enough rows in the earlier part keep the shared model.
+
+Ratios compare fine-tuning with the exact shared model it started from; both settings start from identical shared forecasts. Below 1 favors fine-tuning. The two rows use different market samples, so they should not be compared with each other.
+
+| Setting | Markets compared | 3–6 quarters | 16–20 quarters |
+|---|---:|---:|---:|
+| Fixed 10 epochs (folds where all seeds were fine-tuned) | 24 | 1.022 [0.985, 1.038] | 1.038 [0.994, 1.082] |
+| Chosen inside training (folds where a choice was made) | 22 | 1.020 [1.000, 1.037] | 1.032 [0.995, 1.046] |
+
+**Neither fine-tuning setting showed an overall improvement, but some markets benefited.** Among the markets and folds included in the table, median error was about 2–4% higher than with the shared model. Most intervals include 1; the exception is the chosen setting at 3–6 quarters with 4-quarter blocks, where the interval lies just above 1. When a choice was possible, the training data favored keeping the shared model 42% of the time. Most short-history markets, including Taiwan, did not have enough data for fine-tuning under these rules, so we could not assess its benefit there. Both settings still beat the separate Transformers trained from scratch; for the fixed setting the ratios were 0.896 [0.779, 0.938] and 0.843 [0.831, 0.897].
+
+Germany and Portugal, two of the shared model's weakest markets, improved in both settings. The chosen setting fine-tuned them in every fold and seed where a choice was possible. Over all of each market's forecasts:
+
+| Market | Setting | 3–6 quarters | 16–20 quarters |
+|---|---|---:|---:|
+| Germany | Fixed | 0.735 [0.654, 0.788] | 0.649 [0.622, 0.672] |
+| Germany | Chosen | 0.690 [0.621, 0.733] | 0.540 [0.519, 0.570] |
+| Portugal | Fixed | 0.884 [0.794, 0.921] | 0.852 [0.819, 0.889] |
+| Portugal | Chosen | 0.894 [0.835, 0.958] | 0.826 [0.757, 0.925] |
+
+All eight intervals stay below 1 with 4-, 8-, 12- and 20-quarter blocks. Fine-tuning narrows these markets' gap rather than closing it: after the chosen fine-tuning, Germany's 16–20-quarter error is still about 11% above per-market AR (1.108 [1.041, 1.170]) and both markets remain above no-change in that range. We picked these two markets as examples after seeing the fixed results, so they show where local adaptation can help rather than a tested selection rule. Other markets lost accuracy, for example Switzerland (1.41 fixed, 1.15 chosen at 16–20 quarters). [Fixed setting](results/market_finetune/validation) · [Chosen setting](results/market_finetune/inner_select/validation) · [Germany and Portugal intervals](results/market_finetune/case_markets_ci.csv)
 
 ### Accuracy by horizon
 
@@ -75,17 +102,17 @@ We left out Australia, Chile, Taiwan and Portugal one at a time. At forecast tim
 |---|---:|---:|---:|---|
 | [Australia](results/market_holdout/australia/validation) | 40 | 1.008 [0.988, 1.040] | 1.013 [0.980, 1.051] | Intervals against both include 1 in these ranges |
 | [Chile](results/market_holdout/chile/validation) | 24 | 1.021 [0.986, 1.051] | 0.901 [0.870, 0.951] | Better than both at 16–20 q; worse than AR at 3–6 q |
-| [Taiwan](results/market_holdout/taiwan_national/validation) | 28 | 1.011 [1.005, 1.024] | 0.990 [0.979, 1.007] | About even with no-change; error about 24% above AR at 16–20 q |
+| [Taiwan](results/market_holdout/taiwan_national/validation) | 28 | 1.011 [1.005, 1.024] | 0.990 [0.979, 1.007] | About even with no-change; error about 24% above AR at 16–20 q, but this gap depends on block length |
 | [Portugal](results/market_holdout/portugal/validation) | 40 | 0.956 [0.919, 0.978] | 1.009 [0.991, 1.030] | Worse than both at 16–20 q |
 
-Leaving a market out usually changed RMSE by a few percent. Each held-out market supplied at most about 5% of the original training rows. The held-out model beat simple baselines in Chile at long horizons, while it over-predicted Portugal's five-year growth whether or not Portugal was in training. Chile's 10% gain at 16–20 quarters and Taiwan's gap to AR are not robust: their intervals include 1 with 8- or 12-quarter blocks. The last column highlights comparisons that hold across the four block lengths checked. Portugal uses a matched single-thread reference run, while the other markets use the original shared run. Run-to-run differences of a few percent mean small gaps between the Transformers need care.
+Leaving a market out usually changed RMSE by a few percent. Each held-out market supplied at most about 5% of the original training rows. The held-out model beat simple baselines in Chile at long horizons, while it over-predicted Portugal's five-year growth whether or not Portugal was in training. Chile's 10% gain at 16–20 quarters and Taiwan's gap to AR are not robust: their intervals include 1 with 8- or 12-quarter blocks. Except for Taiwan's noted gap to AR, the last column highlights comparisons that hold across the four block lengths checked. Portugal uses a matched single-thread reference run, while the other markets use the original shared run. Run-to-run differences of a few percent mean small gaps between the Transformers need care.
 
 ## Limits and remaining work
 
 - The results cover one validation period, which includes the 2008 crisis. The proposed test starts in 2015 and overlaps years examined in the earlier Taiwan pilot. [Taiwan pilot](docs/taiwan_pilot.md)
 - Most comparisons have 40 forecast dates, so a draw with 20-quarter blocks uses only two blocks. Claims that depend on the block length are marked above.
 - Taiwan remains a difficult case. Its shared-model errors are close to no-change in the ranges shown here.
-- The broader study still needs per-market ARIMA, shared pretraining followed by per-market fine-tuning, and the final test. We also need to finish checking release lags and compare model counts and training time consistently.
+- The broader study still needs per-market ARIMA and the final test. We also need to finish checking release lags and compare model counts and training time consistently.
 
 ## Run locally
 
@@ -112,6 +139,21 @@ python scripts/evaluate_markets.py results/long_hpi/validation/preds_*.csv --con
     --compare transformer__national no_change__national
 python scripts/fitted_only_check.py
 python scripts/block_length_check.py
+```
+
+Shared pretraining and local fine-tuning (the output directory must be new):
+
+```bash
+OMP_NUM_THREADS=1 python scripts/run_market_finetune.py
+python scripts/evaluate_markets.py results/market_finetune/validation/preds_*.csv \
+    results/long_hpi/validation/preds_transformer_per_market__national.csv \
+    --reference transformer_shared__national \
+    --compare transformer_shared_ft__national transformer_shared__national \
+    --compare transformer_shared_ft__national transformer_per_market__national
+python scripts/check_market_finetune.py
+# Epochs chosen inside training (second setting)
+OMP_NUM_THREADS=1 python scripts/run_market_finetune.py --select-epochs
+python scripts/check_market_finetune.py --select
 ```
 
 Training on more markets:

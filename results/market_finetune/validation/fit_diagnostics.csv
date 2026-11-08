@@ -1,0 +1,1586 @@
+series_id,stage,n_train_rows,fit_status,epochs,fit_seconds,n_forecasts,n_fallback_forecasts,fallback_horizons,model,split_id,seed
+__shared__,shared,2263,fitted,17,5.475129749975167,96,0,,transformer_shared_ft__national,val_2000Q1,0
+Australia,adaptation,109,fine_tuned,10,0.0955617920262739,4,0,,transformer_shared_ft__national,val_2000Q1,0
+Belgium,adaptation,109,fine_tuned,10,0.06969537504483014,4,0,,transformer_shared_ft__national,val_2000Q1,0
+Canada,adaptation,109,fine_tuned,10,0.058794583077542484,4,0,,transformer_shared_ft__national,val_2000Q1,0
+Colombia,adaptation,37,fine_tuned,10,0.02504054200835526,4,0,,transformer_shared_ft__national,val_2000Q1,0
+Denmark,adaptation,109,fine_tuned,10,0.058394707972183824,4,0,,transformer_shared_ft__national,val_2000Q1,0
+Finland,adaptation,109,fine_tuned,10,0.05609337496571243,4,0,,transformer_shared_ft__national,val_2000Q1,0
+France,adaptation,109,fine_tuned,10,0.0557000000262633,4,0,,transformer_shared_ft__national,val_2000Q1,0
+Germany,adaptation,109,fine_tuned,10,0.055981499957852066,4,0,,transformer_shared_ft__national,val_2000Q1,0
+Greece,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2000Q1,0
+Ireland,adaptation,109,fine_tuned,10,0.05654300004243851,4,0,,transformer_shared_ft__national,val_2000Q1,0
+Israel,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2000Q1,0
+Italy,adaptation,109,fine_tuned,10,0.057411457994021475,4,0,,transformer_shared_ft__national,val_2000Q1,0
+Japan,adaptation,149,fine_tuned,10,0.08091420901473612,4,0,,transformer_shared_ft__national,val_2000Q1,0
+Netherlands,adaptation,109,fine_tuned,10,0.05614520807284862,4,0,,transformer_shared_ft__national,val_2000Q1,0
+New Zealand,adaptation,109,fine_tuned,10,0.05666833301074803,4,0,,transformer_shared_ft__national,val_2000Q1,0
+Norway,adaptation,109,fine_tuned,10,0.05910191696602851,4,0,,transformer_shared_ft__national,val_2000Q1,0
+Portugal,adaptation,37,fine_tuned,10,0.024188084062188864,4,0,,transformer_shared_ft__national,val_2000Q1,0
+South Africa,adaptation,125,fine_tuned,10,0.06095512502361089,4,0,,transformer_shared_ft__national,val_2000Q1,0
+South Korea,adaptation,45,fine_tuned,10,0.027633249992504716,4,0,,transformer_shared_ft__national,val_2000Q1,0
+Spain,adaptation,105,fine_tuned,10,0.05722408392466605,4,0,,transformer_shared_ft__national,val_2000Q1,0
+Sweden,adaptation,109,fine_tuned,10,0.055908416979946196,4,0,,transformer_shared_ft__national,val_2000Q1,0
+Switzerland,adaptation,109,fine_tuned,10,0.05561625002883375,4,0,,transformer_shared_ft__national,val_2000Q1,0
+United Kingdom,adaptation,116,fine_tuned,10,0.05704091698862612,4,0,,transformer_shared_ft__national,val_2000Q1,0
+United States,adaptation,109,fine_tuned,10,0.055706750019453466,4,0,,transformer_shared_ft__national,val_2000Q1,0
+__shared__,shared,2263,fitted,12,3.7949841250665486,96,0,,transformer_shared_ft__national,val_2000Q1,1
+Australia,adaptation,109,fine_tuned,10,0.05525724997278303,4,0,,transformer_shared_ft__national,val_2000Q1,1
+Belgium,adaptation,109,fine_tuned,10,0.055409958004020154,4,0,,transformer_shared_ft__national,val_2000Q1,1
+Canada,adaptation,109,fine_tuned,10,0.055888083996251225,4,0,,transformer_shared_ft__national,val_2000Q1,1
+Colombia,adaptation,37,fine_tuned,10,0.02322016702964902,4,0,,transformer_shared_ft__national,val_2000Q1,1
+Denmark,adaptation,109,fine_tuned,10,0.056901250034570694,4,0,,transformer_shared_ft__national,val_2000Q1,1
+Finland,adaptation,109,fine_tuned,10,0.05665283394046128,4,0,,transformer_shared_ft__national,val_2000Q1,1
+France,adaptation,109,fine_tuned,10,0.056806292035616934,4,0,,transformer_shared_ft__national,val_2000Q1,1
+Germany,adaptation,109,fine_tuned,10,0.05647304095327854,4,0,,transformer_shared_ft__national,val_2000Q1,1
+Greece,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2000Q1,1
+Ireland,adaptation,109,fine_tuned,10,0.05729329201858491,4,0,,transformer_shared_ft__national,val_2000Q1,1
+Israel,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2000Q1,1
+Italy,adaptation,109,fine_tuned,10,0.05423324997536838,4,0,,transformer_shared_ft__national,val_2000Q1,1
+Japan,adaptation,149,fine_tuned,10,0.07927429210394621,4,0,,transformer_shared_ft__national,val_2000Q1,1
+Netherlands,adaptation,109,fine_tuned,10,0.05557266599498689,4,0,,transformer_shared_ft__national,val_2000Q1,1
+New Zealand,adaptation,109,fine_tuned,10,0.05575895798392594,4,0,,transformer_shared_ft__national,val_2000Q1,1
+Norway,adaptation,109,fine_tuned,10,0.05581566703040153,4,0,,transformer_shared_ft__national,val_2000Q1,1
+Portugal,adaptation,37,fine_tuned,10,0.024015208007767797,4,0,,transformer_shared_ft__national,val_2000Q1,1
+South Africa,adaptation,125,fine_tuned,10,0.061365957953967154,4,0,,transformer_shared_ft__national,val_2000Q1,1
+South Korea,adaptation,45,fine_tuned,10,0.024942458025179803,4,0,,transformer_shared_ft__national,val_2000Q1,1
+Spain,adaptation,105,fine_tuned,10,0.0542001670692116,4,0,,transformer_shared_ft__national,val_2000Q1,1
+Sweden,adaptation,109,fine_tuned,10,0.05618487496394664,4,0,,transformer_shared_ft__national,val_2000Q1,1
+Switzerland,adaptation,109,fine_tuned,10,0.05613541603088379,4,0,,transformer_shared_ft__national,val_2000Q1,1
+United Kingdom,adaptation,116,fine_tuned,10,0.058200999977998435,4,0,,transformer_shared_ft__national,val_2000Q1,1
+United States,adaptation,109,fine_tuned,10,0.05525058298371732,4,0,,transformer_shared_ft__national,val_2000Q1,1
+__shared__,shared,2263,fitted,27,6.273243332980201,96,0,,transformer_shared_ft__national,val_2000Q1,2
+Australia,adaptation,109,fine_tuned,10,0.050819957978092134,4,0,,transformer_shared_ft__national,val_2000Q1,2
+Belgium,adaptation,109,fine_tuned,10,0.05281295895110816,4,0,,transformer_shared_ft__national,val_2000Q1,2
+Canada,adaptation,109,fine_tuned,10,0.05082937504630536,4,0,,transformer_shared_ft__national,val_2000Q1,2
+Colombia,adaptation,37,fine_tuned,10,0.021668749977834523,4,0,,transformer_shared_ft__national,val_2000Q1,2
+Denmark,adaptation,109,fine_tuned,10,0.05259387497790158,4,0,,transformer_shared_ft__national,val_2000Q1,2
+Finland,adaptation,109,fine_tuned,10,0.05103837500791997,4,0,,transformer_shared_ft__national,val_2000Q1,2
+France,adaptation,109,fine_tuned,10,0.05147016700357199,4,0,,transformer_shared_ft__national,val_2000Q1,2
+Germany,adaptation,109,fine_tuned,10,0.05106287496164441,4,0,,transformer_shared_ft__national,val_2000Q1,2
+Greece,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2000Q1,2
+Ireland,adaptation,109,fine_tuned,10,0.052312042098492384,4,0,,transformer_shared_ft__national,val_2000Q1,2
+Israel,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2000Q1,2
+Italy,adaptation,109,fine_tuned,10,0.05278499994892627,4,0,,transformer_shared_ft__national,val_2000Q1,2
+Japan,adaptation,149,fine_tuned,10,0.07755779195576906,4,0,,transformer_shared_ft__national,val_2000Q1,2
+Netherlands,adaptation,109,fine_tuned,10,0.05448129202704877,4,0,,transformer_shared_ft__national,val_2000Q1,2
+New Zealand,adaptation,109,fine_tuned,10,0.05526291695423424,4,0,,transformer_shared_ft__national,val_2000Q1,2
+Norway,adaptation,109,fine_tuned,10,0.05761754198465496,4,0,,transformer_shared_ft__national,val_2000Q1,2
+Portugal,adaptation,37,fine_tuned,10,0.024768291972577572,4,0,,transformer_shared_ft__national,val_2000Q1,2
+South Africa,adaptation,125,fine_tuned,10,0.06342424999456853,4,0,,transformer_shared_ft__national,val_2000Q1,2
+South Korea,adaptation,45,fine_tuned,10,0.02709116693586111,4,0,,transformer_shared_ft__national,val_2000Q1,2
+Spain,adaptation,105,fine_tuned,10,0.054657166940160096,4,0,,transformer_shared_ft__national,val_2000Q1,2
+Sweden,adaptation,109,fine_tuned,10,0.055196582921780646,4,0,,transformer_shared_ft__national,val_2000Q1,2
+Switzerland,adaptation,109,fine_tuned,10,0.05977637507021427,4,0,,transformer_shared_ft__national,val_2000Q1,2
+United Kingdom,adaptation,116,fine_tuned,10,0.058917458984069526,4,0,,transformer_shared_ft__national,val_2000Q1,2
+United States,adaptation,109,fine_tuned,10,0.054794040974229574,4,0,,transformer_shared_ft__national,val_2000Q1,2
+__shared__,shared,2263,fitted,9,3.3170626249630004,96,0,,transformer_shared_ft__national,val_2000Q1,3
+Australia,adaptation,109,fine_tuned,10,0.05153208295814693,4,0,,transformer_shared_ft__national,val_2000Q1,3
+Belgium,adaptation,109,fine_tuned,10,0.05660583300050348,4,0,,transformer_shared_ft__national,val_2000Q1,3
+Canada,adaptation,109,fine_tuned,10,0.055105958017520607,4,0,,transformer_shared_ft__national,val_2000Q1,3
+Colombia,adaptation,37,fine_tuned,10,0.022930625011213124,4,0,,transformer_shared_ft__national,val_2000Q1,3
+Denmark,adaptation,109,fine_tuned,10,0.05806179193314165,4,0,,transformer_shared_ft__national,val_2000Q1,3
+Finland,adaptation,109,fine_tuned,10,0.05585274996701628,4,0,,transformer_shared_ft__national,val_2000Q1,3
+France,adaptation,109,fine_tuned,10,0.055748083046637475,4,0,,transformer_shared_ft__national,val_2000Q1,3
+Germany,adaptation,109,fine_tuned,10,0.05589262489229441,4,0,,transformer_shared_ft__national,val_2000Q1,3
+Greece,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2000Q1,3
+Ireland,adaptation,109,fine_tuned,10,0.05652145796921104,4,0,,transformer_shared_ft__national,val_2000Q1,3
+Israel,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2000Q1,3
+Italy,adaptation,109,fine_tuned,10,0.05647987499833107,4,0,,transformer_shared_ft__national,val_2000Q1,3
+Japan,adaptation,149,fine_tuned,10,0.08164049999322742,4,0,,transformer_shared_ft__national,val_2000Q1,3
+Netherlands,adaptation,109,fine_tuned,10,0.05634870904032141,4,0,,transformer_shared_ft__national,val_2000Q1,3
+New Zealand,adaptation,109,fine_tuned,10,0.05773562495596707,4,0,,transformer_shared_ft__national,val_2000Q1,3
+Norway,adaptation,109,fine_tuned,10,0.05784274998586625,4,0,,transformer_shared_ft__national,val_2000Q1,3
+Portugal,adaptation,37,fine_tuned,10,0.02363966591656208,4,0,,transformer_shared_ft__national,val_2000Q1,3
+South Africa,adaptation,125,fine_tuned,10,0.05910658300854266,4,0,,transformer_shared_ft__national,val_2000Q1,3
+South Korea,adaptation,45,fine_tuned,10,0.02434445801191032,4,0,,transformer_shared_ft__national,val_2000Q1,3
+Spain,adaptation,105,fine_tuned,10,0.052558708004653454,4,0,,transformer_shared_ft__national,val_2000Q1,3
+Sweden,adaptation,109,fine_tuned,10,0.053800957975909114,4,0,,transformer_shared_ft__national,val_2000Q1,3
+Switzerland,adaptation,109,fine_tuned,10,0.05630191590171307,4,0,,transformer_shared_ft__national,val_2000Q1,3
+United Kingdom,adaptation,116,fine_tuned,10,0.05566195794381201,4,0,,transformer_shared_ft__national,val_2000Q1,3
+United States,adaptation,109,fine_tuned,10,0.05479416705202311,4,0,,transformer_shared_ft__national,val_2000Q1,3
+__shared__,shared,2263,fitted,14,4.140778666944243,96,0,,transformer_shared_ft__national,val_2000Q1,4
+Australia,adaptation,109,fine_tuned,10,0.05376520799472928,4,0,,transformer_shared_ft__national,val_2000Q1,4
+Belgium,adaptation,109,fine_tuned,10,0.054392000078223646,4,0,,transformer_shared_ft__national,val_2000Q1,4
+Canada,adaptation,109,fine_tuned,10,0.05476041592191905,4,0,,transformer_shared_ft__national,val_2000Q1,4
+Colombia,adaptation,37,fine_tuned,10,0.02416720800101757,4,0,,transformer_shared_ft__national,val_2000Q1,4
+Denmark,adaptation,109,fine_tuned,10,0.05682404199615121,4,0,,transformer_shared_ft__national,val_2000Q1,4
+Finland,adaptation,109,fine_tuned,10,0.05343833297956735,4,0,,transformer_shared_ft__national,val_2000Q1,4
+France,adaptation,109,fine_tuned,10,0.05383895896375179,4,0,,transformer_shared_ft__national,val_2000Q1,4
+Germany,adaptation,109,fine_tuned,10,0.05154091597069055,4,0,,transformer_shared_ft__national,val_2000Q1,4
+Greece,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2000Q1,4
+Ireland,adaptation,109,fine_tuned,10,0.05188754200935364,4,0,,transformer_shared_ft__national,val_2000Q1,4
+Israel,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2000Q1,4
+Italy,adaptation,109,fine_tuned,10,0.052737916936166584,4,0,,transformer_shared_ft__national,val_2000Q1,4
+Japan,adaptation,149,fine_tuned,10,0.07597466709557921,4,0,,transformer_shared_ft__national,val_2000Q1,4
+Netherlands,adaptation,109,fine_tuned,10,0.05260475003160536,4,0,,transformer_shared_ft__national,val_2000Q1,4
+New Zealand,adaptation,109,fine_tuned,10,0.051404958008788526,4,0,,transformer_shared_ft__national,val_2000Q1,4
+Norway,adaptation,109,fine_tuned,10,0.05211983306799084,4,0,,transformer_shared_ft__national,val_2000Q1,4
+Portugal,adaptation,37,fine_tuned,10,0.022418958018533885,4,0,,transformer_shared_ft__national,val_2000Q1,4
+South Africa,adaptation,125,fine_tuned,10,0.05602533393539488,4,0,,transformer_shared_ft__national,val_2000Q1,4
+South Korea,adaptation,45,fine_tuned,10,0.024153040954843163,4,0,,transformer_shared_ft__national,val_2000Q1,4
+Spain,adaptation,105,fine_tuned,10,0.05103624996263534,4,0,,transformer_shared_ft__national,val_2000Q1,4
+Sweden,adaptation,109,fine_tuned,10,0.05210954195354134,4,0,,transformer_shared_ft__national,val_2000Q1,4
+Switzerland,adaptation,109,fine_tuned,10,0.052350415964610875,4,0,,transformer_shared_ft__national,val_2000Q1,4
+United Kingdom,adaptation,116,fine_tuned,10,0.055527874967083335,4,0,,transformer_shared_ft__national,val_2000Q1,4
+United States,adaptation,109,fine_tuned,10,0.05549204093404114,4,0,,transformer_shared_ft__national,val_2000Q1,4
+__shared__,shared,2359,fitted,22,5.722542625037022,96,0,,transformer_shared_ft__national,val_2001Q1,0
+Australia,adaptation,113,fine_tuned,10,0.05650695797521621,4,0,,transformer_shared_ft__national,val_2001Q1,0
+Belgium,adaptation,113,fine_tuned,10,0.05719295796006918,4,0,,transformer_shared_ft__national,val_2001Q1,0
+Canada,adaptation,113,fine_tuned,10,0.05807737505529076,4,0,,transformer_shared_ft__national,val_2001Q1,0
+Colombia,adaptation,41,fine_tuned,10,0.02786074997857213,4,0,,transformer_shared_ft__national,val_2001Q1,0
+Denmark,adaptation,113,fine_tuned,10,0.05707458301912993,4,0,,transformer_shared_ft__national,val_2001Q1,0
+Finland,adaptation,113,fine_tuned,10,0.05706320807803422,4,0,,transformer_shared_ft__national,val_2001Q1,0
+France,adaptation,113,fine_tuned,10,0.055971499998122454,4,0,,transformer_shared_ft__national,val_2001Q1,0
+Germany,adaptation,113,fine_tuned,10,0.05646770796738565,4,0,,transformer_shared_ft__national,val_2001Q1,0
+Greece,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2001Q1,0
+Ireland,adaptation,113,fine_tuned,10,0.06095991691108793,4,0,,transformer_shared_ft__national,val_2001Q1,0
+Israel,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2001Q1,0
+Italy,adaptation,113,fine_tuned,10,0.05730250000488013,4,0,,transformer_shared_ft__national,val_2001Q1,0
+Japan,adaptation,153,fine_tuned,10,0.08145466702990234,4,0,,transformer_shared_ft__national,val_2001Q1,0
+Netherlands,adaptation,113,fine_tuned,10,0.06109695800114423,4,0,,transformer_shared_ft__national,val_2001Q1,0
+New Zealand,adaptation,113,fine_tuned,10,0.0584670000243932,4,0,,transformer_shared_ft__national,val_2001Q1,0
+Norway,adaptation,113,fine_tuned,10,0.05614570796024054,4,0,,transformer_shared_ft__national,val_2001Q1,0
+Portugal,adaptation,41,fine_tuned,10,0.024232583004049957,4,0,,transformer_shared_ft__national,val_2001Q1,0
+South Africa,adaptation,129,fine_tuned,10,0.07384087494574487,4,0,,transformer_shared_ft__national,val_2001Q1,0
+South Korea,adaptation,49,fine_tuned,10,0.02569754095748067,4,0,,transformer_shared_ft__national,val_2001Q1,0
+Spain,adaptation,109,fine_tuned,10,0.05262674996629357,4,0,,transformer_shared_ft__national,val_2001Q1,0
+Sweden,adaptation,113,fine_tuned,10,0.05455225007608533,4,0,,transformer_shared_ft__national,val_2001Q1,0
+Switzerland,adaptation,113,fine_tuned,10,0.05279104190412909,4,0,,transformer_shared_ft__national,val_2001Q1,0
+United Kingdom,adaptation,120,fine_tuned,10,0.056631249957717955,4,0,,transformer_shared_ft__national,val_2001Q1,0
+United States,adaptation,113,fine_tuned,10,0.05679704202339053,4,0,,transformer_shared_ft__national,val_2001Q1,0
+__shared__,shared,2359,fitted,15,4.463992916978896,96,0,,transformer_shared_ft__national,val_2001Q1,1
+Australia,adaptation,113,fine_tuned,10,0.05601916601881385,4,0,,transformer_shared_ft__national,val_2001Q1,1
+Belgium,adaptation,113,fine_tuned,10,0.054490334005095065,4,0,,transformer_shared_ft__national,val_2001Q1,1
+Canada,adaptation,113,fine_tuned,10,0.05413433304056525,4,0,,transformer_shared_ft__national,val_2001Q1,1
+Colombia,adaptation,41,fine_tuned,10,0.024403125047683716,4,0,,transformer_shared_ft__national,val_2001Q1,1
+Denmark,adaptation,113,fine_tuned,10,0.05558520799968392,4,0,,transformer_shared_ft__national,val_2001Q1,1
+Finland,adaptation,113,fine_tuned,10,0.054438124992884696,4,0,,transformer_shared_ft__national,val_2001Q1,1
+France,adaptation,113,fine_tuned,10,0.05412024992983788,4,0,,transformer_shared_ft__national,val_2001Q1,1
+Germany,adaptation,113,fine_tuned,10,0.053786750067956746,4,0,,transformer_shared_ft__national,val_2001Q1,1
+Greece,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2001Q1,1
+Ireland,adaptation,113,fine_tuned,10,0.054121666005812585,4,0,,transformer_shared_ft__national,val_2001Q1,1
+Israel,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2001Q1,1
+Italy,adaptation,113,fine_tuned,10,0.054248749976977706,4,0,,transformer_shared_ft__national,val_2001Q1,1
+Japan,adaptation,153,fine_tuned,10,0.08078620804008096,4,0,,transformer_shared_ft__national,val_2001Q1,1
+Netherlands,adaptation,113,fine_tuned,10,0.05572170903906226,4,0,,transformer_shared_ft__national,val_2001Q1,1
+New Zealand,adaptation,113,fine_tuned,10,0.054668208002112806,4,0,,transformer_shared_ft__national,val_2001Q1,1
+Norway,adaptation,113,fine_tuned,10,0.054117833031341434,4,0,,transformer_shared_ft__national,val_2001Q1,1
+Portugal,adaptation,41,fine_tuned,10,0.02346175001002848,4,0,,transformer_shared_ft__national,val_2001Q1,1
+South Africa,adaptation,129,fine_tuned,10,0.06957516702823341,4,0,,transformer_shared_ft__national,val_2001Q1,1
+South Korea,adaptation,49,fine_tuned,10,0.025270207901485264,4,0,,transformer_shared_ft__national,val_2001Q1,1
+Spain,adaptation,109,fine_tuned,10,0.053652250091545284,4,0,,transformer_shared_ft__national,val_2001Q1,1
+Sweden,adaptation,113,fine_tuned,10,0.05400133307557553,4,0,,transformer_shared_ft__national,val_2001Q1,1
+Switzerland,adaptation,113,fine_tuned,10,0.05436216597445309,4,0,,transformer_shared_ft__national,val_2001Q1,1
+United Kingdom,adaptation,120,fine_tuned,10,0.058352416031993926,4,0,,transformer_shared_ft__national,val_2001Q1,1
+United States,adaptation,113,fine_tuned,10,0.05765762506052852,4,0,,transformer_shared_ft__national,val_2001Q1,1
+__shared__,shared,2359,fitted,11,3.731377916992642,96,0,,transformer_shared_ft__national,val_2001Q1,2
+Australia,adaptation,113,fine_tuned,10,0.05724954104516655,4,0,,transformer_shared_ft__national,val_2001Q1,2
+Belgium,adaptation,113,fine_tuned,10,0.05614500003866851,4,0,,transformer_shared_ft__national,val_2001Q1,2
+Canada,adaptation,113,fine_tuned,10,0.05699162499513477,4,0,,transformer_shared_ft__national,val_2001Q1,2
+Colombia,adaptation,41,fine_tuned,10,0.024435333907604218,4,0,,transformer_shared_ft__national,val_2001Q1,2
+Denmark,adaptation,113,fine_tuned,10,0.05523220798932016,4,0,,transformer_shared_ft__national,val_2001Q1,2
+Finland,adaptation,113,fine_tuned,10,0.05406112491618842,4,0,,transformer_shared_ft__national,val_2001Q1,2
+France,adaptation,113,fine_tuned,10,0.05368291703052819,4,0,,transformer_shared_ft__national,val_2001Q1,2
+Germany,adaptation,113,fine_tuned,10,0.053746000048704445,4,0,,transformer_shared_ft__national,val_2001Q1,2
+Greece,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2001Q1,2
+Ireland,adaptation,113,fine_tuned,10,0.05527595803141594,4,0,,transformer_shared_ft__national,val_2001Q1,2
+Israel,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2001Q1,2
+Italy,adaptation,113,fine_tuned,10,0.05721716594416648,4,0,,transformer_shared_ft__national,val_2001Q1,2
+Japan,adaptation,153,fine_tuned,10,0.1602404590230435,4,0,,transformer_shared_ft__national,val_2001Q1,2
+Netherlands,adaptation,113,fine_tuned,10,0.06302233296446502,4,0,,transformer_shared_ft__national,val_2001Q1,2
+New Zealand,adaptation,113,fine_tuned,10,0.06208062497898936,4,0,,transformer_shared_ft__national,val_2001Q1,2
+Norway,adaptation,113,fine_tuned,10,0.06064737495034933,4,0,,transformer_shared_ft__national,val_2001Q1,2
+Portugal,adaptation,41,fine_tuned,10,0.02546266606077552,4,0,,transformer_shared_ft__national,val_2001Q1,2
+South Africa,adaptation,129,fine_tuned,10,0.08907670807093382,4,0,,transformer_shared_ft__national,val_2001Q1,2
+South Korea,adaptation,49,fine_tuned,10,0.02871016599237919,4,0,,transformer_shared_ft__national,val_2001Q1,2
+Spain,adaptation,109,fine_tuned,10,0.06254220800474286,4,0,,transformer_shared_ft__national,val_2001Q1,2
+Sweden,adaptation,113,fine_tuned,10,0.12347712507471442,4,0,,transformer_shared_ft__national,val_2001Q1,2
+Switzerland,adaptation,113,fine_tuned,10,0.07691304094623774,4,0,,transformer_shared_ft__national,val_2001Q1,2
+United Kingdom,adaptation,120,fine_tuned,10,0.0634385000448674,4,0,,transformer_shared_ft__national,val_2001Q1,2
+United States,adaptation,113,fine_tuned,10,0.060821167076937854,4,0,,transformer_shared_ft__national,val_2001Q1,2
+__shared__,shared,2359,fitted,4,2.647664041025564,96,0,,transformer_shared_ft__national,val_2001Q1,3
+Australia,adaptation,113,fine_tuned,10,0.06275012495461851,4,0,,transformer_shared_ft__national,val_2001Q1,3
+Belgium,adaptation,113,fine_tuned,10,0.06179054197855294,4,0,,transformer_shared_ft__national,val_2001Q1,3
+Canada,adaptation,113,fine_tuned,10,0.06269233301281929,4,0,,transformer_shared_ft__national,val_2001Q1,3
+Colombia,adaptation,41,fine_tuned,10,0.025375582976266742,4,0,,transformer_shared_ft__national,val_2001Q1,3
+Denmark,adaptation,113,fine_tuned,10,0.06198266695719212,4,0,,transformer_shared_ft__national,val_2001Q1,3
+Finland,adaptation,113,fine_tuned,10,0.05991208297200501,4,0,,transformer_shared_ft__national,val_2001Q1,3
+France,adaptation,113,fine_tuned,10,0.0612627089722082,4,0,,transformer_shared_ft__national,val_2001Q1,3
+Germany,adaptation,113,fine_tuned,10,0.06324958300683647,4,0,,transformer_shared_ft__national,val_2001Q1,3
+Greece,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2001Q1,3
+Ireland,adaptation,113,fine_tuned,10,0.06106066599022597,4,0,,transformer_shared_ft__national,val_2001Q1,3
+Israel,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2001Q1,3
+Italy,adaptation,113,fine_tuned,10,0.06106433307286352,4,0,,transformer_shared_ft__national,val_2001Q1,3
+Japan,adaptation,153,fine_tuned,10,0.08680566598195583,4,0,,transformer_shared_ft__national,val_2001Q1,3
+Netherlands,adaptation,113,fine_tuned,10,0.06097108300309628,4,0,,transformer_shared_ft__national,val_2001Q1,3
+New Zealand,adaptation,113,fine_tuned,10,0.058779209037311375,4,0,,transformer_shared_ft__national,val_2001Q1,3
+Norway,adaptation,113,fine_tuned,10,0.06179808301385492,4,0,,transformer_shared_ft__national,val_2001Q1,3
+Portugal,adaptation,41,fine_tuned,10,0.02582879096735269,4,0,,transformer_shared_ft__national,val_2001Q1,3
+South Africa,adaptation,129,fine_tuned,10,0.0776768330251798,4,0,,transformer_shared_ft__national,val_2001Q1,3
+South Korea,adaptation,49,fine_tuned,10,0.02867954201065004,4,0,,transformer_shared_ft__national,val_2001Q1,3
+Spain,adaptation,109,fine_tuned,10,0.058690916979685426,4,0,,transformer_shared_ft__national,val_2001Q1,3
+Sweden,adaptation,113,fine_tuned,10,0.06161791703198105,4,0,,transformer_shared_ft__national,val_2001Q1,3
+Switzerland,adaptation,113,fine_tuned,10,0.06095754203852266,4,0,,transformer_shared_ft__national,val_2001Q1,3
+United Kingdom,adaptation,120,fine_tuned,10,0.06204845895990729,4,0,,transformer_shared_ft__national,val_2001Q1,3
+United States,adaptation,113,fine_tuned,10,0.06113354198168963,4,0,,transformer_shared_ft__national,val_2001Q1,3
+__shared__,shared,2359,fitted,9,3.617330083041452,96,0,,transformer_shared_ft__national,val_2001Q1,4
+Australia,adaptation,113,fine_tuned,10,0.05577333306428045,4,0,,transformer_shared_ft__national,val_2001Q1,4
+Belgium,adaptation,113,fine_tuned,10,0.05609275004826486,4,0,,transformer_shared_ft__national,val_2001Q1,4
+Canada,adaptation,113,fine_tuned,10,0.0587114579975605,4,0,,transformer_shared_ft__national,val_2001Q1,4
+Colombia,adaptation,41,fine_tuned,10,0.025320291984826326,4,0,,transformer_shared_ft__national,val_2001Q1,4
+Denmark,adaptation,113,fine_tuned,10,0.06034241593442857,4,0,,transformer_shared_ft__national,val_2001Q1,4
+Finland,adaptation,113,fine_tuned,10,0.06123279198072851,4,0,,transformer_shared_ft__national,val_2001Q1,4
+France,adaptation,113,fine_tuned,10,0.05854233296122402,4,0,,transformer_shared_ft__national,val_2001Q1,4
+Germany,adaptation,113,fine_tuned,10,0.06024037499446422,4,0,,transformer_shared_ft__national,val_2001Q1,4
+Greece,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2001Q1,4
+Ireland,adaptation,113,fine_tuned,10,0.058379874913953245,4,0,,transformer_shared_ft__national,val_2001Q1,4
+Israel,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2001Q1,4
+Italy,adaptation,113,fine_tuned,10,0.05843104200903326,4,0,,transformer_shared_ft__national,val_2001Q1,4
+Japan,adaptation,153,fine_tuned,10,0.08312083291821182,4,0,,transformer_shared_ft__national,val_2001Q1,4
+Netherlands,adaptation,113,fine_tuned,10,0.06026729196310043,4,0,,transformer_shared_ft__national,val_2001Q1,4
+New Zealand,adaptation,113,fine_tuned,10,0.05976587499026209,4,0,,transformer_shared_ft__national,val_2001Q1,4
+Norway,adaptation,113,fine_tuned,10,0.05840541701763868,4,0,,transformer_shared_ft__national,val_2001Q1,4
+Portugal,adaptation,41,fine_tuned,10,0.024760750005953014,4,0,,transformer_shared_ft__national,val_2001Q1,4
+South Africa,adaptation,129,fine_tuned,10,0.07583049999084324,4,0,,transformer_shared_ft__national,val_2001Q1,4
+South Korea,adaptation,49,fine_tuned,10,0.027923875022679567,4,0,,transformer_shared_ft__national,val_2001Q1,4
+Spain,adaptation,109,fine_tuned,10,0.05711104196961969,4,0,,transformer_shared_ft__national,val_2001Q1,4
+Sweden,adaptation,113,fine_tuned,10,0.05733591702301055,4,0,,transformer_shared_ft__national,val_2001Q1,4
+Switzerland,adaptation,113,fine_tuned,10,0.05775016697589308,4,0,,transformer_shared_ft__national,val_2001Q1,4
+United Kingdom,adaptation,120,fine_tuned,10,0.059176041977480054,4,0,,transformer_shared_ft__national,val_2001Q1,4
+United States,adaptation,113,fine_tuned,10,0.05568333307746798,4,0,,transformer_shared_ft__national,val_2001Q1,4
+__shared__,shared,2455,fitted,1,1.998210750054568,103,0,,transformer_shared_ft__national,val_2002Q1,0
+Australia,adaptation,117,fine_tuned,10,0.0570742089767009,4,0,,transformer_shared_ft__national,val_2002Q1,0
+Belgium,adaptation,117,fine_tuned,10,0.0595808329526335,4,0,,transformer_shared_ft__national,val_2002Q1,0
+Canada,adaptation,117,fine_tuned,10,0.05673558299895376,4,0,,transformer_shared_ft__national,val_2002Q1,0
+Colombia,adaptation,45,fine_tuned,10,0.02714291599113494,4,0,,transformer_shared_ft__national,val_2002Q1,0
+Denmark,adaptation,117,fine_tuned,10,0.05985516693908721,4,0,,transformer_shared_ft__national,val_2002Q1,0
+Finland,adaptation,117,fine_tuned,10,0.05921070801559836,4,0,,transformer_shared_ft__national,val_2002Q1,0
+France,adaptation,117,fine_tuned,10,0.059514124994166195,4,0,,transformer_shared_ft__national,val_2002Q1,0
+Germany,adaptation,117,fine_tuned,10,0.060670165927149355,4,0,,transformer_shared_ft__national,val_2002Q1,0
+Greece,adaptation,9,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2002Q1,0
+Ireland,adaptation,117,fine_tuned,10,0.0645926248980686,4,0,,transformer_shared_ft__national,val_2002Q1,0
+Israel,adaptation,21,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2002Q1,0
+Italy,adaptation,117,fine_tuned,10,0.06477562501095235,4,0,,transformer_shared_ft__national,val_2002Q1,0
+Japan,adaptation,157,fine_tuned,10,0.08608204207848758,4,0,,transformer_shared_ft__national,val_2002Q1,0
+Netherlands,adaptation,117,fine_tuned,10,0.05959524994250387,4,0,,transformer_shared_ft__national,val_2002Q1,0
+New Zealand,adaptation,117,fine_tuned,10,0.057444000034593046,4,0,,transformer_shared_ft__national,val_2002Q1,0
+Norway,adaptation,117,fine_tuned,10,0.05738124996423721,4,0,,transformer_shared_ft__national,val_2002Q1,0
+Portugal,adaptation,45,fine_tuned,10,0.026759375003166497,4,0,,transformer_shared_ft__national,val_2002Q1,0
+South Africa,adaptation,133,fine_tuned,10,0.07772183301858604,4,0,,transformer_shared_ft__national,val_2002Q1,0
+South Korea,adaptation,53,fine_tuned,10,0.02869612502399832,4,0,,transformer_shared_ft__national,val_2002Q1,0
+Spain,adaptation,113,fine_tuned,10,0.05979391699656844,4,0,,transformer_shared_ft__national,val_2002Q1,0
+Sweden,adaptation,117,fine_tuned,10,0.060786709072999656,4,0,,transformer_shared_ft__national,val_2002Q1,0
+Switzerland,adaptation,117,fine_tuned,10,0.06016737490426749,4,0,,transformer_shared_ft__national,val_2002Q1,0
+United Kingdom,adaptation,124,fine_tuned,10,0.06324783398304135,4,0,,transformer_shared_ft__national,val_2002Q1,0
+United States,adaptation,117,fine_tuned,10,0.06080249999649823,4,0,,transformer_shared_ft__national,val_2002Q1,0
+Austria,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2002Q1,0
+Iceland,adaptation,0,no_adaptation,0,0.0,3,3,,transformer_shared_ft__national,val_2002Q1,0
+__shared__,shared,2455,fitted,16,5.032739749993198,103,0,,transformer_shared_ft__national,val_2002Q1,1
+Australia,adaptation,117,fine_tuned,10,0.05756633298005909,4,0,,transformer_shared_ft__national,val_2002Q1,1
+Belgium,adaptation,117,fine_tuned,10,0.058355166926048696,4,0,,transformer_shared_ft__national,val_2002Q1,1
+Canada,adaptation,117,fine_tuned,10,0.05737941607367247,4,0,,transformer_shared_ft__national,val_2002Q1,1
+Colombia,adaptation,45,fine_tuned,10,0.025396083015948534,4,0,,transformer_shared_ft__national,val_2002Q1,1
+Denmark,adaptation,117,fine_tuned,10,0.05717487505171448,4,0,,transformer_shared_ft__national,val_2002Q1,1
+Finland,adaptation,117,fine_tuned,10,0.05771387496497482,4,0,,transformer_shared_ft__national,val_2002Q1,1
+France,adaptation,117,fine_tuned,10,0.06058304093312472,4,0,,transformer_shared_ft__national,val_2002Q1,1
+Germany,adaptation,117,fine_tuned,10,0.060473583987914026,4,0,,transformer_shared_ft__national,val_2002Q1,1
+Greece,adaptation,9,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2002Q1,1
+Ireland,adaptation,117,fine_tuned,10,0.05849554110318422,4,0,,transformer_shared_ft__national,val_2002Q1,1
+Israel,adaptation,21,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2002Q1,1
+Italy,adaptation,117,fine_tuned,10,0.060451584053225815,4,0,,transformer_shared_ft__national,val_2002Q1,1
+Japan,adaptation,157,fine_tuned,10,0.08098458300810307,4,0,,transformer_shared_ft__national,val_2002Q1,1
+Netherlands,adaptation,117,fine_tuned,10,0.059672084054909647,4,0,,transformer_shared_ft__national,val_2002Q1,1
+New Zealand,adaptation,117,fine_tuned,10,0.05921920796390623,4,0,,transformer_shared_ft__national,val_2002Q1,1
+Norway,adaptation,117,fine_tuned,10,0.06553437502589077,4,0,,transformer_shared_ft__national,val_2002Q1,1
+Portugal,adaptation,45,fine_tuned,10,0.03249491692986339,4,0,,transformer_shared_ft__national,val_2002Q1,1
+South Africa,adaptation,133,fine_tuned,10,0.08451937499921769,4,0,,transformer_shared_ft__national,val_2002Q1,1
+South Korea,adaptation,53,fine_tuned,10,0.031062833033502102,4,0,,transformer_shared_ft__national,val_2002Q1,1
+Spain,adaptation,113,fine_tuned,10,0.059301374945789576,4,0,,transformer_shared_ft__national,val_2002Q1,1
+Sweden,adaptation,117,fine_tuned,10,0.059395749936811626,4,0,,transformer_shared_ft__national,val_2002Q1,1
+Switzerland,adaptation,117,fine_tuned,10,0.05634829099290073,4,0,,transformer_shared_ft__national,val_2002Q1,1
+United Kingdom,adaptation,124,fine_tuned,10,0.058449083007872105,4,0,,transformer_shared_ft__national,val_2002Q1,1
+United States,adaptation,117,fine_tuned,10,0.06029783305712044,4,0,,transformer_shared_ft__national,val_2002Q1,1
+Austria,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2002Q1,1
+Iceland,adaptation,0,no_adaptation,0,0.0,3,3,,transformer_shared_ft__national,val_2002Q1,1
+__shared__,shared,2455,fitted,21,5.998555375030264,103,0,,transformer_shared_ft__national,val_2002Q1,2
+Australia,adaptation,117,fine_tuned,10,0.058116290951147676,4,0,,transformer_shared_ft__national,val_2002Q1,2
+Belgium,adaptation,117,fine_tuned,10,0.056386540993116796,4,0,,transformer_shared_ft__national,val_2002Q1,2
+Canada,adaptation,117,fine_tuned,10,0.058299291995354,4,0,,transformer_shared_ft__national,val_2002Q1,2
+Colombia,adaptation,45,fine_tuned,10,0.025603167014196515,4,0,,transformer_shared_ft__national,val_2002Q1,2
+Denmark,adaptation,117,fine_tuned,10,0.056116833933629096,4,0,,transformer_shared_ft__national,val_2002Q1,2
+Finland,adaptation,117,fine_tuned,10,0.05533583299256861,4,0,,transformer_shared_ft__national,val_2002Q1,2
+France,adaptation,117,fine_tuned,10,0.05498112493660301,4,0,,transformer_shared_ft__national,val_2002Q1,2
+Germany,adaptation,117,fine_tuned,10,0.05601574992761016,4,0,,transformer_shared_ft__national,val_2002Q1,2
+Greece,adaptation,9,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2002Q1,2
+Ireland,adaptation,117,fine_tuned,10,0.05629004200454801,4,0,,transformer_shared_ft__national,val_2002Q1,2
+Israel,adaptation,21,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2002Q1,2
+Italy,adaptation,117,fine_tuned,10,0.05689379200339317,4,0,,transformer_shared_ft__national,val_2002Q1,2
+Japan,adaptation,157,fine_tuned,10,0.07733724999707192,4,0,,transformer_shared_ft__national,val_2002Q1,2
+Netherlands,adaptation,117,fine_tuned,10,0.054599625058472157,4,0,,transformer_shared_ft__national,val_2002Q1,2
+New Zealand,adaptation,117,fine_tuned,10,0.05435008404310793,4,0,,transformer_shared_ft__national,val_2002Q1,2
+Norway,adaptation,117,fine_tuned,10,0.05561995902098715,4,0,,transformer_shared_ft__national,val_2002Q1,2
+Portugal,adaptation,45,fine_tuned,10,0.02524874999653548,4,0,,transformer_shared_ft__national,val_2002Q1,2
+South Africa,adaptation,133,fine_tuned,10,0.14755245903506875,4,0,,transformer_shared_ft__national,val_2002Q1,2
+South Korea,adaptation,53,fine_tuned,10,0.0271882499800995,4,0,,transformer_shared_ft__national,val_2002Q1,2
+Spain,adaptation,113,fine_tuned,10,0.05543479206971824,4,0,,transformer_shared_ft__national,val_2002Q1,2
+Sweden,adaptation,117,fine_tuned,10,0.05578120797872543,4,0,,transformer_shared_ft__national,val_2002Q1,2
+Switzerland,adaptation,117,fine_tuned,10,0.05582358397077769,4,0,,transformer_shared_ft__national,val_2002Q1,2
+United Kingdom,adaptation,124,fine_tuned,10,0.05754249996971339,4,0,,transformer_shared_ft__national,val_2002Q1,2
+United States,adaptation,117,fine_tuned,10,0.05576695897616446,4,0,,transformer_shared_ft__national,val_2002Q1,2
+Austria,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2002Q1,2
+Iceland,adaptation,0,no_adaptation,0,0.0,3,3,,transformer_shared_ft__national,val_2002Q1,2
+__shared__,shared,2455,fitted,20,5.6084937079576775,103,0,,transformer_shared_ft__national,val_2002Q1,3
+Australia,adaptation,117,fine_tuned,10,0.05531900003552437,4,0,,transformer_shared_ft__national,val_2002Q1,3
+Belgium,adaptation,117,fine_tuned,10,0.055324750021100044,4,0,,transformer_shared_ft__national,val_2002Q1,3
+Canada,adaptation,117,fine_tuned,10,0.05489141691941768,4,0,,transformer_shared_ft__national,val_2002Q1,3
+Colombia,adaptation,45,fine_tuned,10,0.024364333949051797,4,0,,transformer_shared_ft__national,val_2002Q1,3
+Denmark,adaptation,117,fine_tuned,10,0.0562359580071643,4,0,,transformer_shared_ft__national,val_2002Q1,3
+Finland,adaptation,117,fine_tuned,10,0.0586327500641346,4,0,,transformer_shared_ft__national,val_2002Q1,3
+France,adaptation,117,fine_tuned,10,0.0569063751026988,4,0,,transformer_shared_ft__national,val_2002Q1,3
+Germany,adaptation,117,fine_tuned,10,0.058383084018714726,4,0,,transformer_shared_ft__national,val_2002Q1,3
+Greece,adaptation,9,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2002Q1,3
+Ireland,adaptation,117,fine_tuned,10,0.05977470800280571,4,0,,transformer_shared_ft__national,val_2002Q1,3
+Israel,adaptation,21,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2002Q1,3
+Italy,adaptation,117,fine_tuned,10,0.06111954106017947,4,0,,transformer_shared_ft__national,val_2002Q1,3
+Japan,adaptation,157,fine_tuned,10,0.08810245897620916,4,0,,transformer_shared_ft__national,val_2002Q1,3
+Netherlands,adaptation,117,fine_tuned,10,0.06085066695231944,4,0,,transformer_shared_ft__national,val_2002Q1,3
+New Zealand,adaptation,117,fine_tuned,10,0.05897016602102667,4,0,,transformer_shared_ft__national,val_2002Q1,3
+Norway,adaptation,117,fine_tuned,10,0.06019345892127603,4,0,,transformer_shared_ft__national,val_2002Q1,3
+Portugal,adaptation,45,fine_tuned,10,0.026443790993653238,4,0,,transformer_shared_ft__national,val_2002Q1,3
+South Africa,adaptation,133,fine_tuned,10,0.07819583301898092,4,0,,transformer_shared_ft__national,val_2002Q1,3
+South Korea,adaptation,53,fine_tuned,10,0.028805959038436413,4,0,,transformer_shared_ft__national,val_2002Q1,3
+Spain,adaptation,113,fine_tuned,10,0.05964424996636808,4,0,,transformer_shared_ft__national,val_2002Q1,3
+Sweden,adaptation,117,fine_tuned,10,0.058178083039820194,4,0,,transformer_shared_ft__national,val_2002Q1,3
+Switzerland,adaptation,117,fine_tuned,10,0.05779933393932879,4,0,,transformer_shared_ft__national,val_2002Q1,3
+United Kingdom,adaptation,124,fine_tuned,10,0.058682958013378084,4,0,,transformer_shared_ft__national,val_2002Q1,3
+United States,adaptation,117,fine_tuned,10,0.057206416968256235,4,0,,transformer_shared_ft__national,val_2002Q1,3
+Austria,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2002Q1,3
+Iceland,adaptation,0,no_adaptation,0,0.0,3,3,,transformer_shared_ft__national,val_2002Q1,3
+__shared__,shared,2455,fitted,4,2.4428392089903355,103,0,,transformer_shared_ft__national,val_2002Q1,4
+Australia,adaptation,117,fine_tuned,10,0.05513729201629758,4,0,,transformer_shared_ft__national,val_2002Q1,4
+Belgium,adaptation,117,fine_tuned,10,0.054292666958644986,4,0,,transformer_shared_ft__national,val_2002Q1,4
+Canada,adaptation,117,fine_tuned,10,0.06068108300678432,4,0,,transformer_shared_ft__national,val_2002Q1,4
+Colombia,adaptation,45,fine_tuned,10,0.02528887498192489,4,0,,transformer_shared_ft__national,val_2002Q1,4
+Denmark,adaptation,117,fine_tuned,10,0.056445833994075656,4,0,,transformer_shared_ft__national,val_2002Q1,4
+Finland,adaptation,117,fine_tuned,10,0.05619841697625816,4,0,,transformer_shared_ft__national,val_2002Q1,4
+France,adaptation,117,fine_tuned,10,0.05486333300359547,4,0,,transformer_shared_ft__national,val_2002Q1,4
+Germany,adaptation,117,fine_tuned,10,0.0549319579731673,4,0,,transformer_shared_ft__national,val_2002Q1,4
+Greece,adaptation,9,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2002Q1,4
+Ireland,adaptation,117,fine_tuned,10,0.055215541971847415,4,0,,transformer_shared_ft__national,val_2002Q1,4
+Israel,adaptation,21,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2002Q1,4
+Italy,adaptation,117,fine_tuned,10,0.057687917025759816,4,0,,transformer_shared_ft__national,val_2002Q1,4
+Japan,adaptation,157,fine_tuned,10,0.07993495801929384,4,0,,transformer_shared_ft__national,val_2002Q1,4
+Netherlands,adaptation,117,fine_tuned,10,0.05711158399935812,4,0,,transformer_shared_ft__national,val_2002Q1,4
+New Zealand,adaptation,117,fine_tuned,10,0.056064417003653944,4,0,,transformer_shared_ft__national,val_2002Q1,4
+Norway,adaptation,117,fine_tuned,10,0.05745366693008691,4,0,,transformer_shared_ft__national,val_2002Q1,4
+Portugal,adaptation,45,fine_tuned,10,0.02521337498910725,4,0,,transformer_shared_ft__national,val_2002Q1,4
+South Africa,adaptation,133,fine_tuned,10,0.07474233396351337,4,0,,transformer_shared_ft__national,val_2002Q1,4
+South Korea,adaptation,53,fine_tuned,10,0.027091541909612715,4,0,,transformer_shared_ft__national,val_2002Q1,4
+Spain,adaptation,113,fine_tuned,10,0.055480999988503754,4,0,,transformer_shared_ft__national,val_2002Q1,4
+Sweden,adaptation,117,fine_tuned,10,0.056547584012150764,4,0,,transformer_shared_ft__national,val_2002Q1,4
+Switzerland,adaptation,117,fine_tuned,10,0.0583794160047546,4,0,,transformer_shared_ft__national,val_2002Q1,4
+United Kingdom,adaptation,124,fine_tuned,10,0.06198170897550881,4,0,,transformer_shared_ft__national,val_2002Q1,4
+United States,adaptation,117,fine_tuned,10,0.05977024999447167,4,0,,transformer_shared_ft__national,val_2002Q1,4
+Austria,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2002Q1,4
+Iceland,adaptation,0,no_adaptation,0,0.0,3,3,,transformer_shared_ft__national,val_2002Q1,4
+__shared__,shared,2552,fitted,1,1.942499874974601,112,0,,transformer_shared_ft__national,val_2003Q1,0
+Australia,adaptation,121,fine_tuned,10,0.055657666991464794,4,0,,transformer_shared_ft__national,val_2003Q1,0
+Austria,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2003Q1,0
+Belgium,adaptation,121,fine_tuned,10,0.05595662503037602,4,0,,transformer_shared_ft__national,val_2003Q1,0
+Canada,adaptation,121,fine_tuned,10,0.05572070798370987,4,0,,transformer_shared_ft__national,val_2003Q1,0
+Colombia,adaptation,49,fine_tuned,10,0.02528187504503876,4,0,,transformer_shared_ft__national,val_2003Q1,0
+Denmark,adaptation,121,fine_tuned,10,0.05542933300603181,4,0,,transformer_shared_ft__national,val_2003Q1,0
+Finland,adaptation,121,fine_tuned,10,0.05530100001487881,4,0,,transformer_shared_ft__national,val_2003Q1,0
+France,adaptation,121,fine_tuned,10,0.05524441704619676,4,0,,transformer_shared_ft__national,val_2003Q1,0
+Germany,adaptation,121,fine_tuned,10,0.05525154201313853,4,0,,transformer_shared_ft__national,val_2003Q1,0
+Greece,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2003Q1,0
+Ireland,adaptation,121,fine_tuned,10,0.05517125001642853,4,0,,transformer_shared_ft__national,val_2003Q1,0
+Israel,adaptation,25,fine_tuned,10,0.019478666014038026,4,0,,transformer_shared_ft__national,val_2003Q1,0
+Italy,adaptation,121,fine_tuned,10,0.055735541973263025,4,0,,transformer_shared_ft__national,val_2003Q1,0
+Japan,adaptation,161,fine_tuned,10,0.07781499996781349,4,0,,transformer_shared_ft__national,val_2003Q1,0
+Netherlands,adaptation,121,fine_tuned,10,0.05747441702987999,4,0,,transformer_shared_ft__national,val_2003Q1,0
+New Zealand,adaptation,121,fine_tuned,10,0.05748241604305804,4,0,,transformer_shared_ft__national,val_2003Q1,0
+Norway,adaptation,121,fine_tuned,10,0.05699729104526341,4,0,,transformer_shared_ft__national,val_2003Q1,0
+Portugal,adaptation,49,fine_tuned,10,0.02616066695190966,4,0,,transformer_shared_ft__national,val_2003Q1,0
+South Africa,adaptation,137,fine_tuned,10,0.07310008304193616,4,0,,transformer_shared_ft__national,val_2003Q1,0
+South Korea,adaptation,57,fine_tuned,10,0.028412083978764713,4,0,,transformer_shared_ft__national,val_2003Q1,0
+Spain,adaptation,117,fine_tuned,10,0.05541062506381422,4,0,,transformer_shared_ft__national,val_2003Q1,0
+Sweden,adaptation,121,fine_tuned,10,0.05551216704770923,4,0,,transformer_shared_ft__national,val_2003Q1,0
+Switzerland,adaptation,121,fine_tuned,10,0.05573741707485169,4,0,,transformer_shared_ft__national,val_2003Q1,0
+United Kingdom,adaptation,128,fine_tuned,10,0.0570512079866603,4,0,,transformer_shared_ft__national,val_2003Q1,0
+United States,adaptation,121,fine_tuned,10,0.05516758293379098,4,0,,transformer_shared_ft__national,val_2003Q1,0
+Iceland,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2003Q1,0
+Russia,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2003Q1,0
+Taiwan_national,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2003Q1,0
+__shared__,shared,2552,fitted,4,2.609260999946855,112,0,,transformer_shared_ft__national,val_2003Q1,1
+Australia,adaptation,121,fine_tuned,10,0.05740358307957649,4,0,,transformer_shared_ft__national,val_2003Q1,1
+Austria,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2003Q1,1
+Belgium,adaptation,121,fine_tuned,10,0.056685499963350594,4,0,,transformer_shared_ft__national,val_2003Q1,1
+Canada,adaptation,121,fine_tuned,10,0.05704883404541761,4,0,,transformer_shared_ft__national,val_2003Q1,1
+Colombia,adaptation,49,fine_tuned,10,0.025550124933943152,4,0,,transformer_shared_ft__national,val_2003Q1,1
+Denmark,adaptation,121,fine_tuned,10,0.056120334076695144,4,0,,transformer_shared_ft__national,val_2003Q1,1
+Finland,adaptation,121,fine_tuned,10,0.05584212497342378,4,0,,transformer_shared_ft__national,val_2003Q1,1
+France,adaptation,121,fine_tuned,10,0.05619675002526492,4,0,,transformer_shared_ft__national,val_2003Q1,1
+Germany,adaptation,121,fine_tuned,10,0.055540791945531964,4,0,,transformer_shared_ft__national,val_2003Q1,1
+Greece,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2003Q1,1
+Ireland,adaptation,121,fine_tuned,10,0.05555612500756979,4,0,,transformer_shared_ft__national,val_2003Q1,1
+Israel,adaptation,25,fine_tuned,10,0.019255332998000085,4,0,,transformer_shared_ft__national,val_2003Q1,1
+Italy,adaptation,121,fine_tuned,10,0.0555205000564456,4,0,,transformer_shared_ft__national,val_2003Q1,1
+Japan,adaptation,161,fine_tuned,10,0.07779070793185383,4,0,,transformer_shared_ft__national,val_2003Q1,1
+Netherlands,adaptation,121,fine_tuned,10,0.055351292015984654,4,0,,transformer_shared_ft__national,val_2003Q1,1
+New Zealand,adaptation,121,fine_tuned,10,0.05533562495838851,4,0,,transformer_shared_ft__national,val_2003Q1,1
+Norway,adaptation,121,fine_tuned,10,0.05629874998703599,4,0,,transformer_shared_ft__national,val_2003Q1,1
+Portugal,adaptation,49,fine_tuned,10,0.025969917071051896,4,0,,transformer_shared_ft__national,val_2003Q1,1
+South Africa,adaptation,137,fine_tuned,10,0.07205641607288271,4,0,,transformer_shared_ft__national,val_2003Q1,1
+South Korea,adaptation,57,fine_tuned,10,0.02737741603050381,4,0,,transformer_shared_ft__national,val_2003Q1,1
+Spain,adaptation,117,fine_tuned,10,0.05493304203264415,4,0,,transformer_shared_ft__national,val_2003Q1,1
+Sweden,adaptation,121,fine_tuned,10,0.056375332991592586,4,0,,transformer_shared_ft__national,val_2003Q1,1
+Switzerland,adaptation,121,fine_tuned,10,0.05629724997561425,4,0,,transformer_shared_ft__national,val_2003Q1,1
+United Kingdom,adaptation,128,fine_tuned,10,0.05766537506133318,4,0,,transformer_shared_ft__national,val_2003Q1,1
+United States,adaptation,121,fine_tuned,10,0.05594654206652194,4,0,,transformer_shared_ft__national,val_2003Q1,1
+Iceland,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2003Q1,1
+Russia,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2003Q1,1
+Taiwan_national,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2003Q1,1
+__shared__,shared,2552,fitted,22,6.237962499959394,112,0,,transformer_shared_ft__national,val_2003Q1,2
+Australia,adaptation,121,fine_tuned,10,0.05644529091659933,4,0,,transformer_shared_ft__national,val_2003Q1,2
+Austria,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2003Q1,2
+Belgium,adaptation,121,fine_tuned,10,0.05613083392381668,4,0,,transformer_shared_ft__national,val_2003Q1,2
+Canada,adaptation,121,fine_tuned,10,0.05627279100008309,4,0,,transformer_shared_ft__national,val_2003Q1,2
+Colombia,adaptation,49,fine_tuned,10,0.025493749999441206,4,0,,transformer_shared_ft__national,val_2003Q1,2
+Denmark,adaptation,121,fine_tuned,10,0.06025145889725536,4,0,,transformer_shared_ft__national,val_2003Q1,2
+Finland,adaptation,121,fine_tuned,10,0.05817774997558445,4,0,,transformer_shared_ft__national,val_2003Q1,2
+France,adaptation,121,fine_tuned,10,0.05851195892319083,4,0,,transformer_shared_ft__national,val_2003Q1,2
+Germany,adaptation,121,fine_tuned,10,0.05719087494071573,4,0,,transformer_shared_ft__national,val_2003Q1,2
+Greece,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2003Q1,2
+Ireland,adaptation,121,fine_tuned,10,0.05580216599628329,4,0,,transformer_shared_ft__national,val_2003Q1,2
+Israel,adaptation,25,fine_tuned,10,0.019334582961164415,4,0,,transformer_shared_ft__national,val_2003Q1,2
+Italy,adaptation,121,fine_tuned,10,0.05618695798330009,4,0,,transformer_shared_ft__national,val_2003Q1,2
+Japan,adaptation,161,fine_tuned,10,0.08472370798699558,4,0,,transformer_shared_ft__national,val_2003Q1,2
+Netherlands,adaptation,121,fine_tuned,10,0.06003783305641264,4,0,,transformer_shared_ft__national,val_2003Q1,2
+New Zealand,adaptation,121,fine_tuned,10,0.0611037079943344,4,0,,transformer_shared_ft__national,val_2003Q1,2
+Norway,adaptation,121,fine_tuned,10,0.06140891695395112,4,0,,transformer_shared_ft__national,val_2003Q1,2
+Portugal,adaptation,49,fine_tuned,10,0.026098208036273718,4,0,,transformer_shared_ft__national,val_2003Q1,2
+South Africa,adaptation,137,fine_tuned,10,0.07215374999213964,4,0,,transformer_shared_ft__national,val_2003Q1,2
+South Korea,adaptation,57,fine_tuned,10,0.02759487507864833,4,0,,transformer_shared_ft__national,val_2003Q1,2
+Spain,adaptation,117,fine_tuned,10,0.05490879190620035,4,0,,transformer_shared_ft__national,val_2003Q1,2
+Sweden,adaptation,121,fine_tuned,10,0.055637374985963106,4,0,,transformer_shared_ft__national,val_2003Q1,2
+Switzerland,adaptation,121,fine_tuned,10,0.0556265419581905,4,0,,transformer_shared_ft__national,val_2003Q1,2
+United Kingdom,adaptation,128,fine_tuned,10,0.057018416933715343,4,0,,transformer_shared_ft__national,val_2003Q1,2
+United States,adaptation,121,fine_tuned,10,0.05544895899947733,4,0,,transformer_shared_ft__national,val_2003Q1,2
+Iceland,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2003Q1,2
+Russia,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2003Q1,2
+Taiwan_national,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2003Q1,2
+__shared__,shared,2552,fitted,16,5.687292166985571,112,0,,transformer_shared_ft__national,val_2003Q1,3
+Australia,adaptation,121,fine_tuned,10,0.05681604193523526,4,0,,transformer_shared_ft__national,val_2003Q1,3
+Austria,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2003Q1,3
+Belgium,adaptation,121,fine_tuned,10,0.056337291025556624,4,0,,transformer_shared_ft__national,val_2003Q1,3
+Canada,adaptation,121,fine_tuned,10,0.05617658304981887,4,0,,transformer_shared_ft__national,val_2003Q1,3
+Colombia,adaptation,49,fine_tuned,10,0.025460207951255143,4,0,,transformer_shared_ft__national,val_2003Q1,3
+Denmark,adaptation,121,fine_tuned,10,0.057440957985818386,4,0,,transformer_shared_ft__national,val_2003Q1,3
+Finland,adaptation,121,fine_tuned,10,0.056573583045974374,4,0,,transformer_shared_ft__national,val_2003Q1,3
+France,adaptation,121,fine_tuned,10,0.05864691699389368,4,0,,transformer_shared_ft__national,val_2003Q1,3
+Germany,adaptation,121,fine_tuned,10,0.056943709030747414,4,0,,transformer_shared_ft__national,val_2003Q1,3
+Greece,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2003Q1,3
+Ireland,adaptation,121,fine_tuned,10,0.05733991600573063,4,0,,transformer_shared_ft__national,val_2003Q1,3
+Israel,adaptation,25,fine_tuned,10,0.019576625083573163,4,0,,transformer_shared_ft__national,val_2003Q1,3
+Italy,adaptation,121,fine_tuned,10,0.055976292002014816,4,0,,transformer_shared_ft__national,val_2003Q1,3
+Japan,adaptation,161,fine_tuned,10,0.07954900001641363,4,0,,transformer_shared_ft__national,val_2003Q1,3
+Netherlands,adaptation,121,fine_tuned,10,0.05597720900550485,4,0,,transformer_shared_ft__national,val_2003Q1,3
+New Zealand,adaptation,121,fine_tuned,10,0.05565100000239909,4,0,,transformer_shared_ft__national,val_2003Q1,3
+Norway,adaptation,121,fine_tuned,10,0.05634908389765769,4,0,,transformer_shared_ft__national,val_2003Q1,3
+Portugal,adaptation,49,fine_tuned,10,0.025319500011391938,4,0,,transformer_shared_ft__national,val_2003Q1,3
+South Africa,adaptation,137,fine_tuned,10,0.07205629197414964,4,0,,transformer_shared_ft__national,val_2003Q1,3
+South Korea,adaptation,57,fine_tuned,10,0.02742529206443578,4,0,,transformer_shared_ft__national,val_2003Q1,3
+Spain,adaptation,117,fine_tuned,10,0.056606125086545944,4,0,,transformer_shared_ft__national,val_2003Q1,3
+Sweden,adaptation,121,fine_tuned,10,0.05566704098600894,4,0,,transformer_shared_ft__national,val_2003Q1,3
+Switzerland,adaptation,121,fine_tuned,10,0.05570083309430629,4,0,,transformer_shared_ft__national,val_2003Q1,3
+United Kingdom,adaptation,128,fine_tuned,10,0.05777679197490215,4,0,,transformer_shared_ft__national,val_2003Q1,3
+United States,adaptation,121,fine_tuned,10,0.058330958941951394,4,0,,transformer_shared_ft__national,val_2003Q1,3
+Iceland,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2003Q1,3
+Russia,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2003Q1,3
+Taiwan_national,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2003Q1,3
+__shared__,shared,2552,fitted,15,4.7924329589586705,112,0,,transformer_shared_ft__national,val_2003Q1,4
+Australia,adaptation,121,fine_tuned,10,0.05680875002872199,4,0,,transformer_shared_ft__national,val_2003Q1,4
+Austria,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2003Q1,4
+Belgium,adaptation,121,fine_tuned,10,0.05612354201730341,4,0,,transformer_shared_ft__national,val_2003Q1,4
+Canada,adaptation,121,fine_tuned,10,0.05563695903401822,4,0,,transformer_shared_ft__national,val_2003Q1,4
+Colombia,adaptation,49,fine_tuned,10,0.025492959073744714,4,0,,transformer_shared_ft__national,val_2003Q1,4
+Denmark,adaptation,121,fine_tuned,10,0.05536899995058775,4,0,,transformer_shared_ft__national,val_2003Q1,4
+Finland,adaptation,121,fine_tuned,10,0.058991707977838814,4,0,,transformer_shared_ft__national,val_2003Q1,4
+France,adaptation,121,fine_tuned,10,0.11023408302571625,4,0,,transformer_shared_ft__national,val_2003Q1,4
+Germany,adaptation,121,fine_tuned,10,0.055201665963977575,4,0,,transformer_shared_ft__national,val_2003Q1,4
+Greece,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2003Q1,4
+Ireland,adaptation,121,fine_tuned,10,0.05718079209327698,4,0,,transformer_shared_ft__national,val_2003Q1,4
+Israel,adaptation,25,fine_tuned,10,0.019375375006347895,4,0,,transformer_shared_ft__national,val_2003Q1,4
+Italy,adaptation,121,fine_tuned,10,0.057299665990285575,4,0,,transformer_shared_ft__national,val_2003Q1,4
+Japan,adaptation,161,fine_tuned,10,0.08780962508171797,4,0,,transformer_shared_ft__national,val_2003Q1,4
+Netherlands,adaptation,121,fine_tuned,10,0.059863333008252084,4,0,,transformer_shared_ft__national,val_2003Q1,4
+New Zealand,adaptation,121,fine_tuned,10,0.057759457966312766,4,0,,transformer_shared_ft__national,val_2003Q1,4
+Norway,adaptation,121,fine_tuned,10,0.057403374928981066,4,0,,transformer_shared_ft__national,val_2003Q1,4
+Portugal,adaptation,49,fine_tuned,10,0.027464124956168234,4,0,,transformer_shared_ft__national,val_2003Q1,4
+South Africa,adaptation,137,fine_tuned,10,0.07865879207383841,4,0,,transformer_shared_ft__national,val_2003Q1,4
+South Korea,adaptation,57,fine_tuned,10,0.029495624941773713,4,0,,transformer_shared_ft__national,val_2003Q1,4
+Spain,adaptation,117,fine_tuned,10,0.058196708909235895,4,0,,transformer_shared_ft__national,val_2003Q1,4
+Sweden,adaptation,121,fine_tuned,10,0.05934100004378706,4,0,,transformer_shared_ft__national,val_2003Q1,4
+Switzerland,adaptation,121,fine_tuned,10,0.05805212492123246,4,0,,transformer_shared_ft__national,val_2003Q1,4
+United Kingdom,adaptation,128,fine_tuned,10,0.061221207957714796,4,0,,transformer_shared_ft__national,val_2003Q1,4
+United States,adaptation,121,fine_tuned,10,0.05942633294034749,4,0,,transformer_shared_ft__national,val_2003Q1,4
+Iceland,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2003Q1,4
+Russia,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2003Q1,4
+Taiwan_national,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2003Q1,4
+__shared__,shared,2658,fitted,21,6.679212291026488,120,0,,transformer_shared_ft__national,val_2004Q1,0
+Australia,adaptation,125,fine_tuned,10,0.05800604203250259,4,0,,transformer_shared_ft__national,val_2004Q1,0
+Austria,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,0
+Belgium,adaptation,125,fine_tuned,10,0.057151874992996454,4,0,,transformer_shared_ft__national,val_2004Q1,0
+Canada,adaptation,125,fine_tuned,10,0.056698250002227724,4,0,,transformer_shared_ft__national,val_2004Q1,0
+Colombia,adaptation,53,fine_tuned,10,0.026351582957431674,4,0,,transformer_shared_ft__national,val_2004Q1,0
+Denmark,adaptation,125,fine_tuned,10,0.058901833021081984,4,0,,transformer_shared_ft__national,val_2004Q1,0
+Finland,adaptation,125,fine_tuned,10,0.05763175000902265,4,0,,transformer_shared_ft__national,val_2004Q1,0
+France,adaptation,125,fine_tuned,10,0.05725145898759365,4,0,,transformer_shared_ft__national,val_2004Q1,0
+Germany,adaptation,125,fine_tuned,10,0.057048542075790465,4,0,,transformer_shared_ft__national,val_2004Q1,0
+Greece,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,0
+Iceland,adaptation,4,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,0
+Ireland,adaptation,125,fine_tuned,10,0.0585532090626657,4,0,,transformer_shared_ft__national,val_2004Q1,0
+Israel,adaptation,29,fine_tuned,10,0.020710041979327798,4,0,,transformer_shared_ft__national,val_2004Q1,0
+Italy,adaptation,125,fine_tuned,10,0.058829625020734966,4,0,,transformer_shared_ft__national,val_2004Q1,0
+Japan,adaptation,165,fine_tuned,10,0.08199129195418209,4,0,,transformer_shared_ft__national,val_2004Q1,0
+Netherlands,adaptation,125,fine_tuned,10,0.05714633304160088,4,0,,transformer_shared_ft__national,val_2004Q1,0
+New Zealand,adaptation,125,fine_tuned,10,0.05656812503002584,4,0,,transformer_shared_ft__national,val_2004Q1,0
+Norway,adaptation,125,fine_tuned,10,0.05663741589523852,4,0,,transformer_shared_ft__national,val_2004Q1,0
+Portugal,adaptation,53,fine_tuned,10,0.02877554192673415,4,0,,transformer_shared_ft__national,val_2004Q1,0
+Russia,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,0
+South Africa,adaptation,141,fine_tuned,10,0.07891062507405877,4,0,,transformer_shared_ft__national,val_2004Q1,0
+South Korea,adaptation,61,fine_tuned,10,0.03055333299562335,4,0,,transformer_shared_ft__national,val_2004Q1,0
+Spain,adaptation,121,fine_tuned,10,0.06167233292944729,4,0,,transformer_shared_ft__national,val_2004Q1,0
+Sweden,adaptation,125,fine_tuned,10,0.061898292042315006,4,0,,transformer_shared_ft__national,val_2004Q1,0
+Switzerland,adaptation,125,fine_tuned,10,0.05957479192875326,4,0,,transformer_shared_ft__national,val_2004Q1,0
+Taiwan_national,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,0
+United Kingdom,adaptation,132,fine_tuned,10,0.07535695796832442,4,0,,transformer_shared_ft__national,val_2004Q1,0
+United States,adaptation,125,fine_tuned,10,0.061491459026001394,4,0,,transformer_shared_ft__national,val_2004Q1,0
+Chile,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,0
+Indonesia,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,0
+__shared__,shared,2658,fitted,21,6.342462041997351,120,0,,transformer_shared_ft__national,val_2004Q1,1
+Australia,adaptation,125,fine_tuned,10,0.05806441593449563,4,0,,transformer_shared_ft__national,val_2004Q1,1
+Austria,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,1
+Belgium,adaptation,125,fine_tuned,10,0.05881583294831216,4,0,,transformer_shared_ft__national,val_2004Q1,1
+Canada,adaptation,125,fine_tuned,10,0.0576352080097422,4,0,,transformer_shared_ft__national,val_2004Q1,1
+Colombia,adaptation,53,fine_tuned,10,0.026573749957606196,4,0,,transformer_shared_ft__national,val_2004Q1,1
+Denmark,adaptation,125,fine_tuned,10,0.057382666040211916,4,0,,transformer_shared_ft__national,val_2004Q1,1
+Finland,adaptation,125,fine_tuned,10,0.05699241592083126,4,0,,transformer_shared_ft__national,val_2004Q1,1
+France,adaptation,125,fine_tuned,10,0.05665929103270173,4,0,,transformer_shared_ft__national,val_2004Q1,1
+Germany,adaptation,125,fine_tuned,10,0.05657424998935312,4,0,,transformer_shared_ft__national,val_2004Q1,1
+Greece,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,1
+Iceland,adaptation,4,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,1
+Ireland,adaptation,125,fine_tuned,10,0.05662329203914851,4,0,,transformer_shared_ft__national,val_2004Q1,1
+Israel,adaptation,29,fine_tuned,10,0.02022637496702373,4,0,,transformer_shared_ft__national,val_2004Q1,1
+Italy,adaptation,125,fine_tuned,10,0.05863516696263105,4,0,,transformer_shared_ft__national,val_2004Q1,1
+Japan,adaptation,165,fine_tuned,10,0.08054733299650252,4,0,,transformer_shared_ft__national,val_2004Q1,1
+Netherlands,adaptation,125,fine_tuned,10,0.056533040944486856,4,0,,transformer_shared_ft__national,val_2004Q1,1
+New Zealand,adaptation,125,fine_tuned,10,0.05669920798391104,4,0,,transformer_shared_ft__national,val_2004Q1,1
+Norway,adaptation,125,fine_tuned,10,0.05812483304180205,4,0,,transformer_shared_ft__national,val_2004Q1,1
+Portugal,adaptation,53,fine_tuned,10,0.026440582936629653,4,0,,transformer_shared_ft__national,val_2004Q1,1
+Russia,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,1
+South Africa,adaptation,141,fine_tuned,10,0.07345120795071125,4,0,,transformer_shared_ft__national,val_2004Q1,1
+South Korea,adaptation,61,fine_tuned,10,0.02840541594196111,4,0,,transformer_shared_ft__national,val_2004Q1,1
+Spain,adaptation,121,fine_tuned,10,0.055448041995987296,4,0,,transformer_shared_ft__national,val_2004Q1,1
+Sweden,adaptation,125,fine_tuned,10,0.057083292049355805,4,0,,transformer_shared_ft__national,val_2004Q1,1
+Switzerland,adaptation,125,fine_tuned,10,0.05639537505339831,4,0,,transformer_shared_ft__national,val_2004Q1,1
+Taiwan_national,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,1
+United Kingdom,adaptation,132,fine_tuned,10,0.07525937492027879,4,0,,transformer_shared_ft__national,val_2004Q1,1
+United States,adaptation,125,fine_tuned,10,0.06026175001170486,4,0,,transformer_shared_ft__national,val_2004Q1,1
+Chile,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,1
+Indonesia,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,1
+__shared__,shared,2658,fitted,11,4.221595540991984,120,0,,transformer_shared_ft__national,val_2004Q1,2
+Australia,adaptation,125,fine_tuned,10,0.060821125051006675,4,0,,transformer_shared_ft__national,val_2004Q1,2
+Austria,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,2
+Belgium,adaptation,125,fine_tuned,10,0.059802541974931955,4,0,,transformer_shared_ft__national,val_2004Q1,2
+Canada,adaptation,125,fine_tuned,10,0.06123575009405613,4,0,,transformer_shared_ft__national,val_2004Q1,2
+Colombia,adaptation,53,fine_tuned,10,0.02793866698630154,4,0,,transformer_shared_ft__national,val_2004Q1,2
+Denmark,adaptation,125,fine_tuned,10,0.060065665980800986,4,0,,transformer_shared_ft__national,val_2004Q1,2
+Finland,adaptation,125,fine_tuned,10,0.05922487494535744,4,0,,transformer_shared_ft__national,val_2004Q1,2
+France,adaptation,125,fine_tuned,10,0.059170916909351945,4,0,,transformer_shared_ft__national,val_2004Q1,2
+Germany,adaptation,125,fine_tuned,10,0.05915295798331499,4,0,,transformer_shared_ft__national,val_2004Q1,2
+Greece,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,2
+Iceland,adaptation,4,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,2
+Ireland,adaptation,125,fine_tuned,10,0.05881312501151115,4,0,,transformer_shared_ft__national,val_2004Q1,2
+Israel,adaptation,29,fine_tuned,10,0.02102829108480364,4,0,,transformer_shared_ft__national,val_2004Q1,2
+Italy,adaptation,125,fine_tuned,10,0.058470374904572964,4,0,,transformer_shared_ft__national,val_2004Q1,2
+Japan,adaptation,165,fine_tuned,10,0.08221941604278982,4,0,,transformer_shared_ft__national,val_2004Q1,2
+Netherlands,adaptation,125,fine_tuned,10,0.05931158293969929,4,0,,transformer_shared_ft__national,val_2004Q1,2
+New Zealand,adaptation,125,fine_tuned,10,0.05838012497406453,4,0,,transformer_shared_ft__national,val_2004Q1,2
+Norway,adaptation,125,fine_tuned,10,0.05812945798970759,4,0,,transformer_shared_ft__national,val_2004Q1,2
+Portugal,adaptation,53,fine_tuned,10,0.02718616696074605,4,0,,transformer_shared_ft__national,val_2004Q1,2
+Russia,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,2
+South Africa,adaptation,141,fine_tuned,10,0.07391949999146163,4,0,,transformer_shared_ft__national,val_2004Q1,2
+South Korea,adaptation,61,fine_tuned,10,0.029045708011835814,4,0,,transformer_shared_ft__national,val_2004Q1,2
+Spain,adaptation,121,fine_tuned,10,0.05806220800150186,4,0,,transformer_shared_ft__national,val_2004Q1,2
+Sweden,adaptation,125,fine_tuned,10,0.05705370905343443,4,0,,transformer_shared_ft__national,val_2004Q1,2
+Switzerland,adaptation,125,fine_tuned,10,0.05698120896704495,4,0,,transformer_shared_ft__national,val_2004Q1,2
+Taiwan_national,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,2
+United Kingdom,adaptation,132,fine_tuned,10,0.07159391592722386,4,0,,transformer_shared_ft__national,val_2004Q1,2
+United States,adaptation,125,fine_tuned,10,0.058592415996827185,4,0,,transformer_shared_ft__national,val_2004Q1,2
+Chile,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,2
+Indonesia,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,2
+__shared__,shared,2658,fitted,11,4.1986670000478625,120,0,,transformer_shared_ft__national,val_2004Q1,3
+Australia,adaptation,125,fine_tuned,10,0.056629833066836,4,0,,transformer_shared_ft__national,val_2004Q1,3
+Austria,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,3
+Belgium,adaptation,125,fine_tuned,10,0.05652233399450779,4,0,,transformer_shared_ft__national,val_2004Q1,3
+Canada,adaptation,125,fine_tuned,10,0.056372332968749106,4,0,,transformer_shared_ft__national,val_2004Q1,3
+Colombia,adaptation,53,fine_tuned,10,0.026272624963894486,4,0,,transformer_shared_ft__national,val_2004Q1,3
+Denmark,adaptation,125,fine_tuned,10,0.056469791918061674,4,0,,transformer_shared_ft__national,val_2004Q1,3
+Finland,adaptation,125,fine_tuned,10,0.05644516705069691,4,0,,transformer_shared_ft__national,val_2004Q1,3
+France,adaptation,125,fine_tuned,10,0.056330625084228814,4,0,,transformer_shared_ft__national,val_2004Q1,3
+Germany,adaptation,125,fine_tuned,10,0.056212666095234454,4,0,,transformer_shared_ft__national,val_2004Q1,3
+Greece,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,3
+Iceland,adaptation,4,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,3
+Ireland,adaptation,125,fine_tuned,10,0.05755129095632583,4,0,,transformer_shared_ft__national,val_2004Q1,3
+Israel,adaptation,29,fine_tuned,10,0.020758041995577514,4,0,,transformer_shared_ft__national,val_2004Q1,3
+Italy,adaptation,125,fine_tuned,10,0.05774508393369615,4,0,,transformer_shared_ft__national,val_2004Q1,3
+Japan,adaptation,165,fine_tuned,10,0.07956916699185967,4,0,,transformer_shared_ft__national,val_2004Q1,3
+Netherlands,adaptation,125,fine_tuned,10,0.05796300002839416,4,0,,transformer_shared_ft__national,val_2004Q1,3
+New Zealand,adaptation,125,fine_tuned,10,0.05714141693897545,4,0,,transformer_shared_ft__national,val_2004Q1,3
+Norway,adaptation,125,fine_tuned,10,0.05642641696613282,4,0,,transformer_shared_ft__national,val_2004Q1,3
+Portugal,adaptation,53,fine_tuned,10,0.026476583094336092,4,0,,transformer_shared_ft__national,val_2004Q1,3
+Russia,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,3
+South Africa,adaptation,141,fine_tuned,10,0.0731415000045672,4,0,,transformer_shared_ft__national,val_2004Q1,3
+South Korea,adaptation,61,fine_tuned,10,0.028799041989259422,4,0,,transformer_shared_ft__national,val_2004Q1,3
+Spain,adaptation,121,fine_tuned,10,0.05679041601251811,4,0,,transformer_shared_ft__national,val_2004Q1,3
+Sweden,adaptation,125,fine_tuned,10,0.0575521660503,4,0,,transformer_shared_ft__national,val_2004Q1,3
+Switzerland,adaptation,125,fine_tuned,10,0.0575013339985162,4,0,,transformer_shared_ft__national,val_2004Q1,3
+Taiwan_national,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,3
+United Kingdom,adaptation,132,fine_tuned,10,0.07116479205433279,4,0,,transformer_shared_ft__national,val_2004Q1,3
+United States,adaptation,125,fine_tuned,10,0.057436333037912846,4,0,,transformer_shared_ft__national,val_2004Q1,3
+Chile,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,3
+Indonesia,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,3
+__shared__,shared,2658,fitted,66,16.1697755419882,120,0,,transformer_shared_ft__national,val_2004Q1,4
+Australia,adaptation,125,fine_tuned,10,0.062164666946046054,4,0,,transformer_shared_ft__national,val_2004Q1,4
+Austria,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,4
+Belgium,adaptation,125,fine_tuned,10,0.06052941700909287,4,0,,transformer_shared_ft__national,val_2004Q1,4
+Canada,adaptation,125,fine_tuned,10,0.06251270801294595,4,0,,transformer_shared_ft__national,val_2004Q1,4
+Colombia,adaptation,53,fine_tuned,10,0.043439083034172654,4,0,,transformer_shared_ft__national,val_2004Q1,4
+Denmark,adaptation,125,fine_tuned,10,0.06322237499989569,4,0,,transformer_shared_ft__national,val_2004Q1,4
+Finland,adaptation,125,fine_tuned,10,0.06010449992027134,4,0,,transformer_shared_ft__national,val_2004Q1,4
+France,adaptation,125,fine_tuned,10,0.05721495801117271,4,0,,transformer_shared_ft__national,val_2004Q1,4
+Germany,adaptation,125,fine_tuned,10,0.05738112505059689,4,0,,transformer_shared_ft__national,val_2004Q1,4
+Greece,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,4
+Iceland,adaptation,4,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,4
+Ireland,adaptation,125,fine_tuned,10,0.05723187490366399,4,0,,transformer_shared_ft__national,val_2004Q1,4
+Israel,adaptation,29,fine_tuned,10,0.02049362496472895,4,0,,transformer_shared_ft__national,val_2004Q1,4
+Italy,adaptation,125,fine_tuned,10,0.05691754200961441,4,0,,transformer_shared_ft__national,val_2004Q1,4
+Japan,adaptation,165,fine_tuned,10,0.08566649991553277,4,0,,transformer_shared_ft__national,val_2004Q1,4
+Netherlands,adaptation,125,fine_tuned,10,0.06195345800369978,4,0,,transformer_shared_ft__national,val_2004Q1,4
+New Zealand,adaptation,125,fine_tuned,10,0.06066133396234363,4,0,,transformer_shared_ft__national,val_2004Q1,4
+Norway,adaptation,125,fine_tuned,10,0.05992658401373774,4,0,,transformer_shared_ft__national,val_2004Q1,4
+Portugal,adaptation,53,fine_tuned,10,0.02872620802372694,4,0,,transformer_shared_ft__national,val_2004Q1,4
+Russia,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,4
+South Africa,adaptation,141,fine_tuned,10,0.08045470900833607,4,0,,transformer_shared_ft__national,val_2004Q1,4
+South Korea,adaptation,61,fine_tuned,10,0.031485875020734966,4,0,,transformer_shared_ft__national,val_2004Q1,4
+Spain,adaptation,121,fine_tuned,10,0.0628922909963876,4,0,,transformer_shared_ft__national,val_2004Q1,4
+Sweden,adaptation,125,fine_tuned,10,0.06222233397420496,4,0,,transformer_shared_ft__national,val_2004Q1,4
+Switzerland,adaptation,125,fine_tuned,10,0.061995584052056074,4,0,,transformer_shared_ft__national,val_2004Q1,4
+Taiwan_national,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,4
+United Kingdom,adaptation,132,fine_tuned,10,0.07652770809363574,4,0,,transformer_shared_ft__national,val_2004Q1,4
+United States,adaptation,125,fine_tuned,10,0.0605636250693351,4,0,,transformer_shared_ft__national,val_2004Q1,4
+Chile,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,4
+Indonesia,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2004Q1,4
+__shared__,shared,2772,fitted,24,7.586186166969128,120,0,,transformer_shared_ft__national,val_2005Q1,0
+Australia,adaptation,129,fine_tuned,10,0.07718625001143664,4,0,,transformer_shared_ft__national,val_2005Q1,0
+Austria,adaptation,9,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,0
+Belgium,adaptation,129,fine_tuned,10,0.07843904197216034,4,0,,transformer_shared_ft__national,val_2005Q1,0
+Canada,adaptation,129,fine_tuned,10,0.07407704193610698,4,0,,transformer_shared_ft__national,val_2005Q1,0
+Chile,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,0
+Colombia,adaptation,57,fine_tuned,10,0.02959950000513345,4,0,,transformer_shared_ft__national,val_2005Q1,0
+Denmark,adaptation,129,fine_tuned,10,0.07393616600893438,4,0,,transformer_shared_ft__national,val_2005Q1,0
+Finland,adaptation,129,fine_tuned,10,0.07358699990436435,4,0,,transformer_shared_ft__national,val_2005Q1,0
+France,adaptation,129,fine_tuned,10,0.07504283299203962,4,0,,transformer_shared_ft__national,val_2005Q1,0
+Germany,adaptation,129,fine_tuned,10,0.07201891602016985,4,0,,transformer_shared_ft__national,val_2005Q1,0
+Greece,adaptation,21,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,0
+Iceland,adaptation,8,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,0
+Indonesia,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,0
+Ireland,adaptation,129,fine_tuned,10,0.07310033403337002,4,0,,transformer_shared_ft__national,val_2005Q1,0
+Israel,adaptation,33,fine_tuned,10,0.02284512494225055,4,0,,transformer_shared_ft__national,val_2005Q1,0
+Italy,adaptation,129,fine_tuned,10,0.07275870791636407,4,0,,transformer_shared_ft__national,val_2005Q1,0
+Japan,adaptation,169,fine_tuned,10,0.08076754200737923,4,0,,transformer_shared_ft__national,val_2005Q1,0
+Netherlands,adaptation,129,fine_tuned,10,0.07083766697905958,4,0,,transformer_shared_ft__national,val_2005Q1,0
+New Zealand,adaptation,129,fine_tuned,10,0.07174512499477714,4,0,,transformer_shared_ft__national,val_2005Q1,0
+Norway,adaptation,129,fine_tuned,10,0.07181933301035315,4,0,,transformer_shared_ft__national,val_2005Q1,0
+Portugal,adaptation,57,fine_tuned,10,0.02812341705430299,4,0,,transformer_shared_ft__national,val_2005Q1,0
+Russia,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,0
+South Africa,adaptation,145,fine_tuned,10,0.07591695804148912,4,0,,transformer_shared_ft__national,val_2005Q1,0
+South Korea,adaptation,65,fine_tuned,10,0.0424268749775365,4,0,,transformer_shared_ft__national,val_2005Q1,0
+Spain,adaptation,125,fine_tuned,10,0.05895587499253452,4,0,,transformer_shared_ft__national,val_2005Q1,0
+Sweden,adaptation,129,fine_tuned,10,0.07152237498667091,4,0,,transformer_shared_ft__national,val_2005Q1,0
+Switzerland,adaptation,129,fine_tuned,10,0.07361020799726248,4,0,,transformer_shared_ft__national,val_2005Q1,0
+Taiwan_national,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,0
+United Kingdom,adaptation,136,fine_tuned,10,0.07323387498036027,4,0,,transformer_shared_ft__national,val_2005Q1,0
+United States,adaptation,129,fine_tuned,10,0.07086900004651397,4,0,,transformer_shared_ft__national,val_2005Q1,0
+__shared__,shared,2772,fitted,23,7.302727375063114,120,0,,transformer_shared_ft__national,val_2005Q1,1
+Australia,adaptation,129,fine_tuned,10,0.06994391698390245,4,0,,transformer_shared_ft__national,val_2005Q1,1
+Austria,adaptation,9,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,1
+Belgium,adaptation,129,fine_tuned,10,0.06974866602104157,4,0,,transformer_shared_ft__national,val_2005Q1,1
+Canada,adaptation,129,fine_tuned,10,0.07079479203093797,4,0,,transformer_shared_ft__national,val_2005Q1,1
+Chile,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,1
+Colombia,adaptation,57,fine_tuned,10,0.02723500004503876,4,0,,transformer_shared_ft__national,val_2005Q1,1
+Denmark,adaptation,129,fine_tuned,10,0.0703748749801889,4,0,,transformer_shared_ft__national,val_2005Q1,1
+Finland,adaptation,129,fine_tuned,10,0.06890641700010747,4,0,,transformer_shared_ft__national,val_2005Q1,1
+France,adaptation,129,fine_tuned,10,0.07160754094365984,4,0,,transformer_shared_ft__national,val_2005Q1,1
+Germany,adaptation,129,fine_tuned,10,0.07727516710292548,4,0,,transformer_shared_ft__national,val_2005Q1,1
+Greece,adaptation,21,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,1
+Iceland,adaptation,8,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,1
+Indonesia,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,1
+Ireland,adaptation,129,fine_tuned,10,0.07257379090879112,4,0,,transformer_shared_ft__national,val_2005Q1,1
+Israel,adaptation,33,fine_tuned,10,0.021908542024903,4,0,,transformer_shared_ft__national,val_2005Q1,1
+Italy,adaptation,129,fine_tuned,10,0.07223166606854647,4,0,,transformer_shared_ft__national,val_2005Q1,1
+Japan,adaptation,169,fine_tuned,10,0.08122091589029878,4,0,,transformer_shared_ft__national,val_2005Q1,1
+Netherlands,adaptation,129,fine_tuned,10,0.07010033295955509,4,0,,transformer_shared_ft__national,val_2005Q1,1
+New Zealand,adaptation,129,fine_tuned,10,0.06980295898392797,4,0,,transformer_shared_ft__national,val_2005Q1,1
+Norway,adaptation,129,fine_tuned,10,0.06990320805925876,4,0,,transformer_shared_ft__national,val_2005Q1,1
+Portugal,adaptation,57,fine_tuned,10,0.027472499990835786,4,0,,transformer_shared_ft__national,val_2005Q1,1
+Russia,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,1
+South Africa,adaptation,145,fine_tuned,10,0.07542170793749392,4,0,,transformer_shared_ft__national,val_2005Q1,1
+South Korea,adaptation,65,fine_tuned,10,0.04131887492258102,4,0,,transformer_shared_ft__national,val_2005Q1,1
+Spain,adaptation,125,fine_tuned,10,0.05638174992054701,4,0,,transformer_shared_ft__national,val_2005Q1,1
+Sweden,adaptation,129,fine_tuned,10,0.07023466599639505,4,0,,transformer_shared_ft__national,val_2005Q1,1
+Switzerland,adaptation,129,fine_tuned,10,0.07370520802214742,4,0,,transformer_shared_ft__national,val_2005Q1,1
+Taiwan_national,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,1
+United Kingdom,adaptation,136,fine_tuned,10,0.07347679196391255,4,0,,transformer_shared_ft__national,val_2005Q1,1
+United States,adaptation,129,fine_tuned,10,0.07148849999066442,4,0,,transformer_shared_ft__national,val_2005Q1,1
+__shared__,shared,2772,fitted,11,4.473598708049394,120,0,,transformer_shared_ft__national,val_2005Q1,2
+Australia,adaptation,129,fine_tuned,10,0.07162683305796236,4,0,,transformer_shared_ft__national,val_2005Q1,2
+Austria,adaptation,9,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,2
+Belgium,adaptation,129,fine_tuned,10,0.0720752920024097,4,0,,transformer_shared_ft__national,val_2005Q1,2
+Canada,adaptation,129,fine_tuned,10,0.07224704197142273,4,0,,transformer_shared_ft__national,val_2005Q1,2
+Chile,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,2
+Colombia,adaptation,57,fine_tuned,10,0.030695291934534907,4,0,,transformer_shared_ft__national,val_2005Q1,2
+Denmark,adaptation,129,fine_tuned,10,0.07409758295398206,4,0,,transformer_shared_ft__national,val_2005Q1,2
+Finland,adaptation,129,fine_tuned,10,0.07435908308252692,4,0,,transformer_shared_ft__national,val_2005Q1,2
+France,adaptation,129,fine_tuned,10,0.07671741698868573,4,0,,transformer_shared_ft__national,val_2005Q1,2
+Germany,adaptation,129,fine_tuned,10,0.07641149999108166,4,0,,transformer_shared_ft__national,val_2005Q1,2
+Greece,adaptation,21,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,2
+Iceland,adaptation,8,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,2
+Indonesia,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,2
+Ireland,adaptation,129,fine_tuned,10,0.07560970890335739,4,0,,transformer_shared_ft__national,val_2005Q1,2
+Israel,adaptation,33,fine_tuned,10,0.024907750077545643,4,0,,transformer_shared_ft__national,val_2005Q1,2
+Italy,adaptation,129,fine_tuned,10,0.07618916698265821,4,0,,transformer_shared_ft__national,val_2005Q1,2
+Japan,adaptation,169,fine_tuned,10,0.08739549992606044,4,0,,transformer_shared_ft__national,val_2005Q1,2
+Netherlands,adaptation,129,fine_tuned,10,0.07579100003931671,4,0,,transformer_shared_ft__national,val_2005Q1,2
+New Zealand,adaptation,129,fine_tuned,10,0.07510204100981355,4,0,,transformer_shared_ft__national,val_2005Q1,2
+Norway,adaptation,129,fine_tuned,10,0.07579200004693121,4,0,,transformer_shared_ft__national,val_2005Q1,2
+Portugal,adaptation,57,fine_tuned,10,0.0298763329628855,4,0,,transformer_shared_ft__national,val_2005Q1,2
+Russia,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,2
+South Africa,adaptation,145,fine_tuned,10,0.07966883294284344,4,0,,transformer_shared_ft__national,val_2005Q1,2
+South Korea,adaptation,65,fine_tuned,10,0.044042250025086105,4,0,,transformer_shared_ft__national,val_2005Q1,2
+Spain,adaptation,125,fine_tuned,10,0.060958415968343616,4,0,,transformer_shared_ft__national,val_2005Q1,2
+Sweden,adaptation,129,fine_tuned,10,0.07288504205644131,4,0,,transformer_shared_ft__national,val_2005Q1,2
+Switzerland,adaptation,129,fine_tuned,10,0.07170500000938773,4,0,,transformer_shared_ft__national,val_2005Q1,2
+Taiwan_national,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,2
+United Kingdom,adaptation,136,fine_tuned,10,0.07287470798473805,4,0,,transformer_shared_ft__national,val_2005Q1,2
+United States,adaptation,129,fine_tuned,10,0.07555533398408443,4,0,,transformer_shared_ft__national,val_2005Q1,2
+__shared__,shared,2772,fitted,22,7.009269417030737,120,0,,transformer_shared_ft__national,val_2005Q1,3
+Australia,adaptation,129,fine_tuned,10,0.07666525000240654,4,0,,transformer_shared_ft__national,val_2005Q1,3
+Austria,adaptation,9,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,3
+Belgium,adaptation,129,fine_tuned,10,0.07594208291266114,4,0,,transformer_shared_ft__national,val_2005Q1,3
+Canada,adaptation,129,fine_tuned,10,0.07764804095495492,4,0,,transformer_shared_ft__national,val_2005Q1,3
+Chile,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,3
+Colombia,adaptation,57,fine_tuned,10,0.030299833044409752,4,0,,transformer_shared_ft__national,val_2005Q1,3
+Denmark,adaptation,129,fine_tuned,10,0.07647687499411404,4,0,,transformer_shared_ft__national,val_2005Q1,3
+Finland,adaptation,129,fine_tuned,10,0.07495641696732491,4,0,,transformer_shared_ft__national,val_2005Q1,3
+France,adaptation,129,fine_tuned,10,0.07324741606134921,4,0,,transformer_shared_ft__national,val_2005Q1,3
+Germany,adaptation,129,fine_tuned,10,0.07648758392315358,4,0,,transformer_shared_ft__national,val_2005Q1,3
+Greece,adaptation,21,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,3
+Iceland,adaptation,8,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,3
+Indonesia,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,3
+Ireland,adaptation,129,fine_tuned,10,0.07537091698031873,4,0,,transformer_shared_ft__national,val_2005Q1,3
+Israel,adaptation,33,fine_tuned,10,0.022582249948754907,4,0,,transformer_shared_ft__national,val_2005Q1,3
+Italy,adaptation,129,fine_tuned,10,0.07425004208926111,4,0,,transformer_shared_ft__national,val_2005Q1,3
+Japan,adaptation,169,fine_tuned,10,0.08124125003814697,4,0,,transformer_shared_ft__national,val_2005Q1,3
+Netherlands,adaptation,129,fine_tuned,10,0.06959758407901973,4,0,,transformer_shared_ft__national,val_2005Q1,3
+New Zealand,adaptation,129,fine_tuned,10,0.06995483301579952,4,0,,transformer_shared_ft__national,val_2005Q1,3
+Norway,adaptation,129,fine_tuned,10,0.06899800000246614,4,0,,transformer_shared_ft__national,val_2005Q1,3
+Portugal,adaptation,57,fine_tuned,10,0.031177583965472877,4,0,,transformer_shared_ft__national,val_2005Q1,3
+Russia,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,3
+South Africa,adaptation,145,fine_tuned,10,0.07786829106044024,4,0,,transformer_shared_ft__national,val_2005Q1,3
+South Korea,adaptation,65,fine_tuned,10,0.041828832938335836,4,0,,transformer_shared_ft__national,val_2005Q1,3
+Spain,adaptation,125,fine_tuned,10,0.05770875001326203,4,0,,transformer_shared_ft__national,val_2005Q1,3
+Sweden,adaptation,129,fine_tuned,10,0.07131458295043558,4,0,,transformer_shared_ft__national,val_2005Q1,3
+Switzerland,adaptation,129,fine_tuned,10,0.07070466701406986,4,0,,transformer_shared_ft__national,val_2005Q1,3
+Taiwan_national,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,3
+United Kingdom,adaptation,136,fine_tuned,10,0.07767491694539785,4,0,,transformer_shared_ft__national,val_2005Q1,3
+United States,adaptation,129,fine_tuned,10,0.07306899991817772,4,0,,transformer_shared_ft__national,val_2005Q1,3
+__shared__,shared,2772,fitted,31,9.275343999965116,120,0,,transformer_shared_ft__national,val_2005Q1,4
+Australia,adaptation,129,fine_tuned,10,0.07549758406821638,4,0,,transformer_shared_ft__national,val_2005Q1,4
+Austria,adaptation,9,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,4
+Belgium,adaptation,129,fine_tuned,10,0.07354229094926268,4,0,,transformer_shared_ft__national,val_2005Q1,4
+Canada,adaptation,129,fine_tuned,10,0.07403541705571115,4,0,,transformer_shared_ft__national,val_2005Q1,4
+Chile,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,4
+Colombia,adaptation,57,fine_tuned,10,0.03075191704556346,4,0,,transformer_shared_ft__national,val_2005Q1,4
+Denmark,adaptation,129,fine_tuned,10,0.07735491602215916,4,0,,transformer_shared_ft__national,val_2005Q1,4
+Finland,adaptation,129,fine_tuned,10,0.07792308402713388,4,0,,transformer_shared_ft__national,val_2005Q1,4
+France,adaptation,129,fine_tuned,10,0.08093487494625151,4,0,,transformer_shared_ft__national,val_2005Q1,4
+Germany,adaptation,129,fine_tuned,10,0.07905437494628131,4,0,,transformer_shared_ft__national,val_2005Q1,4
+Greece,adaptation,21,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,4
+Iceland,adaptation,8,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,4
+Indonesia,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,4
+Ireland,adaptation,129,fine_tuned,10,0.08005395799409598,4,0,,transformer_shared_ft__national,val_2005Q1,4
+Israel,adaptation,33,fine_tuned,10,0.023494208930060267,4,0,,transformer_shared_ft__national,val_2005Q1,4
+Italy,adaptation,129,fine_tuned,10,0.07831258303485811,4,0,,transformer_shared_ft__national,val_2005Q1,4
+Japan,adaptation,169,fine_tuned,10,0.09545504208654165,4,0,,transformer_shared_ft__national,val_2005Q1,4
+Netherlands,adaptation,129,fine_tuned,10,0.1708830000134185,4,0,,transformer_shared_ft__national,val_2005Q1,4
+New Zealand,adaptation,129,fine_tuned,10,0.13240533298812807,4,0,,transformer_shared_ft__national,val_2005Q1,4
+Norway,adaptation,129,fine_tuned,10,0.08593062497675419,4,0,,transformer_shared_ft__national,val_2005Q1,4
+Portugal,adaptation,57,fine_tuned,10,0.031518041039817035,4,0,,transformer_shared_ft__national,val_2005Q1,4
+Russia,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,4
+South Africa,adaptation,145,fine_tuned,10,0.08650812495034188,4,0,,transformer_shared_ft__national,val_2005Q1,4
+South Korea,adaptation,65,fine_tuned,10,0.05026458308566362,4,0,,transformer_shared_ft__national,val_2005Q1,4
+Spain,adaptation,125,fine_tuned,10,0.06723700009752065,4,0,,transformer_shared_ft__national,val_2005Q1,4
+Sweden,adaptation,129,fine_tuned,10,0.0814368340652436,4,0,,transformer_shared_ft__national,val_2005Q1,4
+Switzerland,adaptation,129,fine_tuned,10,0.07830233301501721,4,0,,transformer_shared_ft__national,val_2005Q1,4
+Taiwan_national,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2005Q1,4
+United Kingdom,adaptation,136,fine_tuned,10,0.0797972499858588,4,0,,transformer_shared_ft__national,val_2005Q1,4
+United States,adaptation,129,fine_tuned,10,0.08228020800743252,4,0,,transformer_shared_ft__national,val_2005Q1,4
+__shared__,shared,2892,fitted,22,7.809429917018861,120,0,,transformer_shared_ft__national,val_2006Q1,0
+Australia,adaptation,133,fine_tuned,10,0.07900866703130305,4,0,,transformer_shared_ft__national,val_2006Q1,0
+Austria,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2006Q1,0
+Belgium,adaptation,133,fine_tuned,10,0.07876983296591789,4,0,,transformer_shared_ft__national,val_2006Q1,0
+Canada,adaptation,133,fine_tuned,10,0.07676833309233189,4,0,,transformer_shared_ft__national,val_2006Q1,0
+Chile,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2006Q1,0
+Colombia,adaptation,61,fine_tuned,10,0.03281087498180568,4,0,,transformer_shared_ft__national,val_2006Q1,0
+Denmark,adaptation,133,fine_tuned,10,0.07983874995261431,4,0,,transformer_shared_ft__national,val_2006Q1,0
+Finland,adaptation,133,fine_tuned,10,0.08283333294093609,4,0,,transformer_shared_ft__national,val_2006Q1,0
+France,adaptation,133,fine_tuned,10,0.08367312501650304,4,0,,transformer_shared_ft__national,val_2006Q1,0
+Germany,adaptation,133,fine_tuned,10,0.07952500006649643,4,0,,transformer_shared_ft__national,val_2006Q1,0
+Greece,adaptation,25,fine_tuned,10,0.020714750047773123,4,0,,transformer_shared_ft__national,val_2006Q1,0
+Iceland,adaptation,12,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2006Q1,0
+Indonesia,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2006Q1,0
+Ireland,adaptation,133,fine_tuned,10,0.08252033300232142,4,0,,transformer_shared_ft__national,val_2006Q1,0
+Israel,adaptation,37,fine_tuned,10,0.026035915943793952,4,0,,transformer_shared_ft__national,val_2006Q1,0
+Italy,adaptation,133,fine_tuned,10,0.08144870807882398,4,0,,transformer_shared_ft__national,val_2006Q1,0
+Japan,adaptation,173,fine_tuned,10,0.08635404193773866,4,0,,transformer_shared_ft__national,val_2006Q1,0
+Netherlands,adaptation,133,fine_tuned,10,0.0755987080046907,4,0,,transformer_shared_ft__national,val_2006Q1,0
+New Zealand,adaptation,133,fine_tuned,10,0.08003491698764265,4,0,,transformer_shared_ft__national,val_2006Q1,0
+Norway,adaptation,133,fine_tuned,10,0.07829116599168628,4,0,,transformer_shared_ft__national,val_2006Q1,0
+Portugal,adaptation,61,fine_tuned,10,0.032176499953493476,4,0,,transformer_shared_ft__national,val_2006Q1,0
+Russia,adaptation,9,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2006Q1,0
+South Africa,adaptation,149,fine_tuned,10,0.08132450003176928,4,0,,transformer_shared_ft__national,val_2006Q1,0
+South Korea,adaptation,69,fine_tuned,10,0.04713654099032283,4,0,,transformer_shared_ft__national,val_2006Q1,0
+Spain,adaptation,129,fine_tuned,10,0.07665683305822313,4,0,,transformer_shared_ft__national,val_2006Q1,0
+Sweden,adaptation,133,fine_tuned,10,0.0811740409117192,4,0,,transformer_shared_ft__national,val_2006Q1,0
+Switzerland,adaptation,133,fine_tuned,10,0.07886562496423721,4,0,,transformer_shared_ft__national,val_2006Q1,0
+Taiwan_national,adaptation,9,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2006Q1,0
+United Kingdom,adaptation,140,fine_tuned,10,0.08378262503538281,4,0,,transformer_shared_ft__national,val_2006Q1,0
+United States,adaptation,133,fine_tuned,10,0.08205737499520183,4,0,,transformer_shared_ft__national,val_2006Q1,0
+__shared__,shared,2892,fitted,24,8.261393208056688,120,0,,transformer_shared_ft__national,val_2006Q1,1
+Australia,adaptation,133,fine_tuned,10,0.07383020792622119,4,0,,transformer_shared_ft__national,val_2006Q1,1
+Austria,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2006Q1,1
+Belgium,adaptation,133,fine_tuned,10,0.0762051660567522,4,0,,transformer_shared_ft__national,val_2006Q1,1
+Canada,adaptation,133,fine_tuned,10,0.07815991702955216,4,0,,transformer_shared_ft__national,val_2006Q1,1
+Chile,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2006Q1,1
+Colombia,adaptation,61,fine_tuned,10,0.03212195890955627,4,0,,transformer_shared_ft__national,val_2006Q1,1
+Denmark,adaptation,133,fine_tuned,10,0.07846900005824864,4,0,,transformer_shared_ft__national,val_2006Q1,1
+Finland,adaptation,133,fine_tuned,10,0.0795120419934392,4,0,,transformer_shared_ft__national,val_2006Q1,1
+France,adaptation,133,fine_tuned,10,0.07938670902512968,4,0,,transformer_shared_ft__national,val_2006Q1,1
+Germany,adaptation,133,fine_tuned,10,0.08306495903525501,4,0,,transformer_shared_ft__national,val_2006Q1,1
+Greece,adaptation,25,fine_tuned,10,0.025064207962714136,4,0,,transformer_shared_ft__national,val_2006Q1,1
+Iceland,adaptation,12,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2006Q1,1
+Indonesia,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2006Q1,1
+Ireland,adaptation,133,fine_tuned,10,0.09016741602681577,4,0,,transformer_shared_ft__national,val_2006Q1,1
+Israel,adaptation,37,fine_tuned,10,0.026506709051318467,4,0,,transformer_shared_ft__national,val_2006Q1,1
+Italy,adaptation,133,fine_tuned,10,0.08283870795276016,4,0,,transformer_shared_ft__national,val_2006Q1,1
+Japan,adaptation,173,fine_tuned,10,0.0934561250032857,4,0,,transformer_shared_ft__national,val_2006Q1,1
+Netherlands,adaptation,133,fine_tuned,10,0.07724454207345843,4,0,,transformer_shared_ft__national,val_2006Q1,1
+New Zealand,adaptation,133,fine_tuned,10,0.07686579099390656,4,0,,transformer_shared_ft__national,val_2006Q1,1
+Norway,adaptation,133,fine_tuned,10,0.07806258299387991,4,0,,transformer_shared_ft__national,val_2006Q1,1
+Portugal,adaptation,61,fine_tuned,10,0.031420291983522475,4,0,,transformer_shared_ft__national,val_2006Q1,1
+Russia,adaptation,9,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2006Q1,1
+South Africa,adaptation,149,fine_tuned,10,0.08194933296181262,4,0,,transformer_shared_ft__national,val_2006Q1,1
+South Korea,adaptation,69,fine_tuned,10,0.046853417064994574,4,0,,transformer_shared_ft__national,val_2006Q1,1
+Spain,adaptation,129,fine_tuned,10,0.08006283303257078,4,0,,transformer_shared_ft__national,val_2006Q1,1
+Sweden,adaptation,133,fine_tuned,10,0.07816962501965463,4,0,,transformer_shared_ft__national,val_2006Q1,1
+Switzerland,adaptation,133,fine_tuned,10,0.07947274995967746,4,0,,transformer_shared_ft__national,val_2006Q1,1
+Taiwan_national,adaptation,9,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2006Q1,1
+United Kingdom,adaptation,140,fine_tuned,10,0.0825658329995349,4,0,,transformer_shared_ft__national,val_2006Q1,1
+United States,adaptation,133,fine_tuned,10,0.08012979093473405,4,0,,transformer_shared_ft__national,val_2006Q1,1
+__shared__,shared,2892,fitted,15,6.399267999920994,120,0,,transformer_shared_ft__national,val_2006Q1,2
+Australia,adaptation,133,fine_tuned,10,0.08332495903596282,4,0,,transformer_shared_ft__national,val_2006Q1,2
+Austria,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2006Q1,2
+Belgium,adaptation,133,fine_tuned,10,0.08308479096740484,4,0,,transformer_shared_ft__national,val_2006Q1,2
+Canada,adaptation,133,fine_tuned,10,0.07829125004354864,4,0,,transformer_shared_ft__national,val_2006Q1,2
+Chile,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2006Q1,2
+Colombia,adaptation,61,fine_tuned,10,0.03945841605309397,4,0,,transformer_shared_ft__national,val_2006Q1,2
+Denmark,adaptation,133,fine_tuned,10,0.08155204204376787,4,0,,transformer_shared_ft__national,val_2006Q1,2
+Finland,adaptation,133,fine_tuned,10,0.08296091598458588,4,0,,transformer_shared_ft__national,val_2006Q1,2
+France,adaptation,133,fine_tuned,10,0.0830262079834938,4,0,,transformer_shared_ft__national,val_2006Q1,2
+Germany,adaptation,133,fine_tuned,10,0.08695783407893032,4,0,,transformer_shared_ft__national,val_2006Q1,2
+Greece,adaptation,25,fine_tuned,10,0.020847790990956128,4,0,,transformer_shared_ft__national,val_2006Q1,2
+Iceland,adaptation,12,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2006Q1,2
+Indonesia,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2006Q1,2
+Ireland,adaptation,133,fine_tuned,10,0.07945812493562698,4,0,,transformer_shared_ft__national,val_2006Q1,2
+Israel,adaptation,37,fine_tuned,10,0.024611083092167974,4,0,,transformer_shared_ft__national,val_2006Q1,2
+Italy,adaptation,133,fine_tuned,10,0.07962666591629386,4,0,,transformer_shared_ft__national,val_2006Q1,2
+Japan,adaptation,173,fine_tuned,10,0.09168599999975413,4,0,,transformer_shared_ft__national,val_2006Q1,2
+Netherlands,adaptation,133,fine_tuned,10,0.0867239999352023,4,0,,transformer_shared_ft__national,val_2006Q1,2
+New Zealand,adaptation,133,fine_tuned,10,0.08204175007995218,4,0,,transformer_shared_ft__national,val_2006Q1,2
+Norway,adaptation,133,fine_tuned,10,0.08210404100827873,4,0,,transformer_shared_ft__national,val_2006Q1,2
+Portugal,adaptation,61,fine_tuned,10,0.03351954196114093,4,0,,transformer_shared_ft__national,val_2006Q1,2
+Russia,adaptation,9,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2006Q1,2
+South Africa,adaptation,149,fine_tuned,10,0.08497058297507465,4,0,,transformer_shared_ft__national,val_2006Q1,2
+South Korea,adaptation,69,fine_tuned,10,0.046413291012868285,4,0,,transformer_shared_ft__national,val_2006Q1,2
+Spain,adaptation,129,fine_tuned,10,0.07935054204426706,4,0,,transformer_shared_ft__national,val_2006Q1,2
+Sweden,adaptation,133,fine_tuned,10,0.08144300000276417,4,0,,transformer_shared_ft__national,val_2006Q1,2
+Switzerland,adaptation,133,fine_tuned,10,0.08142858394421637,4,0,,transformer_shared_ft__national,val_2006Q1,2
+Taiwan_national,adaptation,9,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2006Q1,2
+United Kingdom,adaptation,140,fine_tuned,10,0.08133762504439801,4,0,,transformer_shared_ft__national,val_2006Q1,2
+United States,adaptation,133,fine_tuned,10,0.07894537504762411,4,0,,transformer_shared_ft__national,val_2006Q1,2
+__shared__,shared,2892,fitted,13,5.471180084045045,120,0,,transformer_shared_ft__national,val_2006Q1,3
+Australia,adaptation,133,fine_tuned,10,0.08051875000819564,4,0,,transformer_shared_ft__national,val_2006Q1,3
+Austria,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2006Q1,3
+Belgium,adaptation,133,fine_tuned,10,0.07872641598805785,4,0,,transformer_shared_ft__national,val_2006Q1,3
+Canada,adaptation,133,fine_tuned,10,0.07796962501015514,4,0,,transformer_shared_ft__national,val_2006Q1,3
+Chile,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2006Q1,3
+Colombia,adaptation,61,fine_tuned,10,0.032938792021013796,4,0,,transformer_shared_ft__national,val_2006Q1,3
+Denmark,adaptation,133,fine_tuned,10,0.08040891704149544,4,0,,transformer_shared_ft__national,val_2006Q1,3
+Finland,adaptation,133,fine_tuned,10,0.08100458304397762,4,0,,transformer_shared_ft__national,val_2006Q1,3
+France,adaptation,133,fine_tuned,10,0.08120620809495449,4,0,,transformer_shared_ft__national,val_2006Q1,3
+Germany,adaptation,133,fine_tuned,10,0.07959912507794797,4,0,,transformer_shared_ft__national,val_2006Q1,3
+Greece,adaptation,25,fine_tuned,10,0.02122999995481223,4,0,,transformer_shared_ft__national,val_2006Q1,3
+Iceland,adaptation,12,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2006Q1,3
+Indonesia,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2006Q1,3
+Ireland,adaptation,133,fine_tuned,10,0.0790361660765484,4,0,,transformer_shared_ft__national,val_2006Q1,3
+Israel,adaptation,37,fine_tuned,10,0.026419542031362653,4,0,,transformer_shared_ft__national,val_2006Q1,3
+Italy,adaptation,133,fine_tuned,10,0.07928595901466906,4,0,,transformer_shared_ft__national,val_2006Q1,3
+Japan,adaptation,173,fine_tuned,10,0.09051887493114918,4,0,,transformer_shared_ft__national,val_2006Q1,3
+Netherlands,adaptation,133,fine_tuned,10,0.08152500004507601,4,0,,transformer_shared_ft__national,val_2006Q1,3
+New Zealand,adaptation,133,fine_tuned,10,0.08160804188810289,4,0,,transformer_shared_ft__national,val_2006Q1,3
+Norway,adaptation,133,fine_tuned,10,0.0798120410181582,4,0,,transformer_shared_ft__national,val_2006Q1,3
+Portugal,adaptation,61,fine_tuned,10,0.03312829101923853,4,0,,transformer_shared_ft__national,val_2006Q1,3
+Russia,adaptation,9,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2006Q1,3
+South Africa,adaptation,149,fine_tuned,10,0.08270633302163333,4,0,,transformer_shared_ft__national,val_2006Q1,3
+South Korea,adaptation,69,fine_tuned,10,0.04628279199823737,4,0,,transformer_shared_ft__national,val_2006Q1,3
+Spain,adaptation,129,fine_tuned,10,0.15898504108190536,4,0,,transformer_shared_ft__national,val_2006Q1,3
+Sweden,adaptation,133,fine_tuned,10,0.08057670795824379,4,0,,transformer_shared_ft__national,val_2006Q1,3
+Switzerland,adaptation,133,fine_tuned,10,0.07604566705413163,4,0,,transformer_shared_ft__national,val_2006Q1,3
+Taiwan_national,adaptation,9,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2006Q1,3
+United Kingdom,adaptation,140,fine_tuned,10,0.0835907090222463,4,0,,transformer_shared_ft__national,val_2006Q1,3
+United States,adaptation,133,fine_tuned,10,0.08822254207916558,4,0,,transformer_shared_ft__national,val_2006Q1,3
+__shared__,shared,2892,fitted,34,10.662822582991794,120,0,,transformer_shared_ft__national,val_2006Q1,4
+Australia,adaptation,133,fine_tuned,10,0.07239770796149969,4,0,,transformer_shared_ft__national,val_2006Q1,4
+Austria,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2006Q1,4
+Belgium,adaptation,133,fine_tuned,10,0.07189199991989881,4,0,,transformer_shared_ft__national,val_2006Q1,4
+Canada,adaptation,133,fine_tuned,10,0.07363679097034037,4,0,,transformer_shared_ft__national,val_2006Q1,4
+Chile,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2006Q1,4
+Colombia,adaptation,61,fine_tuned,10,0.029143750085495412,4,0,,transformer_shared_ft__national,val_2006Q1,4
+Denmark,adaptation,133,fine_tuned,10,0.07233908399939537,4,0,,transformer_shared_ft__national,val_2006Q1,4
+Finland,adaptation,133,fine_tuned,10,0.07194312498904765,4,0,,transformer_shared_ft__national,val_2006Q1,4
+France,adaptation,133,fine_tuned,10,0.07186433393508196,4,0,,transformer_shared_ft__national,val_2006Q1,4
+Germany,adaptation,133,fine_tuned,10,0.07083700003568083,4,0,,transformer_shared_ft__national,val_2006Q1,4
+Greece,adaptation,25,fine_tuned,10,0.020143874920904636,4,0,,transformer_shared_ft__national,val_2006Q1,4
+Iceland,adaptation,12,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2006Q1,4
+Indonesia,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2006Q1,4
+Ireland,adaptation,133,fine_tuned,10,0.07228075002785772,4,0,,transformer_shared_ft__national,val_2006Q1,4
+Israel,adaptation,37,fine_tuned,10,0.022660625050775707,4,0,,transformer_shared_ft__national,val_2006Q1,4
+Italy,adaptation,133,fine_tuned,10,0.0717483339831233,4,0,,transformer_shared_ft__national,val_2006Q1,4
+Japan,adaptation,173,fine_tuned,10,0.08217050007078797,4,0,,transformer_shared_ft__national,val_2006Q1,4
+Netherlands,adaptation,133,fine_tuned,10,0.07090925006195903,4,0,,transformer_shared_ft__national,val_2006Q1,4
+New Zealand,adaptation,133,fine_tuned,10,0.07257887499872595,4,0,,transformer_shared_ft__national,val_2006Q1,4
+Norway,adaptation,133,fine_tuned,10,0.07087529194541276,4,0,,transformer_shared_ft__national,val_2006Q1,4
+Portugal,adaptation,61,fine_tuned,10,0.028379583964124322,4,0,,transformer_shared_ft__national,val_2006Q1,4
+Russia,adaptation,9,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2006Q1,4
+South Africa,adaptation,149,fine_tuned,10,0.07557029102463275,4,0,,transformer_shared_ft__national,val_2006Q1,4
+South Korea,adaptation,69,fine_tuned,10,0.04808591597247869,4,0,,transformer_shared_ft__national,val_2006Q1,4
+Spain,adaptation,129,fine_tuned,10,0.07612445892300457,4,0,,transformer_shared_ft__national,val_2006Q1,4
+Sweden,adaptation,133,fine_tuned,10,0.07960125000681728,4,0,,transformer_shared_ft__national,val_2006Q1,4
+Switzerland,adaptation,133,fine_tuned,10,0.07998375000897795,4,0,,transformer_shared_ft__national,val_2006Q1,4
+Taiwan_national,adaptation,9,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2006Q1,4
+United Kingdom,adaptation,140,fine_tuned,10,0.08080991602037102,4,0,,transformer_shared_ft__national,val_2006Q1,4
+United States,adaptation,133,fine_tuned,10,0.07510533405002207,4,0,,transformer_shared_ft__national,val_2006Q1,4
+__shared__,shared,3012,fitted,10,4.640175333945081,144,0,,transformer_shared_ft__national,val_2007Q1,0
+Australia,adaptation,137,fine_tuned,10,0.07188954192679375,4,0,,transformer_shared_ft__national,val_2007Q1,0
+Austria,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,0
+Belgium,adaptation,137,fine_tuned,10,0.07372874999418855,4,0,,transformer_shared_ft__national,val_2007Q1,0
+Canada,adaptation,137,fine_tuned,10,0.07317395892459899,4,0,,transformer_shared_ft__national,val_2007Q1,0
+Chile,adaptation,9,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,0
+Colombia,adaptation,65,fine_tuned,10,0.04166508303023875,4,0,,transformer_shared_ft__national,val_2007Q1,0
+Denmark,adaptation,137,fine_tuned,10,0.07266583293676376,4,0,,transformer_shared_ft__national,val_2007Q1,0
+Finland,adaptation,137,fine_tuned,10,0.07276808295864612,4,0,,transformer_shared_ft__national,val_2007Q1,0
+France,adaptation,137,fine_tuned,10,0.07291320792865008,4,0,,transformer_shared_ft__national,val_2007Q1,0
+Germany,adaptation,137,fine_tuned,10,0.07279691705480218,4,0,,transformer_shared_ft__national,val_2007Q1,0
+Greece,adaptation,29,fine_tuned,10,0.020689500030130148,4,0,,transformer_shared_ft__national,val_2007Q1,0
+Iceland,adaptation,16,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,0
+Indonesia,adaptation,9,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,0
+Ireland,adaptation,137,fine_tuned,10,0.07392362493555993,4,0,,transformer_shared_ft__national,val_2007Q1,0
+Israel,adaptation,41,fine_tuned,10,0.024506666930392385,4,0,,transformer_shared_ft__national,val_2007Q1,0
+Italy,adaptation,137,fine_tuned,10,0.07215995795559138,4,0,,transformer_shared_ft__national,val_2007Q1,0
+Japan,adaptation,177,fine_tuned,10,0.08332020905800164,4,0,,transformer_shared_ft__national,val_2007Q1,0
+Netherlands,adaptation,137,fine_tuned,10,0.07446679193526506,4,0,,transformer_shared_ft__national,val_2007Q1,0
+New Zealand,adaptation,137,fine_tuned,10,0.07242916710674763,4,0,,transformer_shared_ft__national,val_2007Q1,0
+Norway,adaptation,137,fine_tuned,10,0.07211383408866823,4,0,,transformer_shared_ft__national,val_2007Q1,0
+Portugal,adaptation,65,fine_tuned,10,0.041883416939526796,4,0,,transformer_shared_ft__national,val_2007Q1,0
+Russia,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,0
+South Africa,adaptation,153,fine_tuned,10,0.07687087508384138,4,0,,transformer_shared_ft__national,val_2007Q1,0
+South Korea,adaptation,73,fine_tuned,10,0.04354025004431605,4,0,,transformer_shared_ft__national,val_2007Q1,0
+Spain,adaptation,133,fine_tuned,10,0.07109433296136558,4,0,,transformer_shared_ft__national,val_2007Q1,0
+Sweden,adaptation,137,fine_tuned,10,0.0723004590254277,4,0,,transformer_shared_ft__national,val_2007Q1,0
+Switzerland,adaptation,137,fine_tuned,10,0.07171283301431686,4,0,,transformer_shared_ft__national,val_2007Q1,0
+Taiwan_national,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,0
+United Kingdom,adaptation,144,fine_tuned,10,0.07354983291588724,4,0,,transformer_shared_ft__national,val_2007Q1,0
+United States,adaptation,137,fine_tuned,10,0.07226099993567914,4,0,,transformer_shared_ft__national,val_2007Q1,0
+Bulgaria,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,0
+Croatia,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,0
+Estonia,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,0
+Mexico,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,0
+Poland,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,0
+Slovak Republic,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,0
+__shared__,shared,3012,fitted,10,4.5757080420153216,144,0,,transformer_shared_ft__national,val_2007Q1,1
+Australia,adaptation,137,fine_tuned,10,0.07194770802743733,4,0,,transformer_shared_ft__national,val_2007Q1,1
+Austria,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,1
+Belgium,adaptation,137,fine_tuned,10,0.0722232919652015,4,0,,transformer_shared_ft__national,val_2007Q1,1
+Canada,adaptation,137,fine_tuned,10,0.07175587501842529,4,0,,transformer_shared_ft__national,val_2007Q1,1
+Chile,adaptation,9,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,1
+Colombia,adaptation,65,fine_tuned,10,0.040897750062868,4,0,,transformer_shared_ft__national,val_2007Q1,1
+Denmark,adaptation,137,fine_tuned,10,0.07199445797596127,4,0,,transformer_shared_ft__national,val_2007Q1,1
+Finland,adaptation,137,fine_tuned,10,0.07186304195784032,4,0,,transformer_shared_ft__national,val_2007Q1,1
+France,adaptation,137,fine_tuned,10,0.07312495808582753,4,0,,transformer_shared_ft__national,val_2007Q1,1
+Germany,adaptation,137,fine_tuned,10,0.07232400006614625,4,0,,transformer_shared_ft__national,val_2007Q1,1
+Greece,adaptation,29,fine_tuned,10,0.020261542056687176,4,0,,transformer_shared_ft__national,val_2007Q1,1
+Iceland,adaptation,16,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,1
+Indonesia,adaptation,9,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,1
+Ireland,adaptation,137,fine_tuned,10,0.07359579193871468,4,0,,transformer_shared_ft__national,val_2007Q1,1
+Israel,adaptation,41,fine_tuned,10,0.023360125022009015,4,0,,transformer_shared_ft__national,val_2007Q1,1
+Italy,adaptation,137,fine_tuned,10,0.0813449170673266,4,0,,transformer_shared_ft__national,val_2007Q1,1
+Japan,adaptation,177,fine_tuned,10,0.09022104204632342,4,0,,transformer_shared_ft__national,val_2007Q1,1
+Netherlands,adaptation,137,fine_tuned,10,0.07697662501595914,4,0,,transformer_shared_ft__national,val_2007Q1,1
+New Zealand,adaptation,137,fine_tuned,10,0.07731954206246883,4,0,,transformer_shared_ft__national,val_2007Q1,1
+Norway,adaptation,137,fine_tuned,10,0.07836595899425447,4,0,,transformer_shared_ft__national,val_2007Q1,1
+Portugal,adaptation,65,fine_tuned,10,0.044031791971065104,4,0,,transformer_shared_ft__national,val_2007Q1,1
+Russia,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,1
+South Africa,adaptation,153,fine_tuned,10,0.08282495802268386,4,0,,transformer_shared_ft__national,val_2007Q1,1
+South Korea,adaptation,73,fine_tuned,10,0.04777329205535352,4,0,,transformer_shared_ft__national,val_2007Q1,1
+Spain,adaptation,133,fine_tuned,10,0.07480283395852894,4,0,,transformer_shared_ft__national,val_2007Q1,1
+Sweden,adaptation,137,fine_tuned,10,0.07609112502541393,4,0,,transformer_shared_ft__national,val_2007Q1,1
+Switzerland,adaptation,137,fine_tuned,10,0.08003454096615314,4,0,,transformer_shared_ft__national,val_2007Q1,1
+Taiwan_national,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,1
+United Kingdom,adaptation,144,fine_tuned,10,0.07787708297837526,4,0,,transformer_shared_ft__national,val_2007Q1,1
+United States,adaptation,137,fine_tuned,10,0.07373741699848324,4,0,,transformer_shared_ft__national,val_2007Q1,1
+Bulgaria,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,1
+Croatia,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,1
+Estonia,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,1
+Mexico,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,1
+Poland,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,1
+Slovak Republic,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,1
+__shared__,shared,3012,fitted,5,3.379674958065152,144,0,,transformer_shared_ft__national,val_2007Q1,2
+Australia,adaptation,137,fine_tuned,10,0.07954175001941621,4,0,,transformer_shared_ft__national,val_2007Q1,2
+Austria,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,2
+Belgium,adaptation,137,fine_tuned,10,0.07672220899257809,4,0,,transformer_shared_ft__national,val_2007Q1,2
+Canada,adaptation,137,fine_tuned,10,0.0764795410213992,4,0,,transformer_shared_ft__national,val_2007Q1,2
+Chile,adaptation,9,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,2
+Colombia,adaptation,65,fine_tuned,10,0.04479674994945526,4,0,,transformer_shared_ft__national,val_2007Q1,2
+Denmark,adaptation,137,fine_tuned,10,0.0764426669338718,4,0,,transformer_shared_ft__national,val_2007Q1,2
+Finland,adaptation,137,fine_tuned,10,0.08435212506446987,4,0,,transformer_shared_ft__national,val_2007Q1,2
+France,adaptation,137,fine_tuned,10,0.0832468339940533,4,0,,transformer_shared_ft__national,val_2007Q1,2
+Germany,adaptation,137,fine_tuned,10,0.08215999999083579,4,0,,transformer_shared_ft__national,val_2007Q1,2
+Greece,adaptation,29,fine_tuned,10,0.024053666973486543,4,0,,transformer_shared_ft__national,val_2007Q1,2
+Iceland,adaptation,16,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,2
+Indonesia,adaptation,9,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,2
+Ireland,adaptation,137,fine_tuned,10,0.0802472080104053,4,0,,transformer_shared_ft__national,val_2007Q1,2
+Israel,adaptation,41,fine_tuned,10,0.026912624947726727,4,0,,transformer_shared_ft__national,val_2007Q1,2
+Italy,adaptation,137,fine_tuned,10,0.07535329193342477,4,0,,transformer_shared_ft__national,val_2007Q1,2
+Japan,adaptation,177,fine_tuned,10,0.08977345796301961,4,0,,transformer_shared_ft__national,val_2007Q1,2
+Netherlands,adaptation,137,fine_tuned,10,0.07828512496780604,4,0,,transformer_shared_ft__national,val_2007Q1,2
+New Zealand,adaptation,137,fine_tuned,10,0.07661083294078708,4,0,,transformer_shared_ft__national,val_2007Q1,2
+Norway,adaptation,137,fine_tuned,10,0.0749974159989506,4,0,,transformer_shared_ft__national,val_2007Q1,2
+Portugal,adaptation,65,fine_tuned,10,0.04158379207365215,4,0,,transformer_shared_ft__national,val_2007Q1,2
+Russia,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,2
+South Africa,adaptation,153,fine_tuned,10,0.07730333402287215,4,0,,transformer_shared_ft__national,val_2007Q1,2
+South Korea,adaptation,73,fine_tuned,10,0.043765791109763086,4,0,,transformer_shared_ft__national,val_2007Q1,2
+Spain,adaptation,133,fine_tuned,10,0.07322662498336285,4,0,,transformer_shared_ft__national,val_2007Q1,2
+Sweden,adaptation,137,fine_tuned,10,0.07240654097404331,4,0,,transformer_shared_ft__national,val_2007Q1,2
+Switzerland,adaptation,137,fine_tuned,10,0.07218304101843387,4,0,,transformer_shared_ft__national,val_2007Q1,2
+Taiwan_national,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,2
+United Kingdom,adaptation,144,fine_tuned,10,0.07710841705556959,4,0,,transformer_shared_ft__national,val_2007Q1,2
+United States,adaptation,137,fine_tuned,10,0.07416945905424654,4,0,,transformer_shared_ft__national,val_2007Q1,2
+Bulgaria,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,2
+Croatia,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,2
+Estonia,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,2
+Mexico,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,2
+Poland,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,2
+Slovak Republic,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,2
+__shared__,shared,3012,fitted,16,6.095195916946977,144,0,,transformer_shared_ft__national,val_2007Q1,3
+Australia,adaptation,137,fine_tuned,10,0.07557208405341953,4,0,,transformer_shared_ft__national,val_2007Q1,3
+Austria,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,3
+Belgium,adaptation,137,fine_tuned,10,0.07961995899677277,4,0,,transformer_shared_ft__national,val_2007Q1,3
+Canada,adaptation,137,fine_tuned,10,0.07567533303517848,4,0,,transformer_shared_ft__national,val_2007Q1,3
+Chile,adaptation,9,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,3
+Colombia,adaptation,65,fine_tuned,10,0.0432012090459466,4,0,,transformer_shared_ft__national,val_2007Q1,3
+Denmark,adaptation,137,fine_tuned,10,0.07524720800574869,4,0,,transformer_shared_ft__national,val_2007Q1,3
+Finland,adaptation,137,fine_tuned,10,0.07592083292547613,4,0,,transformer_shared_ft__national,val_2007Q1,3
+France,adaptation,137,fine_tuned,10,0.07632762496359646,4,0,,transformer_shared_ft__national,val_2007Q1,3
+Germany,adaptation,137,fine_tuned,10,0.07651129097212106,4,0,,transformer_shared_ft__national,val_2007Q1,3
+Greece,adaptation,29,fine_tuned,10,0.021994833019562066,4,0,,transformer_shared_ft__national,val_2007Q1,3
+Iceland,adaptation,16,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,3
+Indonesia,adaptation,9,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,3
+Ireland,adaptation,137,fine_tuned,10,0.07553162495605648,4,0,,transformer_shared_ft__national,val_2007Q1,3
+Israel,adaptation,41,fine_tuned,10,0.023893709061667323,4,0,,transformer_shared_ft__national,val_2007Q1,3
+Italy,adaptation,137,fine_tuned,10,0.07339116698130965,4,0,,transformer_shared_ft__national,val_2007Q1,3
+Japan,adaptation,177,fine_tuned,10,0.08599737496115267,4,0,,transformer_shared_ft__national,val_2007Q1,3
+Netherlands,adaptation,137,fine_tuned,10,0.07384829199872911,4,0,,transformer_shared_ft__national,val_2007Q1,3
+New Zealand,adaptation,137,fine_tuned,10,0.07288804207928479,4,0,,transformer_shared_ft__national,val_2007Q1,3
+Norway,adaptation,137,fine_tuned,10,0.07274645799770951,4,0,,transformer_shared_ft__national,val_2007Q1,3
+Portugal,adaptation,65,fine_tuned,10,0.04123570793308318,4,0,,transformer_shared_ft__national,val_2007Q1,3
+Russia,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,3
+South Africa,adaptation,153,fine_tuned,10,0.07777258299756795,4,0,,transformer_shared_ft__national,val_2007Q1,3
+South Korea,adaptation,73,fine_tuned,10,0.045066165970638394,4,0,,transformer_shared_ft__national,val_2007Q1,3
+Spain,adaptation,133,fine_tuned,10,0.07915658305864781,4,0,,transformer_shared_ft__national,val_2007Q1,3
+Sweden,adaptation,137,fine_tuned,10,0.07989120797719806,4,0,,transformer_shared_ft__national,val_2007Q1,3
+Switzerland,adaptation,137,fine_tuned,10,0.08207808306906372,4,0,,transformer_shared_ft__national,val_2007Q1,3
+Taiwan_national,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,3
+United Kingdom,adaptation,144,fine_tuned,10,0.08026608300860971,4,0,,transformer_shared_ft__national,val_2007Q1,3
+United States,adaptation,137,fine_tuned,10,0.07597987493500113,4,0,,transformer_shared_ft__national,val_2007Q1,3
+Bulgaria,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,3
+Croatia,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,3
+Estonia,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,3
+Mexico,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,3
+Poland,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,3
+Slovak Republic,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,3
+__shared__,shared,3012,fitted,6,3.579159874934703,144,0,,transformer_shared_ft__national,val_2007Q1,4
+Australia,adaptation,137,fine_tuned,10,0.0717633330496028,4,0,,transformer_shared_ft__national,val_2007Q1,4
+Austria,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,4
+Belgium,adaptation,137,fine_tuned,10,0.0718341659521684,4,0,,transformer_shared_ft__national,val_2007Q1,4
+Canada,adaptation,137,fine_tuned,10,0.0718304580077529,4,0,,transformer_shared_ft__national,val_2007Q1,4
+Chile,adaptation,9,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,4
+Colombia,adaptation,65,fine_tuned,10,0.04116662498563528,4,0,,transformer_shared_ft__national,val_2007Q1,4
+Denmark,adaptation,137,fine_tuned,10,0.0743571249768138,4,0,,transformer_shared_ft__national,val_2007Q1,4
+Finland,adaptation,137,fine_tuned,10,0.07337500003632158,4,0,,transformer_shared_ft__national,val_2007Q1,4
+France,adaptation,137,fine_tuned,10,0.07322820799890906,4,0,,transformer_shared_ft__national,val_2007Q1,4
+Germany,adaptation,137,fine_tuned,10,0.07467899995390326,4,0,,transformer_shared_ft__national,val_2007Q1,4
+Greece,adaptation,29,fine_tuned,10,0.020459832972846925,4,0,,transformer_shared_ft__national,val_2007Q1,4
+Iceland,adaptation,16,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,4
+Indonesia,adaptation,9,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,4
+Ireland,adaptation,137,fine_tuned,10,0.07273024995811284,4,0,,transformer_shared_ft__national,val_2007Q1,4
+Israel,adaptation,41,fine_tuned,10,0.02356899995356798,4,0,,transformer_shared_ft__national,val_2007Q1,4
+Italy,adaptation,137,fine_tuned,10,0.07196629198733717,4,0,,transformer_shared_ft__national,val_2007Q1,4
+Japan,adaptation,177,fine_tuned,10,0.08212395804002881,4,0,,transformer_shared_ft__national,val_2007Q1,4
+Netherlands,adaptation,137,fine_tuned,10,0.07183820905629545,4,0,,transformer_shared_ft__national,val_2007Q1,4
+New Zealand,adaptation,137,fine_tuned,10,0.07199741702061146,4,0,,transformer_shared_ft__national,val_2007Q1,4
+Norway,adaptation,137,fine_tuned,10,0.0722896249499172,4,0,,transformer_shared_ft__national,val_2007Q1,4
+Portugal,adaptation,65,fine_tuned,10,0.041002165991812944,4,0,,transformer_shared_ft__national,val_2007Q1,4
+Russia,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,4
+South Africa,adaptation,153,fine_tuned,10,0.07690245797857642,4,0,,transformer_shared_ft__national,val_2007Q1,4
+South Korea,adaptation,73,fine_tuned,10,0.0434547079494223,4,0,,transformer_shared_ft__national,val_2007Q1,4
+Spain,adaptation,133,fine_tuned,10,0.07183645910117775,4,0,,transformer_shared_ft__national,val_2007Q1,4
+Sweden,adaptation,137,fine_tuned,10,0.0725087079918012,4,0,,transformer_shared_ft__national,val_2007Q1,4
+Switzerland,adaptation,137,fine_tuned,10,0.07278733397834003,4,0,,transformer_shared_ft__national,val_2007Q1,4
+Taiwan_national,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,4
+United Kingdom,adaptation,144,fine_tuned,10,0.07577162503730506,4,0,,transformer_shared_ft__national,val_2007Q1,4
+United States,adaptation,137,fine_tuned,10,0.07392683299258351,4,0,,transformer_shared_ft__national,val_2007Q1,4
+Bulgaria,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,4
+Croatia,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,4
+Estonia,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,4
+Mexico,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,4
+Poland,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,4
+Slovak Republic,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2007Q1,4
+__shared__,shared,3138,fitted,28,9.476658749976195,152,0,,transformer_shared_ft__national,val_2008Q1,0
+Australia,adaptation,141,fine_tuned,10,0.08219116705004126,4,0,,transformer_shared_ft__national,val_2008Q1,0
+Austria,adaptation,21,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,0
+Belgium,adaptation,141,fine_tuned,10,0.08030212495941669,4,0,,transformer_shared_ft__national,val_2008Q1,0
+Bulgaria,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,0
+Canada,adaptation,141,fine_tuned,10,0.07970716699492186,4,0,,transformer_shared_ft__national,val_2008Q1,0
+Chile,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,0
+Colombia,adaptation,69,fine_tuned,10,0.04711420903913677,4,0,,transformer_shared_ft__national,val_2008Q1,0
+Croatia,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,0
+Denmark,adaptation,141,fine_tuned,10,0.07688954193145037,4,0,,transformer_shared_ft__national,val_2008Q1,0
+Estonia,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,0
+Finland,adaptation,141,fine_tuned,10,0.07827950001228601,4,0,,transformer_shared_ft__national,val_2008Q1,0
+France,adaptation,141,fine_tuned,10,0.07667645800393075,4,0,,transformer_shared_ft__national,val_2008Q1,0
+Germany,adaptation,141,fine_tuned,10,0.08507549995556474,4,0,,transformer_shared_ft__national,val_2008Q1,0
+Greece,adaptation,33,fine_tuned,10,0.025307541014626622,4,0,,transformer_shared_ft__national,val_2008Q1,0
+Iceland,adaptation,20,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,0
+Indonesia,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,0
+Ireland,adaptation,141,fine_tuned,10,0.08408662502188236,4,0,,transformer_shared_ft__national,val_2008Q1,0
+Israel,adaptation,45,fine_tuned,10,0.027738166972994804,4,0,,transformer_shared_ft__national,val_2008Q1,0
+Italy,adaptation,141,fine_tuned,10,0.08478341705631465,4,0,,transformer_shared_ft__national,val_2008Q1,0
+Japan,adaptation,181,fine_tuned,10,0.09310629207175225,4,0,,transformer_shared_ft__national,val_2008Q1,0
+Mexico,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,0
+Netherlands,adaptation,141,fine_tuned,10,0.07427991705480963,4,0,,transformer_shared_ft__national,val_2008Q1,0
+New Zealand,adaptation,141,fine_tuned,10,0.07451900001615286,4,0,,transformer_shared_ft__national,val_2008Q1,0
+Norway,adaptation,141,fine_tuned,10,0.07681966701056808,4,0,,transformer_shared_ft__national,val_2008Q1,0
+Poland,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,0
+Portugal,adaptation,69,fine_tuned,10,0.044295458937995136,4,0,,transformer_shared_ft__national,val_2008Q1,0
+Russia,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,0
+Slovak Republic,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,0
+South Africa,adaptation,157,fine_tuned,10,0.07830333290621638,4,0,,transformer_shared_ft__national,val_2008Q1,0
+South Korea,adaptation,77,fine_tuned,10,0.046513124951161444,4,0,,transformer_shared_ft__national,val_2008Q1,0
+Spain,adaptation,137,fine_tuned,10,0.07409145904239267,4,0,,transformer_shared_ft__national,val_2008Q1,0
+Sweden,adaptation,141,fine_tuned,10,0.07431299996096641,4,0,,transformer_shared_ft__national,val_2008Q1,0
+Switzerland,adaptation,141,fine_tuned,10,0.0736331669613719,4,0,,transformer_shared_ft__national,val_2008Q1,0
+Taiwan_national,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,0
+United Kingdom,adaptation,148,fine_tuned,10,0.07598641701042652,4,0,,transformer_shared_ft__national,val_2008Q1,0
+United States,adaptation,141,fine_tuned,10,0.07338366692420095,4,0,,transformer_shared_ft__national,val_2008Q1,0
+Latvia,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,0
+Lithuania,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,0
+__shared__,shared,3138,fitted,10,4.98777579201851,152,0,,transformer_shared_ft__national,val_2008Q1,1
+Australia,adaptation,141,fine_tuned,10,0.07568183308467269,4,0,,transformer_shared_ft__national,val_2008Q1,1
+Austria,adaptation,21,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,1
+Belgium,adaptation,141,fine_tuned,10,0.07518424990121275,4,0,,transformer_shared_ft__national,val_2008Q1,1
+Bulgaria,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,1
+Canada,adaptation,141,fine_tuned,10,0.0753242919454351,4,0,,transformer_shared_ft__national,val_2008Q1,1
+Chile,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,1
+Colombia,adaptation,69,fine_tuned,10,0.043619625037536025,4,0,,transformer_shared_ft__national,val_2008Q1,1
+Croatia,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,1
+Denmark,adaptation,141,fine_tuned,10,0.08714258298277855,4,0,,transformer_shared_ft__national,val_2008Q1,1
+Estonia,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,1
+Finland,adaptation,141,fine_tuned,10,0.08256629202514887,4,0,,transformer_shared_ft__national,val_2008Q1,1
+France,adaptation,141,fine_tuned,10,0.07595820794813335,4,0,,transformer_shared_ft__national,val_2008Q1,1
+Germany,adaptation,141,fine_tuned,10,0.07533041702117771,4,0,,transformer_shared_ft__national,val_2008Q1,1
+Greece,adaptation,33,fine_tuned,10,0.02203733299393207,4,0,,transformer_shared_ft__national,val_2008Q1,1
+Iceland,adaptation,20,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,1
+Indonesia,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,1
+Ireland,adaptation,141,fine_tuned,10,0.0841168329352513,4,0,,transformer_shared_ft__national,val_2008Q1,1
+Israel,adaptation,45,fine_tuned,10,0.028217707993462682,4,0,,transformer_shared_ft__national,val_2008Q1,1
+Italy,adaptation,141,fine_tuned,10,0.08196070906706154,4,0,,transformer_shared_ft__national,val_2008Q1,1
+Japan,adaptation,181,fine_tuned,10,0.09350720804650337,4,0,,transformer_shared_ft__national,val_2008Q1,1
+Mexico,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,1
+Netherlands,adaptation,141,fine_tuned,10,0.08040695800445974,4,0,,transformer_shared_ft__national,val_2008Q1,1
+New Zealand,adaptation,141,fine_tuned,10,0.0813024160452187,4,0,,transformer_shared_ft__national,val_2008Q1,1
+Norway,adaptation,141,fine_tuned,10,0.08176974998787045,4,0,,transformer_shared_ft__national,val_2008Q1,1
+Poland,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,1
+Portugal,adaptation,69,fine_tuned,10,0.05046250007580966,4,0,,transformer_shared_ft__national,val_2008Q1,1
+Russia,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,1
+Slovak Republic,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,1
+South Africa,adaptation,157,fine_tuned,10,0.08422691700980067,4,0,,transformer_shared_ft__national,val_2008Q1,1
+South Korea,adaptation,77,fine_tuned,10,0.047242875094525516,4,0,,transformer_shared_ft__national,val_2008Q1,1
+Spain,adaptation,137,fine_tuned,10,0.07925287494435906,4,0,,transformer_shared_ft__national,val_2008Q1,1
+Sweden,adaptation,141,fine_tuned,10,0.08044258295558393,4,0,,transformer_shared_ft__national,val_2008Q1,1
+Switzerland,adaptation,141,fine_tuned,10,0.07785287511069328,4,0,,transformer_shared_ft__national,val_2008Q1,1
+Taiwan_national,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,1
+United Kingdom,adaptation,148,fine_tuned,10,0.08306966710370034,4,0,,transformer_shared_ft__national,val_2008Q1,1
+United States,adaptation,141,fine_tuned,10,0.07706079201307148,4,0,,transformer_shared_ft__national,val_2008Q1,1
+Latvia,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,1
+Lithuania,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,1
+__shared__,shared,3138,fitted,19,7.1460280830506235,152,0,,transformer_shared_ft__national,val_2008Q1,2
+Australia,adaptation,141,fine_tuned,10,0.08285245799925178,4,0,,transformer_shared_ft__national,val_2008Q1,2
+Austria,adaptation,21,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,2
+Belgium,adaptation,141,fine_tuned,10,0.08121420803945512,4,0,,transformer_shared_ft__national,val_2008Q1,2
+Bulgaria,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,2
+Canada,adaptation,141,fine_tuned,10,0.07745829201303422,4,0,,transformer_shared_ft__national,val_2008Q1,2
+Chile,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,2
+Colombia,adaptation,69,fine_tuned,10,0.045563042047433555,4,0,,transformer_shared_ft__national,val_2008Q1,2
+Croatia,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,2
+Denmark,adaptation,141,fine_tuned,10,0.08194629207719117,4,0,,transformer_shared_ft__national,val_2008Q1,2
+Estonia,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,2
+Finland,adaptation,141,fine_tuned,10,0.07914291694760323,4,0,,transformer_shared_ft__national,val_2008Q1,2
+France,adaptation,141,fine_tuned,10,0.07796733302529901,4,0,,transformer_shared_ft__national,val_2008Q1,2
+Germany,adaptation,141,fine_tuned,10,0.07679349998943508,4,0,,transformer_shared_ft__national,val_2008Q1,2
+Greece,adaptation,33,fine_tuned,10,0.022671042010188103,4,0,,transformer_shared_ft__national,val_2008Q1,2
+Iceland,adaptation,20,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,2
+Indonesia,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,2
+Ireland,adaptation,141,fine_tuned,10,0.07707216602284461,4,0,,transformer_shared_ft__national,val_2008Q1,2
+Israel,adaptation,45,fine_tuned,10,0.025341083062812686,4,0,,transformer_shared_ft__national,val_2008Q1,2
+Italy,adaptation,141,fine_tuned,10,0.07780245901085436,4,0,,transformer_shared_ft__national,val_2008Q1,2
+Japan,adaptation,181,fine_tuned,10,0.0873672500019893,4,0,,transformer_shared_ft__national,val_2008Q1,2
+Mexico,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,2
+Netherlands,adaptation,141,fine_tuned,10,0.07521670800633729,4,0,,transformer_shared_ft__national,val_2008Q1,2
+New Zealand,adaptation,141,fine_tuned,10,0.07479029207024723,4,0,,transformer_shared_ft__national,val_2008Q1,2
+Norway,adaptation,141,fine_tuned,10,0.07450658304151148,4,0,,transformer_shared_ft__national,val_2008Q1,2
+Poland,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,2
+Portugal,adaptation,69,fine_tuned,10,0.04387529194355011,4,0,,transformer_shared_ft__national,val_2008Q1,2
+Russia,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,2
+Slovak Republic,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,2
+South Africa,adaptation,157,fine_tuned,10,0.0836401249980554,4,0,,transformer_shared_ft__national,val_2008Q1,2
+South Korea,adaptation,77,fine_tuned,10,0.04794345807749778,4,0,,transformer_shared_ft__national,val_2008Q1,2
+Spain,adaptation,137,fine_tuned,10,0.07653162500355393,4,0,,transformer_shared_ft__national,val_2008Q1,2
+Sweden,adaptation,141,fine_tuned,10,0.0756022910354659,4,0,,transformer_shared_ft__national,val_2008Q1,2
+Switzerland,adaptation,141,fine_tuned,10,0.07516716595273465,4,0,,transformer_shared_ft__national,val_2008Q1,2
+Taiwan_national,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,2
+United Kingdom,adaptation,148,fine_tuned,10,0.07740287494380027,4,0,,transformer_shared_ft__national,val_2008Q1,2
+United States,adaptation,141,fine_tuned,10,0.07435570796951652,4,0,,transformer_shared_ft__national,val_2008Q1,2
+Latvia,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,2
+Lithuania,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,2
+__shared__,shared,3138,fitted,10,4.99350429198239,152,0,,transformer_shared_ft__national,val_2008Q1,3
+Australia,adaptation,141,fine_tuned,10,0.0763358329422772,4,0,,transformer_shared_ft__national,val_2008Q1,3
+Austria,adaptation,21,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,3
+Belgium,adaptation,141,fine_tuned,10,0.07786429102998227,4,0,,transformer_shared_ft__national,val_2008Q1,3
+Bulgaria,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,3
+Canada,adaptation,141,fine_tuned,10,0.07531154109165072,4,0,,transformer_shared_ft__national,val_2008Q1,3
+Chile,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,3
+Colombia,adaptation,69,fine_tuned,10,0.043642666074447334,4,0,,transformer_shared_ft__national,val_2008Q1,3
+Croatia,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,3
+Denmark,adaptation,141,fine_tuned,10,0.07437137502711266,4,0,,transformer_shared_ft__national,val_2008Q1,3
+Estonia,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,3
+Finland,adaptation,141,fine_tuned,10,0.07519679190590978,4,0,,transformer_shared_ft__national,val_2008Q1,3
+France,adaptation,141,fine_tuned,10,0.07711800001561642,4,0,,transformer_shared_ft__national,val_2008Q1,3
+Germany,adaptation,141,fine_tuned,10,0.07538824994117022,4,0,,transformer_shared_ft__national,val_2008Q1,3
+Greece,adaptation,33,fine_tuned,10,0.022451041033491492,4,0,,transformer_shared_ft__national,val_2008Q1,3
+Iceland,adaptation,20,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,3
+Indonesia,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,3
+Ireland,adaptation,141,fine_tuned,10,0.07575129100587219,4,0,,transformer_shared_ft__national,val_2008Q1,3
+Israel,adaptation,45,fine_tuned,10,0.02520195790566504,4,0,,transformer_shared_ft__national,val_2008Q1,3
+Italy,adaptation,141,fine_tuned,10,0.07574695802759379,4,0,,transformer_shared_ft__national,val_2008Q1,3
+Japan,adaptation,181,fine_tuned,10,0.08930358302313834,4,0,,transformer_shared_ft__national,val_2008Q1,3
+Mexico,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,3
+Netherlands,adaptation,141,fine_tuned,10,0.0790526659693569,4,0,,transformer_shared_ft__national,val_2008Q1,3
+New Zealand,adaptation,141,fine_tuned,10,0.07983570802025497,4,0,,transformer_shared_ft__national,val_2008Q1,3
+Norway,adaptation,141,fine_tuned,10,0.078683041036129,4,0,,transformer_shared_ft__national,val_2008Q1,3
+Poland,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,3
+Portugal,adaptation,69,fine_tuned,10,0.04559895792044699,4,0,,transformer_shared_ft__national,val_2008Q1,3
+Russia,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,3
+Slovak Republic,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,3
+South Africa,adaptation,157,fine_tuned,10,0.08684349991381168,4,0,,transformer_shared_ft__national,val_2008Q1,3
+South Korea,adaptation,77,fine_tuned,10,0.05438166600652039,4,0,,transformer_shared_ft__national,val_2008Q1,3
+Spain,adaptation,137,fine_tuned,10,0.08168529206886888,4,0,,transformer_shared_ft__national,val_2008Q1,3
+Sweden,adaptation,141,fine_tuned,10,0.08278145792428404,4,0,,transformer_shared_ft__national,val_2008Q1,3
+Switzerland,adaptation,141,fine_tuned,10,0.07983970793429762,4,0,,transformer_shared_ft__national,val_2008Q1,3
+Taiwan_national,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,3
+United Kingdom,adaptation,148,fine_tuned,10,0.07825525000225753,4,0,,transformer_shared_ft__national,val_2008Q1,3
+United States,adaptation,141,fine_tuned,10,0.07524250005371869,4,0,,transformer_shared_ft__national,val_2008Q1,3
+Latvia,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,3
+Lithuania,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,3
+__shared__,shared,3138,fitted,12,5.427195250056684,152,0,,transformer_shared_ft__national,val_2008Q1,4
+Australia,adaptation,141,fine_tuned,10,0.07886779098771513,4,0,,transformer_shared_ft__national,val_2008Q1,4
+Austria,adaptation,21,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,4
+Belgium,adaptation,141,fine_tuned,10,0.07720249996054918,4,0,,transformer_shared_ft__national,val_2008Q1,4
+Bulgaria,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,4
+Canada,adaptation,141,fine_tuned,10,0.07883600005879998,4,0,,transformer_shared_ft__national,val_2008Q1,4
+Chile,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,4
+Colombia,adaptation,69,fine_tuned,10,0.04468550009187311,4,0,,transformer_shared_ft__national,val_2008Q1,4
+Croatia,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,4
+Denmark,adaptation,141,fine_tuned,10,0.08702500001527369,4,0,,transformer_shared_ft__national,val_2008Q1,4
+Estonia,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,4
+Finland,adaptation,141,fine_tuned,10,0.08459354192018509,4,0,,transformer_shared_ft__national,val_2008Q1,4
+France,adaptation,141,fine_tuned,10,0.09019483299925923,4,0,,transformer_shared_ft__national,val_2008Q1,4
+Germany,adaptation,141,fine_tuned,10,0.0797362090088427,4,0,,transformer_shared_ft__national,val_2008Q1,4
+Greece,adaptation,33,fine_tuned,10,0.022388000041246414,4,0,,transformer_shared_ft__national,val_2008Q1,4
+Iceland,adaptation,20,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,4
+Indonesia,adaptation,13,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,4
+Ireland,adaptation,141,fine_tuned,10,0.07540183397941291,4,0,,transformer_shared_ft__national,val_2008Q1,4
+Israel,adaptation,45,fine_tuned,10,0.024981915950775146,4,0,,transformer_shared_ft__national,val_2008Q1,4
+Italy,adaptation,141,fine_tuned,10,0.07393199997022748,4,0,,transformer_shared_ft__national,val_2008Q1,4
+Japan,adaptation,181,fine_tuned,10,0.08894799998961389,4,0,,transformer_shared_ft__national,val_2008Q1,4
+Mexico,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,4
+Netherlands,adaptation,141,fine_tuned,10,0.07774158311076462,4,0,,transformer_shared_ft__national,val_2008Q1,4
+New Zealand,adaptation,141,fine_tuned,10,0.07389516697730869,4,0,,transformer_shared_ft__national,val_2008Q1,4
+Norway,adaptation,141,fine_tuned,10,0.07392054202500731,4,0,,transformer_shared_ft__national,val_2008Q1,4
+Poland,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,4
+Portugal,adaptation,69,fine_tuned,10,0.0438064580084756,4,0,,transformer_shared_ft__national,val_2008Q1,4
+Russia,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,4
+Slovak Republic,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,4
+South Africa,adaptation,157,fine_tuned,10,0.08227537502534688,4,0,,transformer_shared_ft__national,val_2008Q1,4
+South Korea,adaptation,77,fine_tuned,10,0.04528954206034541,4,0,,transformer_shared_ft__national,val_2008Q1,4
+Spain,adaptation,137,fine_tuned,10,0.07301458402071148,4,0,,transformer_shared_ft__national,val_2008Q1,4
+Sweden,adaptation,141,fine_tuned,10,0.07622091693338007,4,0,,transformer_shared_ft__national,val_2008Q1,4
+Switzerland,adaptation,141,fine_tuned,10,0.07691029203124344,4,0,,transformer_shared_ft__national,val_2008Q1,4
+Taiwan_national,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,4
+United Kingdom,adaptation,148,fine_tuned,10,0.07864658301696181,4,0,,transformer_shared_ft__national,val_2008Q1,4
+United States,adaptation,141,fine_tuned,10,0.08412066695746034,4,0,,transformer_shared_ft__national,val_2008Q1,4
+Latvia,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,4
+Lithuania,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2008Q1,4
+__shared__,shared,3284,fitted,10,5.155010040965863,164,0,,transformer_shared_ft__national,val_2009Q1,0
+Australia,adaptation,145,fine_tuned,10,0.07619150006212294,4,0,,transformer_shared_ft__national,val_2009Q1,0
+Austria,adaptation,25,fine_tuned,10,0.019413125002756715,4,0,,transformer_shared_ft__national,val_2009Q1,0
+Belgium,adaptation,145,fine_tuned,10,0.07787074998486787,4,0,,transformer_shared_ft__national,val_2009Q1,0
+Bulgaria,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,0
+Canada,adaptation,145,fine_tuned,10,0.07734183291904628,4,0,,transformer_shared_ft__national,val_2009Q1,0
+Chile,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,0
+Colombia,adaptation,73,fine_tuned,10,0.04443654103670269,4,0,,transformer_shared_ft__national,val_2009Q1,0
+Croatia,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,0
+Denmark,adaptation,145,fine_tuned,10,0.07549079204909503,4,0,,transformer_shared_ft__national,val_2009Q1,0
+Estonia,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,0
+Finland,adaptation,145,fine_tuned,10,0.07555229205172509,4,0,,transformer_shared_ft__national,val_2009Q1,0
+France,adaptation,145,fine_tuned,10,0.07663133309688419,4,0,,transformer_shared_ft__national,val_2009Q1,0
+Germany,adaptation,145,fine_tuned,10,0.07861804193817079,4,0,,transformer_shared_ft__national,val_2009Q1,0
+Greece,adaptation,37,fine_tuned,10,0.02336758398450911,4,0,,transformer_shared_ft__national,val_2009Q1,0
+Iceland,adaptation,24,fine_tuned,10,0.019514584098942578,4,0,,transformer_shared_ft__national,val_2009Q1,0
+Indonesia,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,0
+Ireland,adaptation,145,fine_tuned,10,0.07838037505280226,4,0,,transformer_shared_ft__national,val_2009Q1,0
+Israel,adaptation,49,fine_tuned,10,0.026470334036275744,4,0,,transformer_shared_ft__national,val_2009Q1,0
+Italy,adaptation,145,fine_tuned,10,0.08612591703422368,4,0,,transformer_shared_ft__national,val_2009Q1,0
+Japan,adaptation,185,fine_tuned,10,0.09113745798822492,4,0,,transformer_shared_ft__national,val_2009Q1,0
+Latvia,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,0
+Lithuania,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,0
+Mexico,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,0
+Netherlands,adaptation,145,fine_tuned,10,0.08129083306994289,4,0,,transformer_shared_ft__national,val_2009Q1,0
+New Zealand,adaptation,145,fine_tuned,10,0.07844795810524374,4,0,,transformer_shared_ft__national,val_2009Q1,0
+Norway,adaptation,145,fine_tuned,10,0.08424079196993262,4,0,,transformer_shared_ft__national,val_2009Q1,0
+Poland,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,0
+Portugal,adaptation,73,fine_tuned,10,0.04679141694214195,4,0,,transformer_shared_ft__national,val_2009Q1,0
+Russia,adaptation,21,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,0
+Slovak Republic,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,0
+South Africa,adaptation,161,fine_tuned,10,0.08014587499201298,4,0,,transformer_shared_ft__national,val_2009Q1,0
+South Korea,adaptation,81,fine_tuned,10,0.04638499999418855,4,0,,transformer_shared_ft__national,val_2009Q1,0
+Spain,adaptation,141,fine_tuned,10,0.07583479105960578,4,0,,transformer_shared_ft__national,val_2009Q1,0
+Sweden,adaptation,145,fine_tuned,10,0.07667524996213615,4,0,,transformer_shared_ft__national,val_2009Q1,0
+Switzerland,adaptation,145,fine_tuned,10,0.07582637493032962,4,0,,transformer_shared_ft__national,val_2009Q1,0
+Taiwan_national,adaptation,21,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,0
+United Kingdom,adaptation,152,fine_tuned,10,0.08161441597621888,4,0,,transformer_shared_ft__national,val_2009Q1,0
+United States,adaptation,145,fine_tuned,10,0.08967766701243818,4,0,,transformer_shared_ft__national,val_2009Q1,0
+Hungary,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,0
+Luxembourg,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,0
+Slovenia,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,0
+__shared__,shared,3284,fitted,18,7.05519133398775,164,0,,transformer_shared_ft__national,val_2009Q1,1
+Australia,adaptation,145,fine_tuned,10,0.0765995419351384,4,0,,transformer_shared_ft__national,val_2009Q1,1
+Austria,adaptation,25,fine_tuned,10,0.01973179099150002,4,0,,transformer_shared_ft__national,val_2009Q1,1
+Belgium,adaptation,145,fine_tuned,10,0.07743120798841119,4,0,,transformer_shared_ft__national,val_2009Q1,1
+Bulgaria,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,1
+Canada,adaptation,145,fine_tuned,10,0.0786257500294596,4,0,,transformer_shared_ft__national,val_2009Q1,1
+Chile,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,1
+Colombia,adaptation,73,fine_tuned,10,0.0441473750397563,4,0,,transformer_shared_ft__national,val_2009Q1,1
+Croatia,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,1
+Denmark,adaptation,145,fine_tuned,10,0.07864641607739031,4,0,,transformer_shared_ft__national,val_2009Q1,1
+Estonia,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,1
+Finland,adaptation,145,fine_tuned,10,0.0760660000378266,4,0,,transformer_shared_ft__national,val_2009Q1,1
+France,adaptation,145,fine_tuned,10,0.07565024995710701,4,0,,transformer_shared_ft__national,val_2009Q1,1
+Germany,adaptation,145,fine_tuned,10,0.08634287503082305,4,0,,transformer_shared_ft__national,val_2009Q1,1
+Greece,adaptation,37,fine_tuned,10,0.028399040922522545,4,0,,transformer_shared_ft__national,val_2009Q1,1
+Iceland,adaptation,24,fine_tuned,10,0.021130832959897816,4,0,,transformer_shared_ft__national,val_2009Q1,1
+Indonesia,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,1
+Ireland,adaptation,145,fine_tuned,10,0.08234249998349696,4,0,,transformer_shared_ft__national,val_2009Q1,1
+Israel,adaptation,49,fine_tuned,10,0.029450915986672044,4,0,,transformer_shared_ft__national,val_2009Q1,1
+Italy,adaptation,145,fine_tuned,10,0.14627287501934916,4,0,,transformer_shared_ft__national,val_2009Q1,1
+Japan,adaptation,185,fine_tuned,10,0.10570720792748034,4,0,,transformer_shared_ft__national,val_2009Q1,1
+Latvia,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,1
+Lithuania,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,1
+Mexico,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,1
+Netherlands,adaptation,145,fine_tuned,10,0.08327845903113484,4,0,,transformer_shared_ft__national,val_2009Q1,1
+New Zealand,adaptation,145,fine_tuned,10,0.08034429198596627,4,0,,transformer_shared_ft__national,val_2009Q1,1
+Norway,adaptation,145,fine_tuned,10,0.07998712488915771,4,0,,transformer_shared_ft__national,val_2009Q1,1
+Poland,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,1
+Portugal,adaptation,73,fine_tuned,10,0.04741762496996671,4,0,,transformer_shared_ft__national,val_2009Q1,1
+Russia,adaptation,21,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,1
+Slovak Republic,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,1
+South Africa,adaptation,161,fine_tuned,10,0.08647437498439103,4,0,,transformer_shared_ft__national,val_2009Q1,1
+South Korea,adaptation,81,fine_tuned,10,0.05499058298300952,4,0,,transformer_shared_ft__national,val_2009Q1,1
+Spain,adaptation,141,fine_tuned,10,0.08470683300402015,4,0,,transformer_shared_ft__national,val_2009Q1,1
+Sweden,adaptation,145,fine_tuned,10,0.08708900003693998,4,0,,transformer_shared_ft__national,val_2009Q1,1
+Switzerland,adaptation,145,fine_tuned,10,0.07856404210906476,4,0,,transformer_shared_ft__national,val_2009Q1,1
+Taiwan_national,adaptation,21,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,1
+United Kingdom,adaptation,152,fine_tuned,10,0.07890137494541705,4,0,,transformer_shared_ft__national,val_2009Q1,1
+United States,adaptation,145,fine_tuned,10,0.07972612499725074,4,0,,transformer_shared_ft__national,val_2009Q1,1
+Hungary,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,1
+Luxembourg,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,1
+Slovenia,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,1
+__shared__,shared,3284,fitted,36,13.769935167045332,164,0,,transformer_shared_ft__national,val_2009Q1,2
+Australia,adaptation,145,fine_tuned,10,0.07727445801720023,4,0,,transformer_shared_ft__national,val_2009Q1,2
+Austria,adaptation,25,fine_tuned,10,0.019833415979519486,4,0,,transformer_shared_ft__national,val_2009Q1,2
+Belgium,adaptation,145,fine_tuned,10,0.07688320800662041,4,0,,transformer_shared_ft__national,val_2009Q1,2
+Bulgaria,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,2
+Canada,adaptation,145,fine_tuned,10,0.07677866599988192,4,0,,transformer_shared_ft__national,val_2009Q1,2
+Chile,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,2
+Colombia,adaptation,73,fine_tuned,10,0.045371207990683615,4,0,,transformer_shared_ft__national,val_2009Q1,2
+Croatia,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,2
+Denmark,adaptation,145,fine_tuned,10,0.07621979096438736,4,0,,transformer_shared_ft__national,val_2009Q1,2
+Estonia,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,2
+Finland,adaptation,145,fine_tuned,10,0.07532858394552022,4,0,,transformer_shared_ft__national,val_2009Q1,2
+France,adaptation,145,fine_tuned,10,0.07811345800291747,4,0,,transformer_shared_ft__national,val_2009Q1,2
+Germany,adaptation,145,fine_tuned,10,0.07679808291140944,4,0,,transformer_shared_ft__national,val_2009Q1,2
+Greece,adaptation,37,fine_tuned,10,0.023339791921898723,4,0,,transformer_shared_ft__national,val_2009Q1,2
+Iceland,adaptation,24,fine_tuned,10,0.019576207967475057,4,0,,transformer_shared_ft__national,val_2009Q1,2
+Indonesia,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,2
+Ireland,adaptation,145,fine_tuned,10,0.07627783401403576,4,0,,transformer_shared_ft__national,val_2009Q1,2
+Israel,adaptation,49,fine_tuned,10,0.026528874994255602,4,0,,transformer_shared_ft__national,val_2009Q1,2
+Italy,adaptation,145,fine_tuned,10,0.0763632080052048,4,0,,transformer_shared_ft__national,val_2009Q1,2
+Japan,adaptation,185,fine_tuned,10,0.08731837500818074,4,0,,transformer_shared_ft__national,val_2009Q1,2
+Latvia,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,2
+Lithuania,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,2
+Mexico,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,2
+Netherlands,adaptation,145,fine_tuned,10,0.07655875000637025,4,0,,transformer_shared_ft__national,val_2009Q1,2
+New Zealand,adaptation,145,fine_tuned,10,0.07639012497384101,4,0,,transformer_shared_ft__national,val_2009Q1,2
+Norway,adaptation,145,fine_tuned,10,0.07763970899395645,4,0,,transformer_shared_ft__national,val_2009Q1,2
+Poland,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,2
+Portugal,adaptation,73,fine_tuned,10,0.04601162497419864,4,0,,transformer_shared_ft__national,val_2009Q1,2
+Russia,adaptation,21,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,2
+Slovak Republic,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,2
+South Africa,adaptation,161,fine_tuned,10,0.08146070793736726,4,0,,transformer_shared_ft__national,val_2009Q1,2
+South Korea,adaptation,81,fine_tuned,10,0.050924416980706155,4,0,,transformer_shared_ft__national,val_2009Q1,2
+Spain,adaptation,141,fine_tuned,10,0.08218749996740371,4,0,,transformer_shared_ft__national,val_2009Q1,2
+Sweden,adaptation,145,fine_tuned,10,0.07713124994188547,4,0,,transformer_shared_ft__national,val_2009Q1,2
+Switzerland,adaptation,145,fine_tuned,10,0.07767429098021239,4,0,,transformer_shared_ft__national,val_2009Q1,2
+Taiwan_national,adaptation,21,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,2
+United Kingdom,adaptation,152,fine_tuned,10,0.07841970794834197,4,0,,transformer_shared_ft__national,val_2009Q1,2
+United States,adaptation,145,fine_tuned,10,0.07698420900851488,4,0,,transformer_shared_ft__national,val_2009Q1,2
+Hungary,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,2
+Luxembourg,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,2
+Slovenia,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,2
+__shared__,shared,3284,fitted,20,7.760468416963704,164,0,,transformer_shared_ft__national,val_2009Q1,3
+Australia,adaptation,145,fine_tuned,10,0.0752345829969272,4,0,,transformer_shared_ft__national,val_2009Q1,3
+Austria,adaptation,25,fine_tuned,10,0.01971837494056672,4,0,,transformer_shared_ft__national,val_2009Q1,3
+Belgium,adaptation,145,fine_tuned,10,0.07540962495841086,4,0,,transformer_shared_ft__national,val_2009Q1,3
+Bulgaria,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,3
+Canada,adaptation,145,fine_tuned,10,0.0748088340042159,4,0,,transformer_shared_ft__national,val_2009Q1,3
+Chile,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,3
+Colombia,adaptation,73,fine_tuned,10,0.0444627080578357,4,0,,transformer_shared_ft__national,val_2009Q1,3
+Croatia,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,3
+Denmark,adaptation,145,fine_tuned,10,0.07548812497407198,4,0,,transformer_shared_ft__national,val_2009Q1,3
+Estonia,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,3
+Finland,adaptation,145,fine_tuned,10,0.07576666690874845,4,0,,transformer_shared_ft__national,val_2009Q1,3
+France,adaptation,145,fine_tuned,10,0.07505504204891622,4,0,,transformer_shared_ft__national,val_2009Q1,3
+Germany,adaptation,145,fine_tuned,10,0.07478020805865526,4,0,,transformer_shared_ft__national,val_2009Q1,3
+Greece,adaptation,37,fine_tuned,10,0.023264541057869792,4,0,,transformer_shared_ft__national,val_2009Q1,3
+Iceland,adaptation,24,fine_tuned,10,0.020529125002212822,4,0,,transformer_shared_ft__national,val_2009Q1,3
+Indonesia,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,3
+Ireland,adaptation,145,fine_tuned,10,0.08164254203438759,4,0,,transformer_shared_ft__national,val_2009Q1,3
+Israel,adaptation,49,fine_tuned,10,0.027947625028900802,4,0,,transformer_shared_ft__national,val_2009Q1,3
+Italy,adaptation,145,fine_tuned,10,0.08046020905021578,4,0,,transformer_shared_ft__national,val_2009Q1,3
+Japan,adaptation,185,fine_tuned,10,0.09147745801601559,4,0,,transformer_shared_ft__national,val_2009Q1,3
+Latvia,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,3
+Lithuania,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,3
+Mexico,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,3
+Netherlands,adaptation,145,fine_tuned,10,0.0786578340921551,4,0,,transformer_shared_ft__national,val_2009Q1,3
+New Zealand,adaptation,145,fine_tuned,10,0.08008704101666808,4,0,,transformer_shared_ft__national,val_2009Q1,3
+Norway,adaptation,145,fine_tuned,10,0.07768125005532056,4,0,,transformer_shared_ft__national,val_2009Q1,3
+Poland,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,3
+Portugal,adaptation,73,fine_tuned,10,0.04602833301760256,4,0,,transformer_shared_ft__national,val_2009Q1,3
+Russia,adaptation,21,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,3
+Slovak Republic,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,3
+South Africa,adaptation,161,fine_tuned,10,0.08224495803005993,4,0,,transformer_shared_ft__national,val_2009Q1,3
+South Korea,adaptation,81,fine_tuned,10,0.052500874968245625,4,0,,transformer_shared_ft__national,val_2009Q1,3
+Spain,adaptation,141,fine_tuned,10,0.0837176670320332,4,0,,transformer_shared_ft__national,val_2009Q1,3
+Sweden,adaptation,145,fine_tuned,10,0.08513083402067423,4,0,,transformer_shared_ft__national,val_2009Q1,3
+Switzerland,adaptation,145,fine_tuned,10,0.08515370800159872,4,0,,transformer_shared_ft__national,val_2009Q1,3
+Taiwan_national,adaptation,21,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,3
+United Kingdom,adaptation,152,fine_tuned,10,0.08621408301405609,4,0,,transformer_shared_ft__national,val_2009Q1,3
+United States,adaptation,145,fine_tuned,10,0.08403608307708055,4,0,,transformer_shared_ft__national,val_2009Q1,3
+Hungary,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,3
+Luxembourg,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,3
+Slovenia,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,3
+__shared__,shared,3284,fitted,40,13.864270208054222,164,0,,transformer_shared_ft__national,val_2009Q1,4
+Australia,adaptation,145,fine_tuned,10,0.07699795800726861,4,0,,transformer_shared_ft__national,val_2009Q1,4
+Austria,adaptation,25,fine_tuned,10,0.01994679099880159,4,0,,transformer_shared_ft__national,val_2009Q1,4
+Belgium,adaptation,145,fine_tuned,10,0.07793000002857298,4,0,,transformer_shared_ft__national,val_2009Q1,4
+Bulgaria,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,4
+Canada,adaptation,145,fine_tuned,10,0.07794012490194291,4,0,,transformer_shared_ft__national,val_2009Q1,4
+Chile,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,4
+Colombia,adaptation,73,fine_tuned,10,0.04644012497738004,4,0,,transformer_shared_ft__national,val_2009Q1,4
+Croatia,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,4
+Denmark,adaptation,145,fine_tuned,10,0.07501995807979256,4,0,,transformer_shared_ft__national,val_2009Q1,4
+Estonia,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,4
+Finland,adaptation,145,fine_tuned,10,0.07447712495923042,4,0,,transformer_shared_ft__national,val_2009Q1,4
+France,adaptation,145,fine_tuned,10,0.07927212491631508,4,0,,transformer_shared_ft__national,val_2009Q1,4
+Germany,adaptation,145,fine_tuned,10,0.07792137493379414,4,0,,transformer_shared_ft__national,val_2009Q1,4
+Greece,adaptation,37,fine_tuned,10,0.02401029202155769,4,0,,transformer_shared_ft__national,val_2009Q1,4
+Iceland,adaptation,24,fine_tuned,10,0.020181542029604316,4,0,,transformer_shared_ft__national,val_2009Q1,4
+Indonesia,adaptation,17,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,4
+Ireland,adaptation,145,fine_tuned,10,0.08320558292325586,4,0,,transformer_shared_ft__national,val_2009Q1,4
+Israel,adaptation,49,fine_tuned,10,0.026859958074055612,4,0,,transformer_shared_ft__national,val_2009Q1,4
+Italy,adaptation,145,fine_tuned,10,0.07809237495530397,4,0,,transformer_shared_ft__national,val_2009Q1,4
+Japan,adaptation,185,fine_tuned,10,0.09202291700057685,4,0,,transformer_shared_ft__national,val_2009Q1,4
+Latvia,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,4
+Lithuania,adaptation,1,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,4
+Mexico,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,4
+Netherlands,adaptation,145,fine_tuned,10,0.08222687500528991,4,0,,transformer_shared_ft__national,val_2009Q1,4
+New Zealand,adaptation,145,fine_tuned,10,0.08218741696327925,4,0,,transformer_shared_ft__national,val_2009Q1,4
+Norway,adaptation,145,fine_tuned,10,0.08649262494873255,4,0,,transformer_shared_ft__national,val_2009Q1,4
+Poland,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,4
+Portugal,adaptation,73,fine_tuned,10,0.05119879206176847,4,0,,transformer_shared_ft__national,val_2009Q1,4
+Russia,adaptation,21,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,4
+Slovak Republic,adaptation,5,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,4
+South Africa,adaptation,161,fine_tuned,10,0.09218649996910244,4,0,,transformer_shared_ft__national,val_2009Q1,4
+South Korea,adaptation,81,fine_tuned,10,0.05168870894704014,4,0,,transformer_shared_ft__national,val_2009Q1,4
+Spain,adaptation,141,fine_tuned,10,0.08211800002027303,4,0,,transformer_shared_ft__national,val_2009Q1,4
+Sweden,adaptation,145,fine_tuned,10,0.08424983301665634,4,0,,transformer_shared_ft__national,val_2009Q1,4
+Switzerland,adaptation,145,fine_tuned,10,0.08431066700723022,4,0,,transformer_shared_ft__national,val_2009Q1,4
+Taiwan_national,adaptation,21,too_short,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,4
+United Kingdom,adaptation,152,fine_tuned,10,0.08347945904824883,4,0,,transformer_shared_ft__national,val_2009Q1,4
+United States,adaptation,145,fine_tuned,10,0.07756216602865607,4,0,,transformer_shared_ft__national,val_2009Q1,4
+Hungary,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,4
+Luxembourg,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,4
+Slovenia,adaptation,0,no_adaptation,0,0.0,4,4,,transformer_shared_ft__national,val_2009Q1,4

@@ -1,4 +1,4 @@
-"""Build the availability matrix, including five Taiwan indicators.
+"""Build coverage and release evidence for 41 HPI markets and five-country macro data.
 
 Install dependencies: python3 -m pip install pandas
 Run: python3 scripts/build_availability_matrix.py
@@ -745,7 +745,124 @@ def publication_metadata(code, variable, frequency, periods, group):
     }
 
 
-def build_matrix(raw_dir):
+def hpi_release_evidence(path, markets):
+    evidence = pd.read_csv(path, dtype=str, keep_default_na=False).map(lambda x: x.strip())
+    required = {"series_id", "country", "source_file", "lag_days", "reference_period",
+                "release_date", "evidence_url", "status", "notes"}
+    if not required <= set(evidence.columns):
+        raise ValueError(f"{path} is missing columns {sorted(required - set(evidence.columns))}")
+    if evidence["series_id"].duplicated().any() or set(evidence["series_id"]) != set(markets):
+        raise ValueError("The release-lag table must contain each evaluation market exactly once.")
+    statuses = {"unverified", "release_example", "schedule_estimate", "verified"}
+    for row in evidence.to_dict("records"):
+        sid, status = row["series_id"], row["status"]
+        country = "Taiwan" if sid == "Taiwan_national" else sid
+        source = ("data/raw/taiwan/taiwan_hpi_quarterly_raw.csv" if sid == "Taiwan_national" else
+                  "data/raw/four_countries/hpi_raw.csv" if sid in ORIGINAL_COUNTRIES.values() else
+                  "data/raw/global/anahpi_quarterly_raw.csv")
+        if row["country"] != country or row["source_file"] != source:
+            raise ValueError(f"{sid}: country/source_file must match the forecasting data source.")
+        if status not in statuses:
+            raise ValueError(f"{sid}: status must be one of {sorted(statuses)}.")
+        if row["evidence_url"] and not row["evidence_url"].startswith(("https://", "http://")):
+            raise ValueError(f"{sid}: evidence_url must be an HTTP or HTTPS URL.")
+        if status == "unverified":
+            if row["lag_days"]:
+                raise ValueError(f"{sid}: record unverified lag estimates in notes, not lag_days.")
+            continue
+        if not row["lag_days"].isdigit() or not row["evidence_url"].startswith(("https://", "http://")):
+            raise ValueError(f"{sid}: a non-negative integer lag_days and evidence URL are required.")
+        if status == "release_example":
+            quarter = row["reference_period"]
+            date = row["release_date"]
+            if not quarter or not date:
+                raise ValueError(f"{sid}: a release example needs reference_period and release_date.")
+            end = pd.Period(quarter, freq="Q").end_time.normalize()
+            lag = (pd.to_datetime(date, format="%Y-%m-%d") - end).days
+            if lag != int(row["lag_days"]):
+                raise ValueError(f"{sid}: lag_days does not match the supplied quarter and release date.")
+        if status == "verified" and not row["notes"]:
+            raise ValueError(f"{sid}: describe the verified source and historical scope in notes.")
+    return evidence.set_index("series_id")
+
+
+def add_national_hpi(matrix, raw_dir, market_list, release_lags):
+    listed = pd.read_csv(market_list)
+    markets = listed.loc[listed["validation_origins_2000_2009"] > 0, "series_id"]
+    if len(markets) != 41 or markets.duplicated().any():
+        raise ValueError("Expected 41 unique evaluation markets in the market list.")
+    evidence = hpi_release_evidence(release_lags, markets)
+    raw = pd.read_csv(raw_dir / "global" / "anahpi_quarterly_raw.csv", dtype=str, keep_default_na=False)
+    existing = set(matrix.loc[matrix["variable"].eq("hpi"), "country"])
+    extra = []
+    all_periods = {}
+    hpi_raw = read_raw("hpi", raw_dir)
+    for code, country in ORIGINAL_COUNTRIES.items():
+        all_periods[country] = valid_periods(hpi_raw.loc[hpi_raw["country_code"].eq(code)])
+    all_periods["Taiwan"] = valid_periods(read_taiwan("hpi", raw_dir))
+    for sid in markets:
+        if sid == "Taiwan_national" or sid in existing:
+            continue
+        group = raw.loc[raw["Country"].eq(sid) & raw["MEASURE"].eq("RHP") & raw["FREQ"].eq("Q")].copy()
+        if group.empty:
+            raise ValueError(f"No quarterly real HPI observations found for {sid}.")
+        group["country_code"] = group["REF_AREA"]
+        group["raw_value"] = group["Value"]
+        group["period"] = group["Period"].str.replace("-", "", regex=False)
+        numeric = pd.to_numeric(group["raw_value"], errors="coerce")
+        group["valid"] = numeric.notna() & ~numeric.isin([float("inf"), -float("inf")])
+        periods = valid_periods(group)
+        all_periods[sid] = periods
+        if metadata_value(group, "UNIT_MEASURE") != "IX":
+            raise ValueError(f"Unexpected HPI units for {sid}.")
+        extra.append({
+            "country": sid, "variable": "hpi", "frequency": "Quarterly",
+            **coverage_statistics(periods, "Q"),
+            "unit": f"Index points (base period {metadata_value(group, 'BASE_PER')})",
+            "real_nominal": "Real",
+            "seasonal_adj": ADJUSTMENTS.get(metadata_value(group, "ADJUSTMENT"), "Unknown"),
+            "transformation": "Level",
+            "variable_definition": "OECD real national house price index, as supplied in the raw AnaHPI export.",
+            "source": "data/raw/global/anahpi_quarterly_raw.csv; " + HOUSING_REFERENCE,
+            "publication_lag": "Not verified", "publication_lag_source": "",
+            "publication_lag_status": "Not verified",
+        })
+    matrix = pd.concat([matrix, pd.DataFrame(extra, columns=COLUMNS)], ignore_index=True)
+    common = set.intersection(*all_periods.values())
+    hpi = matrix["variable"].eq("hpi")
+    matrix.loc[hpi, "common_availability"] = f"{min(common)}–{max(common)}" if common else ""
+    matrix.loc[hpi, "common_valid_observations"] = len(common)
+    matrix["common_valid_observations"] = matrix["common_valid_observations"].astype(int)
+    for sid, row in evidence.iterrows():
+        country = row["country"]
+        selected = hpi & matrix["country"].eq(country)
+        if row["status"] != "unverified":
+            labels = {"release_example": "Release example", "schedule_estimate": "Official schedule estimate",
+                      "verified": "Verified"}
+            text = f"{row['lag_days']} calendar days after quarter-end ({row['status']})"
+            if row["reference_period"]:
+                text += f"; reference quarter {row['reference_period']}"
+            if row["release_date"]:
+                text += f"; release date {row['release_date']}"
+            if row["status"] == "release_example":
+                text += "; a dated example does not establish a fixed historical release lag"
+            matrix.loc[selected, ["publication_lag", "publication_lag_source", "publication_lag_status"]] = [
+                text, row["evidence_url"], labels[row["status"]]]
+        elif row["evidence_url"]:
+            original = matrix.loc[selected, "publication_lag_source"].iloc[0]
+            matrix.loc[selected, "publication_lag_source"] = "; ".join(x for x in [original, row["evidence_url"]] if x)
+        if row["notes"]:
+            matrix.loc[selected, "publication_lag"] += "; " + row["notes"]
+    # HPI overlap covers 41 markets; macro overlap retains its original country groups.
+    matrix.loc[hpi, "variable_definition"] = matrix.loc[hpi, "variable_definition"].str.replace(
+        " Common availability uses five countries and measures period coverage, not definition equivalence.",
+        "", regex=False) + " Common HPI coverage is the intersection of all 41 evaluation markets."
+    if matrix.loc[hpi, "country"].nunique() != 41 or matrix.duplicated(["country", "variable", "frequency"]).any():
+        raise ValueError("Unexpected or duplicate HPI market coverage.")
+    return matrix[COLUMNS]
+
+
+def build_matrix(raw_dir, market_list=ROOT / "docs/market_list.csv", release_lags=ROOT / "docs/hpi_release_lags.csv"):
     """Build one row per country-variable-source-frequency, then intersect sets."""
     records = []
     for variable in VARIABLES:
@@ -791,7 +908,7 @@ def build_matrix(raw_dir):
         raise ValueError("Unexpected country coverage.")
     if matrix.duplicated(["country", "variable", "frequency"]).any():
         raise ValueError("Duplicate matrix rows.")
-    return matrix
+    return add_national_hpi(matrix, raw_dir, market_list, release_lags)
 
 
 def export_matrix(matrix, output_dir):
@@ -802,16 +919,57 @@ def export_matrix(matrix, output_dir):
     return csv_path
 
 
+CONFIGS = (ROOT / "configs/experiment.toml", ROOT / "configs/experiment_long.toml")
+
+
+def lags_above_config(release_lags, configs=CONFIGS):
+    """Supported HPI lags that are longer than the lag assumed in an experiment config.
+
+    Only rows with evidence (any status except unverified) are checked. The configs are
+    read, never changed; a longer lag means the timing rule needs review before rerunning.
+    """
+    try:
+        import tomllib
+    except ModuleNotFoundError:  # Python 3.10
+        try:
+            import tomli as tomllib
+        except ModuleNotFoundError:
+            return None
+    evidence = pd.read_csv(release_lags, dtype=str, keep_default_na=False)
+    evidence = evidence[evidence["status"].str.strip().ne("unverified") & evidence["lag_days"].str.strip().ne("")]
+    found = []
+    for config in configs:
+        with open(config, "rb") as f:
+            table = tomllib.load(f)["release_lag_days"]["hpi"]
+        for row in evidence.itertuples():
+            assumed = int(table.get(row.country, table["default"]))
+            if int(row.lag_days) > assumed:
+                found.append((Path(config).name, row.series_id, int(row.lag_days), assumed, row.status))
+    return found
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--raw-dir", type=Path, default=ROOT / "data/raw")
     parser.add_argument("--output-dir", type=Path, default=ROOT / "results")
+    parser.add_argument("--market-list", type=Path, default=ROOT / "docs/market_list.csv")
+    parser.add_argument("--release-lags", type=Path, default=ROOT / "docs/hpi_release_lags.csv")
     args = parser.parse_args()
-    matrix = build_matrix(args.raw_dir)
+    matrix = build_matrix(args.raw_dir, args.market_list, args.release_lags)
     csv_path = export_matrix(matrix, args.output_dir)
-    print(f"Created {len(matrix)} rows for five countries, with {len(matrix.columns)} columns.")
-    print("Taiwan: HPI, monthly CPI YoY, GDP growth, interest rate and credit/GDP. Common coverage follows the supplied frequencies.")
+    print(f"Created {len(matrix)} rows with HPI coverage for 41 markets and macro coverage for five countries.")
     print(csv_path)
+    above = lags_above_config(args.release_lags)
+    if above is None:
+        print("Note: install tomli (Python 3.10) to compare release lags with the configs.")
+    elif above:
+        print("\nWARNING: supported HPI release lags longer than the configured lag:")
+        for config, sid, lag, assumed, status in above:
+            print(f"  {config}: {sid} {lag} days ({status}) > {assumed} days assumed")
+        print("Review the evidence, then update [release_lag_days] hpi in both configs and rerun "
+              "the affected comparisons if the timing rule changes.")
+    else:
+        print("All supported HPI release lags are within the configured lags.")
 
 
 if __name__ == "__main__":

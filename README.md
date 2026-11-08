@@ -77,6 +77,8 @@ All eight intervals stay below 1 with 4-, 8-, 12- and 20-quarter blocks. Fine-tu
 
 ![Median RMSE relative to no-change by forecast horizon](results/long_hpi/validation/rel_rmse_by_horizon.png)
 
+The per-market Transformer falls back to no-change when local history is too short. These fallbacks are included in the curve. The fitted-only comparison above checks whether the shared model still performs better when both Transformers were actually trained.
+
 The curves compare the shared Transformer and four baselines with no-change. The shaded ranges mark 3–6 and 16–20 quarters. The shared Transformer's median ratio to no-change stays between 0.77 and 0.89 at every horizon, while per-market AR falls behind no-change from 10 quarters on (1.09 at 20 quarters). The RMSE ratio against the per-market Transformer falls from about 0.88–0.90 at 1–8 quarters to 0.80–0.83 at 12–20 quarters. Absolute error grows fast: the shared model's median RMSE is 0.017 at one quarter and 0.235 at 20 quarters, in cumulative log growth. Whether errors of that size are useful for construction decisions is still open. [Errors by market and horizon](results/long_hpi/validation/metrics_by_market.csv)
 
 ### Training on more markets

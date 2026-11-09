@@ -123,7 +123,7 @@ def test_per_market_ar_falls_back_per_horizon_only():
 def test_common_forecast_date_for_every_market(long_samples):
     end = pd.PeriodIndex(long_samples.meta["origin"], freq="Q").end_time.normalize()
     lag = (long_samples.meta["as_of_date"] - end).dt.days
-    assert (lag == 100).all()
+    assert (lag == 122).all()
 
 
 def test_labels_keep_each_market_publication_date(long_samples):
@@ -142,7 +142,7 @@ def test_fold_cutoff_does_not_depend_on_target_country(long_cfg):
     b = make_splits(other, "validation", pd.Period("2025Q1", "Q"))
     assert [s.cutoff_date for s in a] == [s.cutoff_date for s in b]
     first = pd.Period(long_cfg["periods"]["validation_start"], "Q")
-    assert a[0].cutoff_date == first.end_time.normalize() + pd.Timedelta(days=100)
+    assert a[0].cutoff_date == first.end_time.normalize() + pd.Timedelta(days=122)
 
 
 def test_forecast_lag_must_cover_slowest_hpi_release(long_cfg):

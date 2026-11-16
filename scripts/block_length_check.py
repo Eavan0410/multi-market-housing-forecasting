@@ -29,12 +29,14 @@ HOLDOUT = "results/market_holdout"
 HOLDOUT_MARKETS = ("australia", "chile", "taiwan_national", "portugal")
 
 
-def comparisons():
+def comparisons(main_dir=None):
     """(experiment, folder, model A, model B)."""
     shared = "transformer__national"
-    for other in ("transformer_per_market__national", "ar__national", "ar_pooled__national",
+    for other in ("transformer_per_market__national", "ar__national", "arima__national", "ar_pooled__national",
                   "no_change__national"):
-        yield "main", MAIN, shared, other
+        yield "main", main_dir or MAIN, shared, other
+    if main_dir is not None:
+        return
     for order, folder in (("region", SCALE), ("history", SCALE_HISTORY), ("random", SCALE_RANDOM)):
         sizes = (10, 20, 41) if order == "region" else (10, 20)   # 5 and 41 are shared by all orders
         for size in sizes:
@@ -48,17 +50,20 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default="configs/experiment_long.toml")
     ap.add_argument("--blocks", type=int, nargs="+", default=[4, 8, 12, 20])
+    ap.add_argument("--main-dir", type=Path, help="check only the main comparisons in this prediction directory")
     ap.add_argument("--out", default="results/block_length_sensitivity.csv")
     args = ap.parse_args()
 
     cfg = load_config(args.config)
     rows = []
-    for experiment, folder, a, b in comparisons():
+    for experiment, folder, a, b in comparisons(args.main_dir):
         preds = pd.concat([pd.read_csv(Path(folder) / f"preds_{m}.csv") for m in (a, b)], ignore_index=True)
         for block in args.blocks:
             try:
                 r = paired_ratio_bootstrap(preds, a, b, cfg, block_length=block)
             except ValueError as e:          # block longer than the forecast calendar
+                if args.main_dir is not None:
+                    raise
                 print(f"skip {experiment} {a} vs {b}, block {block}: {e}")
                 continue
             rows.append(r.assign(experiment=experiment))

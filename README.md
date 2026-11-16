@@ -15,30 +15,34 @@ The repository contains the data preparation code, a common backtest for all mod
 ## Findings so far
 
 1. **Market coverage.** One shared Transformer produced forecasts for 41 national markets, with 38 included in the main comparison. The full training pool improved 3–6-quarter forecasts, while the intermediate results varied across three orders of adding markets. The four market holdouts gave examples of forecasting without local training data.
-2. **Accuracy against separate models.** The shared model had lower error than separate Transformers and, from 5 quarters ahead, separate AR models across all four block lengths checked. Pooled AR was much closer to the shared Transformer. Fine-tuning a copy for each market did not improve on the shared model overall, although Germany and Portugal benefited.
-3. **Forecast horizon.** The relative advantage over separate models grew at longer horizons, but absolute errors also grew. Against no-change, only the 1–3-quarter improvement held across all block lengths. Accuracy sufficient for buying, selling or construction decisions still needs to be established.
+2. **Accuracy against separate models.** The shared model had lower error than separate Transformers and, from 5 quarters ahead, separate AR models across all four block lengths checked. The shared model also had lower error than per-market ARIMA at 16–20 quarters across all four block lengths. Pooled AR was much closer to the shared Transformer. Fine-tuning a copy for each market did not improve on the shared model overall, although Germany and Portugal benefited.
+3. **Forecast horizon.** The advantage over separate Transformers was larger at longer horizons, where absolute errors also grew. Against no-change, only the 1–3-quarter improvement held across all block lengths. Accuracy sufficient for buying, selling or construction decisions still needs to be established.
 
 ## Data and backtest
 
 - **Model:** a small Transformer takes eight quarters of inflation-adjusted house price growth and predicts the total log change over each of the next 1–20 quarters.
 - **Data:** national HPI series from OECD AnaHPI and Taiwan's Sinyi index. We build the panel from raw observations and adjust Taiwan's nominal HPI with CPI. Taiwan's index is not seasonally adjusted, while the OECD series are. We generated forecasts for 41 markets and report the 38 with at least eight forecast dates. [Market coverage](docs/market_list.csv) · [Data evidence](TODO_B.md) · [HPI release timing](docs/hpi_release_lags.md)
-- **Backtest:** validation origins run from 2000Q1 to 2009Q4. We expand the training window and refit every four quarters. Training origins are at least four quarters earlier than the first validation origin in each fold. Scaling uses training data only, and training labels are masked until their estimated publication date. All markets share a forecast date 100 days after quarter-end. Publication lags remain estimates.
-- **Baselines:** a Transformer trained separately for each market (it falls back to no-change when a market has too little history), per-market AR (falls back to pooled AR), one pooled AR across markets, and no-change.
-- **Scoring:** RMSE per market and horizon, averaged over five seeds for each Transformer. We report the median across markets of RMSE(shared) / RMSE(baseline), so a ratio below 1 favors the shared model. Brackets are 95% intervals from a paired block bootstrap over forecast dates with 20-quarter blocks. We also check 4-, 8- and 12-quarter blocks. [Block-length check](results/block_length_sensitivity.csv)
+- **Backtest:** validation origins run from 2000Q1 to 2009Q4. We expand the training window and refit every four quarters. Training origins are at least four quarters earlier than the first validation origin in each fold. Scaling uses training data only, and training labels are masked until their estimated publication date. The main comparison uses a common forecast date 122 days after quarter-end, based on two recent releases of Chile’s nominal HPI. Historical release timing and the first availability of the OECD real series remain uncertain.
+- **Baselines:** a Transformer trained separately for each market (it falls back to no-change when a market has too little history), per-market AR (falls back to pooled AR), per-market ARIMA (falls back to its own average growth when history is too short or a fit fails), one pooled AR across markets, and no-change.
+- **Scoring:** RMSE per market and horizon, averaged over five seeds for each Transformer. We report the median across markets of RMSE(shared) / RMSE(baseline), so a ratio below 1 favors the shared model. Brackets are 95% intervals from a paired block bootstrap over forecast dates with 20-quarter blocks. We also check 4-, 8- and 12-quarter blocks. [Main comparison sensitivity check](results/long_hpi_122/validation/block_length_sensitivity.csv)
 
 ## Multi-market results
+
+The main comparison and horizon plot use the 122-day rule. Training cost, fine-tuning, training-pool and holdout results come from the earlier 100-day runs.
 
 ### Shared and per-market models
 
 | Shared Transformer vs | 3–6 quarters | 16–20 quarters |
 |---|---:|---:|
-| Per-market Transformer | 0.895 [0.796, 0.930] | 0.804 [0.791, 0.858] |
-| Per-market AR | 0.943 [0.883, 0.977] | 0.869 [0.795, 0.949] |
-| Pooled AR | 0.978 [0.918, 1.058] | 0.953 [0.917, 1.005] |
-| No-change | 0.849 [0.649, 0.979] | 0.889 [0.831, 1.027] |
+| Per-market Transformer | 0.896 [0.802, 0.931] | 0.806 [0.797, 0.862] |
+| Per-market AR | 0.944 [0.884, 0.978] | 0.869 [0.797, 0.956] |
+| Per-market ARIMA | 0.947 [0.857, 1.000] | 0.913 [0.841, 0.980] |
+| Pooled AR | 0.979 [0.919, 1.058] | 0.955 [0.918, 1.011] |
+| No-change | 0.848 [0.651, 0.979] | 0.895 [0.833, 1.029] |
 
-- **Per-market Transformer:** the interval is below 1 at every horizon and block length. About 23% of its forecasts were no-change fallbacks. Keeping only forecasts where both Transformers were trained (24 markets with medium or long histories) gives 0.816 [0.796, 0.899] and 0.788 [0.771, 0.836]. [Fitted-only check](results/long_hpi/validation/fitted_only_ratio_ci.csv)
+- **Per-market Transformer:** the interval is below 1 at every horizon and block length. About 23% of its forecasts were no-change fallbacks. Keeping only forecasts where both Transformers were trained (24 markets with medium or long histories) gives 0.822 [0.794, 0.899] and 0.792 [0.783, 0.839]. [Fitted-only check](results/long_hpi_122/validation/fitted_only_ratio_ci.csv)
 - **Per-market AR:** the interval is below 1 from 5 quarters on at every block length.
+- **Per-market ARIMA:** the order (p ≤ 4, q ≤ 2) is chosen by AIC on each market's training history. Markets with fewer than 24 training quarters use their own average growth; this covers about 20% of forecasts, and no fit failed. The interval is below 1 at 16–20 quarters and includes 1 at 3–6 quarters for all four block lengths. Like per-market AR, it is about even with or behind no-change from 10 quarters on (1.10 at 20 quarters). [ARIMA fits and fallbacks](results/long_hpi_122/validation/diag_arima__national.csv)
 - **Pooled AR:** its errors are close to the shared Transformer's, and the intervals include 1 in both ranges.
 - **No-change:** at 3–6 quarters the interval includes 1 with 8- or 12-quarter blocks.
 
@@ -73,9 +77,11 @@ All eight intervals stay below 1 with 4-, 8-, 12- and 20-quarter blocks. Fine-tu
 
 ### Accuracy by horizon
 
-![Median RMSE relative to no-change by forecast horizon](results/long_hpi/validation/rel_rmse_by_horizon.png)
+![Median RMSE relative to no-change by forecast horizon](results/long_hpi_122/validation/rel_rmse_by_horizon.png)
 
-The shaded ranges mark 3–6 and 16–20 quarters. The shared Transformer's median ratio to no-change stays between 0.77 and 0.89 at every horizon, while per-market AR falls behind no-change from 10 quarters on (1.09 at 20 quarters). The RMSE ratio against the per-market Transformer falls from about 0.88–0.90 at 1–8 quarters to 0.80–0.83 at 12–20 quarters. Absolute error grows fast: the shared model's median RMSE is 0.017 at one quarter and 0.235 at 20 quarters, in cumulative log growth. Whether errors of that size are useful for construction decisions is still open. [Errors by market and horizon](results/long_hpi/validation/metrics_by_market.csv)
+The per-market Transformer falls back to no-change when local history is too short. These fallbacks are included in the curve. The fitted-only comparison above checks whether the shared model still performs better when both Transformers were actually trained.
+
+The curves compare the shared Transformer and four baselines with no-change. The shaded ranges mark 3–6 and 16–20 quarters. The shared Transformer's median ratio to no-change stays between 0.77 and 0.90 at every horizon, while per-market AR falls behind no-change from 10 quarters on (1.09 at 20 quarters). The RMSE ratio against the per-market Transformer falls from about 0.88–0.90 at 1–8 quarters to 0.80–0.83 at 12–20 quarters. Absolute error grows fast: the shared model's median RMSE is 0.017 at one quarter and 0.235 at 20 quarters, in cumulative log growth. Whether errors of that size are useful for construction decisions is still open. [Errors by market and horizon](results/long_hpi_122/validation/metrics_by_market.csv)
 
 ### Training on more markets
 
@@ -114,35 +120,37 @@ Leaving a market out usually changed RMSE by a few percent. Each held-out market
 - The results cover one validation period, which includes the 2008 crisis. The proposed test starts in 2015 and overlaps years examined in the earlier Taiwan pilot. [Taiwan pilot](docs/taiwan_pilot.md)
 - Most comparisons have 40 forecast dates, so a draw with 20-quarter blocks uses only two blocks. Claims that depend on the block length are marked above.
 - Taiwan remains a difficult case. Its shared-model errors are close to no-change in the ranges shown here.
-- The broader study still needs per-market ARIMA and the final test. We also need to finish checking release lags.
+- The broader study still needs the final test. We also need to finish checking release lags.
 
 ## Run locally
 
-Use Python 3.11, from the repository root:
+Use Python 3.11 from the repository root.
 
 ```bash
 conda create -n hpf python=3.11 -y
 conda activate hpf
-pip install -e ".[dev,dl]"
+pip install -e ".[dev,dl,stats]" matplotlib
 pytest -q
 python scripts/build_panel.py
 ```
 
-Shared model and baselines:
+Main comparison at 122 days:
 
 ```bash
 C=configs/experiment_long.toml
-python scripts/run_backtest.py --config $C --models no_change ar ar_pooled --pool national --experiment long_hpi
-python scripts/run_backtest.py --config $C --models transformer transformer_per_market --pool national --experiment long_hpi
-python scripts/evaluate_markets.py results/long_hpi/validation/preds_*.csv --config $C --reference no_change__national \
+D=results/long_hpi_122/validation
+OMP_NUM_THREADS=1 python scripts/run_backtest.py --config "$C" --models no_change ar ar_pooled arima transformer transformer_per_market --pool national --experiment long_hpi_122
+python scripts/evaluate_markets.py "$D"/preds_*.csv --config $C --reference no_change__national \
     --compare transformer__national transformer_per_market__national \
     --compare transformer__national ar__national \
+    --compare transformer__national arima__national \
     --compare transformer__national ar_pooled__national \
     --compare transformer__national no_change__national
-python scripts/fitted_only_check.py
-python scripts/block_length_check.py
-OMP_NUM_THREADS=1 python scripts/training_cost.py --time   # model counts and one-fold timing
+python scripts/fitted_only_check.py --dir "$D"
+python scripts/block_length_check.py --main-dir "$D" --out "$D/block_length_sensitivity.csv"
 ```
+
+For the earlier 100-day experiments below, use a checkout of commit `cf2cd9d`. The training cost check is `OMP_NUM_THREADS=1 python scripts/training_cost.py --time`.
 
 Shared pretraining and local fine-tuning (the output directory must be new):
 

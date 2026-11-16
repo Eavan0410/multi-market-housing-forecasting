@@ -47,9 +47,25 @@ def test_extend_history_adds_quarters_known_at_forecast_date(samples):
     assert ext.index.min() == hist.index.min() and len(ext) == len(hist) + 6
 
 
-def test_template_not_filled_raises(samples):
-    with pytest.raises(NotImplementedError):
+def test_missing_statsmodels_stops_the_run(monkeypatch, samples):
+    def missing(*args, **kwargs):
+        raise ImportError("No module named 'statsmodels'")
+
+    monkeypatch.setattr(arima, "fit_one", missing)
+    with pytest.raises(ImportError):
         ARIMAPerMarket().fit(samples, seed=0)
+
+
+def test_arima_fits_and_forecasts_real_histories(samples):
+    pytest.importorskip("statsmodels")
+    model = ARIMAPerMarket(max_p=2, max_q=1)
+    model.fit(samples, seed=0)
+    assert model.models_                                       # at least one market fitted
+    pred = model.predict(samples)
+    assert pred.shape == samples.y.shape and np.isfinite(pred).all()
+    d = model.diagnostics().set_index("series_id")
+    fitted = d["fit_status"].eq("fitted")
+    assert (d.loc[fitted, "n_fallback_forecasts"] == 0).all()
 
 
 def test_cumulative_forecasts_with_stand_in(monkeypatch, cfg, samples):
@@ -92,8 +108,12 @@ def test_bad_forecast_falls_back_and_is_recorded(monkeypatch, samples, bad):
     assert (d["n_fallback_forecasts"] == d["n_forecasts"]).all() and (d["n_forecasts"] > 0).all()
 
 
-def test_forecast_not_filled_still_raises(monkeypatch, samples):
+def test_unfinished_forecast_code_raises_instead_of_falling_back(monkeypatch, samples):
+    def unfinished(*args, **kwargs):
+        raise NotImplementedError("forecast_path")
+
     monkeypatch.setattr(arima, "fit_one", lambda h, *a, **k: 0.0)
+    monkeypatch.setattr(arima, "forecast_path", unfinished)
     m = ARIMAPerMarket()
     m.fit(samples, seed=0)
     with pytest.raises(NotImplementedError):

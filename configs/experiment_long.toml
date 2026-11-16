@@ -46,7 +46,7 @@ Taiwan = "nominal"                     # confirmed: Sinyi index is nominal; see 
 [release_lag_days]
 # Days after the end of the observed quarter when a value becomes public.
 # Placeholders until B's availability matrix is done.  TODO(B)
-hpi = { default = 100, Taiwan = 60 }
+hpi = { default = 100, Taiwan = 60, Chile = 122 }
 cpi = { default = 30 }
 cpi_yoy = { default = 30 }
 gdp_growth = { default = 60, Taiwan = 60 }

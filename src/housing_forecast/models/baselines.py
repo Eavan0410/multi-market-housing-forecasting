@@ -95,8 +95,31 @@ class ARPooled(ARDirect):
         super().__init__(p=p, feature=feature, per_series=False, min_rows=min_rows)
 
 
+class ARXDirect(ARDirect):
+    """AR with exogenous inputs: the last p values of EVERY input feature (e.g. HPI growth and
+    CPI inflation), one direct regression per horizon. With only hpi_qoq it equals ARDirect.
+    The linear counterpart of giving the Transformer the same extra feature."""
+
+    name = "arx"
+
+    def _design(self, s: SampleSet) -> np.ndarray:
+        lags = s.X[:, -self.p:, :][:, ::-1, :].reshape(len(s), -1)   # newest first, all features
+        return np.column_stack([np.ones(len(s)), lags])
+
+
+class ARXPooled(ARXDirect):
+    """ARX fitted on all training series together."""
+
+    name = "arx_pooled"
+
+    def __init__(self, p: int = 4, min_rows: int = 12):
+        super().__init__(p=p, per_series=False, min_rows=min_rows)
+
+
 REGISTRY = {
     "no_change": NoChange,
     "ar": ARDirect,
     "ar_pooled": ARPooled,
+    "arx": ARXDirect,
+    "arx_pooled": ARXPooled,
 }

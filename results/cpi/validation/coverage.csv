@@ -1,0 +1,42 @@
+series_id,forecast_origins_main,train_rows_first_fold_main,train_rows_last_fold_main,forecast_origins_cpi,train_rows_first_fold_cpi,train_rows_last_fold_cpi
+Australia,40,109,145,40,109,145
+Austria,32,0,25,32,0,25
+Belgium,40,109,145,40,109,145
+Bulgaria,12,0,5,12,0,5
+Canada,40,109,145,40,109,145
+Chile,24,0,17,24,0,17
+Colombia,40,37,73,40,37,73
+Croatia,12,0,5,12,0,5
+Denmark,40,109,145,40,109,145
+Estonia,12,0,5,12,0,5
+Finland,40,109,145,40,109,145
+France,40,109,145,40,109,145
+Germany,40,109,145,40,109,145
+Greece,40,1,37,40,1,37
+Hungary,4,0,0,4,0,0
+Iceland,31,0,24,31,0,24
+Indonesia,24,0,17,24,0,17
+Ireland,40,109,145,40,100,136
+Israel,40,13,49,40,13,49
+Italy,40,109,145,40,109,145
+Japan,40,149,185,40,149,185
+Latvia,8,0,1,8,0,1
+Lithuania,8,0,1,8,0,1
+Luxembourg,4,0,0,4,0,0
+Mexico,12,0,5,12,0,5
+Netherlands,40,109,145,40,109,145
+New Zealand,40,109,145,40,26,62
+Norway,40,109,145,40,109,145
+Poland,12,0,5,12,0,5
+Portugal,40,37,73,40,37,73
+Russia,28,0,21,25,0,18
+Slovak Republic,12,0,5,12,0,5
+Slovenia,4,0,0,4,0,0
+South Africa,40,125,161,40,125,161
+South Korea,40,45,81,40,45,81
+Spain,40,105,141,40,105,141
+Sweden,40,109,145,40,109,145
+Switzerland,40,109,145,40,109,145
+Taiwan_national,28,0,21,28,0,21
+United Kingdom,40,116,152,40,116,152
+United States,40,109,145,40,109,145

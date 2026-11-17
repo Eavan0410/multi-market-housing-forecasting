@@ -1,0 +1,71 @@
+# CPI experiment (added 11/16 at the professor's request; exploratory, validation only).
+# Identical to configs/experiment_long.toml except [features].use and the ARX models in
+# [run].deterministic_models. Keep the other sections in sync with that file.
+# CPI inflation per market comes from src/housing_forecast/data/cpi.py (see docs/cpi_assessment.csv).
+#
+# Multi-market, long-horizon settings (exploratory, after Josh's 11/4 feedback).
+# Questions: can ONE model forecast many markets, is it more accurate than one model per
+# market, and at which horizons (1–20 quarters) is it accurate?
+# Everything not changed below matches configs/experiment.toml; keep [hpi_basis] and
+# [release_lag_days] in sync with that file when B confirms them.
+
+[target]
+series_id = "Taiwan_national"
+country = "Taiwan"
+eval_series = "all_national"           # score every national series (cities left out)
+value_col = "hpi_real"                 # Labels use real HPI
+target_type = "cum_log_growth_real"    # y(t,h) = log(HPI_{t+h} / HPI_t)
+horizons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+main_horizon = 4                       # report the whole error-by-horizon curve; 3–6 = buy/sell, 16–20 = build
+
+[periods]
+# Calendar quarters of the forecast ORIGIN t. The same dates apply to every country.
+# Origins before validation_start are only ever used for training ("dev" warm-up).
+# validation_end + 20 must stay before test_start, so validation labels never use test-period prices.
+# h=20 labels exist only for origins up to about 2020Q2 (data end 2025), so the test window is earlier
+# than in experiment.toml. NOTE: it overlaps the 2012–2017 Taiwan validation runs we have already
+# looked at, so Taiwan results in this test window are not fully clean; say so in the report.
+validation_start = "2000Q1"
+validation_end = "2009Q4"
+test_start = "2015Q1"
+test_end = "auto"                      # "auto" = last origin that has at least one label (shorter horizons go later)
+gap_quarters = 4                       # train origins <= first test origin - gap
+allow_short_gap = true                 # gap < 20: overlap is blocked per label by masking (see config.check_config)
+# Date each forecast at quarter end plus the slowest configured HPI release lag.
+forecast_lag_days = "max_hpi_lag"
+refit_every = 4                        # one fold (model refit) per 4 test origins
+
+[features]
+lookback = 8                           # quarters per input window (one token per quarter)
+ffill_limit = 2                        # forward-fill at most 2 quarters, never further
+drop_nan_windows = true                # drop samples whose window still has gaps
+# Feature definitions and data gaps are in docs/backtest_framework.md.
+# Adding macro features (--features ...) drops every series that lacks them.
+use = ["hpi_qoq", "cpi_yoy"]           # CPI experiment: HPI growth + year-on-year CPI inflation
+
+[hpi_basis]
+# "real" = already inflation-adjusted, "nominal" = deflated by CPI in our pipeline.
+default = "real"                       # OECD AnaHPI = real house price index
+Taiwan = "nominal"                     # confirmed: Sinyi index is nominal; see results/availability_matrix.csv
+
+[release_lag_days]
+# Days after the end of the observed quarter when a value becomes public.
+# Placeholders until B's availability matrix is done.  TODO(B)
+hpi = { default = 100, Taiwan = 60, Chile = 122 }
+cpi = { default = 30 }
+cpi_yoy = { default = 30 }
+gdp_growth = { default = 60, Taiwan = 60 }
+household_credit_gdp = { default = 120, Taiwan = 60 }   # Taiwan: limited by the nominal GDP release
+interest_rate = { default = 5, Taiwan = 5 }
+unemployment_rate = { default = 45 }
+
+[run]
+# Explicit single-seed exceptions; other model names require every configured seed.
+deterministic_models = ["no_change", "ar", "ar_pooled", "arima", "arx", "arx_pooled"]
+seeds = [0, 1, 2, 3, 4]                # fixed seed list; deterministic models use only the first
+
+[bootstrap]
+n_boot = 2000
+block_length = 20                      # Quarterly origins per block. Validation has 40 origins.
+ci = 0.95
+seed = 20261029

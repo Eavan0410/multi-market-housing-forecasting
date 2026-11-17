@@ -24,11 +24,11 @@ The repository contains the data preparation code, a common backtest for all mod
 - **Data:** national HPI series from OECD AnaHPI and Taiwan's Sinyi index. We build the panel from raw observations and adjust Taiwan's nominal HPI with CPI. Taiwan's index is not seasonally adjusted, while the OECD series are. We generated forecasts for 41 markets and report the 38 with at least eight forecast dates. [Market coverage](docs/market_list.csv) · [Data evidence](TODO_B.md) · [HPI release timing](docs/hpi_release_lags.md)
 - **Backtest:** validation origins run from 2000Q1 to 2009Q4. We expand the training window and refit every four quarters. Training origins are at least four quarters earlier than the first validation origin in each fold. Scaling uses training data only, and training labels are masked until their estimated publication date. The main comparison uses a common forecast date 122 days after quarter-end, based on two recent releases of Chile’s nominal HPI. Historical release timing and the first availability of the OECD real series remain uncertain.
 - **Baselines:** a Transformer trained separately for each market (it falls back to no-change when a market has too little history), per-market AR (falls back to pooled AR), per-market ARIMA (falls back to its own average growth when history is too short or a fit fails), one pooled AR across markets, and no-change.
-- **Scoring:** RMSE per market and horizon, averaged over five seeds for each Transformer. We report the median across markets of RMSE(shared) / RMSE(baseline), so a ratio below 1 favors the shared model. Brackets are 95% intervals from a paired block bootstrap over forecast dates with 20-quarter blocks. We also check 4-, 8- and 12-quarter blocks. [Main comparison sensitivity check](results/long_hpi_122/validation/block_length_sensitivity.csv)
+- **Scoring:** RMSE per market and horizon, averaged over five seeds for each Transformer. We report the median across markets of RMSE(shared) / RMSE(baseline), so a ratio below 1 favors the shared model. Brackets are 95% intervals from a paired block bootstrap over forecast dates with 20-quarter blocks. We also check 4-, 8- and 12-quarter blocks. [Block-length check for the main, training-pool and holdout comparisons](results/block_length_sensitivity_122.csv)
 
 ## Multi-market results
 
-The main comparison and horizon plot use the 122-day rule. Training cost, fine-tuning, training-pool and holdout results come from the earlier 100-day runs.
+We use a common forecast date of 122 days after quarter-end and keep Chile in the 41-market pool. The main comparison, training-pool, holdout and fine-tuning runs were repeated at 122 days. The median RMSE ratios for the 3–6 and 16–20 quarter ranges moved by about 0.006 or less. Earlier runs are in `results/long_hpi` and commit `d48a065`.
 
 ### Shared and per-market models
 
@@ -46,7 +46,7 @@ The main comparison and horizon plot use the 122-day rule. Training cost, fine-t
 - **Pooled AR:** its errors are close to the shared Transformer's, and the intervals include 1 in both ranges.
 - **No-change:** at 3–6 quarters the interval includes 1 with 8- or 12-quarter blocks.
 
-**Training cost.** Over the 10 validation folds and five seeds, the shared Transformer trains 50 networks, while one Transformer per market trains 1,165. Shared-model fits include an extra training run to choose the epoch count. Per-market models do this when enough history is available. The per-market count excludes markets that fell back to no-change. On one Apple-silicon CPU thread, the largest fold took 5.5 seconds for the shared model and 7.7 seconds for the per-market models, with one seed. The timing difference was small in this single-fold measurement. The shared approach uses one model across markets, while the per-market approach needs a separate model for each market with enough history. The shared model also covers markets too short to train on their own. Fine-tuning took 6.4 seconds with fixed epochs and 18.3 seconds with epochs chosen inside training. Both AR baselines took under 0.2 seconds. [Model counts](results/training_cost.csv) · [Timing](results/training_time.csv)
+**Training cost.** Over the 10 validation folds and five seeds, the shared Transformer trains 50 networks, while one Transformer per market trains 1,165. Shared-model fits include an extra training run to choose the epoch count. Per-market models do this when enough history is available. The per-market count excludes markets that fell back to no-change. On one Apple-silicon CPU thread, the largest fold took 5.5 seconds for the shared model and 7.7 seconds for the per-market models, with one seed. The timing difference was small in this single-fold measurement. The shared approach uses one model across markets, while the per-market approach needs a separate model for each market with enough history. The shared model also covers markets too short to train on their own. Fine-tuning took 6.4 seconds with fixed epochs and 18.3 seconds with epochs chosen inside training. Both AR baselines took under 0.2 seconds. The timings were measured with the 100-day setup, which has the same folds and models. [Model counts](results/training_cost.csv) · [Timing](results/training_time.csv)
 
 ### Shared pretraining and local fine-tuning
 
@@ -59,10 +59,10 @@ Ratios compare fine-tuning with the exact shared model it started from; both set
 
 | Setting | Markets compared | 3–6 quarters | 16–20 quarters |
 |---|---:|---:|---:|
-| Fixed 10 epochs (folds where all seeds were fine-tuned) | 24 | 1.022 [0.985, 1.038] | 1.038 [0.994, 1.082] |
+| Fixed 10 epochs (folds where all seeds were fine-tuned) | 24 | 1.022 [0.985, 1.038] | 1.038 [0.994, 1.081] |
 | Chosen inside training (folds where a choice was made) | 22 | 1.020 [1.000, 1.037] | 1.032 [0.995, 1.046] |
 
-**Neither fine-tuning setting showed an overall improvement, but some markets benefited.** Among the markets and folds included in the table, median error was about 2–4% higher than with the shared model. Most intervals include 1; the exception is the chosen setting at 3–6 quarters with 4-quarter blocks, where the interval lies just above 1. When a choice was possible, the training data favored keeping the shared model 42% of the time. Most short-history markets, including Taiwan, did not have enough data for fine-tuning under these rules, so we could not assess its benefit there. Both settings still beat the separate Transformers trained from scratch; for the fixed setting the ratios were 0.896 [0.779, 0.938] and 0.843 [0.831, 0.897].
+**Neither fine-tuning setting showed an overall improvement, but some markets benefited.** Among the markets and folds included in the table, median error was about 2–4% higher than with the shared model. Most intervals include 1; the exception is the chosen setting at 3–6 quarters with 4-quarter blocks, where the interval lies just above 1. When a choice was possible, the training data favored keeping the shared model 42% of the time. Most short-history markets, including Taiwan, did not have enough data for fine-tuning under these rules, so we could not assess its benefit there. Both settings still beat the separate Transformers trained from scratch; for the fixed setting the ratios were 0.896 [0.779, 0.938] and 0.847 [0.832, 0.898].
 
 Germany and Portugal, two of the shared model's weakest markets, improved in both settings. The chosen setting fine-tuned them in every fold and seed where a choice was possible. Over all of each market's forecasts:
 
@@ -73,7 +73,7 @@ Germany and Portugal, two of the shared model's weakest markets, improved in bot
 | Portugal | Fixed | 0.884 [0.794, 0.921] | 0.852 [0.819, 0.889] |
 | Portugal | Chosen | 0.894 [0.835, 0.958] | 0.826 [0.757, 0.925] |
 
-All eight intervals stay below 1 with 4-, 8-, 12- and 20-quarter blocks. Fine-tuning narrows these markets' gap rather than closing it: after the chosen fine-tuning, Germany's 16–20-quarter error is still about 11% above per-market AR (1.108 [1.041, 1.170]) and both markets remain above no-change in that range. We picked these two markets as examples after seeing the fixed results, so they show where local adaptation can help rather than a tested selection rule. Other markets lost accuracy, for example Switzerland (1.41 fixed, 1.15 chosen at 16–20 quarters). [Fixed setting](results/market_finetune/validation) · [Chosen setting](results/market_finetune/inner_select/validation) · [Germany and Portugal intervals](results/market_finetune/case_markets_ci.csv)
+All eight intervals stay below 1 with 4-, 8-, 12- and 20-quarter blocks. Fine-tuning narrows these markets' gap rather than closing it: after the chosen fine-tuning, Germany's 16–20-quarter error is still about 11% above per-market AR (1.108 [1.041, 1.170]) and both markets remain above no-change in that range. We picked these two markets as examples after seeing the fixed results, so they show where local adaptation can help rather than a tested selection rule. Other markets lost accuracy, for example Switzerland (1.41 fixed, 1.15 chosen at 16–20 quarters). [Fixed setting](results/market_finetune_122/validation) · [Chosen setting](results/market_finetune_122/inner_select/validation) · [Germany and Portugal intervals](results/market_finetune_122/case_markets_ci.csv)
 
 ### Accuracy by horizon
 
@@ -100,7 +100,7 @@ We trained on nested pools of 5, 10, 20 and 41 markets in three orders, always s
 
 The intermediate results depend on which markets are added. At 20 markets, the 3–6-quarter error was about even with the five-market run under region rotation, 9% lower with long histories first and 12% lower with the random order. More markets did not improve every step.
 
-The full pool lowered error by about 9% at 3–6 quarters and 18% at 16–20 quarters. The shorter-range interval stays below 1 at all block lengths checked. The longer-range interval includes 1 with 8- or 12-quarter blocks, and only three of the five markets improved in that range. [Market selection](docs/market_selection.md) · [Region rotation](results/market_scale/validation) · [Long history first](results/market_scale/history/validation) · [Random order](results/market_scale/random/validation)
+The full pool lowered error by about 9% at 3–6 quarters and 18% at 16–20 quarters. The shorter-range interval stays below 1 at all block lengths checked. The longer-range interval includes 1 with 8- or 12-quarter blocks, and only three of the five markets improved in that range. [Market selection](docs/market_selection.md) · [Region rotation](results/market_scale_122/validation) · [Long history first](results/market_scale_122/history/validation) · [Random order](results/market_scale_122/random/validation)
 
 ### Forecasting a market left out of training
 
@@ -108,19 +108,50 @@ We left out Australia, Chile, Taiwan and Portugal one at a time. At forecast tim
 
 | Held-out market | Dates | vs included, 3–6 q | vs included, 16–20 q | Against AR and no-change |
 |---|---:|---:|---:|---|
-| [Australia](results/market_holdout/australia/validation) | 40 | 1.008 [0.988, 1.040] | 1.013 [0.980, 1.051] | Intervals against both include 1 in these ranges |
-| [Chile](results/market_holdout/chile/validation) | 24 | 1.021 [0.986, 1.051] | 0.901 [0.870, 0.951] | Better than both at 16–20 q; worse than AR at 3–6 q |
-| [Taiwan](results/market_holdout/taiwan_national/validation) | 28 | 1.011 [1.005, 1.024] | 0.990 [0.979, 1.007] | About even with no-change; error about 24% above AR at 16–20 q, but this gap depends on block length |
-| [Portugal](results/market_holdout/portugal/validation) | 40 | 0.956 [0.919, 0.978] | 1.009 [0.991, 1.030] | Worse than both at 16–20 q |
+| [Australia](results/market_holdout_122/australia/validation) | 40 | 1.007 [0.987, 1.038] | 1.009 [0.979, 1.043] | Intervals against both include 1 in these ranges |
+| [Chile](results/market_holdout_122/chile/validation) | 24 | 1.015 [0.982, 1.041] | 0.901 [0.872, 0.947] | Better than both at 16–20 q; worse than AR at 3–6 q |
+| [Taiwan](results/market_holdout_122/taiwan_national/validation) | 28 | 1.011 [1.005, 1.024] | 0.990 [0.979, 1.008] | About even with no-change; error about 24% above AR at 16–20 q, but this gap depends on block length |
+| [Portugal](results/market_holdout_122/portugal/validation) | 40 | 0.956 [0.919, 0.978] | 1.009 [0.991, 1.030] | Worse than both at 16–20 q |
 
-Leaving a market out usually changed RMSE by a few percent. Each held-out market supplied at most about 5% of the original training rows. The held-out model beat simple baselines in Chile at long horizons, while it over-predicted Portugal's five-year growth whether or not Portugal was in training. Chile's 10% gain at 16–20 quarters and Taiwan's gap to AR are not robust: their intervals include 1 with 8- or 12-quarter blocks. Except for Taiwan's noted gap to AR, the last column highlights comparisons that hold across the four block lengths checked. Portugal uses a matched single-thread reference run, while the other markets use the original shared run. Run-to-run differences of a few percent mean small gaps between the Transformers need care.
+Leaving a market out usually changed RMSE by a few percent. Each held-out market supplied at most about 5% of the original training rows. The held-out model beat simple baselines in Chile at long horizons, while it over-predicted Portugal's five-year growth whether or not Portugal was in training. Chile's 10% gain at 16–20 quarters and Taiwan's gap to AR are not robust: their intervals include 1 with 8- or 12-quarter blocks. Except for Taiwan's noted gap to AR, the last column highlights comparisons that hold across the four block lengths checked. Each held-out model is compared with a single-thread run of the shared model, trained the same way; it matches the main 122-day run exactly. Multi-threaded runs can differ by a few percent, so small gaps between the Transformers need care.
+
+## Stability and an extra input
+
+These two checks were added after the professor asked for more evidence on how the models behave. Both use the validation folds only.
+
+### Noise in the input data
+
+We trained every model as in the main comparison, then repeated its forecasts with Gaussian noise added to the input house price growth. Each market and quarter gets one fixed error per draw, so overlapping input windows, folds and models all see the same error, as if one historical value had been measured wrongly. The noise standard deviation is a multiple of the standard deviation of house price growth in the first training fold (0.026). Training data were not changed. Each level uses three draws.
+
+![Forecast change and RMSE under input noise](results/robustness/noise/validation/noise_curve.png)
+
+| Noise level | Shared Transformer, 3–6 q | Pooled AR, 3–6 q | Shared Transformer, 16–20 q | Pooled AR, 16–20 q |
+|---|---:|---:|---:|---:|
+| 0.25 | +2.0% | +0.8% | +1.8% | +0.1% |
+| 0.5 | +6.4% | +4.0% | +4.1% | +0.7% |
+| 1.0 | +19.8% | +13.7% | +10.2% | +2.8% |
+
+The table shows the median increase in RMSE compared with the same model without noise. **The shared Transformer reacts more to noise than the AR models.** Its long-range forecasts move about twice as much (mean absolute change 0.086 against 0.042 for pooled AR at level 1). At noise level 0.5, the median 16–20-quarter RMSE ratios to no-change were 0.92 for the shared Transformer and 0.99 for pooled AR. At level 1, they were 1.04 and about 1.00. The per-market Transformer looks flat, but mainly because many of its forecasts are no-change fallbacks, which ignore the inputs. [Results](results/robustness/noise/validation)
+
+### Adding CPI inflation
+
+We repeated the comparison with year-on-year CPI inflation as a second input. Both versions use exactly the same samples: a sample is kept only if its eight-quarter window has both house price growth and CPI, and the house-price-only version drops the CPI column. The backtest assumes CPI is available 30 days after quarter-end. 38 markets are compared, as in the main study; New Zealand, Russia and Ireland lose some early training rows because their CPI series start later or have a gap. [CPI coverage and outliers](docs/cpi_assessment.csv)
+
+| Comparison | 3–6 quarters | 16–20 quarters |
+|---|---:|---:|
+| Shared Transformer: with CPI vs without | 1.026 [0.988, 1.048] | 1.030 [0.950, 1.100] |
+| Pooled AR: with CPI lags vs without | 0.989 [0.951, 1.008] | 0.971 [0.919, 1.056] |
+| With CPI: shared Transformer vs pooled AR | 0.994 [0.942, 1.040] | 0.960 [0.907, 1.074] |
+
+**Adding CPI showed no clear improvement for either model.** All reported intervals include 1. [Results](results/cpi/validation)
 
 ## Limits and remaining work
 
 - The results cover one validation period, which includes the 2008 crisis. The proposed test starts in 2015 and overlaps years examined in the earlier Taiwan pilot. [Taiwan pilot](docs/taiwan_pilot.md)
 - Most comparisons have 40 forecast dates, so a draw with 20-quarter blocks uses only two blocks. Claims that depend on the block length are marked above.
 - Taiwan remains a difficult case. Its shared-model errors are close to no-change in the ranges shown here.
-- The broader study still needs the final test. We also need to finish checking release lags.
+- The broader study still needs the final test. We have recent release examples for 32 markets and schedule estimates for two more. Availability of the real HPI during 2000–2009 remains uncertain.
+- The noise and CPI checks were added after the main design was fixed, so they are reported as exploratory results.
 
 ## Run locally
 
@@ -150,54 +181,29 @@ python scripts/fitted_only_check.py --dir "$D"
 python scripts/block_length_check.py --main-dir "$D" --out "$D/block_length_sensitivity.csv"
 ```
 
-For the earlier 100-day experiments below, use a checkout of commit `cf2cd9d`. The training cost check is `OMP_NUM_THREADS=1 python scripts/training_cost.py --time`.
-
-Shared pretraining and local fine-tuning (the output directory must be new):
+Training-pool size, market holdouts, fine-tuning, the block-length check and training cost, all at 122 days (about an hour; finished steps are skipped on a rerun). The individual commands are listed in the script.
 
 ```bash
-OMP_NUM_THREADS=1 python scripts/run_market_finetune.py
-python scripts/evaluate_markets.py results/market_finetune/validation/preds_*.csv \
-    results/long_hpi/validation/preds_transformer_per_market__national.csv \
-    --reference transformer_shared__national \
-    --compare transformer_shared_ft__national transformer_shared__national \
-    --compare transformer_shared_ft__national transformer_per_market__national
-python scripts/check_market_finetune.py
-# Epochs chosen inside training (second setting)
-OMP_NUM_THREADS=1 python scripts/run_market_finetune.py --select-epochs
-python scripts/check_market_finetune.py --select
+bash scripts/rerun_secondary_122.sh
+OMP_NUM_THREADS=1 python scripts/training_cost.py --time    # optional timing
 ```
 
-Training on more markets:
+Noise and CPI checks:
 
 ```bash
-OMP_NUM_THREADS=1 python scripts/run_market_scale.py --order region
-OMP_NUM_THREADS=1 python scripts/run_market_scale.py --order history
-OMP_NUM_THREADS=1 python scripts/run_market_scale.py --order random
-python scripts/evaluate_markets.py results/market_scale/validation/preds_*.csv \
-    --reference transformer__scale_5 \
-    --compare transformer__scale_10 transformer__scale_5 \
-    --compare transformer__scale_20 transformer__scale_5 \
-    --compare transformer__scale_41 transformer__scale_5
+OMP_NUM_THREADS=1 python scripts/run_noise_robustness.py
+pip install requests && python scripts/download_cpi_gaps.py   # once, needs internet: BIS CPI for Japan and Russia, FRED for New Zealand
+python scripts/build_cpi_assessment.py
+OMP_NUM_THREADS=1 python scripts/run_cpi_experiment.py
 ```
 
-Use the same evaluation command with `results/market_scale/history/validation/` or `results/market_scale/random/validation/` to score the other orders.
-
-Leaving a market out (`--market Australia`, `Chile`, `Taiwan_national` or `Portugal`). The Portugal comparison uses a single-thread rerun of the reference models, passed with `--reference-dir`.
-
-```bash
-OMP_NUM_THREADS=1 python scripts/run_market_holdout.py --market Australia
-python scripts/evaluate_markets.py results/market_holdout/australia/validation/preds_*.csv \
-    --reference no_change__national \
-    --compare transformer__holdout no_change__national \
-    --compare transformer__holdout ar__national \
-    --compare transformer__holdout transformer__national
-```
+The earlier 100-day runs can be reproduced from commit `d48a065`.
 
 More detail: [backtest notes](docs/backtest_framework.md) · [experiment settings](docs/experiment_contract.md) · [data formats](docs/design_notes.md)
 
 ## Taiwan policy extension
 
-As an extension, we use a local language model to extract policy signals from Taiwan announcements. Qwen2.5-14B (GPTQ 4-bit) has processed 30 announcements from 2020–2025. The outputs and a quarterly index are saved. Manual checking is pending. These sample-based policy signals have not yet been tested as forecasting inputs. [Outputs](results/policy) · [Setup](data/raw/policy/README.md)
+As an extension, we use a local language model to extract policy signals from Taiwan announcements. Qwen2.5-14B (GPTQ 4-bit) processed 30 announcements from 2020–2025, and the outputs and a quarterly index are saved. On a hand-labelled check of the 30 announcements it judged relevance correctly 93% of the time and policy type 93%, but the direction of the policy (tightening or easing) only 68%. Against a manual timeline of 29 policy events, it found 79% of them within 14 days, and 77% of its own signals matched a manual event. The index covers only 2020–2025 and one market, which does not overlap the validation period, so it has not been tested as a forecasting input. [Outputs](results/policy) · [Setup](data/raw/policy/README.md)
 
 ## Repository layout
 

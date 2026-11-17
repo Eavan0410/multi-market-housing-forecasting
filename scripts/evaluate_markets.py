@@ -1,7 +1,7 @@
 """Score multi-market forecasts, bootstrap paired ratios, or plot saved failure cases.
 
 To plot the failure cases from existing saved metrics without rerunning evaluation:
-    python scripts/evaluate_markets.py results/long_hpi/validation/metrics_by_market.csv \\
+    python scripts/evaluate_markets.py results/long_hpi_122/validation/metrics_by_market.csv \\
         --plot-failure-cases
 """
 

@@ -26,8 +26,8 @@ def main() -> None:
     parser.add_argument("--config", default="configs/experiment_long.toml")
     parser.add_argument("--panel", default="data/interim/panel_quarterly.csv")
     parser.add_argument("--cpi", default="data/interim/taiwan_cpi_monthly.csv")
-    parser.add_argument("--reference-dir", type=Path, default=Path("results/long_hpi/validation"))
-    parser.add_argument("--out-dir", type=Path, default=Path("results/market_holdout"))
+    parser.add_argument("--reference-dir", type=Path, default=Path("results/long_hpi_122/validation"))
+    parser.add_argument("--out-dir", type=Path, default=Path("results/market_holdout_122"))
     args = parser.parse_args()
 
     cfg = load_config(args.config)

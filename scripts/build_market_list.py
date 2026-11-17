@@ -64,7 +64,7 @@ def main() -> None:
     ap.add_argument("--panel", default="data/interim/panel_quarterly.csv")
     ap.add_argument("--cpi", default="data/interim/taiwan_cpi_monthly.csv")
     ap.add_argument("--folds-out", default="docs/market_fold_samples.csv")
-    ap.add_argument("--validation", default="results/long_hpi/validation/metrics_by_market.csv")
+    ap.add_argument("--validation", default="results/long_hpi_122/validation/metrics_by_market.csv")
     ap.add_argument("--out", default="docs/market_list.csv")
     ap.add_argument("--jump", type=float, default=0.10, help="flag |quarterly real log change| above this")
     args = ap.parse_args()

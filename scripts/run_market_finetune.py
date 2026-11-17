@@ -35,7 +35,7 @@ def main() -> None:
     parser.add_argument("--panel", default="data/interim/panel_quarterly.csv")
     parser.add_argument("--cpi", default="data/interim/taiwan_cpi_monthly.csv")
     parser.add_argument("--out-dir", type=Path, default=None,
-                        help="default: results/market_finetune/validation, or .../inner_select/validation with --select-epochs")
+                        help="default: results/market_finetune_122/validation, or .../inner_select/validation with --select-epochs")
     parser.add_argument("--markets", nargs="+", help="markets to adapt and score; pretraining still uses all national markets")
     parser.add_argument("--folds", type=int, help="limit validation to its first N folds")
     parser.add_argument("--seeds", type=int, nargs="+", help="override the configured seed list")
@@ -49,8 +49,8 @@ def main() -> None:
                         help="inner validation windows a market needs before its epochs are chosen")
     args = parser.parse_args()
     if args.out_dir is None:
-        args.out_dir = Path("results/market_finetune/inner_select/validation" if args.select_epochs
-                            else "results/market_finetune/validation")
+        args.out_dir = Path("results/market_finetune_122/inner_select/validation" if args.select_epochs
+                            else "results/market_finetune_122/validation")
 
     cfg = load_config(args.config)
     if args.seeds is not None:

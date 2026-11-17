@@ -24,9 +24,9 @@ from pathlib import Path
 
 import pandas as pd
 
-MAIN = Path("results/long_hpi/validation")
-FIXED = Path("results/market_finetune/validation")
-SELECT = Path("results/market_finetune/inner_select/validation")
+MAIN = Path("results/long_hpi_122/validation")
+FIXED = Path("results/market_finetune_122/validation")
+SELECT = Path("results/market_finetune_122/inner_select/validation")
 FOLD_SAMPLES = Path("docs/market_fold_samples.csv")
 AR_MIN_ROWS = 12          # ARDirect.min_rows: fewer labelled rows than this use the pooled fit
 

@@ -31,7 +31,7 @@ def compare(preds: pd.DataFrame, a: str, b: str, cfg: dict, min_origins: int, la
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--dir", default="results/long_hpi/validation")
+    ap.add_argument("--dir", default="results/long_hpi_122/validation")
     ap.add_argument("--pool", default="national")
     ap.add_argument("--config", default="configs/experiment_long.toml")
     ap.add_argument("--panel", default="data/interim/panel_quarterly.csv")

@@ -8,7 +8,7 @@ AR and no-change.
 
 Example:
     python scripts/block_length_check.py
-Writes results/block_length_sensitivity.csv (one row per comparison, block length and horizon).
+Writes results/block_length_sensitivity_122.csv (one row per comparison, block length and horizon).
 """
 
 from __future__ import annotations
@@ -21,11 +21,12 @@ import pandas as pd
 from housing_forecast.config import load_config
 from housing_forecast.evaluation.markets import paired_ratio_bootstrap
 
-MAIN = "results/long_hpi/validation"
-SCALE = "results/market_scale/validation"
-SCALE_HISTORY = "results/market_scale/history/validation"
-SCALE_RANDOM = "results/market_scale/random/validation"
-HOLDOUT = "results/market_holdout"
+# 122-day forecast date. The 100-day runs are in the same folders without "_122".
+MAIN = "results/long_hpi_122/validation"
+SCALE = "results/market_scale_122/validation"
+SCALE_HISTORY = "results/market_scale_122/history/validation"
+SCALE_RANDOM = "results/market_scale_122/random/validation"
+HOLDOUT = "results/market_holdout_122"
 HOLDOUT_MARKETS = ("australia", "chile", "taiwan_national", "portugal")
 
 
@@ -51,7 +52,7 @@ def main() -> None:
     ap.add_argument("--config", default="configs/experiment_long.toml")
     ap.add_argument("--blocks", type=int, nargs="+", default=[4, 8, 12, 20])
     ap.add_argument("--main-dir", type=Path, help="check only the main comparisons in this prediction directory")
-    ap.add_argument("--out", default="results/block_length_sensitivity.csv")
+    ap.add_argument("--out", default="results/block_length_sensitivity_122.csv")
     args = ap.parse_args()
 
     cfg = load_config(args.config)

@@ -34,7 +34,7 @@ ORDERS = {
     "history": "2 - Long-history first",
     "random": "3 - Seeded random",
 }
-BASE_DIR = Path("results/market_scale")
+BASE_DIR = Path("results/market_scale_122")       # 122-day forecast date (100-day runs: results/market_scale)
 IGNORED_KEYS = {"created_utc", "market_order"}
 
 
@@ -65,7 +65,7 @@ def main() -> None:
     parser.add_argument("--cpi", default="data/interim/taiwan_cpi_monthly.csv")
     parser.add_argument("--market-list", type=Path, default=MARKET_LIST_PATH)
     parser.add_argument("--out-dir", type=Path, default=None,
-                        help="default: results/market_scale/validation for region, else results/market_scale/<order>/validation")
+                        help="default: results/market_scale_122/validation for region, else results/market_scale_122/<order>/validation")
     parser.add_argument("--reuse-from", type=Path, default=BASE_DIR / "validation",
                         help="folder whose runs may be copied when the training markets are the same")
     args = parser.parse_args()

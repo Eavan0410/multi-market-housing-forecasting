@@ -1,0 +1,25 @@
+model,history,horizon_band,n_markets,median_rel_rmse,gmean_rel_rmse,share_beats_reference,median_rel_mae
+transformer_shared__national,long (by 1979),h1-2,19,1.0,1.0,0.0,1.0
+transformer_shared__national,long (by 1979),h16-20,19,1.0,1.0,0.0,1.0
+transformer_shared__national,long (by 1979),h3-6,19,1.0,1.0,0.0,1.0
+transformer_shared__national,long (by 1979),h7-15,19,1.0,1.0,0.0,1.0
+transformer_shared__national,medium (by 1999),h1-2,5,1.0,1.0,0.0,1.0
+transformer_shared__national,medium (by 1999),h16-20,5,1.0,1.0,0.0,1.0
+transformer_shared__national,medium (by 1999),h3-6,5,1.0,1.0,0.0,1.0
+transformer_shared__national,medium (by 1999),h7-15,5,1.0,1.0,0.0,1.0
+transformer_shared__national,short (after 1999),h1-2,14,1.0,1.0,0.0,1.0
+transformer_shared__national,short (after 1999),h16-20,14,1.0,1.0,0.0,1.0
+transformer_shared__national,short (after 1999),h3-6,14,1.0,1.0,0.0,1.0
+transformer_shared__national,short (after 1999),h7-15,14,1.0,1.0,0.0,1.0
+transformer_shared_ftsel__national,long (by 1979),h1-2,19,1.010668226152561,1.0159551610208293,0.2631578947368421,1.0100322251670204
+transformer_shared_ftsel__national,long (by 1979),h16-20,19,1.025659937158236,0.9965643866919859,0.3157894736842105,1.0248818267496216
+transformer_shared_ftsel__national,long (by 1979),h3-6,19,1.0174946615821683,1.006562109749906,0.3157894736842105,1.0267648393747253
+transformer_shared_ftsel__national,long (by 1979),h7-15,19,1.0265977731835914,0.9917041134039417,0.30409356725146197,1.0211875045391132
+transformer_shared_ftsel__national,medium (by 1999),h1-2,5,1.0,0.997782235022221,0.2,1.0
+transformer_shared_ftsel__national,medium (by 1999),h16-20,5,1.0,0.9867478372499701,0.2,1.0
+transformer_shared_ftsel__national,medium (by 1999),h3-6,5,1.0,0.9974939855173774,0.2,1.0
+transformer_shared_ftsel__national,medium (by 1999),h7-15,5,1.0,0.990857077275971,0.2,1.0
+transformer_shared_ftsel__national,short (after 1999),h1-2,14,1.0,1.0,0.0,1.0
+transformer_shared_ftsel__national,short (after 1999),h16-20,14,1.0,1.0,0.0,1.0
+transformer_shared_ftsel__national,short (after 1999),h3-6,14,1.0,1.0,0.0,1.0
+transformer_shared_ftsel__national,short (after 1999),h7-15,14,1.0,1.0,0.0,1.0

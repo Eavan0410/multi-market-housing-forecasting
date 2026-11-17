@@ -52,12 +52,12 @@ New ideas after the freeze (for example the policy index or a lookback of 16 qua
 
 ## Open questions for Josh
 
-1. **Test period overlap.** The test starts in 2015Q1 and overlaps the 2012–2017 years examined in the early Taiwan pilot. Is that acceptable if we state it, or should the split change?
+1. **Test period overlap.** *Decided with Josh (2026-11-10): keep the current split (test from 2015Q1).* The Taiwan pilot looked at Taiwan only, horizons 1–4, at 2012Q1–2017Q4, so Taiwan's short-horizon test results for 2015–2017 are not fully unseen. The report discloses this. The other 37 markets and all long horizons are unseen.
 2. **Course test vs paper test.** If the project continues toward a paper, is this test run also the paper's test, with no further model changes afterwards? Or should a later period be kept unseen for the paper?
 3. **Fine-tuning.** Should the fine-tuning comparison count as a core result or a secondary one?
 4. **Secondary experiments on the test period.** Should the training-pool and holdout analyses be repeated on the test period?
 
-5. **Common forecast date.** Confirm the proposed 122-day rule before running the final test.
+5. **Common forecast date.** *Decided (2026-11-10): 122 days.* Josh left the choice to the team. Reason: all markets forecast on one date, and that date must come after the slowest market's release (Chile, about 122 days), so no market uses unpublished data. Validation results changed by less than 0.01 from the 100-day run.
 
 ## Run order on the frozen commit
 

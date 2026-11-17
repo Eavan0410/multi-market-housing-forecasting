@@ -1,0 +1,18 @@
+{
+  "phase": "validation",
+  "feature": "hpi_qoq",
+  "levels": [
+    0.0,
+    0.1,
+    0.25,
+    0.5,
+    1.0
+  ],
+  "draws": 3,
+  "noise_seed": 2026,
+  "noise": "level x SD of hpi_qoq in the first fold's training inputs x z(market, quarter, draw)",
+  "config": "configs/experiment_long.toml",
+  "config_sha256": "22e12323b1ec443b",
+  "panel_sha256": "e12af81130b1334c",
+  "cpi_sha256": "397ff669e743a988"
+}

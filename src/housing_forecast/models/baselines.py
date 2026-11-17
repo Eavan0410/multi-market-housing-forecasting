@@ -95,6 +95,16 @@ class ARPooled(ARDirect):
         super().__init__(p=p, feature=feature, per_series=False, min_rows=min_rows)
 
 
+class ARPooled8(ARPooled):
+    """Pooled AR with 8 lags: the same eight quarters of history the Transformer sees.
+    Used to check whether the Transformer's edge over pooled AR(4) is only the longer window."""
+
+    name = "ar_pooled8"
+
+    def __init__(self, min_rows: int = 12):
+        super().__init__(p=8, min_rows=min_rows)
+
+
 class ARXDirect(ARDirect):
     """AR with exogenous inputs: the last p values of EVERY input feature (e.g. HPI growth and
     CPI inflation), one direct regression per horizon. With only hpi_qoq it equals ARDirect.
@@ -120,6 +130,7 @@ REGISTRY = {
     "no_change": NoChange,
     "ar": ARDirect,
     "ar_pooled": ARPooled,
+    "ar_pooled8": ARPooled8,
     "arx": ARXDirect,
     "arx_pooled": ARXPooled,
 }

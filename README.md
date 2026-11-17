@@ -43,7 +43,7 @@ We use a common forecast date of 122 days after quarter-end and keep Chile in th
 - **Per-market Transformer:** the interval is below 1 at every horizon and block length. About 23% of its forecasts were no-change fallbacks. Keeping only forecasts where both Transformers were trained (24 markets with medium or long histories) gives 0.822 [0.794, 0.899] and 0.792 [0.783, 0.839]. [Fitted-only check](results/long_hpi_122/validation/fitted_only_ratio_ci.csv)
 - **Per-market AR:** the interval is below 1 from 5 quarters on at every block length.
 - **Per-market ARIMA:** the order (p ≤ 4, q ≤ 2) is chosen by AIC on each market's training history. Markets with fewer than 24 training quarters use their own average growth; this covers about 20% of forecasts, and no fit failed. The interval is below 1 at 16–20 quarters and includes 1 at 3–6 quarters for all four block lengths. Like per-market AR, it is about even with or behind no-change from 10 quarters on (1.10 at 20 quarters). [ARIMA fits and fallbacks](results/long_hpi_122/validation/diag_arima__national.csv)
-- **Pooled AR:** its errors are close to the shared Transformer's, and the intervals include 1 in both ranges.
+- **Pooled AR:** its errors are close to the shared Transformer's, and the intervals include 1 in both ranges. Giving pooled AR the same eight quarters of history (AR(8)) did not help it: against AR(8) the ratios are 0.983 [0.916, 1.052] and 0.945 [0.902, 1.004]. The next section looks at how the two models use the same inputs.
 - **No-change:** at 3–6 quarters the interval includes 1 with 8- or 12-quarter blocks.
 
 **Training cost.** Over the 10 validation folds and five seeds, the shared Transformer trains 50 networks, while one Transformer per market trains 1,165. Shared-model fits include an extra training run to choose the epoch count. Per-market models do this when enough history is available. The per-market count excludes markets that fell back to no-change. On one Apple-silicon CPU thread, the largest fold took 5.5 seconds for the shared model and 7.7 seconds for the per-market models, with one seed. The timing difference was small in this single-fold measurement. The shared approach uses one model across markets, while the per-market approach needs a separate model for each market with enough history. The shared model also covers markets too short to train on their own. Fine-tuning took 6.4 seconds with fixed epochs and 18.3 seconds with epochs chosen inside training. Both AR baselines took under 0.2 seconds. The timings were measured with the 100-day setup, which has the same folds and models. [Model counts](results/training_cost.csv) · [Timing](results/training_time.csv)
@@ -115,6 +115,31 @@ We left out Australia, Chile, Taiwan and Portugal one at a time. At forecast tim
 
 Leaving a market out usually changed RMSE by a few percent. Each held-out market supplied at most about 5% of the original training rows. The held-out model beat simple baselines in Chile at long horizons, while it over-predicted Portugal's five-year growth whether or not Portugal was in training. Chile's 10% gain at 16–20 quarters and Taiwan's gap to AR are not robust: their intervals include 1 with 8- or 12-quarter blocks. Except for Taiwan's noted gap to AR, the last column highlights comparisons that hold across the four block lengths checked. Each held-out model is compared with a single-thread run of the shared model, trained the same way; it matches the main 122-day run exactly. Multi-threaded runs can differ by a few percent, so small gaps between the Transformers need care.
 
+## Why the shared Transformer differs from pooled AR
+
+Pooled AR and the shared Transformer see the same data: eight quarters of real house price growth from the same markets. Pooled AR turns them into a forecast with fixed coefficients. The Transformer has no coefficients, so we measured the equivalent for each validation forecast: how much the forecast changes when one input quarter changes (its local weight), and how much each quarter moved the forecast away from the forecast for an average input (Integrated Gradients). We retrained the shared model exactly as in the main run; its forecasts match the saved ones to within 2×10⁻⁷. We compare it mainly with pooled AR(8), which uses the same eight quarters.
+
+![Weights on each input quarter](results/explain/validation/lag_weights.png)
+
+**On average the models use the inputs in a similar way.** All of them rely most on the latest quarter: it accounts for 52% of the Transformer's movement in 3–6-quarter forecasts and 41% at 16–20 quarters, against 47% and 37% for AR(8). All of them also give older quarters negative weight at long horizons, so a strong rise one or two years ago lowers the five-year forecast. The Transformer leans a little more on the latest quarter, which fits the noise check in the next section: errors in recent data move its forecasts more.
+
+**The difference is that the Transformer changes its weights with the situation.** Pooled AR uses one set of coefficients for every market and date in a fold. The Transformer's weight on the latest two quarters varies widely between forecasts, even within one fold (a standard deviation of 3.1 at 16–20 quarters, against 0 for AR). Grouping forecasts by the growth over the past year shows the pattern:
+
+![Weights and errors by market situation](results/explain/validation/weights_by_regime.png)
+
+| Past-year growth at the forecast date | Transformer weight on latest two quarters | AR(8) | Transformer weight on quarters 5–8 | AR(8) | RMSE, Transformer / AR(8) |
+|---|---:|---:|---:|---:|---:|
+| Falling (below 0%) | 3.42 | 2.46 | −0.86 | −1.50 | 0.974 |
+| Slow (0–4%) | 3.64 | 2.32 | −1.87 | −1.63 | 0.962 |
+| Fast (4–8%) | 2.31 | 2.23 | −2.31 | −1.74 | 0.911 |
+| Boom (above 8%) | −0.36 | 2.28 | −2.18 | −1.67 | 1.001 |
+
+Weights are for the 16–20-quarter range. In normal or falling markets the Transformer follows the latest trend more strongly than AR(8). After a strong boom it stops extending the recent rise and relies more on the expectation that prices fall back. AR(8) extends the trend in the same way whatever the situation.
+
+**This helps in some markets and hurts in others.** The Transformer had lower error than AR(8) when trends were steady (0.925 for steady falls and 0.958 for steady rises at 16–20 quarters) and higher error at turning points (1.06 at 16–20 quarters and 1.10 at 3–6 quarters when prices had just turned up). In markets where it stopped extending booms, such as the Slovak Republic, Bulgaria and Latvia, its 16–20-quarter error was 10–48% lower than AR(8)'s. In markets where it extended recent trends strongly, such as Germany, the Netherlands and Mexico, its error was 21–58% higher. Germany and Mexico are also among its weakest markets in the main comparison.
+
+These group results are descriptive: they pool forecasts across markets and have no confidence intervals. Booms are concentrated in 2003–2007 and in a few Central and Eastern European markets, so the effect of a boom cannot be fully separated from the effect of those markets. The Integrated Gradients results do not depend on the number of integration steps: from 32 to 512 steps, each quarter's share changed by at most 0.0005 and the ranking of quarters did not change. [Lag weights](results/explain/validation/lag_weights.csv) · [By situation](results/explain/validation/weights_by_regime.csv) · [By market](results/explain/validation/weights_by_market.csv) · [Checks](results/explain/validation/ig_steps_check.csv)
+
 ## Stability and an extra input
 
 These two checks were added after the professor asked for more evidence on how the models behave. Both use the validation folds only.
@@ -151,7 +176,7 @@ We repeated the comparison with year-on-year CPI inflation as a second input. Bo
 - Most comparisons have 40 forecast dates, so a draw with 20-quarter blocks uses only two blocks. Claims that depend on the block length are marked above.
 - Taiwan remains a difficult case. Its shared-model errors are close to no-change in the ranges shown here.
 - The broader study still needs the final test. We have recent release examples for 32 markets and schedule estimates for two more. Availability of the real HPI during 2000–2009 remains uncertain.
-- The noise and CPI checks were added after the main design was fixed, so they are reported as exploratory results.
+- The noise, CPI and explainability checks were added after the main design was fixed, so they are reported as exploratory results.
 
 ## Run locally
 
@@ -186,6 +211,15 @@ Training-pool size, market holdouts, fine-tuning, the block-length check and tra
 ```bash
 bash scripts/rerun_secondary_122.sh
 OMP_NUM_THREADS=1 python scripts/training_cost.py --time    # optional timing
+```
+
+Pooled AR(8) and the explainability analysis (the second command retrains the shared model and checks it against the saved forecasts):
+
+```bash
+python scripts/run_backtest.py --config configs/experiment_long.toml --models ar_pooled8 --pool national --experiment long_hpi_122
+OMP_NUM_THREADS=1 python scripts/explain_lag_weights.py
+python scripts/explain_by_regime.py
+OMP_NUM_THREADS=1 python scripts/check_ig_steps.py
 ```
 
 Noise and CPI checks:

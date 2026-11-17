@@ -1,0 +1,35 @@
+{
+  "parse_rate": 1.0,
+  "evidence_found_rate": 0.9642857142857143,
+  "quarter_flow": {
+    "series": "policy_flow",
+    "n_quarters": 104,
+    "n_active_quarters": 13,
+    "pearson": 0.8008131794713748,
+    "spearman": 0.6928402676702741,
+    "sign_agreement_active": 0.6923076923076923
+  },
+  "quarter_stance": {
+    "series": "policy_stance",
+    "n_quarters": 104,
+    "n_active_quarters": 21,
+    "pearson": 0.9790162844247047,
+    "spearman": 0.9978953306717582,
+    "sign_agreement_active": 1.0
+  },
+  "events": {
+    "window_days": 14,
+    "n_manual_events": 29,
+    "n_llm_signals": 22,
+    "recall": 0.7931034482758621,
+    "precision": 0.7727272727272727,
+    "missed_event_ids": [
+      "E008",
+      "E028",
+      "E033",
+      "E035",
+      "E036",
+      "E042"
+    ]
+  }
+}

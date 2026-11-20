@@ -7,7 +7,7 @@ The study asks four questions:
 1. Can one shared model serve many housing markets?
 2. How does it compare with fitting a separate model for each market?
 3. How does forecast accuracy change from 1 to 20 quarters ahead?
-4. Which past quarters influence the shared model, and how does its input sensitivity differ from pooled AR?
+4. (Exploratory) Which past quarters influence the shared model, and how does its input sensitivity differ from pooled AR?
 
 The work started with Taiwan and now uses national house price series from OECD AnaHPI alongside Taiwan's Sinyi index. The main experiments use house price history alone and forecast 1 to 20 quarters ahead. We focus on 3–6 quarters for buying or selling and 16–20 quarters for construction. Earlier Taiwan experiments also included economic indicators and compared joint training with pretraining followed by fine-tuning. [Taiwan pilot](docs/taiwan_pilot.md)
 
@@ -131,13 +131,26 @@ Entries are median market RMSE ratios, shared model divided by baseline, with 95
 | Per-market AR | 0.944 [0.884, 0.978] | 0.931 [0.868, 1.000] | 0.869 [0.797, 0.956] | 0.901 [0.790, 0.975] |
 | Per-market ARIMA | 0.947 [0.857, 1.000] | 0.978 [0.872, 1.048] | 0.913 [0.841, 0.980] | 1.015 [0.789, 1.139] |
 | Pooled AR(4) | 0.979 [0.919, 1.058] | 1.013 [0.944, 1.072] | 0.955 [0.918, 1.011] | 0.917 [0.872, 1.157] |
+| Pooled AR(8) | 0.983 [0.916, 1.052] | 1.002 [0.929, 1.061] | 0.945 [0.902, 1.004] | 0.871 [0.821, 1.125] |
 | No-change | 0.848 [0.651, 0.979] | 0.870 [0.707, 1.110] | 0.895 [0.833, 1.029] | 0.698 [0.597, 1.062] |
 
 ![Test relative RMSE by horizon](results/long_hpi_122/test/rel_rmse_by_horizon.png)
 
-The shared Transformer beat per-market Transformers in both ranges at all four block lengths. It also beat per-market AR at 16–20 quarters across all four lengths; the shorter-range AR result depends on block length. No interval excludes equal performance against pooled AR(4), pooled AR(8) or per-market ARIMA in either range. Against no-change, the long-horizon estimate favors the Transformer, but the interval crosses 1 for 8-, 12- and 20-quarter blocks. The validation advantage over ARIMA at long horizons did not persist in the test period. [Block-length results](results/block_length_sensitivity_122_test.csv)
+The shared Transformer beat per-market Transformers in both ranges at all four block lengths. It also beat per-market AR at 16–20 quarters across all four lengths; the shorter-range AR result depends on block length. No interval excludes equal performance against pooled AR(4), pooled AR(8) or per-market ARIMA in either range. Against no-change, the long-horizon estimate favors the Transformer, but the interval crosses 1 for 8-, 12- and 20-quarter blocks. The validation advantage over ARIMA at long horizons did not persist in the test period. [Block-length results](results/block_length_sensitivity_122_test.csv) Among the 48 scored test markets, 39 had positive mean cumulative real HPI growth over the 16–20-quarter forecast rows. This rising-price setting helps contextualize the comparison with a no-growth forecast; it does not establish a general advantage over no-change.
 
 Keeping only fitted per-market Transformers gives test ratios of 0.901 [0.772, 0.965] at 3–6 quarters and 0.783 [0.645, 0.994] at 16–20 quarters, on 45 eligible markets with 20-quarter blocks. The shared-model advantage is therefore also present after removing no-change fallback cases. [Fitted-only check](results/long_hpi_122/test/fitted_only_ratio_ci.csv)
+
+### Common-market check
+
+As a post-test sensitivity check, we rescored saved forecasts on the 41 markets with forecasts in both periods, and on the 38 markets meeting the scoring threshold in both periods. No models were retrained. The table shows test ratios at 16–20 quarters with 20-quarter blocks; the full-sample results above remain the main comparison.
+
+| Test sample | vs per-market Transformer | vs per-market AR | vs no-change |
+|---|---:|---:|---:|
+| All 48 scored markets | 0.805 [0.681, 0.997] | 0.901 [0.790, 0.975] | 0.698 [0.597, 1.062] |
+| 41 common forecast markets | 0.783 [0.626, 0.997] | 0.907 [0.739, 1.101] | 0.634 [0.579, 0.911] |
+| 38 common scored markets | 0.805 [0.658, 1.014] | 0.936 [0.736, 1.136] | 0.658 [0.582, 0.952] |
+
+The point estimates still favor the shared model against separate Transformers, but the long-horizon interval includes 1 on the strict 38-market sample. The long-horizon AR advantage also becomes uncertain on both subsets, while the no-change comparison becomes clearer. Market composition therefore affects uncertainty as well as point estimates. Restricting markets does not hold forecast dates or training histories constant across periods. [Both horizon ranges and all baselines](results/long_hpi_122/common_market_comparison.csv)
 
 ### Fine-tuning
 
@@ -148,6 +161,8 @@ The market examples also changed. Germany's fixed-setting point estimate improve
 ### Training-pool size
 
 On the same five evaluation markets, the preselected 41-market pool had RMSE ratios of 1.145 [1.004, 1.235] at 3–6 quarters and 1.690 [1.432, 1.993] at 16–20 quarters relative to the five-market pool, using 20-quarter blocks. The longer-range deterioration holds across all four block lengths; the shorter-range interval includes 1 with shorter blocks. The 10- and 20-market pools also had higher long-range error in all three addition orders. More training markets helped in validation but did not improve these test forecasts. The 41-market pool is the fixed validation-era selection, not all 48 test markets. [Training-pool results](results/market_scale_122/test) · [All orders and block lengths](results/block_length_sensitivity_122_test.csv)
+
+The larger pool shifted mean long-horizon forecasts upward in all five evaluation markets. This reduced mean underprediction in the United States and Russia but increased mean overprediction in Indonesia, South Africa and South Korea. These patterns suggest that differences in market trends may contribute to the reversal, but do not establish its cause. The result concerns these fixed pools and evaluation markets, rather than a general rule that more data worsens forecasts. [Mean forecast bias](results/market_scale_122/test/mean_forecast_bias.csv)
 
 ### Market holdouts
 

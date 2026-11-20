@@ -68,7 +68,7 @@ def country_key(name: str) -> str:
 
 def attach_policy(panel: pd.DataFrame, quarterly: pd.DataFrame) -> pd.DataFrame:
     names = {country_key(name): name for name in panel.country.unique()}
-    aliases = {"KOR": "South Korea", "TWN": "Taiwan", "TUR": "Türkiye"}
+    aliases = {"KOR": "South Korea", "TWN": "Taiwan", "TUR": "Türkiye", "CZE": "Czechia"}
     q = quarterly.copy()
     q["country"] = [names.get(country_key(aliases.get(iso, name)))
                     for iso, name in zip(q.iso3, q.source_country)]

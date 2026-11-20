@@ -233,11 +233,35 @@ OMP_NUM_THREADS=1 python scripts/run_cpi_experiment.py
 
 The earlier 100-day runs can be reproduced from commit `d48a065`.
 
+### Final test
+
+The 11/18 meeting confirmed the main comparisons, both fine-tuning setups, all three training-pool orders and four market holdouts. Test-phase support and the resumable entry point are implemented. The final test run is still pending. [Frozen settings](docs/freeze.md)
+
+```bash
+bash scripts/run_test_122.sh
+```
+
+Run from the repository root in the `hpf` environment after committing the code, configuration and source data. Completed steps are checked and reused; interrupted outputs are archived before retrying. Results go to each experiment’s `test` folder. Noise, CPI, attribution and iMaPP results are exploratory validation analyses; the final test compares the frozen HPI-only models.
+
 More detail: [backtest notes](docs/backtest_framework.md) · [experiment settings](docs/experiment_contract.md) · [data formats](docs/design_notes.md)
 
 ## Taiwan policy extension
 
 As an extension, we use a local language model to extract policy signals from Taiwan announcements. Qwen2.5-14B (GPTQ 4-bit) processed 30 announcements from 2020–2025, and the outputs and a quarterly index are saved. On a hand-labelled check of the 30 announcements it judged relevance correctly 93% of the time and policy type 93%, but the direction of the policy (tightening or easing) only 68%. Against a manual timeline of 29 policy events, it found 79% of them within 14 days, and 77% of its own signals matched a manual event. The index covers only 2020–2025 and one market, which does not overlap the validation period, so it has not been tested as a forecasting input. [Outputs](results/policy) · [Setup](data/raw/policy/README.md)
+
+## iMaPP policy feature
+
+The exploratory iMaPP comparison uses the IMF December 2024 vintage, covering 135 economies from 1990 through 2023. We sum monthly LTV, debt-service-to-income and household-loan restriction actions into one quarterly policy feature. Both the HPI-only and policy-input versions use the same complete windows, with no forward filling. The archive records implementation months and includes historical revisions, so this is a retrospective validation analysis. [Source and definitions](data/raw/imapp/README.md)
+
+```bash
+pip install -e ".[imapp]"
+python scripts/build_imapp.py
+OMP_NUM_THREADS=1 python scripts/run_imapp_experiment.py
+```
+
+Coverage and matched-sample results are saved in `results/imapp/validation`. The default comparison runs no-change, pooled AR and the shared Transformer. Use `--prepare-only` to inspect sample coverage first, or `--models no_change ar_pooled` for the linear comparison.
+
+The first validation run includes 38 scored markets. Adding the policy feature gave a median RMSE ratio of 1.002 [0.990, 1.012] at 3–6 quarters and 0.988 [0.980, 1.001] at 16–20 quarters for the shared Transformer. Pooled AR ratios were 1.000 [0.999, 1.001] and 1.000 [0.999, 1.001]. All intervals include equal performance. The policy series begins in 1990, reducing first-fold training rows from 2,263 in the main experiment to 674 here; both feature arms use those same rows. These results apply to a composite policy-action feature, with retrospective timing assumptions. [Results](results/imapp/validation/ratio_ci_transformer__imapp_vs_transformer__hpi.csv)
 
 ## Repository layout
 

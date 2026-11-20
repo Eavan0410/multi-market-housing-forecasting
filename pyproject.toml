@@ -17,6 +17,7 @@ dependencies = [
 dev = ["pytest>=8"]
 dl = ["torch>=2.1"]
 stats = ["statsmodels>=0.14"]   # ARIMA baseline
+imapp = ["openpyxl>=3.1"]
 llm = ["vllm"]            # GPU machine only; not needed for the mock backend
 
 [tool.setuptools.packages.find]

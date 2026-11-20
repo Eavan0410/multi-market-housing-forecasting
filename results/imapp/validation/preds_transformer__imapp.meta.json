@@ -1,0 +1,126 @@
+{
+  "base_model": "transformer",
+  "countries": "all",
+  "cpi_file": "data/interim/taiwan_cpi_monthly.csv",
+  "cpi_sha256": "397ff669e743a98834e952c9b44231a7c980ff8bf3bb366eeb04afa071ded98a",
+  "created_utc": "2026-11-20T00:53:56+00:00",
+  "drop_nan_windows": true,
+  "experiment": "imapp",
+  "features": [
+    "hpi_qoq",
+    "policy_housing_flow"
+  ],
+  "ffill_limit": 0,
+  "hpi_basis": {
+    "Taiwan": "nominal",
+    "default": "real"
+  },
+  "imapp": {
+    "policy_lag_days": 0,
+    "policy_sha256": "a0cb05a645e3bfa1df350d4972c18ecc1a89138a7919bb4b531ab9c2a0d191d4",
+    "sample_rule": "complete HPI and iMaPP windows; identical samples in both arms; no forward fill",
+    "source": {
+      "aggregation": "sum of signed LTV, DSTI and LoanR_HH actions over three complete months",
+      "built_utc": "2026-11-20T00:50:22.529987+00:00",
+      "countries": 135,
+      "feature": "policy_housing_flow",
+      "first_quarter": "1990Q1",
+      "input": "data/raw/imapp/iMaPP_database-2024-12-02.zip",
+      "instruments": [
+        "LTV",
+        "DSTI",
+        "LoanR_HH"
+      ],
+      "last_quarter": "2023Q4",
+      "sha256": "5e6b82939afc1cb0abeda3af8eb512154664f4c9128ed35bd626780fb347364b",
+      "source": "https://www.elibrary-areaer.imf.org/Macroprudential/Documents/iMaPP_database-2024-12-02.zip",
+      "timing": "implementation months; retrospective dataset, not historical publication vintages"
+    },
+    "status": "exploratory validation using retrospective implementation-date policy data"
+  },
+  "lookback": 8,
+  "model": "transformer__imapp",
+  "panel_file": "data/interim/panel_quarterly.csv",
+  "panel_sha256": "e12af81130b1334c86e41d36620e1743d105aeb2e60405a2396c2567eac68c92",
+  "periods": {
+    "allow_short_gap": true,
+    "forecast_lag_days": "max_hpi_lag",
+    "gap_quarters": 4,
+    "refit_every": 4,
+    "test_end": "auto",
+    "test_start": "2015Q1",
+    "validation_end": "2009Q4",
+    "validation_start": "2000Q1"
+  },
+  "phase": "validation",
+  "pool": "national",
+  "release_lag_days": {
+    "cpi": {
+      "default": 30
+    },
+    "cpi_yoy": {
+      "default": 30
+    },
+    "gdp_growth": {
+      "Taiwan": 60,
+      "default": 60
+    },
+    "household_credit_gdp": {
+      "Taiwan": 60,
+      "default": 120
+    },
+    "hpi": {
+      "Chile": 122,
+      "Taiwan": 60,
+      "default": 100
+    },
+    "interest_rate": {
+      "Taiwan": 5,
+      "default": 5
+    },
+    "policy_housing_flow": {
+      "default": 0
+    },
+    "unemployment_rate": {
+      "default": 45
+    }
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "stochastic": true,
+  "target": {
+    "country": "Taiwan",
+    "eval_series": "all_national",
+    "horizons": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "main_horizon": 4,
+    "series_id": "Taiwan_national",
+    "target_type": "cum_log_growth_real",
+    "value_col": "hpi_real"
+  }
+}

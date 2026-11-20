@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import argparse
-from datetime import datetime, timezone
 import hashlib
 import json
 from pathlib import Path
@@ -32,7 +31,6 @@ def main() -> None:
     metadata = {
         "source": SOURCE_URL, "input": str(args.input),
         "sha256": hashlib.sha256(args.input.read_bytes()).hexdigest(),
-        "built_utc": datetime.now(timezone.utc).isoformat(),
         "instruments": INSTRUMENTS, "feature": FEATURE,
         "aggregation": "sum of signed LTV, DSTI and LoanR_HH actions over three complete months",
         "timing": "implementation months; retrospective dataset, not historical publication vintages",

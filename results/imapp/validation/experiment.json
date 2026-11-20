@@ -1,0 +1,22 @@
+{
+  "source": {
+    "source": "https://www.elibrary-areaer.imf.org/Macroprudential/Documents/iMaPP_database-2024-12-02.zip",
+    "input": "data/raw/imapp/iMaPP_database-2024-12-02.zip",
+    "sha256": "5e6b82939afc1cb0abeda3af8eb512154664f4c9128ed35bd626780fb347364b",
+    "instruments": [
+      "LTV",
+      "DSTI",
+      "LoanR_HH"
+    ],
+    "feature": "policy_housing_flow",
+    "aggregation": "sum of signed LTV, DSTI and LoanR_HH actions over three complete months",
+    "timing": "implementation months; retrospective dataset, not historical publication vintages",
+    "first_quarter": "1990Q1",
+    "last_quarter": "2023Q4",
+    "countries": 135
+  },
+  "policy_sha256": "a0cb05a645e3bfa1df350d4972c18ecc1a89138a7919bb4b531ab9c2a0d191d4",
+  "policy_lag_days": 0,
+  "sample_rule": "complete HPI and iMaPP windows; identical samples in both arms; no forward fill",
+  "status": "exploratory validation using retrospective implementation-date policy data"
+}

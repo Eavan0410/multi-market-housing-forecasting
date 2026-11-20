@@ -23,7 +23,7 @@ Run all agreed comparisons on the test period:
 3. Training pools of 5, 10, 20 and 41 markets, using all three fixed market orders.
 4. Hold out Australia, Chile, Taiwan and Portugal separately. Compare with the single-threaded main run on matching forecast rows.
 
-Noise, CPI and attribution analyses remain exploratory validation results. The policy feature experiment is an optional extension if time, data and GPU resources allow.
+Noise, CPI, attribution and iMaPP analyses have completed exploratory validation runs. The iMaPP feature showed no clear improvement on matched samples and is reported alongside those results. The final test uses the HPI-only inputs listed above. The LLM-derived Taiwan policy index has been extracted and checked, but its forecasting value remains untested.
 
 ## Reporting
 

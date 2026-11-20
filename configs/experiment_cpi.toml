@@ -1,13 +1,4 @@
-# CPI experiment (added 11/16 at the professor's request; exploratory, validation only).
-# Identical to configs/experiment_long.toml except [features].use and the ARX models in
-# [run].deterministic_models. Keep the other sections in sync with that file.
-# CPI inflation per market comes from src/housing_forecast/data/cpi.py (see docs/cpi_assessment.csv).
-#
-# Multi-market, long-horizon settings (exploratory, after Josh's 11/4 feedback).
-# Questions: can ONE model forecast many markets, is it more accurate than one model per
-# market, and at which horizons (1–20 quarters) is it accurate?
-# Everything not changed below matches configs/experiment.toml; keep [hpi_basis] and
-# [release_lag_days] in sync with that file when B confirms them.
+# Matched-sample CPI comparison on validation folds.
 
 [target]
 series_id = "Taiwan_national"
@@ -22,9 +13,7 @@ main_horizon = 4                       # report the whole error-by-horizon curve
 # Calendar quarters of the forecast ORIGIN t. The same dates apply to every country.
 # Origins before validation_start are only ever used for training ("dev" warm-up).
 # validation_end + 20 must stay before test_start, so validation labels never use test-period prices.
-# h=20 labels exist only for origins up to about 2020Q2 (data end 2025), so the test window is earlier
-# than in experiment.toml. NOTE: it overlaps the 2012–2017 Taiwan validation runs we have already
-# looked at, so Taiwan results in this test window are not fully clean; say so in the report.
+# Taiwan short-horizon test dates overlap the earlier pilot.
 validation_start = "2000Q1"
 validation_end = "2009Q4"
 test_start = "2015Q1"
@@ -50,7 +39,7 @@ Taiwan = "nominal"                     # confirmed: Sinyi index is nominal; see 
 
 [release_lag_days]
 # Days after the end of the observed quarter when a value becomes public.
-# Placeholders until B's availability matrix is done.  TODO(B)
+# Publication-lag assumptions; see docs/hpi_release_lags.md.
 hpi = { default = 100, Taiwan = 60, Chile = 122 }
 cpi = { default = 30 }
 cpi_yoy = { default = 30 }

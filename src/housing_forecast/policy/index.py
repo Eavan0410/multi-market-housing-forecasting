@@ -1,17 +1,7 @@
-"""Turn document-level extractions into a quarterly policy-tightness index.
+"""Aggregate policy extractions into quarterly flow and stance indices.
 
-Each relevant document scores  direction × confidence × type weight, and is
-placed in the quarter of its PUBLICATION date (not its effective date): that is
-when the information became public, so the backtest's release-lag logic can use
-the index without look-ahead. Two quarterly series come out:
-
-    policy_flow    sum of scores published in the quarter (what changed this quarter)
-    policy_stance  exponentially decayed running sum of policy_flow (where policy stands);
-                   with half-life H quarters, stance_q = flow_q + 0.5**(1/H) * stance_{q-1}
-
-The same function builds an index from the manual timeline (confidence = 1), so
-the LLM index and the gold standard are compared on the same scale.
-"""
+Weight direction by confidence, relevance and housing specificity. Group duplicate
+announcements by effective date and policy type. Decay the stance between quarters."""
 
 from __future__ import annotations
 

@@ -1,17 +1,7 @@
-"""Reader for B's Taiwan raw files (data/raw/taiwan/*.csv).
+"""Read Taiwan macro observations from long-format raw files.
 
-Each file has the columns
-    country, REF_AREA, feature, FREQ, TIME_PERIOD, OBS_VALUE, UNIT_MEASURE, ADJUSTMENT, OBS_STATUS
-with TIME_PERIOD "1982Q2" (quarterly) or "Jul88" (monthly). Files are found by
-their `feature` value, not by file name.
-
-Output: one row per quarter for Taiwan with the shared feature names
-    interest_rate         10-year government bond yield, quarterly mean of monthly values
-    gdp_growth            real GDP growth, q/q, seasonally adjusted (same basis as OECD)
-    household_credit_gdp  consumer loan balance (end of quarter) / sum of the last
-                          4 quarters of nominal GDP * 100 (same basis as BIS % of GDP)
-The two inputs of the credit ratio are kept as well, for checking.
-"""
+Retain native frequencies and missing values. Construct the credit/GDP ratio
+from quarter-end credit and four quarters of nominal GDP."""
 
 from __future__ import annotations
 
@@ -44,7 +34,7 @@ def load_taiwan_raw(taiwan_dir: str | Path) -> pd.DataFrame:
     files = sorted(Path(taiwan_dir).glob("*.csv"))
     if not files:
         raise FileNotFoundError(f"no csv files in {taiwan_dir}")
-    # Only B's long-format files (with a `feature` column); the HPI and CPI tables
+    # Only long-format files (with a `feature` column); the HPI and CPI tables
     # copied from Spring 2026 Raw sit in the same folder and are read elsewhere.
     tables = [pd.read_csv(f, encoding="utf-8-sig") for f in files]
     tables = [t for t in tables if "feature" in t.columns]

@@ -1,29 +1,7 @@
-"""Does CPI inflation improve the forecasts? Validation only (2000-2009 forecast dates).
+"""Compare HPI-only forecasts with an added CPI inflation input on validation folds.
 
-Same folds, timing rules and models as the main experiment. The only change is a second input
-feature: year-on-year CPI inflation (src/housing_forecast/data/cpi.py; coverage and outliers
-in docs/cpi_assessment.csv). CPI is published about 30 days after quarter-end, well before
-the 122-day forecast date, so it adds no look-ahead.
-
-Fair comparison: both arms use exactly the same samples. A sample is kept only if its whole
-8-quarter window has both HPI growth and CPI. The HPI-only arm is then the same samples with
-the CPI column removed, so training rows, forecast rows and scaling data match; only the
-input differs. The cost is that markets or years without CPI drop out of BOTH arms, so the
-HPI-only arm here is not identical to the main experiment (see coverage.csv).
-
-    OMP_NUM_THREADS=1 python scripts/run_cpi_experiment.py
-    python scripts/run_cpi_experiment.py --models no_change ar_pooled      # quick, no torch
-
-Models and output labels (results/cpi/validation/):
-    no_change__hpi          reference
-    ar_pooled__hpi          pooled AR on HPI growth            arx_pooled__hpi_cpi   pooled ARX, + CPI lags
-    transformer__hpi        shared Transformer, HPI only       transformer__hpi_cpi  shared Transformer, + CPI
-    (optional) ar__hpi / arx__hpi_cpi, transformer_per_market__hpi / __hpi_cpi
-Main comparisons (paired block bootstrap, same rule as the main experiment):
-    transformer__hpi_cpi vs transformer__hpi     does CPI help the shared Transformer?
-    arx_pooled__hpi_cpi  vs ar_pooled__hpi       does CPI help a linear model?
-    transformer__hpi_cpi vs arx_pooled__hpi_cpi  with CPI, Transformer vs linear
-"""
+Both versions use identical complete input windows. CPI availability is assumed
+to be 30 days after quarter-end. Output is saved in results/cpi/validation."""
 
 from __future__ import annotations
 

@@ -103,18 +103,9 @@ def log_growth(panel: pd.DataFrame, col: str, lag: int, out_col: str) -> pd.Data
 
 
 def prepare_panel(panel: pd.DataFrame, cpi_monthly: pd.DataFrame, cfg: dict) -> pd.DataFrame:
-    """Raw panel + raw monthly CPI index -> panel with model-ready columns.
-
-    Adds:
-      hpi_real                 deflated HPI for nominal series (labels use this level)
-      hpi_qoq                  log q/q growth of hpi_real (the series' own past prices)
-      cpi_yoy                  filled for countries that only have a CPI index (Taiwan):
-                               % change of the quarterly mean index over 4 quarters,
-                               the same definition as OECD's quarterly CPI growth
-      household_credit_gdp_d4  4-quarter change of credit / GDP (percentage points);
-                               used instead of the level, which is not comparable
-                               across countries (BIS all lenders vs Taiwan banks only)
-    """
+    """Deflate nominal HPI and derive growth and macro features.
+    Keep rate variables in their stated units. Derive Taiwan inflation from CPI
+    levels and quarterly credit changes from the credit/GDP ratio."""
     cpi_q = monthly_to_quarterly_mean(cpi_monthly, "cpi")
     df = deflate_to_real(panel, cpi_q, cfg)
     df = log_growth(df, "hpi_real", 1, "hpi_qoq")

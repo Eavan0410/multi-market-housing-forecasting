@@ -1,20 +1,7 @@
 #!/usr/bin/env python3
-"""Download BIS long CPI data for five missing housing-project markets.
+"""Download missing BIS CPI series and write CPI_48countries.csv.
 
-Produces ONE file only: CPI_48countries.csv (in the current directory).
-
-The input defaults to CPI_month_data.csv and is never modified. Additional BIS
-observations are appended only if their country / period / frequency /
-transformation key is not already present.
-
-Dependency: pip install requests
-API: https://stats.bis.org/api/v2/data/dataflow/BIS/WS_LONG_CPI/1.0/
-BIS units: 628 = 2010=100 CPI index, 771 = year-over-year percent.
-
-New Zealand warning: BIS MONTHLY historical observations are interpolated from
-official QUARTERLY CPI. They are downloaded and clearly tagged, but by default
-are *not* merged into the native-frequency analysis file.
-"""
+Keep New Zealand’s interpolated monthly series separate unless explicitly enabled."""
 from __future__ import annotations
 
 import argparse

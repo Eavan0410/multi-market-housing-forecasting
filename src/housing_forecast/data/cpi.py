@@ -1,22 +1,8 @@
-"""National CPI inflation (year-on-year, percent) for the forecast markets.
+"""Load national CPI inflation from OECD, BIS, FRED and Taiwan sources.
 
-Sources, in order of priority for each country:
-  1. data/raw/global/cpi_gaps.csv        (optional; written by scripts/download_cpi_gaps.py)
-  2. data/raw/global/CPI_48countries.csv (OECD DF_PRICES_ALL export plus BIS long CPI rows)
-  3. data/raw/four_countries/cpi_yoy_raw.csv (only for countries missing from 1 and 2: Japan)
-Taiwan comes from its monthly CPI index (data/raw/taiwan) and is handled in transforms.py.
-
-Cleaning rules:
-  - Rows copied from a secondary mirror of BIS data (STRUCTURE_ID contains "secondary")
-    are dropped; the official BIS index covers the same months.
-  - Published year-on-year rates (TRANSFORMATION "GY") are used first. Months or quarters
-    without one are filled from the index (TRANSFORMATION "_Z"): 12-month change for
-    monthly data, 4-quarter change for quarterly data.
-  - Quarterly values: native quarterly rows first; otherwise the mean of the three months.
-    Some OECD series (Australia, early Ireland) are quarterly but stored as one month per
-    quarter (Feb, May, Aug, Nov). Such a middle month is used as the quarter's value when no
-    quarter of that year has more than one observation. Other incomplete quarters are dropped.
-"""
+Prefer the gap file, then the main export, then the four-country fallback.
+Use native year-on-year rates when available. Aggregate complete monthly quarters
+and retain native quarterly data; do not interpolate missing months."""
 
 from __future__ import annotations
 

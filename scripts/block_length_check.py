@@ -1,17 +1,6 @@
-"""How much do the confidence intervals depend on the bootstrap block length?
+"""Recalculate paired RMSE intervals with different bootstrap block lengths.
 
-Re-runs the paired ratio bootstrap from the saved prediction files with several block
-lengths (in forecast origins). Point estimates do not change; only the intervals do.
-No retraining. Covers the main shared-model comparisons, the training-pool runs (#9, all three market orders)
-and the leave-one-market-out runs (#10), each held-out model against the shared model,
-AR and no-change.
-
-Example:
-    python scripts/block_length_check.py                 # validation
-    python scripts/block_length_check.py --phase test    # final test
-Writes results/block_length_sensitivity_122.csv (validation) or
-results/block_length_sensitivity_122_test.csv (one row per comparison, block length and horizon).
-"""
+Use --phase test for test results; --main-dir restricts the comparisons."""
 
 from __future__ import annotations
 

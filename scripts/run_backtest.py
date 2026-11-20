@@ -1,20 +1,6 @@
-"""Run models through the shared backtest and write prediction CSVs.
+"""Run forecasters on common folds and save predictions, diagnostics and run settings.
 
-Example (validation period only; the test period is locked):
-    python scripts/run_backtest.py --models no_change ar --pool target_only
-    python scripts/run_backtest.py --features hpi_qoq --experiment hpi_only
-    python scripts/run_backtest.py --features hpi_qoq --experiment hpi_only \
-        --models transformer --pool overseas_plus_target \
-        --countries Australia Japan "South Korea" "United States"
-
-Outputs, one folder per experiment so different settings never overwrite each other:
-    results/<experiment>/<phase>/preds_<label>.csv        shared prediction format
-    results/<experiment>/<phase>/preds_<label>.meta.json  settings that produced it
-<experiment> defaults to the feature list (e.g. "hpi_qoq+interest_rate+..."), and
-<label> is the model name, plus "__<pool>" when the pool is not target_only, plus
-"__<n>countries" when --countries limits the overseas markets. The suffix lets runs
-with different country sets sit in the same experiment folder and be scored together.
-"""
+Results are stored under results/<experiment>/<phase>. Test runs require --unlock-test."""
 
 from __future__ import annotations
 

@@ -1,14 +1,6 @@
-"""Check the LLM extractions against the manual timeline and against C's spot checks.
+"""Check extracted policies against manual document labels and event timelines.
 
-1. Quarter level: correlation and sign agreement between the LLM index and the
-   index built from the manual timeline (same aggregation, confidence = 1).
-2. Event level: a manual event counts as found if some relevant LLM document with
-   the same sign of direction was published within `window_days` of it (recall);
-   an LLM document with non-zero direction counts as confirmed if it lies within
-   the window of a manual event with the same sign (precision).
-3. Spot check: C labels a random sample by hand; we score relevance, sign,
-   exact direction and policy type against those labels.
-"""
+Report relevance, policy type, direction and event matching within a date window."""
 
 from __future__ import annotations
 

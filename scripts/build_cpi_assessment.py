@@ -1,26 +1,6 @@
-"""CPI coverage and outlier check for the 41 forecast markets (the CPI version of
-docs/national_hpi_assessment_48countries.csv).
+"""Summarize CPI coverage, missing periods and large changes by market.
 
-    python scripts/build_cpi_assessment.py
-
-Writes docs/cpi_assessment.csv, one row per market. Flags are screening marks only; no data
-are changed or removed.
-
-Rules (on year-on-year CPI inflation in percent, at the native frequency):
-  big_jumps       d = yoy_t - yoy_{t-1}; flag when |d - median(d)| > 5 * MAD(d), with MAD
-                  scaled by 1.4826 and computed on that market's own history. Comparing a
-                  market with itself means high-inflation countries are not flagged for
-                  being high, only for sudden changes.
-  extreme_values  yoy > 100 or yoy < -5, the same absolute rule for every market. These values
-                  would dominate the input scaling, which is shared by all markets.
-Each flag is split into "in HPI period" (quarters the forecasting data can use) and earlier.
-likely_causes_in_hpi_period matches flag dates to known episodes (oil shocks, 2008, the
-2021-23 energy shock, Russia 2014-15 and 2022). It is a date match, not a verified cause;
-anything outside those windows is counted as "not identified".
-
-cpi_quarters_lost: HPI quarters whose input window cannot have CPI because CPI starts later.
-Training-sample counts per fold come from build_market_list.py with a CPI config.
-"""
+Write docs/cpi_assessment.csv from the same sources used by the CPI experiment."""
 
 from __future__ import annotations
 

@@ -1,22 +1,7 @@
-"""Input-noise robustness: train each model once per fold and seed, as in run_backtest,
-then forecast the same test rows again with Gaussian noise added to the inputs.
+"""Perturb forecast inputs while keeping training data fixed.
 
-Noise design
-  - One perturbation per market x input quarter x draw: the same historical value is
-    "measured wrong" once. Input windows overlap (the window for origin 2004Q4 repeats seven
-    quarters of the 2004Q3 window), and the same quarter can be an input in two folds; it gets
-    the same error in every window, fold and model within a draw.
-  - perturbation = level x sd x z, where z ~ N(0, 1) is fixed by (noise seed, draw, market,
-    quarter) and sd is one fixed scale: the standard deviation of the feature in the FIRST
-    fold's training inputs (all training markets pooled; data before the validation period
-    only). The same z is used at every level, so the curves are smooth in the level.
-  - Noise is added to the raw (unscaled) feature before the model's own scaling. Training
-    data are never perturbed.
-
-The output is a compact error table, enough to rebuild the main experiment's RMSE (pooled
-squared errors, square root per seed, then the mean over seeds) and the mean absolute change
-of the forecasts relative to the same model's clean forecast.
-"""
+Use one Gaussian error per market-quarter and draw across all models and overlapping
+windows. Scale noise by HPI growth variation in the first training fold."""
 
 from __future__ import annotations
 

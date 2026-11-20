@@ -1,13 +1,7 @@
-"""Multi-market evaluation: how accurate is each model in each market and at each horizon?
+"""Evaluate each market and horizon, then summarize equally weighted market ratios.
 
-Pooled RMSE over many markets is dominated by the most volatile ones, so the main
-summary is RELATIVE: in every market and horizon, a model's RMSE divided by the
-reference model's RMSE (normally no-change) in that same market. Below 1 = better.
-Across markets we report the median and the geometric mean of that ratio and the
-share of markets where the model beats the reference.
-
-Seeds are handled as elsewhere: metrics per seed, then averaged.
-"""
+Average metrics over seeds before taking market medians. Use paired forecast-date
+blocks for uncertainty intervals."""
 
 from __future__ import annotations
 

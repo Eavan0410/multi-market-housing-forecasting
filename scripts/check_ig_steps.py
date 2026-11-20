@@ -1,18 +1,6 @@
-"""Are the Integrated Gradients results sensitive to the number of integration steps?
+"""Check whether Integrated Gradients change with the number of integration steps.
 
-Retrains the shared Transformer for the folds and seeds with the largest completeness error in
-results/explain/validation/checks.csv, recomputes Integrated Gradients with several step counts
-and reports, for each:
-  completeness_error   max |sum of contributions - (forecast - baseline forecast)|
-  max_share_change     largest change in a lag's |contribution| share (3-6 and 16-20 ranges)
-                       compared with the most steps
-  rank_corr            Spearman correlation of the eight lags' shares with the most steps
-  same_top_lag         whether the most important lag is unchanged
-Local-gradient weights do not depend on the step count.
-
-    OMP_NUM_THREADS=1 python scripts/check_ig_steps.py            # worst 3 fold-seed pairs
-Writes results/explain/validation/ig_steps_check.csv.
-"""
+Retrain the first validation fold and compare attributions on the same forecasts."""
 
 from __future__ import annotations
 

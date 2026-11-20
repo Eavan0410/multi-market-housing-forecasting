@@ -1,18 +1,8 @@
-"""Lag weights and attributions: what each model does with the same eight quarters of input.
+"""Calculate input gradients and Integrated Gradients, with lag 1 most recent.
 
-For pooled AR the weights are its regression coefficients: one fixed number per horizon and
-lag, the same for every market and date. The Transformer has no coefficients, so we measure
-the equivalent quantity for each forecast:
-
-  weight (local gradient)   d forecast_h / d input_lag, in raw units (cumulative log growth per
-                            unit of quarterly growth). For AR this is exactly the coefficient.
-  contribution (Integrated  how much each input quarter moved the forecast away from the
-  Gradients)                forecast for an "average" input (every quarter at the training
-                            mean). For AR: coefficient x (input - mean). The contributions add
-                            up to forecast(x) - forecast(baseline) (completeness).
-
-Lag 1 is the most recent quarter of the window, lag 8 the oldest.
-"""
+Use the training mean as the attribution baseline. Rescale gradients to raw input
+units before comparing with AR coefficients. Gradients and attribution shares
+measure different aspects of input influence."""
 
 from __future__ import annotations
 

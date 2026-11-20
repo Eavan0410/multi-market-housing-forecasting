@@ -1,33 +1,7 @@
-"""Which input quarters does each model rely on? Shared Transformer vs pooled AR(4) and AR(8).
+"""Compare pooled AR coefficients with Transformer gradients and Integrated Gradients.
 
-Answers Josh's question: with the same eight quarters of house price growth, what weights does
-the shared Transformer give the inputs, compared with the fixed coefficients of pooled AR?
-
-The script retrains the shared Transformer exactly as in the main 122-day validation run (same
-folds, scaling, seeds) and stops without writing results unless every labelled forecast matches
-the saved one within --tol (default 1e-5). It then measures for every
-validation forecast:
-  weight        d forecast / d input quarter (for AR: the coefficient itself)
-  contribution  Integrated Gradients: how far each input quarter moved the forecast away from
-                the forecast for an average input (for AR: coefficient x (input - mean))
-Pooled AR(4) and AR(8) are refitted on the same folds for the comparison.
-
-    OMP_NUM_THREADS=1 python scripts/explain_lag_weights.py            # about 5-10 minutes
-
-Writes to results/explain/validation/:
-  lag_weights.csv        mean weight and contribution share per model, horizon (and 3-6 / 16-20
-                         ranges) and lag; for the Transformer also the 10th-90th percentile
-                         across forecasts, because its weight changes from forecast to forecast.
-                         weight_mean is signed (which way the forecast moves on average);
-                         contribution_share uses |contribution|, computed for each seed and
-                         then averaged, so seeds that push in opposite directions do not cancel
-  row_attributions.npz   per-forecast weights, contributions (averaged over seeds) and raw input
-                         windows, each fold's AR(4)/AR(8) coefficients, and fingerprints of the
-                         config, data and saved forecasts (read by explain_by_regime.py)
-  checks.csv             per fold and seed: largest difference from the saved forecasts and the
-                         Integrated Gradients completeness error
-  lag_weights.png        the comparison plot
-"""
+Lag 1 is the latest input quarter. Absolute attribution shares are calculated per
+seed before averaging. Retrained forecasts are checked against the saved main run."""
 
 from __future__ import annotations
 

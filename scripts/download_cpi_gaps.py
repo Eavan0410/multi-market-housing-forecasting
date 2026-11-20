@@ -1,18 +1,6 @@
-"""Download the CPI series still missing or short in data/raw/global/CPI_48countries.csv.
+"""Download missing or short CPI series for Japan, Russia and New Zealand.
 
-    pip install requests
-    python scripts/download_cpi_gaps.py
-
-Writes data/raw/global/cpi_gaps.csv. housing_forecast.data.cpi uses it in place of the
-main file for these countries:
-  Japan        BIS long CPI (OECD's own Japan series stops in 2021-06, so the main file and the
-               four_countries copy both end there)
-  New Zealand  FRED NZLCPIALLQINMEI, quarterly index, full history (main file starts 1990)
-  Russia       BIS long CPI from 1995 (main file starts 2002; Russia's HPI starts 2001Q1)
-
-Run it on a machine with internet access, then rebuild the CPI table:
-    python scripts/build_cpi_assessment.py
-"""
+Use BIS monthly data for Japan and Russia and native quarterly data for New Zealand."""
 
 from __future__ import annotations
 

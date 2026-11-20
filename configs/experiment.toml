@@ -1,6 +1,5 @@
 # Draft experiment settings.
 # Change shared settings here rather than in individual scripts.
-# Items marked TODO(B) need confirmation from the data owner.
 
 [target]
 series_id = "Taiwan_national"
@@ -9,7 +8,7 @@ eval_series = ["Taiwan_national"]      # series scored in the main table; cities
 value_col = "hpi_real"                 # Labels use real HPI
 target_type = "cum_log_growth_real"    # y(t,h) = log(HPI_{t+h} / HPI_t)
 horizons = [1, 2, 3, 4]
-main_horizon = 4                       # TODO(team): confirm the headline horizon
+main_horizon = 4                       # Main reporting horizon
 
 [periods]
 # Calendar quarters of the forecast ORIGIN t. The same dates apply to every country.
@@ -36,7 +35,7 @@ Taiwan = "nominal"                     # confirmed: Sinyi index is nominal; see 
 
 [release_lag_days]
 # Days after the end of the observed quarter when a value becomes public.
-# Placeholders until B's availability matrix is done.  TODO(B)
+# Publication-lag assumptions; see docs/hpi_release_lags.md.
 hpi = { default = 100, Taiwan = 60, Chile = 122 }
 cpi = { default = 30 }
 cpi_yoy = { default = 30 }

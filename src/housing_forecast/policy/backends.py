@@ -1,12 +1,4 @@
-"""Ways to run the model. All run open-source models locally; no external API.
-
-    VLLMBackend    vLLM inside this process (GPU machine, e.g. the 3060 or the project GPU)
-    HTTPBackend    a local `vllm serve` server through its OpenAI-compatible endpoint
-                   (e.g. server on the GPU machine, client on the Mac)
-    MockBackend    keyword rules, no model; for tests and dry runs of the pipeline
-
-Every backend takes a list of chat-message lists and returns one Generation per input.
-"""
+"""Local inference backends: vLLM, an OpenAI-compatible local server and a mock backend."""
 
 from __future__ import annotations
 

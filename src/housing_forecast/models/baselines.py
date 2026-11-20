@@ -1,7 +1,4 @@
-"""No-change and autoregressive baselines.
-
-B adds historical mean / Ridge by following the same Forecaster interface.
-"""
+"""No-change, per-market AR and pooled AR baselines."""
 
 from __future__ import annotations
 

@@ -1,37 +1,7 @@
-"""When does the shared Transformer weight the inputs differently from pooled AR? (step 3)
+"""Compare input sensitivities and forecast errors across markets and price-growth groups.
 
-Uses the per-forecast weights, input windows and AR coefficients saved by
-explain_lag_weights.py (no retraining, no data rebuild). Before grouping, it checks that the
-saved file and the forecast files come from the same run: the shared-Transformer forecasts must
-have the fingerprint recorded in row_attributions.npz, the AR forecast files must come from the
-same panel, and every saved forecast must match exactly one row of each forecast file.
-
-Main comparison: pooled AR(8), which sees the same eight quarters as the Transformer, so a
-difference cannot come from a longer window. Pooled AR(4) is kept as a second reference.
-
-Groups (known at the forecast date):
-  past-year growth   sum of the last four quarters of real HPI growth: falling (< 0),
-                     slow (0-4%), fast (4-8%), boom (> 8%)
-  turning point      last two quarters vs the four before: steady rise, steady fall,
-                     turning up, turning down
-  period             forecast dates 2000-2006 vs 2007-2009
-  history            long / medium / short HPI history (docs/market_list.csv)
-  market             markets with at least 8 forecast dates (weights_by_market.csv)
-
-Columns, for the 3-6 and 16-20 quarter ranges:
-  tr_recent, tr_recent_p10, tr_recent_p90   Transformer weight on the latest two quarters (mean,
-                                            10th and 90th percentile across the group's forecasts)
-  ar8_recent, ar4_recent                    the same for pooled AR (fixed within a fold)
-  tr_older, ar8_older                       weight on quarters 5-8 (AR(4) has none by design)
-  rmse_vs_ar8, rmse_vs_ar4                  RMSE(Transformer) / RMSE(AR) on the group's forecasts:
-                                            squared errors pooled over markets, dates and the
-                                            range's horizons, square root per seed, mean over seeds.
-                                            Descriptive (pools markets, no interval).
-weights_within_fold.csv shows, for each fold, how much the Transformer's weight on the latest
-two quarters varies across that fold's forecasts; AR's weight does not vary within a fold.
-
-    python scripts/explain_by_regime.py
-"""
+Read row_attributions.npz from explain_lag_weights.py. Group results are descriptive;
+market composition and forecast dates can differ between groups."""
 
 from __future__ import annotations
 

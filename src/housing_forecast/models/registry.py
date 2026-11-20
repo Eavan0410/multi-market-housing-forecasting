@@ -8,7 +8,7 @@ from housing_forecast.models.baselines import REGISTRY as _BASELINES
 
 REGISTRY = dict(_BASELINES)
 
-from housing_forecast.models.arima import ARIMAPerMarket  # noqa: E402  (statsmodels imported only inside B's code)
+from housing_forecast.models.arima import ARIMAPerMarket  # noqa: E402  (statsmodels is loaded when fitting ARIMA)
 
 REGISTRY["arima"] = ARIMAPerMarket
 

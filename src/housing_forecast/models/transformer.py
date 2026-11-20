@@ -1,38 +1,8 @@
-"""Small Transformer forecasters for the three core experiments.
+"""Transformer forecasters for shared, per-market and fine-tuning experiments.
 
-Same Forecaster interface as the baselines. The training pool (--pool) decides
-what the model sees, so one class covers two experiments:
-
-    --models transformer     --pool target_only           Taiwan-only
-    --models transformer     --pool overseas_plus_target  joint training
-    --models transformer_ft  --pool overseas_plus_target  pretrain on overseas, fine-tune on Taiwan
-    --models transformer     --pool overseas              zero-shot transfer (optional)
-
-Fine-tuning variants (same pool as transformer_ft, one setting changed each):
-    transformer_ft_head    freeze embedding + encoder, fine-tune only the output head
-    transformer_ft_short   at most 20 fine-tuning epochs instead of 100
-    transformer_ft_lowlr   fine-tuning learning rate 1/100 of pretraining instead of 1/10
-
-Market embedding:
-    transformer_market     joint model plus a learned vector per market (series_id),
-                           added to every token, so the model knows which market a
-                           window comes from. During training each sample's market is
-                           replaced by an "unknown" slot with probability 0.1, so the
-                           model also learns a shared fallback for markets it has not seen.
-
-    transformer_per_market fits and scales each market separately.
-
-Inputs are the runner's windows X (samples, lookback, features), one token per
-quarter, already standardized inside the training fold. The model predicts all
-horizons at once from the last token.
-
-Early stopping uses a time-ordered split inside the training fold: the last
-`val_quarters` origins are the inner validation set, and the inner training set
-ends `gap_quarters` (or the largest horizon, if longer) earlier so its labels do not
-overlap the validation labels.
-After the best epoch count is found, the model is retrained from the same start
-on all training rows for that many epochs.
-"""
+Inputs are standardized quarterly windows. The last token predicts all horizons.
+Select epochs on a time split within training, then refit on the full fold.
+Optional market embeddings include an unknown-market slot."""
 
 from __future__ import annotations
 
@@ -435,23 +405,10 @@ class SharedTransformerFineTune(Forecaster):
 
 
 class SharedTransformerFineTuneSelect(SharedTransformerFineTune):
-    """Shared pretraining plus local fine-tuning, with each market's epoch count chosen inside training.
-
-    Added after the fixed 10-epoch run had been seen. For every fold and seed:
-
-    1. Split the fold's training rows by forecast date with the same rule as the shared model's
-       early stopping: the last `val_quarters` origins form an inner validation set, and the inner
-       training set ends `max(gap_quarters, largest horizon)` quarters earlier, so none of its labels
-       reach the inner validation period. Inner validation labels were already masked to the fold's
-       cutoff by the runner.
-    2. Refit input scaling on the inner training rows, pretrain a shared model on them, then fine-tune
-       a copy on each market's inner training rows and record that market's inner validation loss
-       after 0, 1, ..., `ft_max_epochs` epochs. Zero epochs means keeping the shared model.
-    3. Pick the epoch count with the lowest loss (ties go to fewer epochs). Markets without enough
-       inner training rows or inner validation windows get zero.
-    4. Pretrain again on all of the fold's training rows and fine-tune each market for its chosen
-       number of epochs. Predict the validation period with that model.
-    """
+    """Select each market’s fine-tuning epochs on an inner time split.
+    Include zero epochs to retain the shared forecast. Refit shared pretraining
+    and scaling within each split, then adapt on the full training fold.
+    Markets with insufficient local history retain the shared model."""
 
     name = "transformer_shared_ftsel"
 

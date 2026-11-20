@@ -1,14 +1,6 @@
-"""Data records for the LLM policy index.
+"""Records for announcements, model extractions and the manual policy timeline.
 
-Three tables move through the pipeline:
-
-    announcements  (C collects)      doc_id, source, published_date, title, url, text
-    extractions    (LLM output)      one structured record per announcement
-    manual timeline (C, gold standard)  event_id, date, policy_type, direction, housing_specific, description, source_url
-
-Direction convention, used everywhere: + = tightening, - = easing.
-    +2 strong tightening, +1 tightening, 0 neutral / unclear, -1 easing, -2 strong easing
-"""
+Direction ranges from -2 (strong easing) to +2 (strong tightening); zero is neutral."""
 
 from __future__ import annotations
 

@@ -1,14 +1,4 @@
-"""LLM policy index pipeline (nice to have, exploratory).
-
-    python scripts/policy_pipeline.py extract  [--backend mock|vllm|http] [--limit N]
-    python scripts/policy_pipeline.py index
-    python scripts/policy_pipeline.py eval
-    python scripts/policy_pipeline.py spotcheck-export
-    python scripts/policy_pipeline.py spotcheck-score results/policy/spotcheck_filled.csv
-
-Settings live in configs/policy.toml. Outputs go to results/policy/ and the
-quarterly index to data/interim/taiwan_policy_index.csv.
-"""
+"""Extract policy signals, build a quarterly index and check against manual labels."""
 
 from __future__ import annotations
 

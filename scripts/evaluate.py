@@ -1,19 +1,6 @@
-"""Score prediction CSVs: metrics table + paired block-bootstrap CIs against a reference model.
+"""Score prediction CSVs and estimate paired block-bootstrap intervals.
 
-Example:
-    python scripts/evaluate.py results/<experiment>/validation/preds_*.csv --reference no_change
-
-Files written by run_backtest.py carry a manifest (preds_<label>.meta.json); all
-manifests must agree on the information set (features, window, periods, data
-files) or the evaluation stops. Files without a manifest (e.g. a CSV from
-another script) are scored with a warning, and their seeds are checked against
-[run].deterministic_models.
-
-Writes next to the first input file:
-    metrics.csv                  point metrics per model and horizon (mean and sd over seeds)
-    metric_ci.csv                block-bootstrap CI of each model's RMSE and MAE
-    bootstrap_vs_<reference>.csv paired CI of each model's difference from the reference
-"""
+Only compare forecasts with matching information sets and forecast rows."""
 
 from __future__ import annotations
 

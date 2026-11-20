@@ -55,14 +55,8 @@ def load_b_processed(processed_dir: str | Path) -> pd.DataFrame:
 
 
 def attach_national_macro(hpi_rows: pd.DataFrame, macro: pd.DataFrame) -> pd.DataFrame:
-    """Give every series of a country (national + cities) the country's macro features.
-
-    Uses an OUTER join on quarter, so macro history from before the HPI starts is
-    kept. Changes such as the 4-quarter change of credit / GDP are computed later
-    on the full history; a left join on the HPI quarters would cut off the
-    earlier quarters they need (Taiwan HPI starts 2001Q1, so 2001's
-    4-quarter change needs 2000's ratio).
-    """
+    """Attach national macro observations to country series. Preserve macro history
+    before HPI begins, including markets with no earlier price observations."""
     cols = [c for c in B_FEATURES if c != "hpi" and c in macro.columns]
     out = []
     for sid, g in hpi_rows.groupby("series_id"):
@@ -81,18 +75,8 @@ TAIWAN_CPI_FILE = "taiwan_cpi_monthly_raw.csv"       # Spring 2026 Raw CPI_month
 def build_panel(b_processed_dir: str | Path, anahpi_path: str | Path | None = "data/raw/global/anahpi_quarterly_raw.csv",
                 add_anahpi_countries: bool = True,
                 taiwan_dir: str | Path = "data/raw/taiwan") -> tuple[pd.DataFrame, pd.DataFrame]:
-    """Combined panel for the backtest.
-
-    All inputs are in the repository:
-    - B's 4 countries: all their features (data/processed/)
-    - Taiwan national + 7 cities: nominal HPI and CPI index (copies of the Spring
-      2026 Raw tables) and B's macro files, all in `taiwan_dir`. Macro series are
-      national, so the 7 cities share them.
-    - other AnaHPI countries: real HPI only (larger HPI-only pretraining pool),
-      from `anahpi_path` (copy of Spring 2026 Raw AnaHPI_quarter_data.csv).
-      Skipped with a message if the file is missing.
-    Returns (panel, taiwan_cpi_monthly).
-    """
+    """Combine four-country observations, Taiwan raw data and optional OECD AnaHPI.
+    Preserve missing values; transformations are applied by the backtest."""
     taiwan_dir = Path(taiwan_dir)
     b = load_b_processed(b_processed_dir)
     parts = [b]

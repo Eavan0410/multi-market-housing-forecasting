@@ -1,8 +1,4 @@
-# Multi-market, long-horizon settings (exploratory, after Josh's 11/4 feedback).
-# Questions: can ONE model forecast many markets, is it more accurate than one model per
-# market, and at which horizons (1–20 quarters) is it accurate?
-# Everything not changed below matches configs/experiment.toml; keep [hpi_basis] and
-# [release_lag_days] in sync with that file when B confirms them.
+# Multi-market HPI forecasting, horizons 1–20 quarters.
 
 [target]
 series_id = "Taiwan_national"
@@ -17,9 +13,7 @@ main_horizon = 4                       # report the whole error-by-horizon curve
 # Calendar quarters of the forecast ORIGIN t. The same dates apply to every country.
 # Origins before validation_start are only ever used for training ("dev" warm-up).
 # validation_end + 20 must stay before test_start, so validation labels never use test-period prices.
-# h=20 labels exist only for origins up to about 2020Q2 (data end 2025), so the test window is earlier
-# than in experiment.toml. NOTE: it overlaps the 2012–2017 Taiwan validation runs we have already
-# looked at, so Taiwan results in this test window are not fully clean; say so in the report.
+# Taiwan short-horizon test dates overlap the earlier pilot.
 validation_start = "2000Q1"
 validation_end = "2009Q4"
 test_start = "2015Q1"
@@ -36,7 +30,7 @@ ffill_limit = 2                        # forward-fill at most 2 quarters, never 
 drop_nan_windows = true                # drop samples whose window still has gaps
 # Feature definitions and data gaps are in docs/backtest_framework.md.
 # Adding macro features (--features ...) drops every series that lacks them.
-use = ["hpi_qoq"]                      # HPI-only keeps all ~48 markets; macro features cut the pool to 5
+use = ["hpi_qoq"]                      # HPI-only input
 
 [hpi_basis]
 # "real" = already inflation-adjusted, "nominal" = deflated by CPI in our pipeline.
@@ -45,7 +39,7 @@ Taiwan = "nominal"                     # confirmed: Sinyi index is nominal; see 
 
 [release_lag_days]
 # Days after the end of the observed quarter when a value becomes public.
-# Placeholders until B's availability matrix is done.  TODO(B)
+# Publication-lag assumptions; see docs/hpi_release_lags.md.
 hpi = { default = 100, Taiwan = 60, Chile = 122 }
 cpi = { default = 30 }
 cpi_yoy = { default = 30 }

@@ -1,29 +1,7 @@
-"""Input-noise robustness check on the validation folds (no new data, no test period).
+"""Measure forecast sensitivity and RMSE under input noise on validation folds.
 
-Each model is trained exactly as in the main backtest. Its forecasts are then repeated with
-Gaussian noise added to the input HPI growth. One perturbation is drawn per market x input
-quarter x draw, so overlapping windows, folds and models all share it (each historical value
-is measured wrong once). Noise SD = level x one fixed scale: the SD of HPI growth in the first
-fold's training inputs (before the validation period). Training data are not changed.
-
-    OMP_NUM_THREADS=1 python scripts/run_noise_robustness.py            # all models, then summary
-    python scripts/run_noise_robustness.py --models ar ar_pooled no_change
-    python scripts/run_noise_robustness.py --summary-only               # redo table and plot
-
-Writes to results/robustness/noise/validation/ (use a new --out-dir for other settings):
-  errors_<model>.csv / .json   error sums per market, horizon, level, draw and seed, with the
-                               settings and data fingerprints they were produced with
-  noise_summary.csv            medians across markets, per horizon and for 3-6 / 16-20 quarters
-  noise_curve.png              the stability curves
-
-Three numbers per model and noise level, each the median across markets (>= 8 forecast dates;
-RMSE pooled over the range's horizons as in the main experiment, averaged over seeds):
-  mean_abs_change   mean |forecast with noise - forecast without noise|, in cumulative log growth:
-                    how much the forecast itself moves
-  vs_clean          RMSE(noisy) / RMSE(same model without noise): how much accuracy is lost
-  vs_no_change      RMSE(noisy) / RMSE(no-change): above 1 = worse than no forecast
-Ranges show the lowest and highest of the noise draws. No-change ignores its inputs.
-"""
+Each historical market-quarter receives the same perturbation across overlapping
+windows, models and folds. Training data stay unperturbed."""
 
 from __future__ import annotations
 

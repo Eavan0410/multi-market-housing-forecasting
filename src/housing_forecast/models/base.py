@@ -1,15 +1,7 @@
-"""Model interface every forecaster implements (baselines, GRU, transformers).
+"""Forecaster interface and reproducible random seeds.
 
-A model receives one fold's training SampleSet and predicts all horizons at
-once for the fold's test SampleSet:
-
-    model.fit(train, seed)                 # train.y may contain NaN (hidden labels) -> mask them
-    y_pred = model.predict(test)           # shape (n_test, n_horizons)
-
-Class attributes tell the runner how to treat the model:
-    stochastic    : True -> run once per seed in the fixed seed list
-    needs_scaling : True -> runner standardizes X with stats from the training fold
-"""
+Models fit one training fold and predict cumulative real HPI log growth at each
+horizon. Missing training labels are masked; predictions must be finite."""
 
 from __future__ import annotations
 

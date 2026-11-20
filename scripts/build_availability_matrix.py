@@ -1,40 +1,7 @@
-"""Build coverage and release evidence for 41 HPI markets and five-country macro data.
+"""Build HPI and macro-variable coverage with source and publication-date evidence.
 
-Install dependencies: python3 -m pip install pandas
-Run: python3 scripts/build_availability_matrix.py
-
-The only generated file is results/availability_matrix.csv. Rerunning replaces it.
-Original observations are never filled, interpolated or statistically scaled.
-Taiwan credit/GDP is explicitly derived from the quarter-end consumer-credit
-balance divided by the sum of four consecutive nominal GDP quarters, times 100.
-The raw source files are not changed and no intermediate dataset is exported.
-
-Coverage means distinct source months or quarters containing finite numbers.
-Monthly complete_quarters requires all three months; directly reported
-quarterly complete_quarters simply counts valid quarterly observations.
-Taiwan includes HPI, monthly CPI growth, GDP growth, interest rate and credit/GDP.
-CPI growth is derived only from actual index levels for the same month one year
-apart; the annual Index column is excluded. HPI uses the Taiwan column, checked
-against the second HPI file. Original monthly/quarterly frequencies are retained.
-Common coverage includes Taiwan only at frequencies supplied for its indicator;
-quarterly CPI still compares the original four countries. Taiwan GDP uses the
-upstream seasonally adjusted QoQ file directly; no YoY-to-QoQ conversion is made.
-Availability does not establish comparability: the Taiwan GDP file does not
-document its price basis or annualisation convention, and consumer credit
-has narrower documented coverage than BIS household/NPISH credit. All 359 valid
-Taiwan rate observations match the CBC's 10-year secondary-market bond series;
-all 447 valid consumer-credit balances match the CBC's consumer-loan subtotal.
-
-Public-source metadata was checked on 2026-10-28; Taiwan CPI/HPI on 2026-10-29.
-Release examples below are
-explicitly scoped to a reference period. News releases and national schedules
-do not establish first OECD database availability or constant historical lags.
-The raw files contain no release-date/vintage fields; no last-update timestamp
-is used as a first-release date. Research included the OECD calendar, dataset
-pages, indicator/methodology pages and the OECD API documentation:
-https://www.oecd.org/en/data/insights/statistical-releases/release-dates-for-oecd-statistics-news-releases.html
-https://www.oecd.org/en/data/insights/data-explainers/2024/09/api.html
-"""
+Count observed periods and complete quarters. Flag conflicting observations and
+keep estimated release lags distinct from verified historical availability."""
 
 import argparse
 from decimal import Decimal
@@ -179,12 +146,12 @@ def metadata_value(frame, column):
 
 
 def read_raw(variable, raw_dir):
-    """Step 1: read the relocated raw files for the original four countries."""
+    """read the relocated raw files for the original four countries."""
     path = raw_dir / "four_countries" / f"{variable}_raw.csv"
     if not path.exists() and variable == "real_income_growth":
         # The merged remote commit deleted this source file. Keep the original
         # variable's quarterly rows visible with zero coverage; do not reuse
-        # old matrix counts or the teammate's processed income observations.
+        # old matrix counts or processed income observations.
         return pd.DataFrame(columns=["country_code", "FREQ", "period", "raw_value", "valid"])
     raw = pd.read_csv(path, dtype=str, keep_default_na=False)
     code_column = "country_code" if variable == "household_credit_gdp" else "REF_AREA"
@@ -253,7 +220,7 @@ def taiwan_months(periods):
 
 
 def read_taiwan_file(raw_dir, filename, expected_feature, frequency):
-    """Read the teammate's Taiwan layout and keep numeric validity explicit."""
+    """Read the Taiwan raw layout and keep numeric validity explicit."""
     path = raw_dir / "taiwan" / filename
     raw = pd.read_csv(path, dtype=str, keep_default_na=False)
     if not raw["REF_AREA"].eq("TWN").all():
@@ -407,7 +374,7 @@ def read_taiwan(variable, raw_dir):
 
 
 def valid_periods(group):
-    """Step 2: deduplicate periods and flag conflicting values explicitly."""
+    """deduplicate periods and flag conflicting values explicitly."""
     valid = group.loc[group["valid"]]
     duplicates = valid.loc[valid.duplicated("period", keep=False)]
     for period, rows in duplicates.groupby("period"):
@@ -421,7 +388,7 @@ def valid_periods(group):
 
 
 def coverage_statistics(periods, frequency):
-    """Step 3: count observed periods, internal gaps and complete quarters."""
+    """count observed periods, internal gaps and complete quarters."""
     if not periods:
         return {"first_period": "", "last_period": "", "valid_observations": 0,
                 "gaps_inside_span": 0, "complete_quarters": 0}
@@ -442,7 +409,7 @@ def coverage_statistics(periods, frequency):
 
 
 def measurement_metadata(variable, group, code):
-    """Step 4: separate units, price basis, adjustment and transformation."""
+    """separate units, price basis, adjustment and transformation."""
     if code == "TWN":
         return taiwan_metadata(variable, group)
     filename = f"data/raw/four_countries/{variable}_raw.csv"
@@ -722,7 +689,7 @@ def taiwan_publication_metadata(variable, periods, group):
 
 
 def publication_metadata(code, variable, frequency, periods, group):
-    """Step 5: attach traceable timing examples, with their precise limitations."""
+    """attach traceable timing examples, with their precise limitations."""
     if code == "TWN":
         return taiwan_publication_metadata(variable, periods, group)
     example = PUBLICATION_EXAMPLES.get((code, variable, frequency))
@@ -909,7 +876,7 @@ def build_matrix(raw_dir, market_list=ROOT / "docs/market_list.csv", release_lag
 
 
 def export_matrix(matrix, output_dir):
-    """Step 6: write the matrix to CSV."""
+    """write the matrix to CSV."""
     output_dir.mkdir(parents=True, exist_ok=True)
     csv_path = output_dir / "availability_matrix.csv"
     matrix.to_csv(csv_path, index=False, encoding="utf-8")

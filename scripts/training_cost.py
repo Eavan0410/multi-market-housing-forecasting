@@ -1,18 +1,6 @@
-"""How many models each approach trains, and how long one fold takes.
+"""Count fitted models and optionally time one validation fold with --time.
 
-Counts come from the saved validation runs (no retraining). A "final model" is one set
-of parameters used to forecast a fold: one per seed for the Transformers, one per fold for
-the deterministic AR models (the 20 horizon regressions of one AR count as one model).
-"Training runs" also include the extra fit that picks the epoch count on a time split
-inside the fold, and the inner-stage fits of the second fine-tuning setting.
-
-    python scripts/training_cost.py                      # counts only (no torch needed)
-    OMP_NUM_THREADS=1 python scripts/training_cost.py --time   # also time one fold per approach
-
-Writes results/training_cost.csv and, with --time, results/training_time.csv.
-Timings are wall-clock seconds on the machine that runs the script, for the last
-validation fold (the largest training set) and one seed.
-"""
+Record fallback cases separately from fitted models."""
 
 from __future__ import annotations
 

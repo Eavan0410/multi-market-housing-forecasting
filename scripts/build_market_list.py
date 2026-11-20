@@ -1,18 +1,4 @@
-"""List every national market with its HPI coverage, to help choose evaluation and
-leave-one-market-out markets (choose from data properties only, never from model results).
-
-    python scripts/build_market_list.py
-
-Writes
-    docs/market_list.csv          one row per market: coverage, history group, large jumps in
-                                  REAL HPI growth (Taiwan deflated with CPI, as in the pipeline),
-                                  validation origins, and how many folds it actually trains in
-    docs/market_fold_samples.csv  training samples per market and validation fold
-
-Being on a pool's list is not the same as contributing training data: a market only adds
-training samples to a fold once it has published labels before that fold's cutoff. Training
-counts follow the timing rules in the config, so rebuild this after the timing rules change.
-"""
+"""Summarize national HPI coverage, forecast dates and training samples by market."""
 
 from __future__ import annotations
 
@@ -107,7 +93,7 @@ def main() -> None:
             "series_id": sid,
             "region": REGION.get(sid, "?"),
             "hpi_source": "Taiwan raw (nominal HPI, deflated with Taiwan CPI in the pipeline)" if sid.startswith("Taiwan")
-                          else ("four_countries (B)" if sid in B_FILES else "OECD AnaHPI (real)"),
+                          else ("four_countries" if sid in B_FILES else "OECD AnaHPI (real)"),
             "hpi_start": str(start), "hpi_end": str(end),
             "n_quarters": observed, "missing_quarters_inside": span - observed,
             "history": history_group(start),

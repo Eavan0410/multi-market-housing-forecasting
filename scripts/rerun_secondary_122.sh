@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
-# Rerun the secondary validation experiments at the 122-day forecast date (Josh, 11/16:
-# keep Chile, use 122 days). The main comparison is already in results/long_hpi_122.
-# Run from the repository root in the hpf environment:   bash scripts/rerun_secondary_122.sh
-# Takes about an hour on a laptop. Training steps whose prediction files already exist are
-# skipped, so the script can be restarted after an interruption (delete a folder to redo it).
+# Run secondary validation experiments with the 122-day forecast date.
 set -euo pipefail
 export OMP_NUM_THREADS=1          # Transformer runs are only repeatable single-threaded
 C=configs/experiment_long.toml

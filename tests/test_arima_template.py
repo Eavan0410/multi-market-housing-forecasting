@@ -1,5 +1,4 @@
-"""Checks for the parts of the ARIMA template that A wrote (history building, cumulative
-forecasts, fallbacks). B's fit_one / forecast_path are replaced by a simple stand-in here."""
+"""Check ARIMA history construction, cumulative forecasts and fallback behavior."""
 
 import importlib.util
 from pathlib import Path

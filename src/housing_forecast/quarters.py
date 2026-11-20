@@ -1,13 +1,4 @@
-"""Quarter and date helpers.
-
-All tables in this project write quarters as strings like "2010Q1".
-Inside the code we turn them into pandas Period objects, because a Period
-knows calendar arithmetic:
-
-    pd.Period("2010Q4", freq="Q") + 1   ->  Period("2011Q1")
-
-So "t + h quarters" is just `period + h`, and we never count rows by hand.
-"""
+"""Quarter-string conversion and calendar arithmetic."""
 
 from __future__ import annotations
 

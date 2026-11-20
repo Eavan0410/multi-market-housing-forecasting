@@ -15,11 +15,7 @@ from housing_forecast.models.base import Forecaster
 
 
 def _quarter_values(s: SampleSet, rows: np.ndarray, j: int) -> dict[int, float]:
-    """Map quarter ordinal -> growth value, read from the input windows of `rows`.
-
-    The window of a sample with origin t holds g_{t-L+1}, ..., g_t (L = lookback), so
-    overlapping windows give back the whole history, including the first L-1 quarters.
-    """
+    """Reconstruct quarterly growth from overlapping input windows."""
     L = s.X.shape[1]
     origins = pd.PeriodIndex(s.meta["origin"].iloc[rows], freq="Q").asi8
     out: dict[int, float] = {}
@@ -88,11 +84,7 @@ def fit_one(history: np.ndarray, max_p: int = 4, max_q: int = 2):
 
 
 def forecast_path(fitted, history: np.ndarray, steps: int) -> np.ndarray:
-    """Forecast the next `steps` quarterly growth rates after the END of `history`.
-
-    `history` can be longer than the training history (it includes quarters known at the
-    forecast date). Keep the fitted parameters and only re-run the filter on it.
-    """
+    """Filter available history with fitted parameters, then forecast steps ahead."""
     updated = fitted.apply(history, refit=False)
     return np.asarray(updated.forecast(steps))
 

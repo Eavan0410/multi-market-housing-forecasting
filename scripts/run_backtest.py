@@ -90,7 +90,7 @@ def main() -> None:
         path = out / f"preds_{label}.csv"
         preds.to_csv(path, index=False)
         diag = preds.attrs.pop("diagnostics", None)
-        if diag is not None:   # e.g. which ARIMA forecasts came from a fallback; not named preds_* so evaluate globs skip it
+        if diag is not None:   # Exclude diagnostics from the preds_* evaluation glob.
             diag.to_csv(out / f"diag_{label}.csv", index=False)
         write_manifest(path, make_manifest(
             cfg, experiment=experiment, phase=args.phase, model=label, base_model=name,

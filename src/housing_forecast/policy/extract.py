@@ -1,10 +1,4 @@
-"""Run the model over announcements, validate its JSON, and cache the results.
-
-Each announcement gets exactly one Extraction line in a JSONL cache file. The
-cache key is (doc_id, text hash, model, prompt version), so re-running only
-processes new or changed documents, and changing the model or prompt starts a
-fresh file instead of mixing outputs.
-"""
+"""Extract and validate policy records, caching by document, text hash, model and prompt version."""
 
 from __future__ import annotations
 

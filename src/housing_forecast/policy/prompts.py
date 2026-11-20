@@ -1,8 +1,4 @@
-"""Prompt for turning one announcement into one structured record.
-
-Change PROMPT_VERSION whenever the wording changes: cached extractions are keyed
-by it, so old outputs are never mixed with new ones.
-"""
+"""Policy extraction prompt. Increment PROMPT_VERSION when changing its wording."""
 
 from __future__ import annotations
 

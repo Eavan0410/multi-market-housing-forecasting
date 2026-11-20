@@ -25,9 +25,7 @@ DEFAULT_FEATURES = (FeatureSpec("hpi_qoq", "hpi"),)
 
 
 def features_from_config(cfg: dict) -> tuple[FeatureSpec, ...]:
-    """configs [features].use -> specs. hpi_* features take the HPI release lag;
-    a derived feature "<var>_d4" (4-quarter change) takes the lag of <var>;
-    any other feature takes the lag listed under its own name."""
+    """Map features to release lags; derived changes inherit the source lag."""
     names = cfg["features"]["use"]
     if "hpi_qoq" not in names:
         raise ValueError("hpi_qoq (the target series' own past prices) must stay in the features")

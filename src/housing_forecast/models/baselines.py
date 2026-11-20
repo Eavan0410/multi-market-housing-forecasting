@@ -21,14 +21,10 @@ class NoChange(Forecaster):
 
 
 class ARDirect(Forecaster):
-    """Direct AR(p): for each horizon h, OLS of y(t,h) on [1, g_t, g_{t-1}, ..., g_{t-p+1}],
-    where g is the series' own quarterly real HPI log growth (feature `hpi_qoq`).
+    """Direct OLS of cumulative growth on p quarterly HPI-growth lags.
 
-    per_series=True fits one model per series using only that series' training
-    rows (the Taiwan-only AR). Where a series has too few rows for a horizon, that
-    horizon falls back to the model pooled over all training rows; the other
-    horizons keep the series' own fit.
-    """
+    With per_series=True, fit each market separately and use pooled coefficients
+    for horizons with insufficient local observations."""
 
     name = "ar"
 
@@ -80,11 +76,7 @@ class ARDirect(Forecaster):
 
 
 class ARPooled(ARDirect):
-    """AR fitted on all training series together (no per-series models).
-
-    With --pool overseas_plus_target this is one AR shared by the overseas
-    markets and Taiwan, so the overseas data actually affects Taiwan's forecast.
-    """
+    """Direct AR fitted jointly across all training markets."""
 
     name = "ar_pooled"
 
@@ -93,8 +85,7 @@ class ARPooled(ARDirect):
 
 
 class ARPooled8(ARPooled):
-    """Pooled AR with 8 lags: the same eight quarters of history the Transformer sees.
-    Used to check whether the Transformer's edge over pooled AR(4) is only the longer window."""
+    """Pooled AR with the same eight-quarter input window as the Transformer."""
 
     name = "ar_pooled8"
 
@@ -103,9 +94,7 @@ class ARPooled8(ARPooled):
 
 
 class ARXDirect(ARDirect):
-    """AR with exogenous inputs: the last p values of EVERY input feature (e.g. HPI growth and
-    CPI inflation), one direct regression per horizon. With only hpi_qoq it equals ARDirect.
-    The linear counterpart of giving the Transformer the same extra feature."""
+    """Direct regression on p lags of every feature; HPI-only inputs reduce to ARDirect."""
 
     name = "arx"
 

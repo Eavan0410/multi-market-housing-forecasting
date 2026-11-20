@@ -1,0 +1,13 @@
+1. Test-period median per-market RMSE relative to no-change. Shading marks 3–6 and 16–20 quarters. Market coverage varies with horizon.
+
+2. Median market RMSE(shared)/RMSE(baseline), with 95% paired circular-block bootstrap intervals (20-quarter blocks), 16–20 quarters ahead. Validation: 38 markets; test: 48 markets. Ratios below 1 favor the shared model.
+
+3. One dot per test market; vertical marks show history-group medians. Within each horizon band, pool squared errors, take RMSE per seed and average across seeds. Group differences are descriptive; history length is not isolated from market composition.
+
+4. RMSE relative to the five-market training pool on the same five evaluation markets. Intervals use 20-quarter blocks. Endpoints are shared across addition orders. The two periods use the same vertical scale within each horizon range.
+
+5. Mean observed and predicted cumulative real HPI log growth across 16–20-quarter test forecasts, averaged over dates, horizons and seeds. Values are log change × 100, not percentage changes. Mean bias is descriptive and does not establish the cause of RMSE differences.
+
+A. Test, 16–20 quarters. Target markets excluded from training; their recent HPI windows remain available at forecast time. Median RMSE ratios and 95% intervals use 20-quarter blocks.
+
+B. Main test comparison at 16–20 quarters under four bootstrap block lengths. The point estimate is unchanged; only the uncertainty calculation differs. The figure plots interval width; full bounds are in results/block_length_sensitivity_122_test.csv.

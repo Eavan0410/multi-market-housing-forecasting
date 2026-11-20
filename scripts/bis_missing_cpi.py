@@ -63,7 +63,7 @@ def make_session() -> requests.Session:
 
 
 def extract_rows(text: str, country: str, measure: str, requested_key: str) -> list[dict]:
-    """Normalize actual BIS response column variants and ensure no wrong series leaks."""
+    """Normalize BIS response columns and validate the requested series."""
     if text.lstrip().startswith(("<", "{", "[")):
         raise ValueError("Unexpected HTML/XML/JSON response; not an SDMX-CSV dataset")
     reader = csv.DictReader(io.StringIO(text.lstrip("\ufeff")))
@@ -204,7 +204,7 @@ def perform_merge(base_file: Path, bis_rows: list[dict], output_file: Path,
         else:
             added.append(row)
             seen.add(k)
-    # Preserve existing data exactly and append only genuinely new keys.
+    # Append new keys without changing existing observations.
     merged = existing + sorted(added, key=lambda r: (
         r["REF_AREA"], r["Period"], r["TRANSFORMATION"]))
     with output_file.open("w", encoding="utf-8-sig", newline="") as out:

@@ -1,11 +1,4 @@
-"""Readers for raw tables stored as copies of the Spring 2026 files.
-
-load_anahpi             OECD AnaHPI (real house price index) -> long panel rows
-load_taiwan_hpi         Taiwan national + 7 city HPI table -> long panel rows
-load_taiwan_cpi_monthly Taiwan CPI table (Year x month) -> country, month, cpi
-
-Raw levels only: no filling, scaling or growth rates.
-"""
+"""Read raw OECD and Taiwan HPI/CPI levels without filling or scaling."""
 
 from __future__ import annotations
 

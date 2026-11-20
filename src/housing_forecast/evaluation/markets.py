@@ -32,11 +32,7 @@ def metrics_by_market(preds: pd.DataFrame) -> pd.DataFrame:
 
 
 def relative_to_reference(by_market: pd.DataFrame, reference: str, min_origins: int = 8) -> pd.DataFrame:
-    """Add rel_rmse / rel_mae = model metric / reference metric in the same market and horizon.
-
-    Market-horizon cells with fewer than `min_origins` forecasts are dropped: a ratio
-    from a handful of points is mostly noise.
-    """
+    """Compute per-market error ratios, excluding cells below min_origins."""
     if reference not in set(by_market["model"]):
         raise ValueError(f"reference model {reference!r} is not among the predictions")
     ref = by_market[by_market["model"] == reference][["series_id", "horizon", "rmse", "mae"]]

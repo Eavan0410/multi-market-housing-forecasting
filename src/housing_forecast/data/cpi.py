@@ -1,8 +1,7 @@
-"""Load national CPI inflation from OECD, BIS, FRED and Taiwan sources.
+"""Load quarterly CPI inflation from OECD, BIS, FRED and Taiwan.
 
-Prefer the gap file, then the main export, then the four-country fallback.
-Use native year-on-year rates when available. Aggregate complete monthly quarters
-and retain native quarterly data; do not interpolate missing months."""
+Prefer gap-file observations, then the main export and four-country fallback.
+Retain native quarterly data and require complete monthly quarters."""
 
 from __future__ import annotations
 
@@ -93,12 +92,9 @@ def quarterly_yoy(native: pd.DataFrame) -> pd.DataFrame:
 
 
 def attach_cpi_yoy(panel: pd.DataFrame, quarterly: pd.DataFrame, index_countries=("Taiwan",)) -> pd.DataFrame:
-    """Replace the panel's cpi_yoy with this module's quarterly series, matched on country and quarter.
+    """Replace cpi_yoy by country and quarter; leave missing observations as NaN.
 
-    Countries in `index_countries` (Taiwan) are left empty here: prepare_panel fills them from
-    their monthly CPI index with the same 4-quarter definition. Rows without a CPI value stay
-    NaN, so input windows that need them are dropped (drop_nan_windows).
-    """
+    Taiwan inflation is derived from CPI index levels in prepare_panel."""
     out = panel.drop(columns=["cpi_yoy"], errors="ignore")
     q = quarterly[~quarterly["country"].isin(index_countries)]
     out = out.merge(q[["country", "quarter", "cpi_yoy"]], on=["country", "quarter"], how="left")

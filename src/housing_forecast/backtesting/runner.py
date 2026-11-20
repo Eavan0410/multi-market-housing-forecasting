@@ -74,11 +74,7 @@ def run_backtest(
     model_name: str | None = None,
     reference_model_name: str | None = None,
 ) -> pd.DataFrame:
-    """Run one model over all folds and return predictions in the shared CSV format.
-
-    A model that has a diagnostics() method (e.g. ARIMA fit / fallback status per market)
-    gets it collected per fold and seed into preds.attrs["diagnostics"].
-    """
+    """Run all folds and seeds; store optional diagnostics in preds.attrs["diagnostics"]."""
     eval_series = cfg["target"]["eval_series"]
     seeds = cfg["run"]["seeds"]
     gap = cfg["periods"]["gap_quarters"]

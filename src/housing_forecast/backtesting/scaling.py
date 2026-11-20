@@ -6,11 +6,7 @@ import numpy as np
 
 
 class WindowStandardizer:
-    """Per-feature mean / std over all training samples and time steps.
-
-    fit() sees only the training fold; transform() is then applied unchanged
-    to that fold's test samples. Re-created for every fold by the runner.
-    """
+    """Feature-wise mean and standard deviation fitted separately on each training fold."""
 
     def __init__(self, eps: float = 1e-8):
         self.eps = eps

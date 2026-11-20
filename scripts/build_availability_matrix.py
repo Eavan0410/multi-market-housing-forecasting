@@ -1,7 +1,4 @@
-"""Build HPI and macro-variable coverage with source and publication-date evidence.
-
-Count observed periods and complete quarters. Flag conflicting observations and
-keep estimated release lags distinct from verified historical availability."""
+"""Build observed coverage and release-date evidence; flag conflicts and unverified lags."""
 
 import argparse
 from decimal import Decimal
@@ -149,9 +146,7 @@ def read_raw(variable, raw_dir):
     """read the relocated raw files for the original four countries."""
     path = raw_dir / "four_countries" / f"{variable}_raw.csv"
     if not path.exists() and variable == "real_income_growth":
-        # The merged remote commit deleted this source file. Keep the original
-        # variable's quarterly rows visible with zero coverage; do not reuse
-        # old matrix counts or processed income observations.
+        # Missing source: report zero coverage rather than reuse processed values.
         return pd.DataFrame(columns=["country_code", "FREQ", "period", "raw_value", "valid"])
     raw = pd.read_csv(path, dtype=str, keep_default_na=False)
     code_column = "country_code" if variable == "household_credit_gdp" else "REF_AREA"
@@ -202,11 +197,7 @@ def read_raw(variable, raw_dir):
 
 
 def taiwan_months(periods):
-    """Parse source labels like Jul88 without relying on the machine's locale.
-
-    Use the standard explicit 1969-2068 two-digit-year window: 88 means 1988,
-    and 25 means 2025. No date rows or missing economic values are generated.
-    """
+    """Parse labels such as Jul88 with a fixed 1969–2068 two-digit-year window."""
     parts = periods.str.extract(r"^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)(\d{2})$")
     if parts.isna().any().any():
         raise ValueError("Unexpected Taiwan monthly date format.")
@@ -251,11 +242,7 @@ def taiwan_observations(periods, values, frequency):
 
 
 def read_year_grid(path, labels, frequency):
-    """Reshape a Year-by-month/quarter table, keeping each source cell intact.
-
-    labels explicitly lists the observation columns. For CPI this deliberately
-    excludes Index, which is an annual summary rather than another month.
-    """
+    """Reshape selected observation columns, excluding annual summaries."""
     table = pd.read_csv(path, dtype=str, keep_default_na=False, encoding="utf-8-sig")
     if set(table.columns) != {"Year", *labels, *(["Index"] if frequency == "M" else [])}:
         raise ValueError(f"Unexpected columns in {path.name}.")
@@ -292,11 +279,7 @@ def read_taiwan_hpi(raw_dir):
 
 
 def read_taiwan_cpi(raw_dir):
-    """Derive monthly YoY only when both actual CPI index inputs are present.
-
-    Use exact calendar months, not the twelfth previous nonmissing row: gaps
-    must never cause us to compare the wrong years. Nothing is interpolated.
-    """
+    """Derive monthly YoY from exact calendar-month pairs without interpolation."""
     labels = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"]
     levels = read_year_grid(raw_dir / "taiwan" / TAIWAN_FILES["cpi_yoy"], labels, "M")
     source_periods = valid_periods(levels)
@@ -321,13 +304,9 @@ def read_taiwan_cpi(raw_dir):
 
 
 def taiwan_credit_quarters(credit, nominal_gdp):
-    """Count quarters with the exact raw inputs needed for the agreed ratio.
+    """Use quarter-end credit and four consecutive nominal GDP quarters in NT$ million.
 
-    Credit is a stock, so use only the balance in March, June, September or
-    December. Do not average or add monthly balances. Every denominator must
-    have four actual, consecutive, finite nominal GDP quarters in NT$ million.
-    A positive denominator is required. Both inputs use the same currency unit.
-    """
+    Require a positive GDP denominator."""
     if metadata_value(credit, "UNIT_MEASURE") != "NT$ million":
         raise ValueError("Taiwan credit currency/unit differs from the agreed formula.")
     if metadata_value(nominal_gdp, "UNIT_MEASURE") != "NT$ million":
@@ -887,11 +866,7 @@ CONFIGS = (ROOT / "configs/experiment.toml", ROOT / "configs/experiment_long.tom
 
 
 def lags_above_config(release_lags, configs=CONFIGS):
-    """Supported HPI lags that are longer than the lag assumed in an experiment config.
-
-    Only rows with evidence (any status except unverified) are checked. The configs are
-    read, never changed; a longer lag means the timing rule needs review before rerunning.
-    """
+    """Flag evidence-backed HPI lags exceeding configured assumptions; leave configs unchanged."""
     try:
         import tomllib
     except ModuleNotFoundError:  # Python 3.10

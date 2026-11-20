@@ -1,8 +1,4 @@
-"""Row-wise transforms that only look backwards in time (no fitting, so no leakage).
-
-Anything that must be FITTED (standardization, feature selection, regressions)
-lives in backtesting/scaling.py and the models, and is fitted per training window.
-"""
+"""Backward-looking transforms; fitted preprocessing belongs in each training fold."""
 
 from __future__ import annotations
 
@@ -15,13 +11,9 @@ from housing_forecast.quarters import to_period
 
 def monthly_to_quarterly(monthly: pd.DataFrame, value_col: str, how: str = "mean",
                          min_months: int = 3) -> pd.DataFrame:
-    """Monthly long table (country, month 'YYYY-MM', value) -> quarterly.
+    """Aggregate monthly data by mean or quarter-end value.
 
-    how="mean": quarterly average, for rates and flows (interest rate, CPI).
-    how="last": value of the quarter's last month, for stocks (loan balances).
-    A quarter is kept only if it has at least `min_months` months; with
-    how="last" the last month itself must be present.
-    """
+    Require min_months observations; how="last" also requires the final month."""
     df = monthly.dropna(subset=[value_col]).copy()
     m = pd.PeriodIndex(pd.to_datetime(df["month"]), freq="M")
     df["quarter"] = m.asfreq("Q").astype(str)
@@ -45,12 +37,9 @@ def monthly_to_quarterly_mean(monthly: pd.DataFrame, value_col: str, min_months:
 
 def credit_to_gdp(df: pd.DataFrame, credit_col: str, gdp_col: str, out_col: str,
                   key: str = "country") -> pd.DataFrame:
-    """credit (end of quarter) / sum of the last 4 quarters of nominal GDP * 100.
+    """Quarter-end credit / four-quarter nominal GDP, as a percentage.
 
-    Same definition as BIS "credit, % of GDP". The 4-quarter sum is taken on a
-    calendar-complete index, so a missing quarter gives NaN instead of summing
-    the wrong quarters.
-    """
+    Require four consecutive GDP quarters in matching currency units."""
     pieces = []
     for k, g in df.groupby(key):
         g = g.assign(_q=to_period(g["quarter"])).set_index("_q").sort_index()

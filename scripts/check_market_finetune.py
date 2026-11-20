@@ -1,9 +1,6 @@
-"""Check fine-tuning against its shared starting model, including adapted rows only.
+"""Compare fine-tuning with its shared starting model on all and eligible rows.
 
-For the inner-selection run (--select), the restricted sample keeps market-folds where an epoch
-count was actually chosen in every seed (including a choice of zero), so it does not condition on
-whether fine-tuning was picked.
-"""
+With --select, eligibility requires an epoch choice in every seed, including zero."""
 
 from __future__ import annotations
 

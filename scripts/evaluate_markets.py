@@ -79,7 +79,8 @@ def plot_failure_cases(metrics: pd.DataFrame, markets: list[str], path: Path,
         ax.grid(alpha=0.15)
     axes[0, 0].set_ylabel("Transformer / baseline RMSE (>1 = worse)")
     axes[0, 0].legend(fontsize=8)
-    fig.suptitle("Selected failure cases — saved validation errors, RMSE averaged over seeds")
+    phase = "test" if "test" in path.parent.parts else "validation"
+    fig.suptitle(f"Selected failure cases — saved {phase} errors, RMSE averaged over seeds")
     fig.tight_layout()
     fig.savefig(path, dpi=150)
     plt.close(fig)

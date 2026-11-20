@@ -261,8 +261,6 @@ def main(argv=None):
             converted.extend(map(as_project_row, rows))
             dates = sorted(r["REQUESTED_PERIOD"] for r in rows)
             print(f"OK {iso3} {measure}: {len(rows):,} obs ({dates[0]} to {dates[-1]})")
-    # Avoid misleading output if any country/measure failed or is empty.
-    # User asked for one completed merged file, not silent partial downloads.
     if errors:
         print("ERROR: Some BIS downloads failed; no CSV was generated:", file=sys.stderr)
         for country, measure, reason in errors:
@@ -270,7 +268,6 @@ def main(argv=None):
         raise SystemExit(1)
     if not converted:
         raise SystemExit("No BIS observations downloaded. No output generated.")
-    # Unique observations per economy, frequency, transformation, period.
     converted.sort(key=lambda r: (r["REF_AREA"], r["Period"], r["TRANSFORMATION"]))
     keys = [(r["REF_AREA"], r["FREQ"], r["TRANSFORMATION"], r["Period"])
             for r in converted]

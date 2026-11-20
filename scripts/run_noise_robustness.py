@@ -201,7 +201,7 @@ def main() -> None:
 
     if not args.summary_only:
         settings = current_settings(args)
-        if args.overwrite:                       # one settings set per folder: clear the old files
+        if args.overwrite:
             for f in list(args.out_dir.glob("errors_*.csv")) + list(args.out_dir.glob("errors_*.json")):
                 f.unlink()
         cfg = load_config(args.config)

@@ -1,10 +1,6 @@
-"""Compare local fine-tuning with the exact shared model it started from.
+"""Compare shared forecasts with local fine-tuning.
 
-Default: every market is fine-tuned for a fixed number of epochs (--ft-epochs, first run).
-With --select-epochs: each market's epoch count, including zero, is chosen on a time split
-inside the fold's training data (SharedTransformerFineTuneSelect). This second recipe was
-added after the fixed-epoch results had been seen.
-"""
+Use ten fixed epochs or select epochs on a time split inside each training fold."""
 
 from __future__ import annotations
 
@@ -35,9 +31,11 @@ def main() -> None:
     parser.add_argument("--panel", default="data/interim/panel_quarterly.csv")
     parser.add_argument("--cpi", default="data/interim/taiwan_cpi_monthly.csv")
     parser.add_argument("--out-dir", type=Path, default=None,
-                        help="default: results/market_finetune_122/validation, or .../inner_select/validation with --select-epochs")
+                        help="default: results/market_finetune_122/<phase>, or .../inner_select/<phase> with --select-epochs")
+    parser.add_argument("--phase", default="validation", choices=["validation", "test"])
+    parser.add_argument("--unlock-test", action="store_true", help="only for the final frozen run")
     parser.add_argument("--markets", nargs="+", help="markets to adapt and score; pretraining still uses all national markets")
-    parser.add_argument("--folds", type=int, help="limit validation to its first N folds")
+    parser.add_argument("--folds", type=int, help="limit validation to its first N folds (validation only)")
     parser.add_argument("--seeds", type=int, nargs="+", help="override the configured seed list")
     parser.add_argument("--ft-epochs", type=int, default=10)
     parser.add_argument("--ft-lr-scale", type=float, default=0.1)
@@ -49,8 +47,10 @@ def main() -> None:
                         help="inner validation windows a market needs before its epochs are chosen")
     args = parser.parse_args()
     if args.out_dir is None:
-        args.out_dir = Path("results/market_finetune_122/inner_select/validation" if args.select_epochs
-                            else "results/market_finetune_122/validation")
+        base = Path("results/market_finetune_122")
+        args.out_dir = (base / "inner_select" / args.phase) if args.select_epochs else (base / args.phase)
+    if args.phase == "test" and (args.folds is not None or args.seeds is not None or args.markets):
+        parser.error("--folds, --seeds and --markets are for validation pilots; the test uses the frozen settings")
 
     cfg = load_config(args.config)
     if args.seeds is not None:
@@ -64,9 +64,9 @@ def main() -> None:
         if missing:
             parser.error(f"unknown national markets: {sorted(missing)}")
         cfg["target"]["eval_series"] = sorted(set(args.markets))
-    splits = make_splits(cfg, "validation", last_label_origin(samples, end_series(cfg)))
+    splits = make_splits(cfg, args.phase, last_label_origin(samples, end_series(cfg)), allow_test=args.unlock_test)
     if not splits:
-        parser.error("no validation folds")
+        parser.error(f"no {args.phase} folds")
     if args.folds is not None:
         if args.folds < 1:
             parser.error("folds must be positive")
@@ -99,7 +99,7 @@ def main() -> None:
         path = args.out_dir / f"preds_{name}.csv"
         frame.to_csv(path, index=False)
         manifest = make_manifest(
-            cfg, experiment="market_finetune", phase="validation", model=name,
+            cfg, experiment="market_finetune", phase=args.phase, model=name,
             base_model=model_cls.name if name == ADAPTED else "transformer",
             pool="national", stochastic=True, seeds=cfg["run"]["seeds"],
             panel_path=args.panel, cpi_path=args.cpi,

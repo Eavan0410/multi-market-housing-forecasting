@@ -1,28 +1,8 @@
-"""One ARIMA per market (traditional "one task - one model" baseline). TEMPLATE for B.
+"""Fit one ARIMA to each market's quarterly real HPI growth.
 
-What is already done here (A):
-  - rebuilding each market's quarterly growth history from the backtest windows,
-  - extending it with the quarters that are known at each forecast date,
-  - turning a path of quarterly growth forecasts into cumulative growth for h = 1..20,
-  - fallbacks and a record of every market that could not be fitted.
-
-What B fills in (search for "TODO(B)"):
-  - fit_one():        choose the ARIMA order and fit it on ONE market's training history,
-  - forecast_path():  forecast the next H quarterly growth rates from a fitted model.
-
-Run it like any other model:
-    python scripts/run_backtest.py --config configs/experiment_long.toml \
-        --models arima --pool national --experiment long_hpi
-
-Rules (from the project plan):
-  - choose the order with training data only (e.g. AIC on the training history); never
-    look at validation or test errors when choosing it;
-  - the series modelled is g_t = log(HPI_real[t] / HPI_real[t-1]) (feature `hpi_qoq`),
-    and the target is the cumulative growth  y(t, h) = g_{t+1} + ... + g_{t+h};
-  - every market that cannot be fitted or forecast falls back to its own average growth
-    and is recorded; run_backtest.py saves the record per fold as diag_arima__<pool>.csv
-    (split_id, series_id, n_train_obs, fit_status, reason, n_forecasts, n_fallback_forecasts),
-    so fallback forecasts are never reported as pure ARIMA results.
+Choose the order on the training history by AIC and sum the quarterly forecasts
+to obtain cumulative growth. Fall back to the market's average growth when the
+history is too short or a forecast cannot be made.
 """
 
 from __future__ import annotations
@@ -33,10 +13,6 @@ import pandas as pd
 from housing_forecast.backtesting.infoset import SampleSet
 from housing_forecast.models.base import Forecaster
 
-
-# ---------------------------------------------------------------------------
-# Helpers (done)
-# ---------------------------------------------------------------------------
 
 def _quarter_values(s: SampleSet, rows: np.ndarray, j: int) -> dict[int, float]:
     """Map quarter ordinal -> growth value, read from the input windows of `rows`.
@@ -80,21 +56,8 @@ def extend_history(train_hist: pd.Series | None, s: SampleSet, row: int, feature
     return _last_contiguous(values)
 
 
-# ---------------------------------------------------------------------------
-# B fills in these two functions
-# ---------------------------------------------------------------------------
-
 def fit_one(history: np.ndarray, max_p: int = 4, max_q: int = 2):
     """Choose an ARIMA(p, 0, q) order and fit it on one market's training growth history.
-
-    TODO(B):
-      - loop over p in 0..max_p and q in 0..max_q, fit each candidate, keep the lowest AIC;
-      - statsmodels example:
-            from statsmodels.tsa.arima.model import ARIMA
-            res = ARIMA(history, order=(p, 0, q), trend="c").fit()
-            res.aic
-      - return the chosen fitted result (anything forecast_path() can use);
-      - raise an exception if no candidate can be fitted (the caller records the fallback).
     """
     import warnings
 
@@ -129,20 +92,10 @@ def forecast_path(fitted, history: np.ndarray, steps: int) -> np.ndarray:
 
     `history` can be longer than the training history (it includes quarters known at the
     forecast date). Keep the fitted parameters and only re-run the filter on it.
-
-    TODO(B):
-      - statsmodels example:
-            res_new = fitted.apply(history)      # same parameters, longer history
-            return np.asarray(res_new.forecast(steps))
-      - return an array of length `steps`.
     """
     updated = fitted.apply(history, refit=False)
     return np.asarray(updated.forecast(steps))
 
-
-# ---------------------------------------------------------------------------
-# Forecaster (done)
-# ---------------------------------------------------------------------------
 
 class ARIMAPerMarket(Forecaster):
     """One ARIMA per market, fitted on that market's own training history only."""

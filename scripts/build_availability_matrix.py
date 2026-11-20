@@ -105,7 +105,6 @@ TAIWAN_CPI_SCHEDULE = (
 TAIWAN_CPI_RELEASE = "https://www.stat.gov.tw/News_Content.aspx?n=3703&s=235357"
 TAIWAN_CPI_BOOK = "https://ws.dgbas.gov.tw/001/Upload/464/relfile/10862/235361/pricebook.pdf"
 
-# These mappings apply to the actual raw dimension codes, not filename guesses.
 UNITS = {"IX": "Index points", "PA": "% per annum", "PC": "%", "PT_LF_SUB": "% of labour force"}
 ADJUSTMENTS = {"S": "SA", "Y": "SA", "N": "NSA", "_Z": "Not applicable"}
 REAL_BASES = {"L", "LR", "V", "PYP"}
@@ -314,7 +313,6 @@ def read_taiwan_hpi(raw_dir):
         raise ValueError("Taiwan HPI date columns disagree.")
     raw = taiwan_observations(table["Period"].str.replace("/", "", regex=False), table["台灣"], "Q")
     other = read_year_grid(raw_dir / "taiwan" / "taiwan_hpi_national_quarterly_raw.csv", ["Q1", "Q2", "Q3", "Q4"], "Q")
-    # Check duplicate conflicts first, then compare exact numeric observations.
     # The wide file's blank 2025Q4 must not become an extra observation.
     values = []
     for frame in [raw, other]:
@@ -901,7 +899,6 @@ def build_matrix(raw_dir, market_list=ROOT / "docs/market_list.csv", release_lag
                     **publication_metadata(code, variable, frequency, periods, group),
                 })
     matrix = pd.DataFrame(records, columns=COLUMNS)
-    # Display countries in the requested order and preserve project feature names.
     order = {country: index for index, country in enumerate(COUNTRIES.values())}
     matrix = matrix.sort_values("country", key=lambda column: column.map(order), kind="stable").reset_index(drop=True)
     if set(matrix["country"]) != set(COUNTRIES.values()):

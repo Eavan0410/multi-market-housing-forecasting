@@ -92,7 +92,7 @@ def noise_backtest(
     j = samples.feature_names.index(feature)
     if not splits:
         raise ValueError("no folds")
-    sd = float(np.nanstd(training_samples(samples, splits[0], train_pool).X[:, :, j]))   # fixed for all folds
+    sd = float(np.nanstd(training_samples(samples, splits[0], train_pool).X[:, :, j]))
     eval_series = cfg["target"]["eval_series"]
     seeds = cfg["run"]["seeds"]
     gap = cfg["periods"]["gap_quarters"]
@@ -109,7 +109,7 @@ def noise_backtest(
 
         probe = model_factory()
         if probe.needs_scaling:
-            scaler = WindowStandardizer().fit(train.X)            # training window only
+            scaler = WindowStandardizer().fit(train.X)
             train = train.replace(X=scaler.transform(train.X))
             test_X = {v: scaler.transform(X) for v, X in test_X.items()}
 

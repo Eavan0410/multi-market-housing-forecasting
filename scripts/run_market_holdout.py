@@ -1,4 +1,4 @@
-"""Forecast one market with a Transformer trained on the other national markets."""
+"""Forecast a held-out market and compare with the main run of the same phase."""
 
 from __future__ import annotations
 
@@ -26,16 +26,21 @@ def main() -> None:
     parser.add_argument("--config", default="configs/experiment_long.toml")
     parser.add_argument("--panel", default="data/interim/panel_quarterly.csv")
     parser.add_argument("--cpi", default="data/interim/taiwan_cpi_monthly.csv")
-    parser.add_argument("--reference-dir", type=Path, default=Path("results/long_hpi_122/validation"))
+    parser.add_argument("--phase", default="validation", choices=["validation", "test"])
+    parser.add_argument("--unlock-test", action="store_true", help="only for the final frozen run")
+    parser.add_argument("--reference-dir", type=Path, default=None,
+                        help="default: results/long_hpi_122/<phase>")
     parser.add_argument("--out-dir", type=Path, default=Path("results/market_holdout_122"))
     args = parser.parse_args()
+    if args.reference_dir is None:
+        args.reference_dir = Path("results/long_hpi_122") / args.phase
 
     cfg = load_config(args.config)
     market = args.market
     seeds = cfg["run"]["seeds"]
     label = "transformer__holdout"
     manifest = make_manifest(
-        cfg, experiment="market_holdout", phase="validation", model=label, base_model="transformer",
+        cfg, experiment="market_holdout", phase=args.phase, model=label, base_model="transformer",
         pool="national_except_market", stochastic=True, seeds=seeds, panel_path=args.panel, cpi_path=args.cpi,
     )
     frames, manifests = {}, {}
@@ -65,7 +70,7 @@ def main() -> None:
     def training_pool(meta):
         return national(meta) & meta["series_id"].ne(market).to_numpy()
 
-    splits = make_splits(cfg, "validation", last_label_origin(samples, end_series(cfg)))
+    splits = make_splits(cfg, args.phase, last_label_origin(samples, end_series(cfg)), allow_test=args.unlock_test)
     coverage = []
     scored_splits = set(frames[REFERENCES[0]]["split_id"])
     for split in splits:
@@ -91,7 +96,7 @@ def main() -> None:
     check_alignment(pd.concat(frames.values(), ignore_index=True),
                     expected_seeds={name: ref["seeds"] for name, ref in manifests.items()})
 
-    out = args.out_dir / market.lower() / "validation"
+    out = args.out_dir / market.lower() / args.phase
     out.mkdir(parents=True, exist_ok=True)
     for name, preds in frames.items():
         path = out / f"preds_{name}.csv"

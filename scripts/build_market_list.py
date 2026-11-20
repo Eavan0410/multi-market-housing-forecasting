@@ -74,7 +74,6 @@ def main() -> None:
     nat = prepared[prepared["geography_level"] == "national"].dropna(subset=["hpi_real"]).copy()
     nat["q"] = pd.PeriodIndex(nat["quarter"], freq="Q")
 
-    # training samples per market and fold, under the config's timing rules
     samples = build_samples(prepared, cfg, features_from_config(cfg))
     splits = make_splits(cfg, "validation", last_label_origin(samples, end_series(cfg)))
     fold_rows = []

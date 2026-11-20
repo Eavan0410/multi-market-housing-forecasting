@@ -1,16 +1,6 @@
-"""Run the market-scale validation with one fixed set of evaluation markets.
+"""Compare 5, 10, 20 and 41 training markets on five fixed evaluation markets.
 
-Training lists grow from 5 to 10, 20 and 41 markets in one of three pre-set orders
-(see generate_market_orders.py). Every run scores the same five evaluation markets.
-
-    OMP_NUM_THREADS=1 python scripts/run_market_scale.py                  # region rotation
-    OMP_NUM_THREADS=1 python scripts/run_market_scale.py --order history  # long history first
-    OMP_NUM_THREADS=1 python scripts/run_market_scale.py --order random   # seeded random
-
-The 5- and 41-market lists are the same in every order, so for the other orders those
-two runs are copied from the region-rotation folder after checking that the settings and
-training markets match. Only the 10- and 20-market runs are trained again.
-"""
+Region, history and random orders share their 5- and 41-market runs."""
 
 from __future__ import annotations
 
@@ -38,9 +28,8 @@ BASE_DIR = Path("results/market_scale_122")       # 122-day forecast date (100-d
 IGNORED_KEYS = {"created_utc", "market_order"}
 
 
-def default_out_dir(order: str) -> Path:
-    # The region-rotation run was the first one and keeps its original folder.
-    return BASE_DIR / "validation" if order == "region" else BASE_DIR / order / "validation"
+def default_out_dir(order: str, phase: str = "validation") -> Path:
+    return BASE_DIR / phase if order == "region" else BASE_DIR / order / phase
 
 
 def same_settings(previous: dict | None, manifest: dict) -> bool:
@@ -64,12 +53,17 @@ def main() -> None:
     parser.add_argument("--panel", default="data/interim/panel_quarterly.csv")
     parser.add_argument("--cpi", default="data/interim/taiwan_cpi_monthly.csv")
     parser.add_argument("--market-list", type=Path, default=MARKET_LIST_PATH)
+    parser.add_argument("--phase", default="validation", choices=["validation", "test"])
+    parser.add_argument("--unlock-test", action="store_true", help="only for the final frozen run")
     parser.add_argument("--out-dir", type=Path, default=None,
-                        help="default: results/market_scale_122/validation for region, else results/market_scale_122/<order>/validation")
-    parser.add_argument("--reuse-from", type=Path, default=BASE_DIR / "validation",
-                        help="folder whose runs may be copied when the training markets are the same")
+                        help="default: results/market_scale_122/<phase> for region, else results/market_scale_122/<order>/<phase>")
+    parser.add_argument("--reuse-from", type=Path, default=None,
+                        help="folder whose runs may be copied when the training markets are the same "
+                             "(default: the region-rotation folder of the same phase)")
     args = parser.parse_args()
-    out_dir = args.out_dir or default_out_dir(args.order)
+    out_dir = args.out_dir or default_out_dir(args.order, args.phase)
+    if args.reuse_from is None:
+        args.reuse_from = default_out_dir("region", args.phase)
 
     cfg = load_config(args.config)
     cfg["target"]["eval_series"] = list(EVALUATION_MARKETS)
@@ -80,9 +74,9 @@ def main() -> None:
     missing = set(ranked) - available
     if missing:
         parser.error(f"missing national markets in the prepared panel: {sorted(missing)}")
-    splits = make_splits(cfg, "validation", last_label_origin(samples, end_series(cfg)))
+    splits = make_splits(cfg, args.phase, last_label_origin(samples, end_series(cfg)), allow_test=args.unlock_test)
     if not splits:
-        parser.error("no validation folds")
+        parser.error(f"no {args.phase} folds")
     out_dir.mkdir(parents=True, exist_ok=True)
     print(f"Order: {ORDERS[args.order]} -> {out_dir}", flush=True)
 
@@ -109,7 +103,7 @@ def main() -> None:
         label = f"transformer__scale_{size}"
         path = out_dir / f"preds_{label}.csv"
         manifest = make_manifest(
-            cfg, experiment="market_scale", phase="validation", model=label, base_model="transformer",
+            cfg, experiment="market_scale", phase=args.phase, model=label, base_model="transformer",
             pool=f"scale_{size}", stochastic=True, seeds=seeds, panel_path=args.panel, cpi_path=args.cpi,
         )
         manifest["train_series"] = markets

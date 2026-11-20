@@ -32,7 +32,6 @@ ANNOUNCEMENT_COLUMNS = ["doc_id", "source", "published_date", "title", "url", "t
 TIMELINE_COLUMNS = ["event_id", "date", "policy_type", "direction", "housing_specific",
                     "description", "source_url"]
 
-# JSON schema the model must follow (also passed to vLLM for constrained decoding).
 EXTRACTION_SCHEMA = {
     "type": "object",
     "properties": {

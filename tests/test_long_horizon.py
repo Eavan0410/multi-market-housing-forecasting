@@ -50,7 +50,7 @@ def test_short_gap_needs_explicit_flag(long_cfg):
 
 def _run(cfg, samples, factory):
     splits = make_splits(cfg, "validation", last_label_origin(samples, cfg["target"]["series_id"]))
-    return run_backtest(samples, splits, factory, cfg, pool_national())   # check_no_leakage runs on every fold
+    return run_backtest(samples, splits, factory, cfg, pool_national())
 
 
 def test_all_national_markets_scored_up_to_h20_without_leakage(long_cfg, long_samples):

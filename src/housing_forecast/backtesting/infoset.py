@@ -121,7 +121,6 @@ def build_samples(panel: pd.DataFrame, cfg: dict, features=DEFAULT_FEATURES) -> 
     meta = pd.DataFrame(metas, columns=["series_id", "country", "geography_level", "origin", "_ref", "_hpi"])
     meta["as_of_date"] = quarter_end(pd.PeriodIndex(meta["origin"], freq="Q")) + pd.to_timedelta(meta["_ref"], unit="D")
 
-    # Attach labels (NaN where missing) and the date each label becomes known.
     wide = labels.pivot_table(index=["series_id", "q"], columns="horizon", values="y_true")
     wide = wide.reindex(columns=list(horizons))
     key = pd.MultiIndex.from_arrays([meta["series_id"], pd.PeriodIndex(meta["origin"], freq="Q")])

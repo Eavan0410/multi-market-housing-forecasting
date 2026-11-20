@@ -8,7 +8,6 @@ def _raw(rows):
 
 
 def test_quarterly_cpi_stored_as_months_is_kept():
-    # Australia-style: one observation per quarter in Feb, May, Aug, Nov
     rows = [("A", "M", f"2001-{m:02d}", "GY", v, "OECD") for m, v in zip((2, 5, 8, 11), (1, 2, 3, 4))]
     q = quarterly_yoy(native_yoy(_raw(rows)))
     assert q["quarter"].tolist() == ["2001Q1", "2001Q2", "2001Q3", "2001Q4"]

@@ -7,8 +7,10 @@ and the leave-one-market-out runs (#10), each held-out model against the shared 
 AR and no-change.
 
 Example:
-    python scripts/block_length_check.py
-Writes results/block_length_sensitivity_122.csv (one row per comparison, block length and horizon).
+    python scripts/block_length_check.py                 # validation
+    python scripts/block_length_check.py --phase test    # final test
+Writes results/block_length_sensitivity_122.csv (validation) or
+results/block_length_sensitivity_122_test.csv (one row per comparison, block length and horizon).
 """
 
 from __future__ import annotations
@@ -22,16 +24,16 @@ from housing_forecast.config import load_config
 from housing_forecast.evaluation.markets import paired_ratio_bootstrap
 
 # 122-day forecast date. The 100-day runs are in the same folders without "_122".
-MAIN = "results/long_hpi_122/validation"
-SCALE = "results/market_scale_122/validation"
-SCALE_HISTORY = "results/market_scale_122/history/validation"
-SCALE_RANDOM = "results/market_scale_122/random/validation"
-HOLDOUT = "results/market_holdout_122"
 HOLDOUT_MARKETS = ("australia", "chile", "taiwan_national", "portugal")
 
 
-def comparisons(main_dir=None):
+def comparisons(main_dir=None, phase: str = "validation"):
     """(experiment, folder, model A, model B)."""
+    MAIN = f"results/long_hpi_122/{phase}"
+    SCALE = f"results/market_scale_122/{phase}"
+    SCALE_HISTORY = f"results/market_scale_122/history/{phase}"
+    SCALE_RANDOM = f"results/market_scale_122/random/{phase}"
+    HOLDOUT = "results/market_holdout_122"
     shared = "transformer__national"
     for other in ("transformer_per_market__national", "ar__national", "arima__national", "ar_pooled__national",
                   "no_change__national"):
@@ -44,7 +46,7 @@ def comparisons(main_dir=None):
             yield f"market_scale_{order}", folder, f"transformer__scale_{size}", "transformer__scale_5"
     for market in HOLDOUT_MARKETS:
         for other in (shared, "ar__national", "no_change__national"):
-            yield f"holdout_{market}", f"{HOLDOUT}/{market}/validation", "transformer__holdout", other
+            yield f"holdout_{market}", f"{HOLDOUT}/{market}/{phase}", "transformer__holdout", other
 
 
 def main() -> None:
@@ -52,12 +54,15 @@ def main() -> None:
     ap.add_argument("--config", default="configs/experiment_long.toml")
     ap.add_argument("--blocks", type=int, nargs="+", default=[4, 8, 12, 20])
     ap.add_argument("--main-dir", type=Path, help="check only the main comparisons in this prediction directory")
-    ap.add_argument("--out", default="results/block_length_sensitivity_122.csv")
+    ap.add_argument("--phase", default="validation", choices=["validation", "test"])
+    ap.add_argument("--out", default=None, help="default: results/block_length_sensitivity_122[_test].csv")
     args = ap.parse_args()
+    if args.out is None:
+        args.out = "results/block_length_sensitivity_122" + ("_test" if args.phase == "test" else "") + ".csv"
 
     cfg = load_config(args.config)
     rows = []
-    for experiment, folder, a, b in comparisons(args.main_dir):
+    for experiment, folder, a, b in comparisons(args.main_dir, args.phase):
         preds = pd.concat([pd.read_csv(Path(folder) / f"preds_{m}.csv") for m in (a, b)], ignore_index=True)
         for block in args.blocks:
             try:

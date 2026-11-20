@@ -69,7 +69,6 @@ def test_arima_fits_and_forecasts_real_histories(samples):
 
 
 def test_cumulative_forecasts_with_stand_in(monkeypatch, cfg, samples):
-    # Stand-in for B's code: forecast every future quarter at the training mean.
     monkeypatch.setattr(arima, "fit_one", lambda h, *a, **k: float(np.mean(h)))
     monkeypatch.setattr(arima, "forecast_path", lambda m, h, steps: np.full(steps, m))
     cfg["target"]["eval_series"] = "all_national"

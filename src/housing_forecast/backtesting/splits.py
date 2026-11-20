@@ -121,11 +121,9 @@ def check_no_leakage(train: SampleSet, test: SampleSet, split: Split, gap: int) 
         raise AssertionError(f"{split.split_id}: training origin after train_origin_end")
     if len(test) and (te_origin.min() - tr_origin.max()).n < gap:
         raise AssertionError(f"{split.split_id}: gap between train and test origins < {gap}")
-    # Every visible training label must have been published by the cutoff date.
     visible = ~np.isnan(train.y)
     if (train.y_avail[visible] > np.datetime64(split.cutoff_date)).any():
         raise AssertionError(f"{split.split_id}: training label published after the cutoff date")
-    # And no visible training target may fall after the first test origin.
     for j, h in enumerate(train.horizons):
         tq = tr_origin[visible[:, j]] + h
         if len(tq) and tq.max() > split.first_test_origin:

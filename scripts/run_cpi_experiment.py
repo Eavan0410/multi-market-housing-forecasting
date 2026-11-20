@@ -50,7 +50,6 @@ from housing_forecast.evaluation.markets import (  # noqa: E402
 )
 from housing_forecast.models.registry import REGISTRY  # noqa: E402
 
-# model -> (label, arm). The ARX models only make sense with CPI; AR / no-change only without.
 PLAN = {
     "no_change": [("no_change__hpi", "hpi")],
     "ar_pooled": [("ar_pooled__hpi", "hpi"), ("arx_pooled__hpi_cpi", "hpi_cpi")],
@@ -163,7 +162,7 @@ def main() -> None:
             expected[label] = seeds
 
     preds = pd.concat(frames, ignore_index=True)
-    check_alignment(preds, expected_seeds=expected)          # every model scores the same rows
+    check_alignment(preds, expected_seeds=expected)
     by_market = metrics_by_market(preds)
     by_market.to_csv(args.out_dir / "metrics_by_market.csv", index=False)
     if "no_change__hpi" in expected:

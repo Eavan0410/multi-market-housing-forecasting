@@ -20,12 +20,15 @@ from housing_forecast.evaluation.markets import paired_ratio_bootstrap
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--dir", type=Path, default=Path("results/market_finetune_122/validation"))
+    parser.add_argument("--dir", type=Path, default=None,
+                        help="default: results/market_finetune_122/<phase> (inner_select/<phase> with --select)")
+    parser.add_argument("--phase", default="validation", choices=["validation", "test"])
     parser.add_argument("--config", default="configs/experiment_long.toml")
     parser.add_argument("--select", action="store_true", help="check the inner-selection run")
     args = parser.parse_args()
-    if args.select and args.dir == Path("results/market_finetune_122/validation"):
-        args.dir = Path("results/market_finetune_122/inner_select/validation")
+    if args.dir is None:
+        base = Path("results/market_finetune_122")
+        args.dir = (base / "inner_select" / args.phase) if args.select else (base / args.phase)
     cfg = load_config(args.config)
     a = "transformer_shared_ftsel__national" if args.select else "transformer_shared_ft__national"
     b = "transformer_shared__national"

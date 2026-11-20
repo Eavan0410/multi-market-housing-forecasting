@@ -1,0 +1,49 @@
+history,hpi_start,series_id,forecasts,kept,folds,folds_fitted,first_fitted_origin,eligible_for_comparison,kept_share
+long (by 1979),1960Q1,Japan,650,650,11,11,2015Q1,True,1.0
+long (by 1979),1966Q1,South Africa,630,630,11,11,2015Q1,True,1.0
+long (by 1979),1968Q2,United Kingdom,630,630,11,11,2015Q1,True,1.0
+long (by 1979),1970Q1,Australia,650,650,11,11,2015Q1,True,1.0
+long (by 1979),1970Q1,Belgium,630,630,11,11,2015Q1,True,1.0
+long (by 1979),1970Q1,Canada,650,650,11,11,2015Q1,True,1.0
+long (by 1979),1970Q1,Denmark,630,630,11,11,2015Q1,True,1.0
+long (by 1979),1970Q1,Finland,630,630,11,11,2015Q1,True,1.0
+long (by 1979),1970Q1,France,630,630,11,11,2015Q1,True,1.0
+long (by 1979),1970Q1,Germany,630,630,11,11,2015Q1,True,1.0
+long (by 1979),1970Q1,Ireland,630,630,11,11,2015Q1,True,1.0
+long (by 1979),1970Q1,Italy,630,630,11,11,2015Q1,True,1.0
+long (by 1979),1970Q1,Netherlands,630,630,11,11,2015Q1,True,1.0
+long (by 1979),1970Q1,New Zealand,610,610,10,10,2015Q1,True,1.0
+long (by 1979),1970Q1,Norway,650,650,11,11,2015Q1,True,1.0
+long (by 1979),1970Q1,Sweden,630,630,11,11,2015Q1,True,1.0
+long (by 1979),1970Q1,Switzerland,630,630,11,11,2015Q1,True,1.0
+long (by 1979),1970Q1,United States,650,650,11,11,2015Q1,True,1.0
+long (by 1979),1971Q1,Spain,630,630,11,11,2015Q1,True,1.0
+medium (by 1999),1986Q1,South Korea,650,650,11,11,2015Q1,True,1.0
+medium (by 1999),1988Q1,Colombia,630,630,11,11,2015Q1,True,1.0
+medium (by 1999),1988Q1,Portugal,630,630,11,11,2015Q1,True,1.0
+medium (by 1999),1994Q1,Israel,630,630,11,11,2015Q1,True,1.0
+medium (by 1999),1997Q1,Greece,630,630,11,11,2015Q1,True,1.0
+short (after 1999),2014Q1,Saudi Arabia,470,15,9,2,2023Q1,False,0.031914893617021274
+short (after 1999),2010Q1,Türkiye,630,310,11,7,2019Q1,False,0.49206349206349204
+short (after 1999),2010Q1,China,650,330,11,7,2019Q1,False,0.5076923076923077
+short (after 1999),2009Q1,India,610,370,10,7,2018Q1,True,0.6065573770491803
+short (after 1999),2009Q1,Romania,630,390,11,8,2018Q1,True,0.6190476190476191
+short (after 1999),2008Q1,Czechia,630,470,11,9,2017Q1,True,0.746031746031746
+short (after 1999),2008Q1,Brazil,650,490,11,9,2017Q1,True,0.7538461538461538
+short (after 1999),2007Q1,Luxembourg,610,530,10,9,2016Q1,True,0.8688524590163934
+short (after 1999),2007Q1,Hungary,630,550,11,10,2016Q1,True,0.873015873015873
+short (after 1999),2007Q1,Slovenia,630,550,11,10,2016Q1,True,0.873015873015873
+short (after 1999),2000Q1,Austria,630,630,11,11,2015Q1,True,1.0
+short (after 1999),2000Q2,Iceland,650,650,11,11,2015Q1,True,1.0
+short (after 1999),2001Q1,Russia,610,610,10,10,2015Q1,True,1.0
+short (after 1999),2001Q1,Taiwan_national,650,650,11,11,2015Q1,True,1.0
+short (after 1999),2002Q1,Chile,610,610,10,10,2015Q1,True,1.0
+short (after 1999),2002Q1,Indonesia,630,630,11,11,2015Q1,True,1.0
+short (after 1999),2005Q1,Bulgaria,630,630,11,11,2015Q1,True,1.0
+short (after 1999),2005Q1,Croatia,630,630,11,11,2015Q1,True,1.0
+short (after 1999),2005Q1,Estonia,630,630,11,11,2015Q1,True,1.0
+short (after 1999),2005Q1,Mexico,630,630,11,11,2015Q1,True,1.0
+short (after 1999),2005Q1,Poland,630,630,11,11,2015Q1,True,1.0
+short (after 1999),2005Q1,Slovak Republic,630,630,11,11,2015Q1,True,1.0
+short (after 1999),2006Q1,Latvia,630,630,11,11,2015Q1,True,1.0
+short (after 1999),2006Q1,Lithuania,630,630,11,11,2015Q1,True,1.0

@@ -1,0 +1,528 @@
+series_id,n_train_obs,fit_status,reason,n_forecasts,n_fallback_forecasts,model,split_id,seed
+Australia,176,fitted,,4,0,arima__national,tes_2015Q1,0
+Austria,56,fitted,,4,0,arima__national,tes_2015Q1,0
+Belgium,176,fitted,,4,0,arima__national,tes_2015Q1,0
+Brazil,24,fitted,,4,0,arima__national,tes_2015Q1,0
+Bulgaria,36,fitted,,4,0,arima__national,tes_2015Q1,0
+Canada,176,fitted,,4,0,arima__national,tes_2015Q1,0
+Chile,48,fitted,,4,0,arima__national,tes_2015Q1,0
+China,16,too_short,16 < 24 quarters,4,4,arima__national,tes_2015Q1,0
+Colombia,104,fitted,,4,0,arima__national,tes_2015Q1,0
+Croatia,36,fitted,,4,0,arima__national,tes_2015Q1,0
+Czechia,24,fitted,,4,0,arima__national,tes_2015Q1,0
+Denmark,176,fitted,,4,0,arima__national,tes_2015Q1,0
+Estonia,36,fitted,,4,0,arima__national,tes_2015Q1,0
+Finland,176,fitted,,4,0,arima__national,tes_2015Q1,0
+France,176,fitted,,4,0,arima__national,tes_2015Q1,0
+Germany,176,fitted,,4,0,arima__national,tes_2015Q1,0
+Greece,68,fitted,,4,0,arima__national,tes_2015Q1,0
+Hungary,28,fitted,,4,0,arima__national,tes_2015Q1,0
+Iceland,55,fitted,,4,0,arima__national,tes_2015Q1,0
+India,20,too_short,20 < 24 quarters,4,4,arima__national,tes_2015Q1,0
+Indonesia,48,fitted,,4,0,arima__national,tes_2015Q1,0
+Ireland,176,fitted,,4,0,arima__national,tes_2015Q1,0
+Israel,80,fitted,,4,0,arima__national,tes_2015Q1,0
+Italy,176,fitted,,4,0,arima__national,tes_2015Q1,0
+Japan,216,fitted,,4,0,arima__national,tes_2015Q1,0
+Latvia,32,fitted,,4,0,arima__national,tes_2015Q1,0
+Lithuania,32,fitted,,4,0,arima__national,tes_2015Q1,0
+Luxembourg,28,fitted,,4,0,arima__national,tes_2015Q1,0
+Mexico,36,fitted,,4,0,arima__national,tes_2015Q1,0
+Netherlands,176,fitted,,4,0,arima__national,tes_2015Q1,0
+New Zealand,176,fitted,,4,0,arima__national,tes_2015Q1,0
+Norway,176,fitted,,4,0,arima__national,tes_2015Q1,0
+Poland,36,fitted,,4,0,arima__national,tes_2015Q1,0
+Portugal,104,fitted,,4,0,arima__national,tes_2015Q1,0
+Romania,20,too_short,20 < 24 quarters,4,4,arima__national,tes_2015Q1,0
+Russia,52,fitted,,4,0,arima__national,tes_2015Q1,0
+Slovak Republic,36,fitted,,4,0,arima__national,tes_2015Q1,0
+Slovenia,28,fitted,,4,0,arima__national,tes_2015Q1,0
+South Africa,192,fitted,,4,0,arima__national,tes_2015Q1,0
+South Korea,112,fitted,,4,0,arima__national,tes_2015Q1,0
+Spain,172,fitted,,4,0,arima__national,tes_2015Q1,0
+Sweden,176,fitted,,4,0,arima__national,tes_2015Q1,0
+Switzerland,176,fitted,,4,0,arima__national,tes_2015Q1,0
+Taiwan_national,52,fitted,,4,0,arima__national,tes_2015Q1,0
+Türkiye,16,too_short,16 < 24 quarters,4,4,arima__national,tes_2015Q1,0
+United Kingdom,183,fitted,,4,0,arima__national,tes_2015Q1,0
+United States,176,fitted,,4,0,arima__national,tes_2015Q1,0
+Australia,180,fitted,,4,0,arima__national,tes_2016Q1,0
+Austria,60,fitted,,4,0,arima__national,tes_2016Q1,0
+Belgium,180,fitted,,4,0,arima__national,tes_2016Q1,0
+Brazil,28,fitted,,4,0,arima__national,tes_2016Q1,0
+Bulgaria,40,fitted,,4,0,arima__national,tes_2016Q1,0
+Canada,180,fitted,,4,0,arima__national,tes_2016Q1,0
+Chile,52,fitted,,4,0,arima__national,tes_2016Q1,0
+China,20,too_short,20 < 24 quarters,4,4,arima__national,tes_2016Q1,0
+Colombia,108,fitted,,4,0,arima__national,tes_2016Q1,0
+Croatia,40,fitted,,4,0,arima__national,tes_2016Q1,0
+Czechia,28,fitted,,4,0,arima__national,tes_2016Q1,0
+Denmark,180,fitted,,4,0,arima__national,tes_2016Q1,0
+Estonia,40,fitted,,4,0,arima__national,tes_2016Q1,0
+Finland,180,fitted,,4,0,arima__national,tes_2016Q1,0
+France,180,fitted,,4,0,arima__national,tes_2016Q1,0
+Germany,180,fitted,,4,0,arima__national,tes_2016Q1,0
+Greece,72,fitted,,4,0,arima__national,tes_2016Q1,0
+Hungary,32,fitted,,4,0,arima__national,tes_2016Q1,0
+Iceland,59,fitted,,4,0,arima__national,tes_2016Q1,0
+India,24,fitted,,4,0,arima__national,tes_2016Q1,0
+Indonesia,52,fitted,,4,0,arima__national,tes_2016Q1,0
+Ireland,180,fitted,,4,0,arima__national,tes_2016Q1,0
+Israel,84,fitted,,4,0,arima__national,tes_2016Q1,0
+Italy,180,fitted,,4,0,arima__national,tes_2016Q1,0
+Japan,220,fitted,,4,0,arima__national,tes_2016Q1,0
+Latvia,36,fitted,,4,0,arima__national,tes_2016Q1,0
+Lithuania,36,fitted,,4,0,arima__national,tes_2016Q1,0
+Luxembourg,32,fitted,,4,0,arima__national,tes_2016Q1,0
+Mexico,40,fitted,,4,0,arima__national,tes_2016Q1,0
+Netherlands,180,fitted,,4,0,arima__national,tes_2016Q1,0
+New Zealand,180,fitted,,4,0,arima__national,tes_2016Q1,0
+Norway,180,fitted,,4,0,arima__national,tes_2016Q1,0
+Poland,40,fitted,,4,0,arima__national,tes_2016Q1,0
+Portugal,108,fitted,,4,0,arima__national,tes_2016Q1,0
+Romania,24,fitted,,4,0,arima__national,tes_2016Q1,0
+Russia,56,fitted,,4,0,arima__national,tes_2016Q1,0
+Slovak Republic,40,fitted,,4,0,arima__national,tes_2016Q1,0
+Slovenia,32,fitted,,4,0,arima__national,tes_2016Q1,0
+South Africa,196,fitted,,4,0,arima__national,tes_2016Q1,0
+South Korea,116,fitted,,4,0,arima__national,tes_2016Q1,0
+Spain,176,fitted,,4,0,arima__national,tes_2016Q1,0
+Sweden,180,fitted,,4,0,arima__national,tes_2016Q1,0
+Switzerland,180,fitted,,4,0,arima__national,tes_2016Q1,0
+Taiwan_national,56,fitted,,4,0,arima__national,tes_2016Q1,0
+Türkiye,20,too_short,20 < 24 quarters,4,4,arima__national,tes_2016Q1,0
+United Kingdom,187,fitted,,4,0,arima__national,tes_2016Q1,0
+United States,180,fitted,,4,0,arima__national,tes_2016Q1,0
+Saudi Arabia,0,no_training_history,market has no training rows in this fold,4,4,arima__national,tes_2016Q1,0
+Australia,184,fitted,,4,0,arima__national,tes_2017Q1,0
+Austria,64,fitted,,4,0,arima__national,tes_2017Q1,0
+Belgium,184,fitted,,4,0,arima__national,tes_2017Q1,0
+Brazil,32,fitted,,4,0,arima__national,tes_2017Q1,0
+Bulgaria,44,fitted,,4,0,arima__national,tes_2017Q1,0
+Canada,184,fitted,,4,0,arima__national,tes_2017Q1,0
+Chile,56,fitted,,4,0,arima__national,tes_2017Q1,0
+China,24,fitted,,4,0,arima__national,tes_2017Q1,0
+Colombia,112,fitted,,4,0,arima__national,tes_2017Q1,0
+Croatia,44,fitted,,4,0,arima__national,tes_2017Q1,0
+Czechia,32,fitted,,4,0,arima__national,tes_2017Q1,0
+Denmark,184,fitted,,4,0,arima__national,tes_2017Q1,0
+Estonia,44,fitted,,4,0,arima__national,tes_2017Q1,0
+Finland,184,fitted,,4,0,arima__national,tes_2017Q1,0
+France,184,fitted,,4,0,arima__national,tes_2017Q1,0
+Germany,184,fitted,,4,0,arima__national,tes_2017Q1,0
+Greece,76,fitted,,4,0,arima__national,tes_2017Q1,0
+Hungary,36,fitted,,4,0,arima__national,tes_2017Q1,0
+Iceland,63,fitted,,4,0,arima__national,tes_2017Q1,0
+India,28,fitted,,4,0,arima__national,tes_2017Q1,0
+Indonesia,56,fitted,,4,0,arima__national,tes_2017Q1,0
+Ireland,184,fitted,,4,0,arima__national,tes_2017Q1,0
+Israel,88,fitted,,4,0,arima__national,tes_2017Q1,0
+Italy,184,fitted,,4,0,arima__national,tes_2017Q1,0
+Japan,224,fitted,,4,0,arima__national,tes_2017Q1,0
+Latvia,40,fitted,,4,0,arima__national,tes_2017Q1,0
+Lithuania,40,fitted,,4,0,arima__national,tes_2017Q1,0
+Luxembourg,36,fitted,,4,0,arima__national,tes_2017Q1,0
+Mexico,44,fitted,,4,0,arima__national,tes_2017Q1,0
+Netherlands,184,fitted,,4,0,arima__national,tes_2017Q1,0
+New Zealand,184,fitted,,4,0,arima__national,tes_2017Q1,0
+Norway,184,fitted,,4,0,arima__national,tes_2017Q1,0
+Poland,44,fitted,,4,0,arima__national,tes_2017Q1,0
+Portugal,112,fitted,,4,0,arima__national,tes_2017Q1,0
+Romania,28,fitted,,4,0,arima__national,tes_2017Q1,0
+Russia,60,fitted,,4,0,arima__national,tes_2017Q1,0
+Saudi Arabia,8,too_short,8 < 24 quarters,4,4,arima__national,tes_2017Q1,0
+Slovak Republic,44,fitted,,4,0,arima__national,tes_2017Q1,0
+Slovenia,36,fitted,,4,0,arima__national,tes_2017Q1,0
+South Africa,200,fitted,,4,0,arima__national,tes_2017Q1,0
+South Korea,120,fitted,,4,0,arima__national,tes_2017Q1,0
+Spain,180,fitted,,4,0,arima__national,tes_2017Q1,0
+Sweden,184,fitted,,4,0,arima__national,tes_2017Q1,0
+Switzerland,184,fitted,,4,0,arima__national,tes_2017Q1,0
+Taiwan_national,60,fitted,,4,0,arima__national,tes_2017Q1,0
+Türkiye,24,fitted,,4,0,arima__national,tes_2017Q1,0
+United Kingdom,191,fitted,,4,0,arima__national,tes_2017Q1,0
+United States,184,fitted,,4,0,arima__national,tes_2017Q1,0
+Australia,188,fitted,,4,0,arima__national,tes_2018Q1,0
+Austria,68,fitted,,4,0,arima__national,tes_2018Q1,0
+Belgium,188,fitted,,4,0,arima__national,tes_2018Q1,0
+Brazil,36,fitted,,4,0,arima__national,tes_2018Q1,0
+Bulgaria,48,fitted,,4,0,arima__national,tes_2018Q1,0
+Canada,188,fitted,,4,0,arima__national,tes_2018Q1,0
+Chile,60,fitted,,4,0,arima__national,tes_2018Q1,0
+China,28,fitted,,4,0,arima__national,tes_2018Q1,0
+Colombia,116,fitted,,4,0,arima__national,tes_2018Q1,0
+Croatia,48,fitted,,4,0,arima__national,tes_2018Q1,0
+Czechia,36,fitted,,4,0,arima__national,tes_2018Q1,0
+Denmark,188,fitted,,4,0,arima__national,tes_2018Q1,0
+Estonia,48,fitted,,4,0,arima__national,tes_2018Q1,0
+Finland,188,fitted,,4,0,arima__national,tes_2018Q1,0
+France,188,fitted,,4,0,arima__national,tes_2018Q1,0
+Germany,188,fitted,,4,0,arima__national,tes_2018Q1,0
+Greece,80,fitted,,4,0,arima__national,tes_2018Q1,0
+Hungary,40,fitted,,4,0,arima__national,tes_2018Q1,0
+Iceland,67,fitted,,4,0,arima__national,tes_2018Q1,0
+India,32,fitted,,4,0,arima__national,tes_2018Q1,0
+Indonesia,60,fitted,,4,0,arima__national,tes_2018Q1,0
+Ireland,188,fitted,,4,0,arima__national,tes_2018Q1,0
+Israel,92,fitted,,4,0,arima__national,tes_2018Q1,0
+Italy,188,fitted,,4,0,arima__national,tes_2018Q1,0
+Japan,228,fitted,,4,0,arima__national,tes_2018Q1,0
+Latvia,44,fitted,,4,0,arima__national,tes_2018Q1,0
+Lithuania,44,fitted,,4,0,arima__national,tes_2018Q1,0
+Luxembourg,40,fitted,,4,0,arima__national,tes_2018Q1,0
+Mexico,48,fitted,,4,0,arima__national,tes_2018Q1,0
+Netherlands,188,fitted,,4,0,arima__national,tes_2018Q1,0
+New Zealand,188,fitted,,4,0,arima__national,tes_2018Q1,0
+Norway,188,fitted,,4,0,arima__national,tes_2018Q1,0
+Poland,48,fitted,,4,0,arima__national,tes_2018Q1,0
+Portugal,116,fitted,,4,0,arima__national,tes_2018Q1,0
+Romania,32,fitted,,4,0,arima__national,tes_2018Q1,0
+Russia,64,fitted,,4,0,arima__national,tes_2018Q1,0
+Saudi Arabia,12,too_short,12 < 24 quarters,4,4,arima__national,tes_2018Q1,0
+Slovak Republic,48,fitted,,4,0,arima__national,tes_2018Q1,0
+Slovenia,40,fitted,,4,0,arima__national,tes_2018Q1,0
+South Africa,204,fitted,,4,0,arima__national,tes_2018Q1,0
+South Korea,124,fitted,,4,0,arima__national,tes_2018Q1,0
+Spain,184,fitted,,4,0,arima__national,tes_2018Q1,0
+Sweden,188,fitted,,4,0,arima__national,tes_2018Q1,0
+Switzerland,188,fitted,,4,0,arima__national,tes_2018Q1,0
+Taiwan_national,64,fitted,,4,0,arima__national,tes_2018Q1,0
+Türkiye,28,fitted,,4,0,arima__national,tes_2018Q1,0
+United Kingdom,195,fitted,,4,0,arima__national,tes_2018Q1,0
+United States,188,fitted,,4,0,arima__national,tes_2018Q1,0
+Australia,192,fitted,,4,0,arima__national,tes_2019Q1,0
+Austria,72,fitted,,4,0,arima__national,tes_2019Q1,0
+Belgium,192,fitted,,4,0,arima__national,tes_2019Q1,0
+Brazil,40,fitted,,4,0,arima__national,tes_2019Q1,0
+Bulgaria,52,fitted,,4,0,arima__national,tes_2019Q1,0
+Canada,192,fitted,,4,0,arima__national,tes_2019Q1,0
+Chile,64,fitted,,4,0,arima__national,tes_2019Q1,0
+China,32,fitted,,4,0,arima__national,tes_2019Q1,0
+Colombia,120,fitted,,4,0,arima__national,tes_2019Q1,0
+Croatia,52,fitted,,4,0,arima__national,tes_2019Q1,0
+Czechia,40,fitted,,4,0,arima__national,tes_2019Q1,0
+Denmark,192,fitted,,4,0,arima__national,tes_2019Q1,0
+Estonia,52,fitted,,4,0,arima__national,tes_2019Q1,0
+Finland,192,fitted,,4,0,arima__national,tes_2019Q1,0
+France,192,fitted,,4,0,arima__national,tes_2019Q1,0
+Germany,192,fitted,,4,0,arima__national,tes_2019Q1,0
+Greece,84,fitted,,4,0,arima__national,tes_2019Q1,0
+Hungary,44,fitted,,4,0,arima__national,tes_2019Q1,0
+Iceland,71,fitted,,4,0,arima__national,tes_2019Q1,0
+India,36,fitted,,4,0,arima__national,tes_2019Q1,0
+Indonesia,64,fitted,,4,0,arima__national,tes_2019Q1,0
+Ireland,192,fitted,,4,0,arima__national,tes_2019Q1,0
+Israel,96,fitted,,4,0,arima__national,tes_2019Q1,0
+Italy,192,fitted,,4,0,arima__national,tes_2019Q1,0
+Japan,232,fitted,,4,0,arima__national,tes_2019Q1,0
+Latvia,48,fitted,,4,0,arima__national,tes_2019Q1,0
+Lithuania,48,fitted,,4,0,arima__national,tes_2019Q1,0
+Luxembourg,44,fitted,,4,0,arima__national,tes_2019Q1,0
+Mexico,52,fitted,,4,0,arima__national,tes_2019Q1,0
+Netherlands,192,fitted,,4,0,arima__national,tes_2019Q1,0
+New Zealand,192,fitted,,4,0,arima__national,tes_2019Q1,0
+Norway,192,fitted,,4,0,arima__national,tes_2019Q1,0
+Poland,52,fitted,,4,0,arima__national,tes_2019Q1,0
+Portugal,120,fitted,,4,0,arima__national,tes_2019Q1,0
+Romania,36,fitted,,4,0,arima__national,tes_2019Q1,0
+Russia,68,fitted,,4,0,arima__national,tes_2019Q1,0
+Saudi Arabia,16,too_short,16 < 24 quarters,4,4,arima__national,tes_2019Q1,0
+Slovak Republic,52,fitted,,4,0,arima__national,tes_2019Q1,0
+Slovenia,44,fitted,,4,0,arima__national,tes_2019Q1,0
+South Africa,208,fitted,,4,0,arima__national,tes_2019Q1,0
+South Korea,128,fitted,,4,0,arima__national,tes_2019Q1,0
+Spain,188,fitted,,4,0,arima__national,tes_2019Q1,0
+Sweden,192,fitted,,4,0,arima__national,tes_2019Q1,0
+Switzerland,192,fitted,,4,0,arima__national,tes_2019Q1,0
+Taiwan_national,68,fitted,,4,0,arima__national,tes_2019Q1,0
+Türkiye,32,fitted,,4,0,arima__national,tes_2019Q1,0
+United Kingdom,199,fitted,,4,0,arima__national,tes_2019Q1,0
+United States,192,fitted,,4,0,arima__national,tes_2019Q1,0
+Australia,196,fitted,,4,0,arima__national,tes_2020Q1,0
+Austria,76,fitted,,4,0,arima__national,tes_2020Q1,0
+Belgium,196,fitted,,4,0,arima__national,tes_2020Q1,0
+Brazil,44,fitted,,4,0,arima__national,tes_2020Q1,0
+Bulgaria,56,fitted,,4,0,arima__national,tes_2020Q1,0
+Canada,196,fitted,,4,0,arima__national,tes_2020Q1,0
+Chile,68,fitted,,4,0,arima__national,tes_2020Q1,0
+China,36,fitted,,4,0,arima__national,tes_2020Q1,0
+Colombia,124,fitted,,4,0,arima__national,tes_2020Q1,0
+Croatia,56,fitted,,4,0,arima__national,tes_2020Q1,0
+Czechia,44,fitted,,4,0,arima__national,tes_2020Q1,0
+Denmark,196,fitted,,4,0,arima__national,tes_2020Q1,0
+Estonia,56,fitted,,4,0,arima__national,tes_2020Q1,0
+Finland,196,fitted,,4,0,arima__national,tes_2020Q1,0
+France,196,fitted,,4,0,arima__national,tes_2020Q1,0
+Germany,196,fitted,,4,0,arima__national,tes_2020Q1,0
+Greece,88,fitted,,4,0,arima__national,tes_2020Q1,0
+Hungary,48,fitted,,4,0,arima__national,tes_2020Q1,0
+Iceland,75,fitted,,4,0,arima__national,tes_2020Q1,0
+India,40,fitted,,4,0,arima__national,tes_2020Q1,0
+Indonesia,68,fitted,,4,0,arima__national,tes_2020Q1,0
+Ireland,196,fitted,,4,0,arima__national,tes_2020Q1,0
+Israel,100,fitted,,4,0,arima__national,tes_2020Q1,0
+Italy,196,fitted,,4,0,arima__national,tes_2020Q1,0
+Japan,236,fitted,,4,0,arima__national,tes_2020Q1,0
+Latvia,52,fitted,,4,0,arima__national,tes_2020Q1,0
+Lithuania,52,fitted,,4,0,arima__national,tes_2020Q1,0
+Luxembourg,48,fitted,,4,0,arima__national,tes_2020Q1,0
+Mexico,56,fitted,,4,0,arima__national,tes_2020Q1,0
+Netherlands,196,fitted,,4,0,arima__national,tes_2020Q1,0
+New Zealand,196,fitted,,4,0,arima__national,tes_2020Q1,0
+Norway,196,fitted,,4,0,arima__national,tes_2020Q1,0
+Poland,56,fitted,,4,0,arima__national,tes_2020Q1,0
+Portugal,124,fitted,,4,0,arima__national,tes_2020Q1,0
+Romania,40,fitted,,4,0,arima__national,tes_2020Q1,0
+Russia,72,fitted,,4,0,arima__national,tes_2020Q1,0
+Saudi Arabia,20,too_short,20 < 24 quarters,4,4,arima__national,tes_2020Q1,0
+Slovak Republic,56,fitted,,4,0,arima__national,tes_2020Q1,0
+Slovenia,48,fitted,,4,0,arima__national,tes_2020Q1,0
+South Africa,212,fitted,,4,0,arima__national,tes_2020Q1,0
+South Korea,132,fitted,,4,0,arima__national,tes_2020Q1,0
+Spain,192,fitted,,4,0,arima__national,tes_2020Q1,0
+Sweden,196,fitted,,4,0,arima__national,tes_2020Q1,0
+Switzerland,196,fitted,,4,0,arima__national,tes_2020Q1,0
+Taiwan_national,72,fitted,,4,0,arima__national,tes_2020Q1,0
+Türkiye,36,fitted,,4,0,arima__national,tes_2020Q1,0
+United Kingdom,203,fitted,,4,0,arima__national,tes_2020Q1,0
+United States,196,fitted,,4,0,arima__national,tes_2020Q1,0
+Australia,200,fitted,,4,0,arima__national,tes_2021Q1,0
+Austria,80,fitted,,4,0,arima__national,tes_2021Q1,0
+Belgium,200,fitted,,4,0,arima__national,tes_2021Q1,0
+Brazil,48,fitted,,4,0,arima__national,tes_2021Q1,0
+Bulgaria,60,fitted,,4,0,arima__national,tes_2021Q1,0
+Canada,200,fitted,,4,0,arima__national,tes_2021Q1,0
+Chile,72,fitted,,4,0,arima__national,tes_2021Q1,0
+China,40,fitted,,4,0,arima__national,tes_2021Q1,0
+Colombia,128,fitted,,4,0,arima__national,tes_2021Q1,0
+Croatia,60,fitted,,4,0,arima__national,tes_2021Q1,0
+Czechia,48,fitted,,4,0,arima__national,tes_2021Q1,0
+Denmark,200,fitted,,4,0,arima__national,tes_2021Q1,0
+Estonia,60,fitted,,4,0,arima__national,tes_2021Q1,0
+Finland,200,fitted,,4,0,arima__national,tes_2021Q1,0
+France,200,fitted,,4,0,arima__national,tes_2021Q1,0
+Germany,200,fitted,,4,0,arima__national,tes_2021Q1,0
+Greece,92,fitted,,4,0,arima__national,tes_2021Q1,0
+Hungary,52,fitted,,4,0,arima__national,tes_2021Q1,0
+Iceland,79,fitted,,4,0,arima__national,tes_2021Q1,0
+India,44,fitted,,4,0,arima__national,tes_2021Q1,0
+Indonesia,72,fitted,,4,0,arima__national,tes_2021Q1,0
+Ireland,200,fitted,,4,0,arima__national,tes_2021Q1,0
+Israel,104,fitted,,4,0,arima__national,tes_2021Q1,0
+Italy,200,fitted,,4,0,arima__national,tes_2021Q1,0
+Japan,240,fitted,,4,0,arima__national,tes_2021Q1,0
+Latvia,56,fitted,,4,0,arima__national,tes_2021Q1,0
+Lithuania,56,fitted,,4,0,arima__national,tes_2021Q1,0
+Luxembourg,52,fitted,,4,0,arima__national,tes_2021Q1,0
+Mexico,60,fitted,,4,0,arima__national,tes_2021Q1,0
+Netherlands,200,fitted,,4,0,arima__national,tes_2021Q1,0
+New Zealand,200,fitted,,4,0,arima__national,tes_2021Q1,0
+Norway,200,fitted,,4,0,arima__national,tes_2021Q1,0
+Poland,60,fitted,,4,0,arima__national,tes_2021Q1,0
+Portugal,128,fitted,,4,0,arima__national,tes_2021Q1,0
+Romania,44,fitted,,4,0,arima__national,tes_2021Q1,0
+Russia,76,fitted,,4,0,arima__national,tes_2021Q1,0
+Saudi Arabia,24,fitted,,4,0,arima__national,tes_2021Q1,0
+Slovak Republic,60,fitted,,4,0,arima__national,tes_2021Q1,0
+Slovenia,52,fitted,,4,0,arima__national,tes_2021Q1,0
+South Africa,216,fitted,,4,0,arima__national,tes_2021Q1,0
+South Korea,136,fitted,,4,0,arima__national,tes_2021Q1,0
+Spain,196,fitted,,4,0,arima__national,tes_2021Q1,0
+Sweden,200,fitted,,4,0,arima__national,tes_2021Q1,0
+Switzerland,200,fitted,,4,0,arima__national,tes_2021Q1,0
+Taiwan_national,76,fitted,,4,0,arima__national,tes_2021Q1,0
+Türkiye,40,fitted,,4,0,arima__national,tes_2021Q1,0
+United Kingdom,207,fitted,,4,0,arima__national,tes_2021Q1,0
+United States,200,fitted,,4,0,arima__national,tes_2021Q1,0
+Australia,204,fitted,,4,0,arima__national,tes_2022Q1,0
+Austria,84,fitted,,4,0,arima__national,tes_2022Q1,0
+Belgium,204,fitted,,4,0,arima__national,tes_2022Q1,0
+Brazil,52,fitted,,4,0,arima__national,tes_2022Q1,0
+Bulgaria,64,fitted,,4,0,arima__national,tes_2022Q1,0
+Canada,204,fitted,,4,0,arima__national,tes_2022Q1,0
+Chile,76,fitted,,4,0,arima__national,tes_2022Q1,0
+China,44,fitted,,4,0,arima__national,tes_2022Q1,0
+Colombia,132,fitted,,4,0,arima__national,tes_2022Q1,0
+Croatia,64,fitted,,4,0,arima__national,tes_2022Q1,0
+Czechia,52,fitted,,4,0,arima__national,tes_2022Q1,0
+Denmark,204,fitted,,4,0,arima__national,tes_2022Q1,0
+Estonia,64,fitted,,4,0,arima__national,tes_2022Q1,0
+Finland,204,fitted,,4,0,arima__national,tes_2022Q1,0
+France,204,fitted,,4,0,arima__national,tes_2022Q1,0
+Germany,204,fitted,,4,0,arima__national,tes_2022Q1,0
+Greece,96,fitted,,4,0,arima__national,tes_2022Q1,0
+Hungary,56,fitted,,4,0,arima__national,tes_2022Q1,0
+Iceland,83,fitted,,4,0,arima__national,tes_2022Q1,0
+India,48,fitted,,4,0,arima__national,tes_2022Q1,0
+Indonesia,76,fitted,,4,0,arima__national,tes_2022Q1,0
+Ireland,204,fitted,,4,0,arima__national,tes_2022Q1,0
+Israel,108,fitted,,4,0,arima__national,tes_2022Q1,0
+Italy,204,fitted,,4,0,arima__national,tes_2022Q1,0
+Japan,244,fitted,,4,0,arima__national,tes_2022Q1,0
+Latvia,60,fitted,,4,0,arima__national,tes_2022Q1,0
+Lithuania,60,fitted,,4,0,arima__national,tes_2022Q1,0
+Luxembourg,56,fitted,,4,0,arima__national,tes_2022Q1,0
+Mexico,64,fitted,,4,0,arima__national,tes_2022Q1,0
+Netherlands,204,fitted,,4,0,arima__national,tes_2022Q1,0
+New Zealand,204,fitted,,4,0,arima__national,tes_2022Q1,0
+Norway,204,fitted,,4,0,arima__national,tes_2022Q1,0
+Poland,64,fitted,,4,0,arima__national,tes_2022Q1,0
+Portugal,132,fitted,,4,0,arima__national,tes_2022Q1,0
+Romania,48,fitted,,4,0,arima__national,tes_2022Q1,0
+Russia,80,fitted,,4,0,arima__national,tes_2022Q1,0
+Saudi Arabia,28,fitted,,4,0,arima__national,tes_2022Q1,0
+Slovak Republic,64,fitted,,4,0,arima__national,tes_2022Q1,0
+Slovenia,56,fitted,,4,0,arima__national,tes_2022Q1,0
+South Africa,220,fitted,,4,0,arima__national,tes_2022Q1,0
+South Korea,140,fitted,,4,0,arima__national,tes_2022Q1,0
+Spain,200,fitted,,4,0,arima__national,tes_2022Q1,0
+Sweden,204,fitted,,4,0,arima__national,tes_2022Q1,0
+Switzerland,204,fitted,,4,0,arima__national,tes_2022Q1,0
+Taiwan_national,80,fitted,,4,0,arima__national,tes_2022Q1,0
+Türkiye,44,fitted,,4,0,arima__national,tes_2022Q1,0
+United Kingdom,211,fitted,,4,0,arima__national,tes_2022Q1,0
+United States,204,fitted,,4,0,arima__national,tes_2022Q1,0
+Australia,208,fitted,,4,0,arima__national,tes_2023Q1,0
+Austria,88,fitted,,4,0,arima__national,tes_2023Q1,0
+Belgium,208,fitted,,4,0,arima__national,tes_2023Q1,0
+Brazil,56,fitted,,4,0,arima__national,tes_2023Q1,0
+Bulgaria,68,fitted,,4,0,arima__national,tes_2023Q1,0
+Canada,208,fitted,,4,0,arima__national,tes_2023Q1,0
+Chile,80,fitted,,4,0,arima__national,tes_2023Q1,0
+China,48,fitted,,4,0,arima__national,tes_2023Q1,0
+Colombia,136,fitted,,4,0,arima__national,tes_2023Q1,0
+Croatia,68,fitted,,4,0,arima__national,tes_2023Q1,0
+Czechia,56,fitted,,4,0,arima__national,tes_2023Q1,0
+Denmark,208,fitted,,4,0,arima__national,tes_2023Q1,0
+Estonia,68,fitted,,4,0,arima__national,tes_2023Q1,0
+Finland,208,fitted,,4,0,arima__national,tes_2023Q1,0
+France,208,fitted,,4,0,arima__national,tes_2023Q1,0
+Germany,208,fitted,,4,0,arima__national,tes_2023Q1,0
+Greece,100,fitted,,4,0,arima__national,tes_2023Q1,0
+Hungary,60,fitted,,4,0,arima__national,tes_2023Q1,0
+Iceland,87,fitted,,4,0,arima__national,tes_2023Q1,0
+India,52,fitted,,4,0,arima__national,tes_2023Q1,0
+Indonesia,80,fitted,,4,0,arima__national,tes_2023Q1,0
+Ireland,208,fitted,,4,0,arima__national,tes_2023Q1,0
+Israel,112,fitted,,4,0,arima__national,tes_2023Q1,0
+Italy,208,fitted,,4,0,arima__national,tes_2023Q1,0
+Japan,248,fitted,,4,0,arima__national,tes_2023Q1,0
+Latvia,64,fitted,,4,0,arima__national,tes_2023Q1,0
+Lithuania,64,fitted,,4,0,arima__national,tes_2023Q1,0
+Luxembourg,60,fitted,,4,0,arima__national,tes_2023Q1,0
+Mexico,68,fitted,,4,0,arima__national,tes_2023Q1,0
+Netherlands,208,fitted,,4,0,arima__national,tes_2023Q1,0
+New Zealand,208,fitted,,4,0,arima__national,tes_2023Q1,0
+Norway,208,fitted,,4,0,arima__national,tes_2023Q1,0
+Poland,68,fitted,,4,0,arima__national,tes_2023Q1,0
+Portugal,136,fitted,,4,0,arima__national,tes_2023Q1,0
+Romania,52,fitted,,4,0,arima__national,tes_2023Q1,0
+Russia,84,fitted,,4,0,arima__national,tes_2023Q1,0
+Saudi Arabia,32,fitted,,4,0,arima__national,tes_2023Q1,0
+Slovak Republic,68,fitted,,4,0,arima__national,tes_2023Q1,0
+Slovenia,60,fitted,,4,0,arima__national,tes_2023Q1,0
+South Africa,224,fitted,,4,0,arima__national,tes_2023Q1,0
+South Korea,144,fitted,,4,0,arima__national,tes_2023Q1,0
+Spain,204,fitted,,4,0,arima__national,tes_2023Q1,0
+Sweden,208,fitted,,4,0,arima__national,tes_2023Q1,0
+Switzerland,208,fitted,,4,0,arima__national,tes_2023Q1,0
+Taiwan_national,84,fitted,,4,0,arima__national,tes_2023Q1,0
+Türkiye,48,fitted,,4,0,arima__national,tes_2023Q1,0
+United Kingdom,215,fitted,,4,0,arima__national,tes_2023Q1,0
+United States,208,fitted,,4,0,arima__national,tes_2023Q1,0
+Australia,212,fitted,,4,0,arima__national,tes_2024Q1,0
+Austria,92,fitted,,4,0,arima__national,tes_2024Q1,0
+Belgium,212,fitted,,4,0,arima__national,tes_2024Q1,0
+Brazil,60,fitted,,4,0,arima__national,tes_2024Q1,0
+Bulgaria,72,fitted,,4,0,arima__national,tes_2024Q1,0
+Canada,212,fitted,,4,0,arima__national,tes_2024Q1,0
+Chile,84,fitted,,4,0,arima__national,tes_2024Q1,0
+China,52,fitted,,4,0,arima__national,tes_2024Q1,0
+Colombia,140,fitted,,4,0,arima__national,tes_2024Q1,0
+Croatia,72,fitted,,4,0,arima__national,tes_2024Q1,0
+Czechia,60,fitted,,4,0,arima__national,tes_2024Q1,0
+Denmark,212,fitted,,4,0,arima__national,tes_2024Q1,0
+Estonia,72,fitted,,4,0,arima__national,tes_2024Q1,0
+Finland,212,fitted,,4,0,arima__national,tes_2024Q1,0
+France,212,fitted,,4,0,arima__national,tes_2024Q1,0
+Germany,212,fitted,,4,0,arima__national,tes_2024Q1,0
+Greece,104,fitted,,4,0,arima__national,tes_2024Q1,0
+Hungary,64,fitted,,4,0,arima__national,tes_2024Q1,0
+Iceland,91,fitted,,4,0,arima__national,tes_2024Q1,0
+India,56,fitted,,4,0,arima__national,tes_2024Q1,0
+Indonesia,84,fitted,,4,0,arima__national,tes_2024Q1,0
+Ireland,212,fitted,,4,0,arima__national,tes_2024Q1,0
+Israel,116,fitted,,4,0,arima__national,tes_2024Q1,0
+Italy,212,fitted,,4,0,arima__national,tes_2024Q1,0
+Japan,252,fitted,,4,0,arima__national,tes_2024Q1,0
+Latvia,68,fitted,,4,0,arima__national,tes_2024Q1,0
+Lithuania,68,fitted,,4,0,arima__national,tes_2024Q1,0
+Luxembourg,64,fitted,,4,0,arima__national,tes_2024Q1,0
+Mexico,72,fitted,,4,0,arima__national,tes_2024Q1,0
+Netherlands,212,fitted,,4,0,arima__national,tes_2024Q1,0
+New Zealand,212,fitted,,4,0,arima__national,tes_2024Q1,0
+Norway,212,fitted,,4,0,arima__national,tes_2024Q1,0
+Poland,72,fitted,,4,0,arima__national,tes_2024Q1,0
+Portugal,140,fitted,,4,0,arima__national,tes_2024Q1,0
+Romania,56,fitted,,4,0,arima__national,tes_2024Q1,0
+Russia,88,fitted,,4,0,arima__national,tes_2024Q1,0
+Saudi Arabia,36,fitted,,2,0,arima__national,tes_2024Q1,0
+Slovak Republic,72,fitted,,4,0,arima__national,tes_2024Q1,0
+Slovenia,64,fitted,,4,0,arima__national,tes_2024Q1,0
+South Africa,228,fitted,,4,0,arima__national,tes_2024Q1,0
+South Korea,148,fitted,,4,0,arima__national,tes_2024Q1,0
+Spain,208,fitted,,4,0,arima__national,tes_2024Q1,0
+Sweden,212,fitted,,4,0,arima__national,tes_2024Q1,0
+Switzerland,212,fitted,,4,0,arima__national,tes_2024Q1,0
+Taiwan_national,88,fitted,,4,0,arima__national,tes_2024Q1,0
+Türkiye,52,fitted,,4,0,arima__national,tes_2024Q1,0
+United Kingdom,219,fitted,,4,0,arima__national,tes_2024Q1,0
+United States,212,fitted,,4,0,arima__national,tes_2024Q1,0
+Australia,216,fitted,,2,0,arima__national,tes_2025Q1,0
+Austria,96,fitted,,2,0,arima__national,tes_2025Q1,0
+Belgium,216,fitted,,2,0,arima__national,tes_2025Q1,0
+Brazil,64,fitted,,2,0,arima__national,tes_2025Q1,0
+Bulgaria,76,fitted,,2,0,arima__national,tes_2025Q1,0
+Canada,216,fitted,,2,0,arima__national,tes_2025Q1,0
+Chile,88,fitted,,1,0,arima__national,tes_2025Q1,0
+China,56,fitted,,2,0,arima__national,tes_2025Q1,0
+Colombia,144,fitted,,2,0,arima__national,tes_2025Q1,0
+Croatia,76,fitted,,2,0,arima__national,tes_2025Q1,0
+Czechia,64,fitted,,2,0,arima__national,tes_2025Q1,0
+Denmark,216,fitted,,2,0,arima__national,tes_2025Q1,0
+Estonia,76,fitted,,2,0,arima__national,tes_2025Q1,0
+Finland,216,fitted,,2,0,arima__national,tes_2025Q1,0
+France,216,fitted,,2,0,arima__national,tes_2025Q1,0
+Germany,216,fitted,,2,0,arima__national,tes_2025Q1,0
+Greece,108,fitted,,2,0,arima__national,tes_2025Q1,0
+Hungary,68,fitted,,2,0,arima__national,tes_2025Q1,0
+Iceland,95,fitted,,2,0,arima__national,tes_2025Q1,0
+India,60,fitted,,1,0,arima__national,tes_2025Q1,0
+Indonesia,88,fitted,,2,0,arima__national,tes_2025Q1,0
+Ireland,216,fitted,,2,0,arima__national,tes_2025Q1,0
+Israel,120,fitted,,2,0,arima__national,tes_2025Q1,0
+Italy,216,fitted,,2,0,arima__national,tes_2025Q1,0
+Japan,256,fitted,,2,0,arima__national,tes_2025Q1,0
+Latvia,72,fitted,,2,0,arima__national,tes_2025Q1,0
+Lithuania,72,fitted,,2,0,arima__national,tes_2025Q1,0
+Luxembourg,68,fitted,,1,0,arima__national,tes_2025Q1,0
+Mexico,76,fitted,,2,0,arima__national,tes_2025Q1,0
+Netherlands,216,fitted,,2,0,arima__national,tes_2025Q1,0
+New Zealand,216,fitted,,1,0,arima__national,tes_2025Q1,0
+Norway,216,fitted,,2,0,arima__national,tes_2025Q1,0
+Poland,76,fitted,,2,0,arima__national,tes_2025Q1,0
+Portugal,144,fitted,,2,0,arima__national,tes_2025Q1,0
+Romania,60,fitted,,2,0,arima__national,tes_2025Q1,0
+Russia,92,fitted,,1,0,arima__national,tes_2025Q1,0
+Saudi Arabia,40,fitted,,0,0,arima__national,tes_2025Q1,0
+Slovak Republic,76,fitted,,2,0,arima__national,tes_2025Q1,0
+Slovenia,68,fitted,,2,0,arima__national,tes_2025Q1,0
+South Africa,232,fitted,,2,0,arima__national,tes_2025Q1,0
+South Korea,152,fitted,,2,0,arima__national,tes_2025Q1,0
+Spain,212,fitted,,2,0,arima__national,tes_2025Q1,0
+Sweden,216,fitted,,2,0,arima__national,tes_2025Q1,0
+Switzerland,216,fitted,,2,0,arima__national,tes_2025Q1,0
+Taiwan_national,92,fitted,,2,0,arima__national,tes_2025Q1,0
+Türkiye,56,fitted,,2,0,arima__national,tes_2025Q1,0
+United Kingdom,223,fitted,,2,0,arima__national,tes_2025Q1,0
+United States,216,fitted,,2,0,arima__national,tes_2025Q1,0

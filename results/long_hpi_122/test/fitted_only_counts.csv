@@ -1,0 +1,5 @@
+history,markets,markets_with_fallback,markets_kept,markets_dropped,markets_in_comparison,forecasts,forecasts_kept,share_kept
+long (by 1979),19.0,0.0,19.0,0.0,19.0,12050.0,12050.0,1.0
+medium (by 1999),5.0,0.0,5.0,0.0,5.0,3170.0,3170.0,1.0
+short (after 1999),24.0,10.0,24.0,0.0,21.0,14960.0,12825.0,0.8572860962566845
+all,48.0,10.0,48.0,0.0,45.0,30180.0,28045.0,0.9292577866136514

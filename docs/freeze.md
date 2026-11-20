@@ -1,6 +1,6 @@
 # Final test plan
 
-Scope frozen on 11/19 following the 11/18 meeting. The run records its commit in `results/test_run_info.txt`. Keep that commit and the evaluation settings fixed for the full run. Report subsequent model changes as work developed after this test.
+Scope frozen on 11/19 following the 11/18 meeting. The full test completed on November 19, 2026 (New York time), using commit `b474b7752f23605e9d419d5154227d196475b2b9`. The run records its commit in `results/test_run_info.txt`. Keep that commit and the evaluation settings fixed for the full run. Report subsequent model changes as work developed after this test.
 
 ## Settings
 

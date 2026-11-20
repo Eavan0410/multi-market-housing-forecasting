@@ -1,0 +1,4 @@
+fit_status,market_fold_seeds,forecast_windows,fallback_windows
+fine_tuned,1034,3928,0
+kept_shared,1566,6042,6042
+no_adaptation,5,20,20

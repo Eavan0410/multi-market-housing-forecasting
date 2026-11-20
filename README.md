@@ -2,31 +2,33 @@
 
 This project studies whether a single Transformer can forecast house prices across countries. We compare it with separate models for each market, test larger training pools, and forecast countries left out of training. The aim is to explore how far a shared model can carry across housing markets, including markets with short data histories.
 
-The study asks three questions:
+The study asks four questions:
 
 1. Can one shared model serve many housing markets?
 2. How does it compare with fitting a separate model for each market?
 3. How does forecast accuracy change from 1 to 20 quarters ahead?
+4. Which past quarters influence the shared model, and how does its input sensitivity differ from pooled AR?
 
 The work started with Taiwan and now uses national house price series from OECD AnaHPI alongside Taiwan's Sinyi index. The main experiments use house price history alone and forecast 1 to 20 quarters ahead. We focus on 3–6 quarters for buying or selling and 16–20 quarters for construction. Earlier Taiwan experiments also included economic indicators and compared joint training with pretraining followed by fine-tuning. [Taiwan pilot](docs/taiwan_pilot.md)
 
-The repository contains the data preparation code, a common backtest for all models, saved forecasts, error tables and plotting scripts. The results here are validation results. Final testing is still pending.
+The repository contains the data preparation code, a common backtest for all models, saved forecasts, error tables and plotting scripts. Final testing is complete. Validation results and test results are reported separately below. The completed run used commit `b474b77` and is recorded in [test_run_info.txt](results/test_run_info.txt).
 
 ## Findings so far
 
-1. **Market coverage.** One shared Transformer produced forecasts for 41 national markets, with 38 included in the main comparison. The full training pool improved 3–6-quarter forecasts, while the intermediate results varied across three orders of adding markets. The four market holdouts gave examples of forecasting without local training data.
-2. **Accuracy against separate models.** The shared model had lower error than separate Transformers and, from 5 quarters ahead, separate AR models across all four block lengths checked. The shared model also had lower error than per-market ARIMA at 16–20 quarters across all four block lengths. Pooled AR was much closer to the shared Transformer. Fine-tuning a copy for each market did not improve on the shared model overall, although Germany and Portugal benefited.
-3. **Forecast horizon.** The advantage over separate Transformers was larger at longer horizons, where absolute errors also grew. Against no-change, only the 1–3-quarter improvement held across all block lengths. Accuracy sufficient for buying, selling or construction decisions still needs to be established.
+1. **Market coverage.** One shared Transformer generated validation forecasts for 41 markets, with 38 scored, and test forecasts for 48 scored markets. Leaving a market out of training usually changed its test error by a few percent, although performance against simple baselines varied by market.
+2. **Accuracy.** On the test period, shared-model RMSE was about 12% lower than per-market Transformers at 3–6 quarters and 20% lower at 16–20 quarters. Both improvements held across four bootstrap block lengths. The long-horizon advantage over per-market AR also held; comparisons with pooled AR and ARIMA remained uncertain.
+3. **Horizon and training pool.** Lower error against a baseline does not establish accuracy sufficient for housing decisions. The benefit of expanding the training pool in validation did not carry into the test period: the fixed 41-market pool had about 69% higher long-horizon error than the five-market pool on the same five evaluation markets. Neither fine-tuning setup improved overall test accuracy.
+4. **Input influence.** Validation attribution results show that both models rely most on the latest quarter. The Transformer's local sensitivity varies across market conditions, while pooled AR coefficients are fixed within a fold. Noise, CPI and iMaPP checks describe input sensitivity and additional-feature results; they remain exploratory validation analyses.
 
 ## Data and backtest
 
 - **Model:** a small Transformer takes eight quarters of inflation-adjusted house price growth and predicts the total log change over each of the next 1–20 quarters.
-- **Data:** national HPI series from OECD AnaHPI and Taiwan's Sinyi index. We build the panel from raw observations and adjust Taiwan's nominal HPI with CPI. Taiwan's index is not seasonally adjusted, while the OECD series are. We generated forecasts for 41 markets and report the 38 with at least eight forecast dates. [Market coverage](docs/market_list.csv) · [Data evidence](TODO_B.md) · [HPI release timing](docs/hpi_release_lags.md)
-- **Backtest:** validation origins run from 2000Q1 to 2009Q4. We expand the training window and refit every four quarters. Training origins are at least four quarters earlier than the first validation origin in each fold. Scaling uses training data only, and training labels are masked until their estimated publication date. The main comparison uses a common forecast date 122 days after quarter-end, based on two recent releases of Chile’s nominal HPI. Historical release timing and the first availability of the OECD real series remain uncertain.
+- **Data:** national HPI series from OECD AnaHPI and Taiwan's Sinyi index. We build the panel from raw observations and adjust Taiwan's nominal HPI with CPI. Taiwan's index is not seasonally adjusted, while the OECD series are. Validation has 41 forecast markets and 38 with at least eight scored dates; the test comparison includes 48. Market and date coverage differ between periods. [Market coverage](docs/market_list.csv) · [Data evidence](TODO_B.md) · [HPI release timing](docs/hpi_release_lags.md)
+- **Backtest:** validation origins run from 2000Q1 to 2009Q4; test origins run from 2015Q1 to 2025Q2, with earlier end dates at longer horizons. We expand the training window and refit every four quarters. Training origins are at least four quarters earlier than the first validation origin in each fold. Scaling uses training data only, and training labels are masked until their estimated publication date. The main comparison uses a common forecast date 122 days after quarter-end, based on two recent releases of Chile’s nominal HPI. Historical release timing and the first availability of the OECD real series remain uncertain.
 - **Baselines:** a Transformer trained separately for each market (it falls back to no-change when a market has too little history), per-market AR (falls back to pooled AR), per-market ARIMA (falls back to its own average growth when history is too short or a fit fails), one pooled AR across markets, and no-change.
 - **Scoring:** RMSE per market and horizon, averaged over five seeds for each Transformer. We report the median across markets of RMSE(shared) / RMSE(baseline), so a ratio below 1 favors the shared model. Brackets are 95% intervals from a paired block bootstrap over forecast dates with 20-quarter blocks. We also check 4-, 8- and 12-quarter blocks. [Block-length check for the main, training-pool and holdout comparisons](results/block_length_sensitivity_122.csv)
 
-## Multi-market results
+## Validation results
 
 We use a common forecast date of 122 days after quarter-end and keep Chile in the 41-market pool. The main comparison, training-pool, holdout and fine-tuning runs were repeated at 122 days. The median RMSE ratios for the 3–6 and 16–20 quarter ranges moved by about 0.006 or less. Earlier runs are in `results/long_hpi` and commit `d48a065`.
 
@@ -115,6 +117,44 @@ We left out Australia, Chile, Taiwan and Portugal one at a time. At forecast tim
 
 Leaving a market out usually changed RMSE by a few percent. Each held-out market supplied at most about 5% of the original training rows. The held-out model beat simple baselines in Chile at long horizons, while it over-predicted Portugal's five-year growth whether or not Portugal was in training. Chile's 10% gain at 16–20 quarters and Taiwan's gap to AR are not robust: their intervals include 1 with 8- or 12-quarter blocks. Except for Taiwan's noted gap to AR, the last column highlights comparisons that hold across the four block lengths checked. Each held-out model is compared with a single-thread run of the shared model, trained the same way; it matches the main 122-day run exactly. Multi-threaded runs can differ by a few percent, so small gaps between the Transformers need care.
 
+## Final test results
+
+The completed run covers all frozen comparisons, both fine-tuning settings, three training-pool orders and four market holdouts. It used eleven expanding-window folds and five Transformer seeds. The test starts in 2015Q1, with 42 possible forecast origins at horizon 1 and 23 through 2020Q3 at horizon 20. Dates and eligibility vary by market. The test has 48 scored markets, compared with 38 in validation, so differences between periods also reflect sample composition. Taiwan's 2015–2017 results at horizons 1–4 overlap the earlier pilot. [Run record](results/test_run_info.txt) · [Settings](docs/freeze.md)
+
+### Main model comparison
+
+Entries are median market RMSE ratios, shared model divided by baseline, with 95% paired bootstrap intervals using 20-quarter blocks. Below 1 favors the shared Transformer. Each ratio is calculated within a market before taking the median.
+
+| Shared Transformer vs | Validation, 3–6Q | Test, 3–6Q | Validation, 16–20Q | Test, 16–20Q |
+|---|---:|---:|---:|---:|
+| Per-market Transformer | 0.896 [0.802, 0.931] | 0.878 [0.746, 0.966] | 0.806 [0.797, 0.862] | 0.805 [0.681, 0.997] |
+| Per-market AR | 0.944 [0.884, 0.978] | 0.931 [0.868, 1.000] | 0.869 [0.797, 0.956] | 0.901 [0.790, 0.975] |
+| Per-market ARIMA | 0.947 [0.857, 1.000] | 0.978 [0.872, 1.048] | 0.913 [0.841, 0.980] | 1.015 [0.789, 1.139] |
+| Pooled AR(4) | 0.979 [0.919, 1.058] | 1.013 [0.944, 1.072] | 0.955 [0.918, 1.011] | 0.917 [0.872, 1.157] |
+| No-change | 0.848 [0.651, 0.979] | 0.870 [0.707, 1.110] | 0.895 [0.833, 1.029] | 0.698 [0.597, 1.062] |
+
+![Test relative RMSE by horizon](results/long_hpi_122/test/rel_rmse_by_horizon.png)
+
+The shared Transformer beat per-market Transformers in both ranges at all four block lengths. It also beat per-market AR at 16–20 quarters across all four lengths; the shorter-range AR result depends on block length. No interval excludes equal performance against pooled AR(4), pooled AR(8) or per-market ARIMA in either range. Against no-change, the long-horizon estimate favors the Transformer, but the interval crosses 1 for 8-, 12- and 20-quarter blocks. The validation advantage over ARIMA at long horizons did not persist in the test period. [Block-length results](results/block_length_sensitivity_122_test.csv)
+
+Keeping only fitted per-market Transformers gives test ratios of 0.901 [0.772, 0.965] at 3–6 quarters and 0.783 [0.645, 0.994] at 16–20 quarters, on 45 eligible markets with 20-quarter blocks. The shared-model advantage is therefore also present after removing no-change fallback cases. [Fitted-only check](results/long_hpi_122/test/fitted_only_ratio_ci.csv)
+
+### Fine-tuning
+
+Both settings failed to improve overall test accuracy. Relative to their own shared starting model, fixed ten-epoch fine-tuning gave ratios of 1.004 at 3–6 quarters and 1.001 at 16–20 quarters; both intervals include 1 at every block length. The inner-selection setting gave 1.003 and 1.000. These all-forecast summaries include cases that retained the shared model; adapted-sample results are saved separately. [Fixed checks](results/market_finetune_122/test/adaptation_check.csv) · [Inner-selection checks](results/market_finetune_122/inner_select/test/adaptation_check.csv)
+
+The market examples also changed. Germany's fixed-setting point estimate improved slightly, with wide intervals; its chosen-setting estimate did not improve. Portugal's fixed-setting errors were about 27% and 30% higher. With epochs selected inside training they were about 6% and 8% higher. Portugal's validation fine-tuning gains did not generalize to the test period. [Case results](results/market_finetune_122/case_markets_ci_test.csv)
+
+### Training-pool size
+
+On the same five evaluation markets, the preselected 41-market pool had RMSE ratios of 1.145 [1.004, 1.235] at 3–6 quarters and 1.690 [1.432, 1.993] at 16–20 quarters relative to the five-market pool, using 20-quarter blocks. The longer-range deterioration holds across all four block lengths; the shorter-range interval includes 1 with shorter blocks. The 10- and 20-market pools also had higher long-range error in all three addition orders. More training markets helped in validation but did not improve these test forecasts. The 41-market pool is the fixed validation-era selection, not all 48 test markets. [Training-pool results](results/market_scale_122/test) · [All orders and block lengths](results/block_length_sensitivity_122_test.csv)
+
+### Market holdouts
+
+Leaving out each target market changed error relative to including its training history by about −2% to +6% in the two reported ranges. All corresponding 95% intervals include 1 across the four block lengths. The model still sees the held-out market's recent HPI window at forecast time.
+
+Performance against simple baselines varied. Portugal's holdout model beat AR and no-change in both ranges across all block lengths. Taiwan's holdout model beat no-change at 16–20 quarters across all lengths. Australia's holdout model had roughly twice the long-horizon error of its per-market AR. These results support forecasting without local training examples in some markets, with substantial differences in usefulness across markets. [Holdout results](results/market_holdout_122) · [Block-length results](results/block_length_sensitivity_122_test.csv)
+
 ## Why the shared Transformer differs from pooled AR
 
 Pooled AR and the shared Transformer see the same data: eight quarters of real house price growth from the same markets. Pooled AR turns them into a forecast with fixed coefficients. The Transformer has no coefficients, so we measured the equivalent for each validation forecast: how much the forecast changes when one input quarter changes (its local weight), and how much each quarter moved the forecast away from the forecast for an average input (Integrated Gradients). We retrained the shared model exactly as in the main run; its forecasts match the saved ones to within 2×10⁻⁷. We compare it mainly with pooled AR(8), which uses the same eight quarters.
@@ -172,11 +212,12 @@ We repeated the comparison with year-on-year CPI inflation as a second input. Bo
 
 ## Limits and remaining work
 
-- The results cover one validation period, which includes the 2008 crisis. The proposed test starts in 2015 and overlaps years examined in the earlier Taiwan pilot. [Taiwan pilot](docs/taiwan_pilot.md)
-- Most comparisons have 40 forecast dates, so a draw with 20-quarter blocks uses only two blocks. Claims that depend on the block length are marked above.
-- Taiwan remains a difficult case. Its shared-model errors are close to no-change in the ranges shown here.
-- The broader study still needs the final test. We have recent release examples for 32 markets and schedule estimates for two more. Availability of the real HPI during 2000–2009 remains uncertain.
-- The noise, CPI and explainability checks were added after the main design was fixed, so they are reported as exploratory results.
+- Validation and test cover different periods and market samples. Validation includes the 2008 crisis, while test origins begin in 2015. Taiwan's short-horizon overlap with the pilot is disclosed above.
+- There are few independent forecast dates at long horizons, and overlapping targets create dependence. Several conclusions change with bootstrap block length.
+- Historical first-release timing and revised real-HPI vintages remain uncertain. The common 122-day lag is an assumption based on recent nominal-HPI evidence.
+- Relative gains do not establish accuracy sufficient for buying, selling or construction decisions. Absolute errors and individual-market failures also matter.
+- Noise, CPI, attribution and iMaPP results are exploratory validation analyses. The LLM-derived Taiwan policy index has been extracted and checked but has not been tested as a forecasting input.
+- Remaining work is to integrate the results, limitations and reproducibility materials into the final report and presentation.
 
 ## Run locally
 
@@ -235,7 +276,7 @@ The earlier 100-day runs can be reproduced from commit `d48a065`.
 
 ### Final test
 
-The 11/18 meeting confirmed the main comparisons, both fine-tuning setups, all three training-pool orders and four market holdouts. Test-phase support and the resumable entry point are implemented. The final test run is still pending. [Frozen settings](docs/freeze.md)
+The 11/18 meeting confirmed the main comparisons, both fine-tuning setups, all three training-pool orders and four market holdouts. Test-phase support and the resumable entry point are implemented. The final run completed on November 19, 2026 (New York time), using commit `b474b77`. Results are summarized in [Final test results](#final-test-results). [Frozen settings](docs/freeze.md)
 
 ```bash
 bash scripts/run_test_122.sh

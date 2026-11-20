@@ -1,5 +1,3 @@
-"""Check ARIMA history construction, cumulative forecasts and fallback behavior."""
-
 import importlib.util
 from pathlib import Path
 import sys

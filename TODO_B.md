@@ -70,13 +70,3 @@ Absolute quarterly change in log real HPI above 0.10, from `data/interim/panel_q
 | United Kingdom | 1972Q3, 1988Q3 | Barber boom (1972) and Lawson boom (1988) |
 
 Not in the 41 forecast markets: Romania 2010Q1, Türkiye 2022Q3.
-
-## Follow-up requirements
-
-- Replace HPI publication-lag assumptions only when source-release evidence supports the change; keep both experiment TOML files synchronized.
-- Distinguish first official HPI publication, latest-known HPI availability date, and database ingestion dates.
-- Record whether each HPI release lag is measured in calendar or working days.
-- Keep Taiwan iMaPP and manual policy chronology as separate sources; verify whether E025 is eligible for `LTV` or `LoanR_HH` before counting it as an iMaPP discrepancy.
-- For the HPI+CPI comparison, keep Japan on BIS data; preserve New Zealand's observed CPI coverage gap (and its sample-size consequences) rather than inventing history.
-- Verify whether Russia's 2001 YoY CPI observations are actually available in the features; the currently checked `main` data contain 2001 index levels but the assessment still flags missing 2001 YoY coverage. Update the assessment and validation coverage only when the data and a rerun support it.
-- Preserve evidence links and remaining uncertainty when a status changes.

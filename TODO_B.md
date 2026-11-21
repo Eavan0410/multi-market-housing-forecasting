@@ -1,6 +1,7 @@
 # TODO B — HPI Data Evidence & Decision Log
 
-**Scope:** HPI-related data checks, Taiwan housing-credit policy (iMaPP) evidence relevant to HPI, and a narrowly scoped CPI input-coverage note for the HPI+CPI forecasting comparison. **Data snapshot:** Based on the latest project data and validation results (2026-11-20), this log summarizes verified HPI data characteristics, publication lags, outlier assessments, and Taiwan policy-data discrepancies, while documenting remaining data coverage gaps and unresolved limitations. 
+**Scope:** HPI-related data checks, Taiwan housing-credit policy (iMaPP) evidence relevant to HPI, and a narrowly scoped CPI input-coverage note for the HPI+CPI forecasting comparison. 
+**Data snapshot:** Based on the latest project data and validation results (2026-11-20), this log summarizes verified HPI data characteristics, publication lags, outlier assessments, and Taiwan policy-data discrepancies, while documenting remaining data coverage gaps and unresolved limitations. 
 **Status definitions:** Verified = supported for the specified claim; Partial = some evidence, outstanding assumptions; Pending = unverified; Documented = limitation acknowledged, not resolved.
 
 | Data Issue / Decision | Owner | Evidence Conclusion & Explanation | Status | Evidence / Code Reference |

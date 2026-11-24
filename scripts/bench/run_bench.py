@@ -1,15 +1,9 @@
-"""Throughput benchmark for the policy-extraction pipeline (vLLM offline inference).
+"""Throughput benchmark for the policy extraction pipeline (vLLM offline).
 
-One process = one engine setting (prefix caching on/off, max_model_len), because
-vLLM does not reliably free GPU memory when a second engine is built in the same
-process. Inside one engine we sweep batch size and guided decoding, with one
-warm-up pass (not recorded) and several timed repeats. The prefix cache is reset
-before every timed repeat, so a repeat never reuses KV cache from the previous one.
+One engine setting per process; batch size and guided decoding are swept inside it.
+The prefix cache is reset before every timed run.
 
-Usage (normally through scripts/bench/run_all.sh):
     python scripts/bench/run_bench.py --model <path> --tag base
-    python scripts/bench/run_bench.py --model <path> --tag no_prefix --prefix-caching off --batch-sizes 32 --guided on
-    python scripts/bench/run_bench.py --model <path> --tag len4096 --max-model-len 4096 --kv-only
     python scripts/bench/run_bench.py --summarize
 """
 
@@ -25,15 +19,13 @@ from pathlib import Path
 OUT_DIR = Path("results/bench")
 
 
-# ---------------------------------------------------------------- helpers
-
 def make_params(guided: bool, max_tokens: int):
     from vllm import SamplingParams
 
     from housing_forecast.policy.schema import EXTRACTION_SCHEMA
 
     kw = dict(temperature=0.0, max_tokens=max_tokens)
-    if guided:  # the API name differs across vLLM versions (same logic as backends.py)
+    if guided:  # API name differs across vLLM versions
         try:
             from vllm.sampling_params import GuidedDecodingParams
             kw["guided_decoding"] = GuidedDecodingParams(json=EXTRACTION_SCHEMA)
@@ -61,7 +53,6 @@ def reset_prefix_cache(llm) -> bool:
 
 
 def kv_info(llm) -> dict:
-    """KV cache size; the attribute path changes between vLLM versions, so also check the log."""
     try:
         cc = llm.llm_engine.vllm_config.cache_config
         out = {"num_gpu_blocks": cc.num_gpu_blocks, "block_size": cc.block_size}
@@ -69,7 +60,7 @@ def kv_info(llm) -> dict:
             out["kv_cache_tokens"] = cc.num_gpu_blocks * cc.block_size
         return out
     except Exception:
-        return {"note": "not readable here; see the 'KV cache' lines in the log"}
+        return {}
 
 
 def env_info() -> dict:
@@ -103,8 +94,6 @@ def run_once(llm, prompts, params, batch_size: int) -> dict:
     }
 
 
-# ---------------------------------------------------------------- benchmark
-
 def bench(args):
     from vllm import LLM
 
@@ -133,12 +122,12 @@ def bench(args):
     batch_sizes = [int(x) for x in args.batch_sizes.split(",")]
     guided_opts = [g.strip() == "on" for g in args.guided.split(",")]
     out_path = OUT_DIR / f"{args.tag}.jsonl"
-    out_path.write_text("")                       # one fresh file per tag
+    out_path.write_text("")
 
     for guided in guided_opts:
         params = make_params(guided, args.max_tokens)
         reset_prefix_cache(llm)
-        run_once(llm, prompts, params, max(batch_sizes))          # warm-up: CUDA graphs, grammar compile
+        run_once(llm, prompts, params, max(batch_sizes))  # warm-up, not recorded
         for bs in batch_sizes:
             for r in range(args.repeats):
                 cache_reset = reset_prefix_cache(llm)
@@ -151,8 +140,6 @@ def bench(args):
                 print(f"guided={guided!s:5} bs={bs:<3} rep={r}  {res['wall_s']:.2f}s  "
                       f"parse {res['parse_ok']}/{res['n']}")
 
-
-# ---------------------------------------------------------------- summary
 
 def summarize():
     rows = []
@@ -215,7 +202,7 @@ def main():
     ap.add_argument("--model")
     ap.add_argument("--tag", default="base")
     ap.add_argument("--prefix-caching", choices=["on", "off"], default="on")
-    ap.add_argument("--max-model-len", type=int, default=16384)    # same as configs/policy.toml
+    ap.add_argument("--max-model-len", type=int, default=16384)
     ap.add_argument("--gpu-mem", type=float, default=0.85)
     ap.add_argument("--max-chars", type=int, default=12000)
     ap.add_argument("--max-tokens", type=int, default=256)
@@ -223,7 +210,7 @@ def main():
     ap.add_argument("--guided", default="on,off")
     ap.add_argument("--repeats", type=int, default=3)
     ap.add_argument("--announcements", default="data/raw/policy/announcements.jsonl")
-    ap.add_argument("--kv-only", action="store_true", help="load the engine, record KV cache size, exit")
+    ap.add_argument("--kv-only", action="store_true")
     ap.add_argument("--summarize", action="store_true")
     args = ap.parse_args()
     if args.summarize:

@@ -2,7 +2,7 @@
 
 This branch holds the LLM inference side of a house price forecasting project. A local 14B model reads Chinese policy announcements and turns them into a structured, point-in-time policy signal. The work here is about running that model efficiently on one 24 GB GPU and checking that its output can be trusted.
 
-The forecasting study itself (one shared Transformer for 48 housing markets) lives on [`main`](https://github.com/Eavan0410/multi-market-housing-forecasting/tree/main).
+The forecasting study itself (one shared Transformer for 48 housing markets) lives on the `main` branch.
 
 ## Key results
 

@@ -1,0 +1,16 @@
+{
+  "tag": "len4096",
+  "model": "/home/yc4941/data/models/Qwen2.5-14B-Instruct-GPTQ-Int4",
+  "prefix_caching": "on",
+  "max_model_len": 4096,
+  "gpu_memory_utilization": 0.85,
+  "max_chars": 12000,
+  "n_docs": 30,
+  "model_load_s": 81.0,
+  "vllm": "0.34.0",
+  "gpu": "NVIDIA L4",
+  "gpu_mem_gb": 22.0,
+  "num_gpu_blocks": 576,
+  "block_size": 64,
+  "kv_cache_tokens": 36864
+}

@@ -1,0 +1,3 @@
+{"tag": "gpu095", "prefix_caching": "on", "max_model_len": 16384, "guided": true, "batch_size": 32, "repeat": 0, "cache_reset": true, "wall_s": 43.50008335699977, "n": 30, "prompt_tokens": 65375, "output_tokens": 2474, "parse_ok": 30}
+{"tag": "gpu095", "prefix_caching": "on", "max_model_len": 16384, "guided": true, "batch_size": 32, "repeat": 1, "cache_reset": true, "wall_s": 43.78338190800014, "n": 30, "prompt_tokens": 65375, "output_tokens": 2474, "parse_ok": 30}
+{"tag": "gpu095", "prefix_caching": "on", "max_model_len": 16384, "guided": true, "batch_size": 32, "repeat": 2, "cache_reset": true, "wall_s": 43.739783136999904, "n": 30, "prompt_tokens": 65375, "output_tokens": 2474, "parse_ok": 30}
